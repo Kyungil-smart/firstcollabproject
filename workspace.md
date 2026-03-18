@@ -31,20 +31,20 @@ Assets/
 - TextMeshPro
 
 ## 설치된 확장 패키지 (링크 첨부)
-[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json):
+[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - JSON 사용시 높은 확장성을 제공 (Json 배울때 사용했던 라이브러리)
 - 각종 저장/로드에 유용
 ---
-[R3](https://github.com/Cysharp/R3):
+[R3](https://github.com/Cysharp/R3)
 - 반응형 프로그래밍을 위한 라이브러리 (옵져버패턴 배울때 ObervableProperty를 배웠는데 유사함)
 - 값변경시 호출 로직, UI 바인딩에 유용
 - [ObservableCollections](https://github.com/Cysharp/ObservableCollections): R3 전용 반응형 자료구조 라이브러리
 ---
-[UniTask](https://github.com/Cysharp/UniTask):
+[UniTask](https://github.com/Cysharp/UniTask)
 - 성능 좋은 async/await 기반 비동기 라이브러리
 - 기본적인 사용법은 코루틴처럼 간단하지만 반환형이 가능하고 여러 고급 기능 보유
 ---
-[PrimeTween](https://github.com/KyryloKuzyk/PrimeTween):
+[PrimeTween](https://github.com/KyryloKuzyk/PrimeTween)
 - 성능(개쩌는) struct 기반 트윈 애니메이션 라이브러리
 - DOTween 대체용으로 만들어서 매우 유사하지만 약간의 차이 숙지 필요
 ---
@@ -84,7 +84,7 @@ Assets/
 ---
 
 7. 씬 관리 방식
-- 같은 씬을 두명의 작업자가 동시에 작업하지 않으며 그래야 하면 복사하여 작업후 병합합니다
+- 같은 씬을 두명의 작업자가 동시에 작업하지 않으며, 그래야 하면 복사하여 작업후 병합합니다
 ---
 
 8. 데이터 정리
@@ -95,7 +95,8 @@ Assets/
 
 9. 작업 관리
 - Notion에서 작업 상태를 구분하여 작성합니다
-- 작업 분류: 예정 / 진행중 / 중단 / 완료 
+- 작업 분류: 예정 / 진행중 / 중단 / 완료
+- 작업은 충분한 테스트 후에 완료로 전환 합시다
 ---
 
 10. 커뮤니케이션 및 피드백
