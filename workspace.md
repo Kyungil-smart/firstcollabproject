@@ -3,7 +3,7 @@
 Assets/
 ├─ _Imports/             
 ├─ _Settings/            URP/Input + 잡다한 유니티 세팅
-├─ └─ Editor/            에디터 전용 스크립트
+├─ └─ Editor/            에디터 전용 스크립트 (빌드제외)
 ├─ Packages/
 ├─ Project/              핵심 폴더
 │  ├─ Art/
