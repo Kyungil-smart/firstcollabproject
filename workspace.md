@@ -38,7 +38,7 @@ Assets/
 [R3](https://github.com/Cysharp/R3):
 - 반응형 프로그래밍을 위한 라이브러리 (옵져버패턴 배울때 ObervableProperty를 배웠는데 유사함)
 - 값변경시 호출 로직, UI 바인딩에 유용
-[ObservableCollections](https://github.com/Cysharp/ObservableCollections):
+- [ObservableCollections](https://github.com/Cysharp/ObservableCollections):
 - R3 전용 반응형 자료구조 라이브러리
 ---
 [UniTask](https://github.com/Cysharp/UniTask):
