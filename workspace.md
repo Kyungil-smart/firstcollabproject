@@ -31,21 +31,21 @@ Assets/
 - TextMeshPro
 
 ## 설치된 확장 패키지 (링크 첨부)
-- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json):
+[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json):
 - JSON 사용시 높은 확장성을 제공 (Json 배울때 사용했던 라이브러리)
 - 각종 저장/로드에 유용
 ---
-- [R3](https://github.com/Cysharp/R3):
+[R3](https://github.com/Cysharp/R3):
 - 반응형 프로그래밍을 위한 라이브러리 (옵져버패턴 배울때 ObervableProperty를 배웠는데 유사함)
 - 값변경시 호출 로직, UI 바인딩에 유용
-- [ObservableCollections](https://github.com/Cysharp/ObservableCollections):
+[ObservableCollections](https://github.com/Cysharp/ObservableCollections):
 - R3 전용 반응형 자료구조 라이브러리
 ---
-- [UniTask](https://github.com/Cysharp/UniTask):
+[UniTask](https://github.com/Cysharp/UniTask):
 - 성능 좋은 async/await 기반 비동기 라이브러리
 - 기본적인 사용법은 코루틴처럼 간단하지만 반환형이 가능하고 여러 고급 기능 보유
 ---
-- [PrimeTween](https://github.com/KyryloKuzyk/PrimeTween):
+[PrimeTween](https://github.com/KyryloKuzyk/PrimeTween):
 - 성능(개쩌는) struct 기반 트윈 애니메이션 라이브러리
 - DOTween 대체용으로 만들어서 매우 유사하지만 약간의 차이 숙지 필요
 ---
@@ -55,42 +55,51 @@ Assets/
 1. 브랜치를 인원 단위로 나누기
 - 각자 고유한 이름으로 브랜치를 만들어 작업하고, 통합후에는 새 프랜치를 만드는걸 기본으로 합니다
 - 사용하지 않는 오래된 브랜치는 지워 혼동을 방지 합니다
+---
 
 2. 작업영역 준수
 - 각자 작업중인 영역을 침범하지 않도록 합시다
 - 공동사용 가능성이 높은 에셋을 변경 작업중이라면 팀원에게 알립니다
 - 폴더 구조를 숙지하고 적절히 활용합시다 
+---
 
 3. 커밋 메시지 규칙
 - 한국어 작성 가능합니다. 대괄호 안에 접두어 [기능], [수정], [리펙토링], [UI] 등 작성
 - 작은 변경의 경우 제목으로 설명하고 본문작성은 생략해도 괜찮습니다
+---
 
 4. PR (풀 리퀘스트) 규칙
 - 커밋들을 브랜치 단위로 메인에 병합 하는것을 목표로 합니다
 - 보통 팀장이 병합작업을 하지만 간단한 수정의 경우 개인의 판단으로 병합할 수 있지만 작은 단위라도 팀원에게 알려야 합니다
+---
 
 5. 코드 네이밍 규칙
 - 변수: camelCase, 클래스/메서드: PascalCase, 상수: UPPER_CASE
 - 인터페이스: I로 시작, 추상클래스: Base로 끝남
+---
 
 6. 프리펩 관리 규칙
 - 대분류는 폴더트리의 이름으로 잡고 세부는 '이름_속성_특이사항' 순서에서 최소 2가지 이상으로 정리합니다
 - 예: [Characters/Enemy] 폴더의 Orc_Boss, [UI] 폴더의 Player_Hpbar_Blue)
 - 공통으로 적용되어야 하는 프리펩은 원본을 수정하고, 아니면 복사본/바리언트 로 정리합니다
+---
 
 7. 씬 관리 방식
 - 같은 씬을 두명의 작업자가 동시에 작업하지 않으며 그래야 하면 복사하여 작업후 병합합니다
-- 
+---
 
 8. 데이터 정리
 - Google Sheets 기반 웹 데이터를 파싱을 하는 것이 기본입니다
 - _Imports 폴더의 에셋 공유는 Google Drive 시용합니다
 - 세이브/로드 구현시 json, 간단한 설정은 PlayerPrefs 활용합니다
- 
+ ---
+
 9. 작업 관리
 - Notion에서 작업 상태를 구분하여 작성합니다
 - 작업 분류: 예정 / 진행중 / 중단 / 완료 
+---
 
 10. 커뮤니케이션 및 피드백
 - 주 소통은 Discord에서 합니다
 - QA 및 피드백은 GitHub Issues + Discord 피드백 채널을 만들어 활용합니다
+---
