@@ -12,7 +12,7 @@
 ---
 
 3. 커밋 메시지 규칙
-- 대괄호 안에 접두어 [feat], [fix], [refactor] 등 영어로 작성 [참고링크](udacity.github.io/git-styleguide/)
+- 대괄호 안에 접두어 [feat], [fix], [refactor] 등 영어로 작성 [참고링크](https://udacity.github.io/git-styleguide/)
 - 작은 변경의 경우 제목으로 설명하고 본문작성은 생략해도 괜찮습니다
 ---
 
