@@ -23,7 +23,7 @@
 ---
 
 5. 코드 관리 규칙
-- 변수/매개변수: camelCase, 클래스/메서드: PascalCase, 상수: UPPER_CASE
+- 변수/매개변수: camelCase, 클래스/메서드/구조체/Enum: PascalCase, 상수: UPPER_CASE
 - private 의 경우 앞에 _ 언더바를 붙여서 표기한다
 - 인터페이스: I로 시작, 추상클래스: Base로 끝남
 - 네이밍 규칙을 준수하고 코드의 작명을 명확하게 하여 과한 주석을 피하고 가독성을 높입시다
