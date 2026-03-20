@@ -11,7 +11,6 @@ using Cysharp.Threading.Tasks;
 public class DataRequestSet : ScriptableObject
 {
     public int index; // 여러 시트를 관리할 때 구분하기 위한 번호
-
     public static DataRequestSet Get(int index)
     {
         string[] guids = AssetDatabase.FindAssets("t:DataRequestSet");
@@ -27,7 +26,6 @@ public class DataRequestSet : ScriptableObject
         Debug.LogWarning($"index가 {index}인 DataRequestSet을 찾을 수 없습니다.");
         return null;
     }
-
 
     public SheetData sheetData;
     public List<SheetDataSOBase> targetSOList;
@@ -57,15 +55,16 @@ public class DataRequestSet : ScriptableObject
             }
             else
             {
-                Debug.LogWarning($"SO가 없거나, 시트의 id를 int로 파싱불가: {i}행 id: {cols[0]}");
+                Debug.LogError($"id와 일치하는 SO가 없습니다: {i + 1}행 id: {cols[0]}");
                 return;
             }
+            so.row = i + 1;
             so.SetData(cols);
             EditorUtility.SetDirty(so);
             AssetDatabase.SaveAssets();
         }
+        Debug.Log("파싱 종료");
     }
-
 }
 [CustomEditor(typeof(DataRequestSet))]
 public class WebRequestButton : Editor

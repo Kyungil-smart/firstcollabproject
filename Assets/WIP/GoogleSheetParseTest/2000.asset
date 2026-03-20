@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 2000
   m_EditorClassIdentifier: Assembly-CSharp::WebRequestTestSO_Alt
   id: 2000
-  nickName: "\uBAA9\uC7AC"
+  row: 4
+  nickName: "\uB098\uBB34"
   materialType: 0
-  softness: 20.3
+  softness: 14.31
   canProcess: 1

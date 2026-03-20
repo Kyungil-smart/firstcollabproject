@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 2001
   m_EditorClassIdentifier: Assembly-CSharp::WebRequestTestSO_Alt
   id: 2001
-  nickName: "\uCCA0"
+  row: 5
+  nickName: "\uAE08"
   materialType: 2
-  softness: 1.5
+  softness: 0
   canProcess: 1

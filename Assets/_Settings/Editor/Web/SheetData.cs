@@ -44,8 +44,6 @@ public struct SheetData
             string[] lines = sheetData.Split('\n');
 
             SuccessCallback?.Invoke(SplitSymbol, lines); // 로딩 성공시 데이터 전달 및 실행
-
-            Debug.Log("파싱 완료");
         }
     }
 }
