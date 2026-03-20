@@ -67,8 +67,7 @@ Assets/
 │  │  ├─ Materials/
 │  │  ├─ Shader/
 │  │  ├─ Sprites/        이미지: UI, 스프라이트 시트 등
-│  │  ├─ Texture/        이미지: 파티클, 머티리얼 등
-│  │  └─ UI Toolkit/
+│  │  └─ Texture/        이미지: 파티클, 머티리얼 등
 │  ├─ DB/                스크립터블 오브젝트
 │  ├─ Prefabs/
 │  ├─ Scenes/
