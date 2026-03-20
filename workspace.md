@@ -59,9 +59,7 @@
 # 기본 폴더 구조
 ```
 Assets/
-├─ _Imports/             
-├─ _Settings/            URP/Input + 잡다한 유니티 세팅
-├─ └─ Editor/            에디터 전용 스크립트 (빌드제외)
+├─ Imports/             
 ├─ Packages/
 ├─ Project/              핵심 폴더
 │  ├─ Art/
@@ -76,6 +74,8 @@ Assets/
 │  ├─ Scenes/
 │  └─ Scripts/
 ├─ Resources/            Resources.Load()용 //파일이 많아지면 Addressable 고려
+├─ Settings/             URP/Input + 잡다한 유니티 세팅
+├─ └─ Editor/            에디터 전용 스크립트 (빌드제외)
 └─ WIP/                  테스트/개인용/정리전 오만가지 잡다한거 방치해도 무방한 폴더
 ```
 
@@ -85,7 +85,7 @@ Assets/
 - 외부 에셋등 .gitignore가 필요하면 _Imports, 개인 제작등 특별한 에셋은 Project/Art/ 폴더 사용
 
 
-## _Imports 폴더의 패키지
+## Imports 폴더의 패키지
 - TextMeshPro
 
 ## 설치된 확장 패키지 (링크 첨부)
