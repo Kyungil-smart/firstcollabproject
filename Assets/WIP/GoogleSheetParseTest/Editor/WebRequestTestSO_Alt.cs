@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public enum MaterialType
 {
@@ -8,6 +9,7 @@ public enum MaterialType
 [CreateAssetMenu(fileName = "WebRequestTestSO_Alt", menuName = "Scriptable Objects/WebRequestTestSO_Alt")]
 public class WebRequestTestSO_Alt : SheetDataSOBase
 {
+    [Header("Á¤º¸")]
     public string nickName;
     public MaterialType materialType;
     public float softness;
@@ -15,10 +17,10 @@ public class WebRequestTestSO_Alt : SheetDataSOBase
 
     public override void SetData(string[] data)
     {
-        id = int.Parse(data[0]);
+        id = ParseInt(data[0]);
         nickName = data[1];
-        materialType = (MaterialType)System.Enum.Parse(typeof(MaterialType), data[2]);
-        softness = float.Parse(data[3]);
-        canProcess = bool.Parse(data[4]);
+        materialType = ParseEnum<MaterialType>(data[2]);
+        softness = ParseFloat(data[3]);
+        canProcess = ParseBool(data[4]);
     }
 }

@@ -1,13 +1,9 @@
 using UnityEngine;
-public abstract class SheetDataSOBase : ScriptableObject
-{
-    public int id;
-    public abstract void SetData(string[] data);
-}
 
 [CreateAssetMenu(fileName = "WebRequestTestSO", menuName = "Scriptable Objects/WebRequestTestSO")]
 public class WebRequestTestSO : SheetDataSOBase
 {
+    [Header("Á¤º¸")]
     public string nickName;
     [field: TextArea] public string desc;
     public int hp;
@@ -17,12 +13,12 @@ public class WebRequestTestSO : SheetDataSOBase
 
     public override void SetData(string[] data)
     {
-        id = int.Parse(data[0]);
+        id = ParseInt(data[0]);
         nickName = data[1];
         desc = data[2];
-        hp = int.Parse(data[3]);
-        attack = int.Parse(data[4]);
-        defense = int.Parse(data[5]);
-        canChase = bool.Parse(data[6]);
+        hp = ParseInt(data[3]);
+        attack = ParseInt(data[4]);
+        defense = ParseInt(data[5]);
+        canChase = ParseBool(data[6]);
     }
 }

@@ -18,18 +18,18 @@ public class ProjectToolbar
 
 
     // 중앙에 'DataRequestSet' 버튼(스크립터블 오브젝트 아이콘) 추가
-    [MainToolbarElement("Project/DataRequestSet0", defaultDockPosition = MainToolbarDockPosition.Middle)]
-    public static MainToolbarElement DataRequestSetButton0()
-    {
-        var icon = EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D;
-        var content = new MainToolbarContent(icon);
-        return new MainToolbarButton(content, () => { EditorUtility.OpenPropertyEditor(DataRequestSet.Get(0)); });
-    }
     [MainToolbarElement("Project/DataRequestSet1", defaultDockPosition = MainToolbarDockPosition.Middle)]
     public static MainToolbarElement DataRequestSetButton1()
     {
-        var icon = EditorGUIUtility.IconContent("ScriptableObject On Icon").image as Texture2D;
+        var icon = EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D;
         var content = new MainToolbarContent(icon);
         return new MainToolbarButton(content, () => { EditorUtility.OpenPropertyEditor(DataRequestSet.Get(1)); });
+    }
+    [MainToolbarElement("Project/DataRequestSet2", defaultDockPosition = MainToolbarDockPosition.Middle)]
+    public static MainToolbarElement DataRequestSetButton2()
+    {
+        var icon = EditorGUIUtility.IconContent("ScriptableObject On Icon").image as Texture2D;
+        var content = new MainToolbarContent(icon);
+        return new MainToolbarButton(content, () => { EditorUtility.OpenPropertyEditor(DataRequestSet.Get(2)); });
     }
 }
