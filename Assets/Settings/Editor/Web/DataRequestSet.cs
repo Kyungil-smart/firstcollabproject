@@ -30,7 +30,7 @@ public class DataRequestSet : ScriptableObject
     public SheetData sheetData;
     public List<SheetDataSOBase> targetSOList;
     Dictionary<int, SheetDataSOBase> targetSODic = new();
-    public int startRow = 3; // 데이터 시작 행
+    public int startRow = 4; // 데이터 시작 행
 
     public void Load()
     {
@@ -43,7 +43,7 @@ public class DataRequestSet : ScriptableObject
     {
         if (lines == null || lines.Length == 0) return;
 
-        for (int i = startRow; i < lines.Length; i++)
+        for (int i = startRow - 1; i < lines.Length; i++)
         {
             string[] cols = lines[i].Split(splitSymbol);
             SheetDataSOBase so;
