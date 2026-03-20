@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +12,19 @@ public class Tilemap : MonoBehaviour
     // 일단 벽 타일만 해놓고 필요할 때 변수 늘리기 ex) wallSideRight, wallSideLeft
 
     // [Header("모서리용 타일 스프라이트")]
-    
-    
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="floorPosition"></param>
+    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPosition)
+    {
+        
+    }
+
+    private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position)
+    {
+        
+    }
 }
