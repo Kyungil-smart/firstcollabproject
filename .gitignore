@@ -101,5 +101,5 @@ ServerData
 [Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 # Ignore imported assets
-
+Assets/Imports/**
 Assets/WIP/PEY**
