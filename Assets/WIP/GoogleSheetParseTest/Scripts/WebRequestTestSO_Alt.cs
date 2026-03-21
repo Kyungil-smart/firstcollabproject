@@ -1,12 +1,10 @@
 using UnityEngine;
-using System;
 
 public enum MaterialType
 {
     Wood, Liquid, Metal
 }
 
-[CreateAssetMenu(fileName = "WebRequestTestSO_Alt", menuName = "Scriptable Objects/WebRequestTestSO_Alt")]
 public class WebRequestTestSO_Alt : SheetDataSOBase
 {
     [Header("Á¤º¸")]
