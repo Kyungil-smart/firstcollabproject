@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
         if (!_isAlive)
         {
             // _anim.SetTrigger("Death");
-            GameOver();
         }
     }
     
