@@ -17,19 +17,33 @@ public class ProjectToolbar
     }
 
 
-    // 중앙에 'DataRequestSet' 버튼(스크립터블 오브젝트 아이콘) 추가
-    [MainToolbarElement("Project/DataRequestSet1", defaultDockPosition = MainToolbarDockPosition.Middle)]
-    public static MainToolbarElement DataRequestSetButton1()
+    // 중앙에 'DataRequestSet' 드롭다운 추가
+    [MainToolbarElement("Project/DataRequestSet", defaultDockPosition = MainToolbarDockPosition.Middle)]
+    public static MainToolbarElement DataRequestSetDropdown()
     {
         var icon = EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D;
-        var content = new MainToolbarContent(icon);
-        return new MainToolbarButton(content, () => { EditorUtility.OpenPropertyEditor(DataRequestSet.Get(1)); });
-    }
-    [MainToolbarElement("Project/DataRequestSet2", defaultDockPosition = MainToolbarDockPosition.Middle)]
-    public static MainToolbarElement DataRequestSetButton2()
-    {
-        var icon = EditorGUIUtility.IconContent("ScriptableObject On Icon").image as Texture2D;
-        var content = new MainToolbarContent(icon);
-        return new MainToolbarButton(content, () => { EditorUtility.OpenPropertyEditor(DataRequestSet.Get(2)); });
+        var content = new MainToolbarContent(icon, "DataRequestSet");
+
+        return new MainToolbarDropdown(content, (rect) =>
+        {
+            var menu = new GenericMenu();
+
+            menu.AddItem(new GUIContent("Weapon"), false, () =>
+            {
+                EditorUtility.OpenPropertyEditor(DataRequestSet.Get(1));
+            });
+
+            menu.AddItem(new GUIContent("Monster"), false, () =>
+            {
+                EditorUtility.OpenPropertyEditor(DataRequestSet.Get(2));
+            });
+
+            menu.AddItem(new GUIContent("Perk"), false, () =>
+            {
+                EditorUtility.OpenPropertyEditor(DataRequestSet.Get(3));
+            });
+
+            menu.DropDown(rect);
+        });
     }
 }

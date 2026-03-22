@@ -38,8 +38,8 @@ public class PerkSO : SheetDataSOBase
     public Part part;
     public PerkType statType;
     public TargetStat targetStat;
-    public ValueType valueType;
     public float value;
+    public ValueType valueType;
     [TextArea] public string description;
 
     public override void SetData(string[] data)
@@ -49,8 +49,8 @@ public class PerkSO : SheetDataSOBase
         part = ParseEnum<Part>(data[2]);
         statType = ParseEnum<PerkType>(data[3]);
         targetStat = ParseEnum<TargetStat>(data[4]);
-        valueType = ParseEnum<ValueType>(data[5]);
-        value = ParseFloat(data[6]);
+        value = ParseFloat(data[5]);
+        valueType = ParseEnum<ValueType>(data[6]);
         description = data[7];
     }
 }

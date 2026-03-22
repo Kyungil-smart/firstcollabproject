@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BattleTeamB : MonoBehaviour, IDamageable
 {
-    public int hp = 100;
+    public float hp = 100;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         hp -= damage;
         Debug.Log(hp);

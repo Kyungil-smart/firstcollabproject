@@ -30,6 +30,7 @@ public class DataRequestSet : ScriptableObject
     public SheetData sheetData;
     public List<SheetDataSOBase> targetSOList;
     Dictionary<int, SheetDataSOBase> targetSODic = new();
+    public bool renameSOBySheetName; // 이름 컬럼 기준으로 에셋 파일명 변경
     public int startRow = 6; // 데이터 시작 행
 
     public void Load()
@@ -63,13 +64,30 @@ public class DataRequestSet : ScriptableObject
                 {
                     Debug.LogError($"id와 일치하는 SO가 없습니다: {i + 1}행, id: {cols[0]}");
                 }
-                return;
+                break;
             }
             so.row = i + 1;
             so.SetData(cols);
+
+            if (renameSOBySheetName)
+            {
+                string assetPath = AssetDatabase.GetAssetPath(so);
+                string newName = cols[1].Trim();
+                if (!string.IsNullOrEmpty(newName))
+                {
+                    string currentName = System.IO.Path.GetFileNameWithoutExtension(assetPath);
+                    if (currentName != newName)
+                    {
+                        string result = AssetDatabase.RenameAsset(assetPath, newName);
+                        if (!string.IsNullOrEmpty(result))
+                            Debug.LogWarning($"파일명 변경 실패: {result}");
+                    }
+                }
+            }
+
             EditorUtility.SetDirty(so);
-            AssetDatabase.SaveAssets();
         }
+        AssetDatabase.SaveAssets();
         Debug.Log("파싱 종료");
     }
 }

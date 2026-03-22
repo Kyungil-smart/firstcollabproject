@@ -10,5 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
-  m_Name: WeaponConfig
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponConfig
+  m_Name: "\uB9E8\uC8FC\uBA39"
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
+  id: 1001
+  row: 6
+  Name: "\uB9E8\uC8FC\uBA39"
+  attackType: 0
+  damageBase: 50
+  attackInterval: 0.5
+  rangeEnable: 0
+  rangeValue: 0
+  knockbackEnable: 1
+  knockbackPower: 10
+  splashEnable: 0
+  splashRadius: 0
+  maxAmmo: 0
+  reloadType: 0
+  reloadTime: 0

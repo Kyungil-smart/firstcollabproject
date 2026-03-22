@@ -31,8 +31,8 @@
 ---
 
 6. 프리펩 관리 규칙
-- 대분류는 폴더트리의 이름으로 잡고 세부는 '이름_속성_특이사항' 순서에서 최소 2가지 이상으로 정리합니다
-- 예: [Prefabs/Characters/Enemy] 폴더의 Orc_Boss, [Prefabs/UI] 폴더의 Player_Hpbar_Blue)
+- 대분류는 폴더트리의 이름으로 잡고 세부는 '속성_이름_특이사항' 에서 최소 2가지 이상으로 정리합니다
+- 예: [Prefabs/Characters/Enemy] 폴더의 Enemy_Orc_Boss, [Prefabs/UI] 폴더의 Player_Hpbar_Blue)
 - 많은 곳에 공통으로 적용되어야 하는 프리펩은 원본을 수정하고, 아니면 복사본/바리언트 로 정리합니다
 ---
 
