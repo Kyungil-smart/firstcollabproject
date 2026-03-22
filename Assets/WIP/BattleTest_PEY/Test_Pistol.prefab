@@ -84,7 +84,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: b9ff92ad5ae774bdb96b0ec23605e135, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.6, y: 0.42}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09703c0afc2474a4eae8e7f6c6fd97d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeWeapon
-  runtime: {fileID: 11400000, guid: 59fd1685320fb4148986e3a624d4ed4e, type: 2}
+  data: {fileID: 0}
   Name: 
   attackType: 0
   damageBase: 0

@@ -69,7 +69,7 @@ public class WeaponFactory
     public GameObject CreateWeapon(WeaponSO config)
     {
         GameObject weapon = Object.Instantiate(config.prefab);
-        var initializeWeapon = weapon.GetComponent(typeof(IWeapon)) as IWeapon;
+        var initializeWeapon = weapon.GetComponent<WeaponBase>();
         initializeWeapon?.Init(config);
         return weapon;
     }

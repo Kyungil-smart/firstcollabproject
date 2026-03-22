@@ -3,6 +3,9 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Hash(애니메이션 이름)기준으로 에니메이션을 재생합니다
+/// </summary>
 public class PlayerAnimator : MonoBehaviour
 {
     Animator _anim;

@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static BattleInputAction; // 매번 적지 않도록 함
 using System;
-using System.Collections.Generic;
 
+/// <summary>
+/// 인풋 액션을 받고 이벤트를 실행합니다. 참조용 SO가 하나 존재합니다
+/// </summary>
 public class BattleInputReader : ScriptableObject, IBattleActions
 {
     public BattleInputAction inputAction;
