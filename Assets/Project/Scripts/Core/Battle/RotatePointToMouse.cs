@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class RotatePointToMouse : MonoBehaviour
 {
     Camera _mainCam;
+
     private void Awake()
     {
         _mainCam = Camera.main;
@@ -16,7 +17,6 @@ public class RotatePointToMouse : MonoBehaviour
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector3 worldPos = _mainCam.ScreenToWorldPoint(mousePos);
-
         Vector3 dir = worldPos - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);

@@ -8,6 +8,7 @@ public delegate T SelectionStrategy<T>(IEnumerable<T> items);
 public static class Registry<T> where T : class
 {
     static readonly HashSet<T> _items = new();
+    public static int Count => _items.Count;
 
     public static bool TryAdd(T item)
     {
@@ -18,7 +19,7 @@ public static class Registry<T> where T : class
     {
         return _items.Remove(item);
     }
-    public static void Clear()
+    public static void Clear() // static 데이터들은 씬이 넘어가도 남아있어서 명시적 초기화를 해야한다 (Remove처리 잘 해뒀으면 쓸일 없음)
     {
         _items.Clear();
     }
@@ -31,4 +32,5 @@ public static class Registry<T> where T : class
     public static T Get(SelectionStrategy<T> strategy) => strategy(_items);
 
     public static IEnumerable<T> All => _items;
+
 }

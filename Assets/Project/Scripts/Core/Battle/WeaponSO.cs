@@ -33,7 +33,7 @@ public class WeaponSO : SheetDataSOBase
 
     [Header("ø¨√‚")]
     public GameObject prefab;
-    public Sprite icon;
+    public string animationName;
 
     public override void SetData(string[] data)
     {

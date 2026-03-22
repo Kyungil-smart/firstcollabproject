@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
-  m_Name: "\uBE60\uB8E8"
+  m_Name: "1014_\uB9E4\uADF8\uB118"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
-  id: 1003
-  row: 8
-  Name: "\uBE60\uB8E8"
-  attackType: 0
-  damageBase: 200
-  attackInterval: 0.7
-  rangeEnable: 0
-  rangeValue: 0
+  id: 1014
+  row: 14
+  Name: "\uB9E4\uADF8\uB118"
+  attackType: 1
+  damageBase: 300
+  attackInterval: 0.3
+  rangeEnable: 1
+  rangeValue: 100
   knockbackEnable: 1
-  knockbackPower: 20
-  splashEnable: 1
-  splashRadius: 15
-  maxAmmo: 0
-  reloadType: 0
-  reloadTime: 0
+  knockbackPower: 200
+  splashEnable: 0
+  splashRadius: 0
+  maxAmmo: 6
+  reloadType: 2
+  reloadTime: 0.5
+  prefab: {fileID: 0}
+  animationName: 

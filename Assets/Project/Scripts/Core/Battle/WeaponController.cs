@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -14,8 +13,10 @@ public class WeaponController : MonoBehaviour
     [SerializeField] WeaponSO _meleeWeapon;
     [SerializeField] WeaponSO _rangeWeapon;
     [SerializeField] WeaponSO _specialWeapon;
-    GameObject _curWeapon;
+    GameObject _weapon;
+    WeaponBase _curWeapon;
 
+    PlayerAnimator _anim;
 #if UNITY_EDITOR
     private void Reset()
     {
@@ -35,11 +36,16 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
+        _anim = GetComponent<PlayerAnimator>();
+
         _input.Enable();
         _input.on1 += EquipMeleeWeapon;
         _input.on2 += EquipRangeWeapon;
         _input.on3 += EquipSpecialWeapon;
         _input.onAttack += Attack;
+
+        // 시작시 근접 무기 장착
+        EquipMeleeWeapon();
     }
     private void OnDisable()
     {
@@ -52,12 +58,14 @@ public class WeaponController : MonoBehaviour
 
     public void EquipWeapon(WeaponSO weaponSO)
     {
-        if (_curWeapon != null) Destroy(_curWeapon);
+        if (_weapon != null) Destroy(_weapon);
         
-        _curWeapon = _factory.CreateWeapon(weaponSO);
-        _curWeapon.transform.SetParent(mountPoint);
-        _curWeapon.transform.localPosition = Vector3.zero;
-        _curWeapon.transform.localRotation = Quaternion.identity;
+        _weapon = _factory.CreateWeapon(weaponSO);
+        _curWeapon = _weapon.GetComponent<WeaponBase>();
+
+        _weapon.transform.SetParent(mountPoint);
+        _weapon.transform.localPosition = Vector3.zero;
+        _weapon.transform.localRotation = Quaternion.identity;
     }
 
     private void EquipMeleeWeapon() => EquipWeaponSlot(_meleeWeapon);
@@ -66,12 +74,14 @@ public class WeaponController : MonoBehaviour
 
     private void EquipWeaponSlot(WeaponSO weaponSO)
     {
-        if (weaponSO == null) { Debug.LogWarning($"무기가 비어 있습니다"); return; }
         EquipWeapon(weaponSO);
     }
 
-    private void Attack() // test
+    public float CurrentRange => _curWeapon?.rangeValue ?? 0f;
+
+    private void Attack(IDamageable[] targets)
     {
-        Debug.Log("Attack");
+        _curWeapon.Use(targets);
+        _anim?.PlayAnimation(_curWeapon.AnimationHash);
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78013e9ba162db94eb7bdc1f61ca1e11, type: 3}
-  m_Name: "\uD314 \uAC15\uD654"
+  m_Name: "3001_\uD314 \uAC15\uD654"
   m_EditorClassIdentifier: Assembly-CSharp::PerkSO
   id: 3001
   row: 6
@@ -20,4 +20,4 @@ MonoBehaviour:
   targetStat: 0
   value: 5
   valueType: 0
-  description: "\uACF5\uACA9\uB825 5 \uC99D\uAC00"
+  description: 

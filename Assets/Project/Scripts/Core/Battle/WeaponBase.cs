@@ -1,16 +1,13 @@
 using UnityEngine;
+public interface IDamageable { void TakeDamage(float damage); }
 
 public interface IWeapon
 {
+    int AnimationHash { get; }
     void Init(WeaponSO config);
     void Equip();
-    void Use();
+    void Use(IDamageable[] targets);
     void UnEquip();
-}
-
-public interface IDamageable
-{
-    void TakeDamage(float damage);
 }
 
 /// <summary>
@@ -18,7 +15,8 @@ public interface IDamageable
 /// </summary>
 public abstract class WeaponBase : MonoBehaviour, IWeapon
 {
-    public WeaponSO SOtoRuntime;
+    public WeaponSO data;
+    public int AnimationHash => Animator.StringToHash(data?.animationName);
 
     [Header("런타임 데이터")]
     public string Name;
@@ -36,7 +34,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public float reloadTime;
     public void Init(WeaponSO config)
     {
-        SOtoRuntime = config;
+        data = config;
         Name = config.Name;
         attackType = config.attackType;
         damageBase = config.damageBase;
@@ -63,7 +61,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         Debug.Log($"무기 해제: {Name}");
     }
 
-    public abstract void Use();
+    public abstract void Use(IDamageable[] targets);
 }
 
 public class WeaponFactory
@@ -74,5 +72,14 @@ public class WeaponFactory
         var initializeWeapon = weapon.GetComponent(typeof(IWeapon)) as IWeapon;
         initializeWeapon?.Init(config);
         return weapon;
+    }
+}
+public interface IMeleeType { void Execute(Vector3 target); }
+public interface IRangeType { void Execute(Vector3 target); }
+public class AoEDrawCone : IMeleeType
+{
+    public void Execute(Vector3 target)
+    {
+        // TODO: 범위 공격 시 타겟 위치에 범위 표시: 원뿔형(밀리 디폴트)
     }
 }

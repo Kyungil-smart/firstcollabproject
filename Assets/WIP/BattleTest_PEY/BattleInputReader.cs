@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static BattleInputAction; // 매번 적지 않도록 함
 using System;
+using System.Collections.Generic;
 
 public class BattleInputReader : ScriptableObject, IBattleActions
 {
@@ -10,7 +11,7 @@ public class BattleInputReader : ScriptableObject, IBattleActions
     public event Action on1;
     public event Action on2;
     public event Action on3;
-    public event Action onAttack;
+    public event Action<IDamageable[]> onAttack;
 
     public void Enable()
     {
@@ -39,6 +40,6 @@ public class BattleInputReader : ScriptableObject, IBattleActions
 
     void IBattleActions.OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started) onAttack?.Invoke();
+        if (context.started) onAttack?.Invoke(Array.Empty<IDamageable>());
     }
 }

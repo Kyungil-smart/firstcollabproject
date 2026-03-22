@@ -76,6 +76,7 @@ public class DataRequestSet : ScriptableObject
                 if (!string.IsNullOrEmpty(newName))
                 {
                     string currentName = System.IO.Path.GetFileNameWithoutExtension(assetPath);
+                    newName = id + "_" + newName;
                     if (currentName != newName)
                     {
                         string result = AssetDatabase.RenameAsset(assetPath, newName);
