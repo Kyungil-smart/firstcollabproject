@@ -7,7 +7,6 @@ public interface IWeapon
     void Init(WeaponSO config);
     void Equip();
     void Use();
-    void UnEquip();
 }
 
 /// <summary>
@@ -69,12 +68,6 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public virtual void Equip()
     {
         Debug.Log($"무기 장착: {Name}");
-    }
-
-
-    public virtual void UnEquip()
-    {
-        Debug.Log($"무기 해제: {Name}");
     }
 
     public abstract void Use();

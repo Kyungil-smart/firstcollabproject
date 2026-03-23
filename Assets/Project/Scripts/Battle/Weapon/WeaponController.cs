@@ -13,7 +13,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] WeaponSO _meleeWeapon;
     [SerializeField] WeaponSO _rangeWeapon;
     [SerializeField] WeaponSO _specialWeapon;
-    GameObject _weapon;
+    GameObject _object; // 생성할 실제 오브젝트
     WeaponBase _curWeapon;
 
     PlayerAnimator _anim;
@@ -55,26 +55,22 @@ public class WeaponController : MonoBehaviour
         _input.onAttack -= Attack;
     }
 
+    void EquipMeleeWeapon() => EquipWeaponSlot(_meleeWeapon);
+    void EquipRangeWeapon() => EquipWeaponSlot(_rangeWeapon);
+    void EquipSpecialWeapon() => EquipWeaponSlot(_specialWeapon);
 
-    public void EquipWeapon(WeaponSO weaponSO)
+    void EquipWeaponSlot(WeaponSO weaponSO)
     {
-        if (_weapon != null) Destroy(_weapon);
-        
-        _weapon = _factory.CreateWeapon(weaponSO);
-        _curWeapon = _weapon.GetComponent<WeaponBase>();
+        if (_object != null) Destroy(_object);
 
-        _weapon.transform.SetParent(mountPoint);
-        _weapon.transform.localPosition = Vector3.zero;
-        _weapon.transform.localRotation = Quaternion.identity;
-    }
+        _object = _factory.CreateWeapon(weaponSO);
+        _curWeapon = _object.GetComponent<WeaponBase>();
 
-    private void EquipMeleeWeapon() => EquipWeaponSlot(_meleeWeapon);
-    private void EquipRangeWeapon() => EquipWeaponSlot(_rangeWeapon);
-    private void EquipSpecialWeapon() => EquipWeaponSlot(_specialWeapon);
+        _object.transform.SetParent(mountPoint);
+        _object.transform.localPosition = Vector3.zero;
+        _object.transform.localRotation = Quaternion.identity;
 
-    private void EquipWeaponSlot(WeaponSO weaponSO)
-    {
-        EquipWeapon(weaponSO);
+        _curWeapon.Equip();
     }
 
     public float CurrentRange => _curWeapon?.rangeValue ?? 0f;
