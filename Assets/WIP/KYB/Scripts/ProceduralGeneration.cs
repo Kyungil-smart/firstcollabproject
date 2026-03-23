@@ -3,6 +3,8 @@ using UnityEngine;
 
 public static class ProceduralGeneration
 {
+    private static List<GameObject> _spawnedRooms = new List<GameObject>();
+    
     /// <summary>
     /// Random Walk 알고리즘
     /// </summary>

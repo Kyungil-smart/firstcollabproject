@@ -336,7 +336,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2946778, g: 0.4955945, b: 0.8113208, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -556,9 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RandomWalk
   visualizer: {fileID: 1841064840}
   startPosition: {x: 0, y: 0}
-  iterations: 10
-  walkLength: 1
-  startRandomlyEachIteration: 1
+  targetRoomCount: 10
 --- !u!4 &1265791049
 Transform:
   m_ObjectHideFlags: 0
