@@ -18,7 +18,8 @@ namespace Monster
         private List<GameObject> _activeMonsters = new List<GameObject>(); 
         
         private int _currentMonsterCount = 0;
-        private bool _isSpawning = false; // 스폰 진행 여부 플래그
+        // 스폰 진행 여부 플래그
+        private bool _isSpawning = false; 
 
         
         /// <summary>
@@ -109,6 +110,13 @@ namespace Monster
             // 위치 이동시키고 활성화
             monster.transform.position = spawnPosition;
             monster.SetActive(true);
+            
+            //몬스터 세팅
+            MonsterAction monsterAction = monster.GetComponent<MonsterAction>();
+            if (monsterAction != null)
+            {
+                monsterAction.Init();
+            }
             
             _currentMonsterCount++;
             _activeMonsters.Add(monster);
