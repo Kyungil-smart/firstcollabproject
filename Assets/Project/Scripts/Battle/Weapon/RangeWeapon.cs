@@ -6,12 +6,12 @@ public class RangeWeapon : WeaponBase
     [Header("판정 설정")]
     public float attackThickness = 0.5f;
 
-    public override void Use()
+    public override void Attack()
     {
         float currentDamage = damageBase;
         int remainPenetrateCount = penetrateEnable ? penetrateCount : 0;
 
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, rangeValue / 10);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, rangeValue);
 
         // 가장 가까운 대상부터 순서대로 타격하기 위해 정렬
         var sortedHits = hits.OrderBy(h => h.distance).ToArray();

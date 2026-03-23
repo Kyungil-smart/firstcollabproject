@@ -394,28 +394,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &880569407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1879814301648389338, guid: 6fa14b6761305cc4ea55c39dc8eadb32, type: 3}
-  m_PrefabInstance: {fileID: 2318198317606084524}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &880569421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 880569407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee9304b905c8bb43aec30135a72ced8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HeadPart
-  globalVolume: {fileID: 242745679}
-  step1: 0.2
-  step2: 0.27
-  step3: 0.43
-  step4: 1
 --- !u!1 &1283081175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,13 +1068,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6142261914429564555, guid: 6fa14b6761305cc4ea55c39dc8eadb32, type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 242745679}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1879814301648389338, guid: 6fa14b6761305cc4ea55c39dc8eadb32, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 880569421}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fa14b6761305cc4ea55c39dc8eadb32, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
