@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using Monster;
 
-public class TEST_DisplayEnemy : MonoBehaviour
+public class TEST_testBattle : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _enemyCount;
 

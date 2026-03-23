@@ -11,7 +11,7 @@ public class RangeWeapon : WeaponBase
         float currentDamage = damageBase;
         int remainPenetrateCount = penetrateEnable ? penetrateCount : 0;
 
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, rangeValue / 10); //todo: 현재 10으로 나누는 단위 통합제안
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, rangeValue / 10);
 
         // 가장 가까운 대상부터 순서대로 타격하기 위해 정렬
         var sortedHits = hits.OrderBy(h => h.distance).ToArray();
