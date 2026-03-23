@@ -2,14 +2,16 @@ using UnityEngine;
 
 namespace Monster
 {
-    public abstract class MonsterAction : MonoBehaviour
+    public abstract class MonsterAction : MonoBehaviour, IDamageable
     {
         public MonsterData data;
-        protected int currentHp;
+        protected float currentHp;
         
         protected virtual void Start()
         {
-            currentHp = data.MaxHp; 
+            currentHp = data.MaxHp;
+
+            Registry<MonsterAction>.TryAdd(this);
         }
         
         protected virtual void Update()
@@ -20,12 +22,17 @@ namespace Monster
 
         protected abstract void Motion();
         
-        public virtual void TakeDamage(int damage)
+        public virtual void TakeDamage(float damage)
         {
             currentHp -= damage;
             if (currentHp <= 0) Die();
         }
 
-        protected abstract void Die();
+        protected virtual void Die()
+        {
+            gameObject.SetActive(false);
+
+            Registry<MonsterAction>.Remove(this);
+        }
     }
 }
