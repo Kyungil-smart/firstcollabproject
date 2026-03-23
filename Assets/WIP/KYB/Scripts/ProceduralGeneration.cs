@@ -7,16 +7,15 @@ public static class ProceduralGeneration
     /// Random Walk 알고리즘
     /// </summary>
     /// <param name="startPosition">시작할 좌표</param>
-    /// <param name="walkLength">이동할 총 횟수</param>
+    /// <param name="targetRoomCount">만들어질 방의 개수</param>
     /// <returns></returns>
-    public static HashSet<Vector2Int> RandomWalk(Vector2Int startPosition, int walkLength)
+    public static HashSet<Vector2Int> RandomWalk(Vector2Int startPosition, int targetRoomCount)
     {
         HashSet<Vector2Int> path = new HashSet<Vector2Int>();
-        
         path.Add(startPosition);
         Vector2Int previousPosition = startPosition;
-        
-        for (int i = 0; i < walkLength; i++)
+
+        while (path.Count < targetRoomCount)
         {
             Vector2Int newPosition = previousPosition + Direction2D.GetRandomCardinalDirection();
             path.Add(newPosition);
