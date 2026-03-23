@@ -3,24 +3,32 @@ using UnityEngine;
 
 public class LookAtCursor : MonoBehaviour
 {
-    [SerializeField] private bool _isLookAt = true;
-
+    private Vector2 _mousePos;
+    private bool _lookLeft = true;
+    
     private void Update()
     {
-        if (!_isLookAt) return;
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane plane = new Plane(Vector3.up, Vector3.up);
+        // 마우스의 위치를 구하는 로직
+        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (plane.Raycast(ray, out float distance))
+        // 마우스의 위치에 따라서 Flip을 호출하는 로직
+        if (_mousePos.x > transform.position.x && _lookLeft)
         {
-            Vector3 direction = ray.GetPoint(distance) - transform.position;
-            transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            Flip();
         }
+        else if (_mousePos.x < transform.position.x && !_lookLeft)
+        {
+            Flip();
+        }
+    }
+
+    // 스프라이트를 뒤집어주는 로직
+    private void Flip()
+    {
+        _lookLeft = !_lookLeft;
         
-        
-
-
-
+        Vector3 newScale = transform.localScale;
+        newScale.x *= -1;
+        transform.localScale = newScale;
     }
 }
