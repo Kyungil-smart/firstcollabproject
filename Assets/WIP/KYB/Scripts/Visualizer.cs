@@ -47,13 +47,13 @@ public class Visualizer : MonoBehaviour
                 {
                     if (direction == Vector2Int.up)
                     {
-                        currentRoom.PlaceDoor(Direction2D.CardinalDirectionList[2]);
-                        neighborRoom.PlaceDoor(Direction2D.CardinalDirectionList[0]);
+                        currentRoom.PlaceDoor(Vector2Int.up);
+                        neighborRoom.PlaceDoor(Vector2Int.down);
                     }
                     else
                     {
-                        currentRoom.PlaceDoor(Direction2D.CardinalDirectionList[3]);
-                        neighborRoom.PlaceDoor(Direction2D.CardinalDirectionList[1]);
+                        currentRoom.PlaceDoor(Vector2Int.right);
+                        neighborRoom.PlaceDoor(Vector2Int.left);
                     }
                 }
             }
