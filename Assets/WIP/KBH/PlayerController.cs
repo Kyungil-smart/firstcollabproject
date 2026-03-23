@@ -33,13 +33,18 @@ public class PlayerController : MonoBehaviour
         _anim = GetComponent<Animator>();       // 추후 이동이나 공격할때 애니메이션 추가용
         
     }
-
+    
     private void FixedUpdate()
     {
         Vector2 nextVec = inputVector.normalized * speed * Time.fixedDeltaTime;
         _rb.MovePosition(_rb.position + nextVec);
     }
-
+    
+    private void Update()
+    {
+        Anim();
+    }
+    
     /*private void LateUpdate()
     {
         if (inputVector.x != 0)
@@ -71,6 +76,25 @@ public class PlayerController : MonoBehaviour
             // _anim.SetTrigger("Death");
         }
     }
-    
-    
+
+    public void Anim()
+    {
+        float moveX = inputVector.x;
+        float moveY = inputVector.y;
+        
+        if ( moveX != 0 || moveY != 0)
+        {
+            _anim.SetFloat("MoveSpeed", 3.1f);
+        }
+        else
+        {
+            _anim.SetFloat("MoveSpeed", 0);
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            _anim.SetTrigger("2_Attack");
+        }
+    }
+
 }
