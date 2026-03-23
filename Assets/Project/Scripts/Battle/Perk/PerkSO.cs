@@ -5,7 +5,7 @@ public enum Part
     Head,
     Body,
     Arm,
-    Reg,
+    Leg,
     None
 }
 

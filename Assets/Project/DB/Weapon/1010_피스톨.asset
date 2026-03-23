@@ -12,20 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
   m_Name: "1010_\uD53C\uC2A4\uD1A8"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
-  id: 1011
+  id: 1010
   row: 11
-  Name: "\uC0F7\uAC74"
+  Name: "\uD53C\uC2A4\uD1A8"
   attackType: 1
-  damageBase: 150
+  damageBase: 80
   attackInterval: 1
   rangeEnable: 1
-  rangeValue: 10
+  rangeValue: 50
+  maxAmmo: 4
+  reloadType: 2
+  reloadTime: 0.5
   knockbackEnable: 1
   knockbackPower: 70
   splashEnable: 1
   splashRadius: 50
-  maxAmmo: 4
-  reloadType: 2
-  reloadTime: 0.5
-  prefab: {fileID: 0}
+  penetrateEnable: 1
+  penetrateCount: 2
+  penetrateDecay: 0.5
+  prefab: {fileID: 1025270293846115570, guid: 50e2433ca2a91fc4182a9995f9cab383, type: 3}
   animationName: 
