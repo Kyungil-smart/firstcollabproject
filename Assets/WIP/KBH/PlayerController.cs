@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     [Header("Stats")] 
     [SerializeField] public float speed;
     [SerializeField] public float health;
-    
     #endregion Stats
 
     #region Private
@@ -30,8 +29,10 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();       // 추후 이동이나 공격할때 애니메이션 추가용
-        
+        _anim = GetComponent<Animator>();
+
+        _maxHealth = health;
+        _currentHealth = _maxHealth;
     }
     
     private void FixedUpdate()
@@ -44,14 +45,6 @@ public class PlayerController : MonoBehaviour
     {
         Anim();
     }
-    
-    /*private void LateUpdate()
-    {
-        if (inputVector.x != 0)
-        {
-            _sr.flipX = inputVector.x < 0;
-        }
-    }*/
 
     private void OnMove(InputValue value)
     {
@@ -60,21 +53,32 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (!_isAlive) return;
+        
         _currentHealth -= damage;
-        if (_currentHealth <= 0)
+
+        if (_currentHealth > 0)
         {
-            // _anim.SetTrigger("Hurt");
-            _isAlive = false;
-            _currentHealth = 0;
+            _anim.SetTrigger("Hurt");
+            
         }
+        else if (_currentHealth <= 0)
+        { 
+            _currentHealth = 0;
+            _isAlive = false;
+            Death();
+        }
+        
     }
 
     public void Death()
     {
         if (!_isAlive)
         {
-            // _anim.SetTrigger("Death");
+            _anim.SetTrigger("isDeath");
         }
+        GetComponent<Collider2D>().enabled = false;     // 사망 후 공격 받는것 방지
+        this.enabled = false;                           // 사망 후 조작 방지
     }
 
     public void Anim()
