@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.AI;
 
 namespace Monster
 {
@@ -8,6 +9,7 @@ namespace Monster
     {
         [SerializeField] protected Animator animator;
         [SerializeField] protected Slider hpSlider;
+
         
         public MonsterData data;
         protected float currentHp;
@@ -15,13 +17,23 @@ namespace Monster
         
         protected SpriteRenderer[] _spriteRenderers;
         
+        protected NavMeshAgent _agent;
+        protected Transform _playerTransform;
+        
+        
         protected virtual void Awake()
         {
             _spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
-        }
-        
-        protected virtual void Start()
-        {
+            
+            //NavMeshAgent 세팅
+            _agent = GetComponent<NavMeshAgent>();
+
+            if (_agent != null)
+            {
+                // 3D처럼 회전하지 않도록 막고, Y축 기준으로 2D 이동
+                _agent.updateRotation = false; 
+                _agent.updateUpAxis = false;
+            }
         }
         
         protected virtual void Update()
@@ -53,6 +65,20 @@ namespace Monster
 
             // 풀에서 꺼내질 때 Registry에 등록
             Registry<MonsterAction>.TryAdd(this);
+            
+            // TODO: GameManager 에서 플레이어 찾는 로직으로 변경하기
+            if (_playerTransform == null)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null) _playerTransform = player.transform;
+            }
+            
+            //세팅 끝나면 NavMeshAgent 활성화
+            if (_agent != null)
+            {
+                _agent.enabled = true;
+                _agent.isStopped = false;
+            }
         }
 
         protected abstract void Motion();
@@ -74,6 +100,14 @@ namespace Monster
         protected virtual void Die()
         {
             if (_isDead) return;
+            
+            // 추격 정지
+            if (_agent != null)
+            {
+                _agent.isStopped = true;
+                _agent.enabled = false;
+            }
+            
             _isDead = true;
             
             if (hpSlider != null)

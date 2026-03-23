@@ -58,8 +58,8 @@ namespace Monster
         {
             while (_isSpawning)
             {
-                yield return new WaitForSeconds(spawnTime); 
                 TrySpawnMonsters();
+                yield return new WaitForSeconds(spawnTime); 
             }
         }
         

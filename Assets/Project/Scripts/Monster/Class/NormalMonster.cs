@@ -1,10 +1,12 @@
 
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Monster
 {
     public class NormalMonster : MonsterAction
     {
+
         
         //TODO: 테스트 전용. 후에 삭제하기
         private void OnMouseDown()
@@ -16,14 +18,22 @@ namespace Monster
             }
         }
         
+
+        
         protected override void Motion()
         {
             if (_isDead) return;
             
-            // TODO: AI 이동 로직
-            if (animator != null) 
+            if (_agent != null && _playerTransform != null)
             {
-                animator.SetBool("1_Move", true);
+                _agent.SetDestination(_playerTransform.position);
+                
+                // 현재 속도가 0 이상이면 걷기 애니메이션 재생
+                if (animator != null) 
+                {
+                    bool isMoving = _agent.velocity.sqrMagnitude > 0.01f;
+                    animator.SetBool("1_Move", isMoving);
+                }
             }
         }
 
