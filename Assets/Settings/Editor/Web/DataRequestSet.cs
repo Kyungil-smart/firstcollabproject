@@ -30,7 +30,8 @@ public class DataRequestSet : ScriptableObject
     public SheetData sheetData;
     public List<SheetDataSOBase> targetSOList;
     Dictionary<int, SheetDataSOBase> targetSODic = new();
-    public int startRow = 4; // 데이터 시작 행
+    public bool renameSOBySheetName; // 이름 컬럼 기준으로 에셋 파일명 변경
+    public int startRow = 6; // 데이터 시작 행
 
     public void Load()
     {
@@ -55,14 +56,39 @@ public class DataRequestSet : ScriptableObject
             }
             else
             {
-                Debug.LogError($"id와 일치하는 SO가 없습니다: {i + 1}행 id: {cols[0]}");
-                return;
+                if (string.IsNullOrEmpty(cols[0]))
+                {
+                    Debug.Log($"데이터가 더 존재하나 id가 비어있습니다 \n주석이라 판단하고 종료합니다: {i + 1}행");
+                }
+                else
+                {
+                    Debug.LogError($"id와 일치하는 SO가 없습니다: {i + 1}행, id: {cols[0]}");
+                }
+                break;
             }
             so.row = i + 1;
             so.SetData(cols);
+
+            if (renameSOBySheetName)
+            {
+                string assetPath = AssetDatabase.GetAssetPath(so);
+                string newName = cols[1].Trim();
+                if (!string.IsNullOrEmpty(newName))
+                {
+                    string currentName = System.IO.Path.GetFileNameWithoutExtension(assetPath);
+                    newName = id + "_" + newName;
+                    if (currentName != newName)
+                    {
+                        string result = AssetDatabase.RenameAsset(assetPath, newName);
+                        if (!string.IsNullOrEmpty(result))
+                            Debug.LogWarning($"파일명 변경 실패: {result}");
+                    }
+                }
+            }
+
             EditorUtility.SetDirty(so);
-            AssetDatabase.SaveAssets();
         }
+        AssetDatabase.SaveAssets();
         Debug.Log("파싱 종료");
     }
 }

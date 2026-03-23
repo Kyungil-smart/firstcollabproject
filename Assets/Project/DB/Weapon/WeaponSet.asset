@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742c363db6fa1734d8764efbb7e8dd33, type: 3}
+  m_Name: WeaponSet
+  m_EditorClassIdentifier: Assembly-CSharp-Editor::WebRequestTestList
+  index: 1
+  sheetData:
+    url: https://docs.google.com/spreadsheets/d/13PXY3_6ZHc5oc_6YNy_oNd2CDt_i6jd9qZWqICcTREc/edit?gid=1165720759#gid=1165720759
+    type: 1
+  targetSOList:
+  - {fileID: 11400000, guid: 927da4ca0a185e64b955a609899422be, type: 2}
+  - {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
+  - {fileID: 11400000, guid: 993bf614d463f804d925aef93e9b062d, type: 2}
+  - {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
+  - {fileID: 11400000, guid: 59fd1685320fb4148986e3a624d4ed4e, type: 2}
+  - {fileID: 11400000, guid: 612663be98232a84e81d635fb0dac46b, type: 2}
+  - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
+  - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
+  - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
+  renameSOBySheetName: 0
+  startRow: 6

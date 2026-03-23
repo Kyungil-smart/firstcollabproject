@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp-Editor::WebRequestTestSO
   id: 1001
   row: 5
-  nickName: "\uD478\uB2C8"
+  nickName: 
   desc: "\uC2AC\uB77C\uC784\uC774\uB2E4"
-  hp: 10
+  hp: 0
   attack: 5
   defense: 3
-  canChase: 1
+  canChase: 0
