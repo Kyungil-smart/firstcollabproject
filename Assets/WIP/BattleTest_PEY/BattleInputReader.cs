@@ -13,7 +13,7 @@ public class BattleInputReader : ScriptableObject, IBattleActions
     public event Action on1;
     public event Action on2;
     public event Action on3;
-    public event Action<IDamageable[]> onAttack;
+    public event Action onAttack;
 
     public void Enable()
     {
@@ -42,6 +42,6 @@ public class BattleInputReader : ScriptableObject, IBattleActions
 
     void IBattleActions.OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started) onAttack?.Invoke(Array.Empty<IDamageable>());
+        if (context.started) onAttack?.Invoke();
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
   damageBase: 50
   attackInterval: 0.5
   rangeEnable: 0
-  rangeValue: 0
+  rangeValue: 20
   knockbackEnable: 1
   knockbackPower: 10
   splashEnable: 0

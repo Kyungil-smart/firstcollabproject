@@ -79,9 +79,9 @@ public class WeaponController : MonoBehaviour
 
     public float CurrentRange => _curWeapon?.rangeValue ?? 0f;
 
-    private void Attack(IDamageable[] targets)
+    private void Attack()
     {
-        _curWeapon.Use(targets);
+        _curWeapon.Use();
         _anim?.PlayAnimation(_curWeapon.AnimationHash);
     }
 }

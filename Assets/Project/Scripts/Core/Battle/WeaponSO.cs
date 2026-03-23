@@ -18,18 +18,26 @@ public class WeaponSO : SheetDataSOBase
 {
     [Header("무기 정보")]
     public string Name;
+
     public AttackType attackType;
     public float damageBase;
     public float attackInterval;
     public bool rangeEnable;
     public float rangeValue;
+
+    public int maxAmmo;
+    public ReloadType reloadType;
+    public float reloadTime;
+
     public bool knockbackEnable;
     public float knockbackPower;
     public bool splashEnable;
     public float splashRadius;
-    public int maxAmmo;
-    public ReloadType reloadType;
-    public float reloadTime;
+
+    [Header("관통")]
+    public bool penetrateEnable;
+    public int penetrateCount = 1;
+    public float penetrateDecay = 0.5f;
 
     [Header("연출")]
     public GameObject prefab;

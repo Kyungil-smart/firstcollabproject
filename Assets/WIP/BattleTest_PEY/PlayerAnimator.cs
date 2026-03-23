@@ -28,7 +28,7 @@ public class PlayerAnimator : MonoBehaviour
         _cts?.Cancel();
         _cts = new CancellationTokenSource();
 
-        float duration = GetAnimationClipLength(animationHash) - _crossfadeTime;
+        float duration = 1f - _crossfadeTime;
 
         PlayTimerAsync(animationHash, duration, _cts.Token).Forget();
     }
@@ -49,15 +49,15 @@ public class PlayerAnimator : MonoBehaviour
         catch (OperationCanceledException) { }
     }
 
-    float GetAnimationClipLength(int animationHash)
-    {
-        foreach (var clip in _anim.runtimeAnimatorController.animationClips)
-        {
-            if (Animator.StringToHash(clip.name) == animationHash)
-            {
-                return clip.length;
-            }
-        }
-        return 0f;
-    }
+    //float GetAnimationClipLength(int animationHash)
+    //{
+    //    foreach (var clip in _anim.runtimeAnimatorController.animationClips)
+    //    {
+    //        if (Animator.StringToHash(clip.name) == animationHash)
+    //        {
+    //            return clip.length;
+    //        }
+    //    }
+    //    return 0f;
+    //}
 }
