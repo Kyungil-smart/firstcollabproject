@@ -6,13 +6,6 @@ public enum AttackType
     Range
 }
 
-public enum ReloadType
-{
-    None,
-    Magazine,
-    Single
-}
-
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "SheetData/Weapon Data SO")]
 public class WeaponSO : SheetDataSOBase
 {
@@ -25,39 +18,57 @@ public class WeaponSO : SheetDataSOBase
     public bool rangeEnable;
     public float rangeValue;
 
-    public int maxAmmo;
-    public ReloadType reloadType;
-    public float reloadTime;
-
-    public bool knockbackEnable;
-    public float knockbackPower;
     public bool splashEnable;
     public float splashRadius;
+    public float splashDecayPercent;
 
-    [Header("관통")]
+    public float meleeRange;
+    public bool sectorEnable;
+    public float sectorAngle;
+
+    public bool stunEnable;
+    public float stunTime;
+
     public bool penetrateEnable;
-    public int penetrateCount = 1;
-    public float penetrateDecay = 0.5f;
+    public int penetrateCount;
+    public float penetrateDecay;
+
+    public bool chargeEnable;
+    public float chargeTime;
+    public float failCooldown;
 
     [Header("연출")]
     public GameObject prefab;
-    public string animationName;
+    //public string animationName;
 
     public override void SetData(string[] data)
     {
         id = ParseInt(data[0]);
         Name = data[1];
+
         attackType = ParseEnum<AttackType>(data[2]);
         damageBase = ParseFloat(data[3]);
         attackInterval = ParseFloat(data[4]);
         rangeEnable = ParseBool(data[5]);
         rangeValue = ParseFloat(data[6]);
-        knockbackEnable = ParseBool(data[7]);
-        knockbackPower = ParseFloat(data[8]);
-        splashEnable = ParseBool(data[9]);
-        splashRadius = ParseFloat(data[10]);
-        maxAmmo = ParseInt(data[11]);
-        reloadType = ParseEnum<ReloadType>(data[12]);
-        reloadTime = ParseFloat(data[13]);
+
+        splashEnable = ParseBool(data[7]);
+        splashRadius = ParseFloat(data[8]);
+        splashDecayPercent = ParseFloat(data[9]);
+
+        meleeRange = ParseFloat(data[10]);
+        sectorEnable = ParseBool(data[11]);
+        sectorAngle = ParseFloat(data[12]);
+
+        stunEnable = ParseBool(data[13]);
+        stunTime = ParseFloat(data[14]);
+
+        penetrateEnable = ParseBool(data[15]);
+        penetrateCount = ParseInt(data[16]);
+        penetrateDecay = ParseFloat(data[17]);
+
+        chargeEnable = ParseBool(data[18]);
+        chargeTime = ParseFloat(data[19]);
+        failCooldown = ParseFloat(data[20]);
     }
 }

@@ -16,7 +16,6 @@ public class WeaponController : MonoBehaviour
     GameObject _object; // 생성할 실제 오브젝트
     WeaponBase _curWeapon;
 
-    PlayerAnimator _anim;
 #if UNITY_EDITOR
     private void Reset()
     {
@@ -36,8 +35,6 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        _anim = GetComponent<PlayerAnimator>();
-
         _input.Enable();
         _input.on1 += EquipMeleeWeapon;
         _input.on2 += EquipRangeWeapon;
@@ -59,8 +56,12 @@ public class WeaponController : MonoBehaviour
     void EquipRangeWeapon() => EquipWeaponSlot(_rangeWeapon);
     void EquipSpecialWeapon() => EquipWeaponSlot(_specialWeapon);
 
+    float _nextEquipTime;
     void EquipWeaponSlot(WeaponSO weaponSO)
     {
+        if (Time.time < _nextEquipTime) return;
+        _nextEquipTime = Time.time + 1f;
+
         if (_object != null) Destroy(_object);
 
         _object = _factory.CreateWeapon(weaponSO);
@@ -78,6 +79,6 @@ public class WeaponController : MonoBehaviour
     private void Attack()
     {
         _curWeapon.Use();
-        _anim?.PlayAnimation(_curWeapon.AnimationHash);
+        //_anim?.PlayAnimation(_curWeapon.AnimationHash);
     }
 }

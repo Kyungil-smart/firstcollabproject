@@ -16,16 +16,22 @@ MonoBehaviour:
   row: 11
   Name: "\uC0F7\uAC74"
   attackType: 1
-  damageBase: 150
+  damageBase: 80
   attackInterval: 1
   rangeEnable: 1
-  rangeValue: 10
-  knockbackEnable: 1
-  knockbackPower: 70
-  splashEnable: 1
-  splashRadius: 50
-  maxAmmo: 4
-  reloadType: 2
-  reloadTime: 0.5
+  rangeValue: 3
+  splashEnable: 0
+  splashRadius: 0
+  splashDecayPercent: 0
+  meleeRange: 0
+  sectorEnable: 1
+  sectorAngle: 90
+  stunEnable: 0
+  stunTime: 0
+  penetrateEnable: 0
+  penetrateCount: 0
+  penetrateDecay: 0
+  chargeEnable: 0
+  chargeTime: 0
+  failCooldown: 0
   prefab: {fileID: 0}
-  animationName: 

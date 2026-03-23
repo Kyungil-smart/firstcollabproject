@@ -10,22 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
-  m_Name: "1004_\uCE74\uD0C0\uB098"
+  m_Name: "1004_\uC7A5\uAC80"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   id: 1004
   row: 9
-  Name: "\uCE74\uD0C0\uB098"
+  Name: "\uC7A5\uAC80"
   attackType: 0
-  damageBase: 300
+  damageBase: 120
   attackInterval: 1
   rangeEnable: 0
   rangeValue: 0
-  knockbackEnable: 1
-  knockbackPower: 0
-  splashEnable: 1
-  splashRadius: 10
-  maxAmmo: 0
-  reloadType: 0
-  reloadTime: 0
+  splashEnable: 0
+  splashRadius: 0
+  splashDecayPercent: 0
+  meleeRange: 2
+  sectorEnable: 1
+  sectorAngle: 30
+  stunEnable: 0
+  stunTime: 0
+  penetrateEnable: 0
+  penetrateCount: 0
+  penetrateDecay: 0
+  chargeEnable: 1
+  chargeTime: 3
+  failCooldown: 0.5
   prefab: {fileID: 0}
-  animationName: 

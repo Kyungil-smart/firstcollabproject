@@ -3,12 +3,12 @@ using UnityEngine;
 public class MeleeWeapon : WeaponBase
 {
     [Header("밀리 무기 설정")]
-    public float coneAngle = 90f; // 부채꼴 공격의 총 각도
+    public float coneAngle = 45f; // 부채꼴 공격의 총 각도
 
-    public override void Use()
+    public override void Attack()
     {
         // 현재 위치를 기준으로 사거리 내의 모든 2D 콜라이더 검색
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, rangeValue / 10);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, rangeValue);
 
         foreach (var hitCollider in hitColliders)
         {

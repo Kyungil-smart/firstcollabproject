@@ -3,7 +3,7 @@ public interface IDamageable { void TakeDamage(float damage); }
 
 public interface IWeapon
 {
-    int AnimationHash { get; }
+    //int AnimationHash { get; }
     void Init(WeaponSO config);
     void Equip();
     void Use();
@@ -16,7 +16,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 {
     public WeaponSO data;
 
-    public int AnimationHash => Animator.StringToHash(data?.animationName);
+    //public int AnimationHash => Animator.StringToHash(data?.animationName);
 
     [Header("런타임 데이터")]
     public string Name;
@@ -27,18 +27,25 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public bool rangeEnable;
     public float rangeValue;
 
-    public int maxAmmo;
-    public ReloadType reloadType;
-    public float reloadTime;
-
-    public bool knockbackEnable;
-    public float knockbackPower;
     public bool splashEnable;
     public float splashRadius;
+    public float splashDecayPercent;
+
+    public float meleeRange;
+    public bool sectorEnable;
+    public float sectorAngle;
+
+    public bool stunEnable;
+    public float stunTime;
 
     public bool penetrateEnable;
     public int penetrateCount;
     public float penetrateDecay;
+
+    public bool chargeEnable;
+    public float chargeTime;
+    public float failCooldown;
+
 
     public void Init(WeaponSO config)
     {
@@ -51,26 +58,39 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         rangeEnable = config.rangeEnable;
         rangeValue = config.rangeValue;
 
-        maxAmmo = config.maxAmmo;
-        reloadType = config.reloadType;
-        reloadTime = config.reloadTime;
-
-        knockbackEnable = config.knockbackEnable;
-        knockbackPower = config.knockbackPower;
         splashEnable = config.splashEnable;
         splashRadius = config.splashRadius;
+        splashDecayPercent = config.splashDecayPercent;
 
-        penetrateCount = config.penetrateCount;
+        meleeRange = config.meleeRange;
+        sectorEnable = config.sectorEnable;
+        sectorAngle = config.sectorAngle;
+
+        stunEnable = config.stunEnable;
+        stunTime = config.stunTime;
+
         penetrateEnable = config.penetrateEnable;
+        penetrateCount = config.penetrateCount;
         penetrateDecay = config.penetrateDecay;
+
+        chargeEnable = config.chargeEnable;
+        chargeTime = config.chargeTime;
+        failCooldown = config.failCooldown;
     }
 
     public virtual void Equip()
     {
-        Debug.Log($"무기 장착: {Name}");
+        //
     }
 
-    public abstract void Use();
+    protected float nextAttackTime;
+    public virtual void Use()
+    {
+        if (Time.time < nextAttackTime) return;
+        nextAttackTime = Time.time + attackInterval;
+        Attack();
+    }
+    public abstract void Attack();
 }
 
 public class WeaponFactory

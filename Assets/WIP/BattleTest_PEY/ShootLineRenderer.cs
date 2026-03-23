@@ -18,7 +18,7 @@ public class ShootLineRenderer : MonoBehaviour
 
     private void Update()
     {
-        float range = _weaponController.CurrentRange / 10f;
+        float range = _weaponController.CurrentRange;
 
         Vector3 start = transform.position;
         start.z = 0f;
