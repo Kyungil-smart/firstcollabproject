@@ -556,9 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RandomWalk
   visualizer: {fileID: 1841064840}
   startPosition: {x: 0, y: 0}
-  iterations: 10
-  walkLength: 1
-  startRandomlyEachIteration: 1
+  targetRoomCount: 10
 --- !u!4 &1265791049
 Transform:
   m_ObjectHideFlags: 0

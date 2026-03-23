@@ -13,11 +13,12 @@ public class Visualizer : MonoBehaviour
         ClearMap();
 
         foreach (var position in floorPositions)
-        {
+        { 
             Vector2 worldPosition = new Vector2(position.x *  roomOffset, position.y * roomOffset);
             
             GameObject newRoom = Instantiate(roomPrefab, worldPosition, Quaternion.identity);
             _spawnedRooms.Add(newRoom);
+            newRoom.GetComponent<Room>().SetRoomIndex(_spawnedRooms.Count - 1);
         }
     }
 

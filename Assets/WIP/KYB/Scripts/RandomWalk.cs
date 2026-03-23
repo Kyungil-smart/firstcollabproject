@@ -10,7 +10,6 @@ public class RandomWalk : MonoBehaviour
     protected Vector2Int startPosition = Vector2Int.zero;
     
     public int targetRoomCount;
-    public bool startRandomlyEachIteration = true;
 
 
     public void RunProceduralGeneration()
