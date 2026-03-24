@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
-  m_Name: "1011_\uC0F7\uAC74"
+  m_Name: "1011_\uD65C"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   id: 1011
-  row: 11
-  Name: "\uC0F7\uAC74"
+  row: 10
+  Name: "\uD65C"
   attackType: 1
-  damageBase: 80
-  attackInterval: 1
-  rangeEnable: 1
-  rangeValue: 3
+  damageBase: 30
+  attackInterval: 2
+  maxAmmo: 10
+  rangeValue: 4
+  sectorEnable: 0
+  sectorAngle: 0
   splashEnable: 0
   splashRadius: 0
-  splashDecayPercent: 0
-  meleeRange: 0
-  sectorEnable: 1
-  sectorAngle: 90
+  splashDecay: 0
   stunEnable: 0
   stunTime: 0
-  penetrateEnable: 0
   penetrateCount: 0
   penetrateDecay: 0
   chargeEnable: 0
   chargeTime: 0
   failCooldown: 0
-  prefab: {fileID: 0}
+  spreadEnable: 0
+  spreadAngle: 0
+  screenShakeEnable: 0
+  prefab: {fileID: 1025270293846115570, guid: 50e2433ca2a91fc4182a9995f9cab383, type: 3}

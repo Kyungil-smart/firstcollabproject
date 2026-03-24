@@ -9,7 +9,7 @@ public class RangeWeapon : WeaponBase
     public override void Attack()
     {
         float currentDamage = damageBase;
-        int remainPenetrateCount = penetrateEnable ? penetrateCount : 0;
+        int remainPenetrateCount = penetrateCount;
 
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, rangeValue);
 
@@ -25,24 +25,16 @@ public class RangeWeapon : WeaponBase
             if (damageable != null)
             {
                 damageable.TakeDamage(currentDamage);
-                Debug.Log($"Range Hit! [타겟: {hit.collider.name}] 데미지: {currentDamage}");
+                Debug.Log($"[타겟: {hit.collider.name}]");
 
-                // 관통 로직 판단
-                if (!penetrateEnable)
+                if (remainPenetrateCount > 0)
                 {
-                    break;
+                    remainPenetrateCount--;
+                    currentDamage *= penetrateDecay; // 데미지 감쇠 적용
                 }
                 else
                 {
-                    if (remainPenetrateCount > 0)
-                    {
-                        remainPenetrateCount--;
-                        currentDamage *= penetrateDecay; // 데미지 감쇠 적용
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
         }
