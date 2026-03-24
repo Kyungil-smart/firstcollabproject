@@ -10,9 +10,9 @@ public class WeaponController : MonoBehaviour
     public Transform mountPoint; // 장착 위치
     WeaponFactory _factory = new();
 
-    [SerializeField] WeaponSO _meleeWeapon;
-    [SerializeField] WeaponSO _rangeWeapon;
-    [SerializeField] WeaponSO _specialWeapon;
+    [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯
+    [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯
+    [SerializeField] WeaponSO _specialWeapon; //3번 슬롯
     GameObject _object; // 생성할 실제 오브젝트
     WeaponBase _curWeapon;
 

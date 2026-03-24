@@ -26,5 +26,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
   - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
   - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
+  - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
   renameSOBySheetName: 0
   startRow: 6

@@ -15,27 +15,30 @@ public class WeaponSO : SheetDataSOBase
     public AttackType attackType;
     public float damageBase;
     public float attackInterval;
-    public bool rangeEnable;
+    public int maxAmmo;
     public float rangeValue;
+
+    public bool sectorEnable;
+    public float sectorAngle;
 
     public bool splashEnable;
     public float splashRadius;
-    public float splashDecayPercent;
-
-    public float meleeRange;
-    public bool sectorEnable;
-    public float sectorAngle;
+    public float splashDecay;
 
     public bool stunEnable;
     public float stunTime;
 
-    public bool penetrateEnable;
     public int penetrateCount;
     public float penetrateDecay;
 
     public bool chargeEnable;
     public float chargeTime;
     public float failCooldown;
+
+    public bool spreadEnable;
+    public float spreadAngle;
+
+    public bool screenShakeEnable;
 
     [Header("ø¨√‚")]
     public GameObject prefab;
@@ -49,26 +52,29 @@ public class WeaponSO : SheetDataSOBase
         attackType = ParseEnum<AttackType>(data[2]);
         damageBase = ParseFloat(data[3]);
         attackInterval = ParseFloat(data[4]);
-        rangeEnable = ParseBool(data[5]);
+        maxAmmo = ParseInt(data[5]);
         rangeValue = ParseFloat(data[6]);
 
-        splashEnable = ParseBool(data[7]);
-        splashRadius = ParseFloat(data[8]);
-        splashDecayPercent = ParseFloat(data[9]);
+        sectorEnable = ParseBool(data[7]);
+        sectorAngle = ParseFloat(data[8]);
 
-        meleeRange = ParseFloat(data[10]);
-        sectorEnable = ParseBool(data[11]);
-        sectorAngle = ParseFloat(data[12]);
+        splashEnable = ParseBool(data[9]);
+        splashRadius = ParseFloat(data[10]);
+        splashDecay = ParseFloat(data[11]);
 
-        stunEnable = ParseBool(data[13]);
-        stunTime = ParseFloat(data[14]);
+        stunEnable = ParseBool(data[12]);
+        stunTime = ParseFloat(data[13]);
 
-        penetrateEnable = ParseBool(data[15]);
-        penetrateCount = ParseInt(data[16]);
-        penetrateDecay = ParseFloat(data[17]);
+        penetrateCount = ParseInt(data[14]);
+        penetrateDecay = ParseFloat(data[15]);
 
-        chargeEnable = ParseBool(data[18]);
-        chargeTime = ParseFloat(data[19]);
-        failCooldown = ParseFloat(data[20]);
+        chargeEnable = ParseBool(data[16]);
+        chargeTime = ParseFloat(data[17]);
+        failCooldown = ParseFloat(data[18]);
+
+        spreadEnable = ParseBool(data[19]);
+        spreadAngle = ParseFloat(data[20]);
+
+        screenShakeEnable = ParseBool(data[21]);
     }
 }
