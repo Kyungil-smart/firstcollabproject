@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+/*
 public class MapTile : MonoBehaviour
 {
     [Header("Grid Tilemap")] [SerializeField] private Tilemap floorTilemap, wallTilemap; // 장애물 필요하면 추가 obstacleTile < 아마 오브젝트 처리할 거 같긴한데.. 
@@ -81,3 +81,4 @@ public class MapTile : MonoBehaviour
         wallTilemap.ClearAllTiles();
     }
 }   
+*/
