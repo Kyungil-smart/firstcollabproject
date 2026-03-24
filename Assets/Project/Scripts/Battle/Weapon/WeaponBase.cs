@@ -57,7 +57,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 
         attackType = config.attackType;
         damageBase = config.damageBase;
-        attackInterval = config.attackInterval;
+        attackInterval = config.attackInterval; // 공격 쿨타임으로 사용중
         maxAmmo = config.maxAmmo;
         rangeValue = config.rangeValue;
 
@@ -76,7 +76,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 
         chargeEnable = config.chargeEnable;
         chargeTime = config.chargeTime;
-        failCooldown = config.failCooldown;
+        failCooldown = config.failCooldown; // 차지의 쿨타임으로 사용 예정
 
         spreadEnable = config.spreadEnable;
         spreadAngle = config.spreadAngle;
@@ -95,6 +95,11 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         if (Time.time < nextAttackTime) return;
         nextAttackTime = Time.time + attackInterval;
         Attack();
+    }
+    
+    public virtual void Charge()
+    {
+        Debug.Log("차지중...");
     }
     public abstract void Attack();
 }

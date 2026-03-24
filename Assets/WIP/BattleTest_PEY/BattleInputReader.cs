@@ -14,8 +14,8 @@ public class BattleInputReader : ScriptableObject, IBattleActions
     public event Action on2;
     public event Action on3;
 
-    public event Action onAttack; public event Action onAttackPerformed;
-
+    public event Action onAttack; public event Action onCharge;
+    bool isCharging;
     public void Enable()
     {
         if (inputAction == null)
@@ -44,6 +44,11 @@ public class BattleInputReader : ScriptableObject, IBattleActions
     void IBattleActions.OnAttack(InputAction.CallbackContext context)
     {
         if (context.started) onAttack?.Invoke();
-        if (context.performed) onAttackPerformed?.Invoke();
+        if (context.performed) isCharging = true;  // »¶µÂ Ω√¿€
+        if (context.canceled) isCharging = false; // ∂º∏È ¡æ∑·
+    }
+    public void Tick()
+    {
+        if (isCharging) onCharge?.Invoke();
     }
 }
