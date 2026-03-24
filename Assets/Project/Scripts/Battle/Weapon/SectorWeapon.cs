@@ -25,7 +25,7 @@ public class SectorWeapon : WeaponBase
                 // RotatePointToMouse 가 XY 2D 평면을 회전시키므로 주로 right가 앞 방향
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= coneAngle) // 부채꼴을 직선으로 반 나눈 각도 내에 있는지 확인 (살짝 완화 중)
+                if (angle <= coneAngle)
                 {
                     damageable.TakeDamage(damageBase);
                     Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {coneAngle}");

@@ -39,7 +39,8 @@ public class WeaponController : MonoBehaviour
         _input.on1 += EquipMeleeWeapon;
         _input.on2 += EquipRangeWeapon;
         _input.on3 += EquipSpecialWeapon;
-        _input.onAttack += Attack;
+        _input.onAttack += Use;
+        _input.onCharge += Charge;
 
         // 시작시 근접 무기 장착
         EquipMeleeWeapon();
@@ -49,7 +50,8 @@ public class WeaponController : MonoBehaviour
         _input.on1 -= EquipMeleeWeapon;
         _input.on2 -= EquipRangeWeapon;
         _input.on3 -= EquipSpecialWeapon;
-        _input.onAttack -= Attack;
+        _input.onAttack -= Use;
+        _input.onCharge -= Charge;
     }
 
     void EquipMeleeWeapon() => EquipWeaponSlot(_meleeWeapon);
@@ -76,9 +78,18 @@ public class WeaponController : MonoBehaviour
 
     public float CurrentRange => _curWeapon?.rangeValue ?? 0f;
 
-    private void Attack()
+    private void Use()
     {
         _curWeapon.Use();
         //_anim?.PlayAnimation(_curWeapon.AnimationHash);
+    }
+
+    private void Update()
+    {
+        _input.Tick();
+    }
+    void Charge()
+    {
+        _curWeapon.Charge();
     }
 }
