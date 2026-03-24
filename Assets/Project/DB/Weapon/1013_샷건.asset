@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
-  m_Name: "1003_\uB2E8\uAC80"
+  m_Name: "1013_\uC0F7\uAC74"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
-  id: 1003
-  row: 8
-  Name: "\uB2E8\uAC80"
-  attackType: 0
-  damageBase: 15
-  attackInterval: 0.2
-  maxAmmo: 0
-  rangeValue: 2
+  id: 1013
+  row: 12
+  Name: "\uC0F7\uAC74"
+  attackType: 1
+  damageBase: 80
+  attackInterval: 1
+  maxAmmo: 4
+  rangeValue: 3
   sectorEnable: 1
-  sectorAngle: 60
+  sectorAngle: 90
   splashEnable: 0
   splashRadius: 0
   splashDecay: 0
-  stunEnable: 1
-  stunTime: 0.1
+  stunEnable: 0
+  stunTime: 0
   penetrateCount: 0
   penetrateDecay: 0
   chargeEnable: 0

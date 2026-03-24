@@ -9,27 +9,27 @@ public enum BodyPart { Head, Body, Arm, Leg }
 /// </summary>
 public class PlayerBody : MonoBehaviour, IDamageable
 {
-    public static event Action<int> OnHeadInjuryChanged;
-    public static event Action<int> OnBodyInjuryChanged;
-    public static event Action<int> OnArmInjuryChanged;
-    public static event Action<int> OnLegInjuryChanged;
-
     //부위 레벨
     //public int headLevel = 1;
     //public int bodyLevel = 1;
     //public int armLevel = 1;
     //public int legLevel = 1;
 
+    public float headMaxHP = 100f;
+    public float bodyMaxHP = 100f;
+    public float armMaxHP = 100f;
+    public float legMaxHP = 100f;
+
+    public static event Action<int> OnHeadInjuryChanged;
+    public static event Action<int> OnBodyInjuryChanged;
+    public static event Action<int> OnArmInjuryChanged;
+    public static event Action<int> OnLegInjuryChanged;
+
     //부상 레벨  0: 정상, 1~3: 부상 단계, 4: 재기불능
     public int headInjuryLevel;
     public int bodyInjuryLevel;
     public int armInjuryLevel;
     public int legInjuryLevel;
-
-    public float headMaxHP = 100f;
-    public float bodyMaxHP = 100f;
-    public float armMaxHP = 100f;
-    public float legMaxHP = 100f;
 
     [SerializeField] float _headCurHP = 100f;
     [SerializeField] float _bodyCurHP = 100f;
@@ -146,6 +146,8 @@ public class PlayerBody : MonoBehaviour, IDamageable
         get => _moveSpeed * GetStatMultiplier(BodyPart.Leg);
         set => _moveSpeed = value;
     }
+
+    public bool RollCrit() => CritPolicy.Get(CritPercent).Roll();
 
     public void TakeDamage(float damage)
     {

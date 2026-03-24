@@ -18,20 +18,21 @@ MonoBehaviour:
   attackType: 0
   damageBase: 120
   attackInterval: 1
-  rangeEnable: 0
-  rangeValue: 0
-  splashEnable: 0
-  splashRadius: 0
-  splashDecayPercent: 0
-  meleeRange: 2
+  maxAmmo: 0
+  rangeValue: 2
   sectorEnable: 1
   sectorAngle: 30
+  splashEnable: 0
+  splashRadius: 0
+  splashDecay: 0
   stunEnable: 0
   stunTime: 0
-  penetrateEnable: 0
   penetrateCount: 0
   penetrateDecay: 0
   chargeEnable: 1
   chargeTime: 3
   failCooldown: 0.5
+  spreadEnable: 0
+  spreadAngle: 0
+  screenShakeEnable: 1
   prefab: {fileID: 0}

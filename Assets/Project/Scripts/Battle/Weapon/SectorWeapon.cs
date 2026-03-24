@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MeleeWeapon : WeaponBase
+public class SectorWeapon : WeaponBase
 {
-    [Header("밀리 무기 설정")]
+    [Header("부채꼴 공격 설정")]
     public float coneAngle = 45f; // 부채꼴 공격의 총 각도
 
     public override void Attack()
@@ -25,11 +25,10 @@ public class MeleeWeapon : WeaponBase
                 // RotatePointToMouse 가 XY 2D 평면을 회전시키므로 주로 right가 앞 방향
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= coneAngle / 1.5f) // 부채꼴을 직선으로 반 나눈 각도 내에 있는지 확인 (살짝 완화 중)
+                if (angle <= coneAngle) // 부채꼴을 직선으로 반 나눈 각도 내에 있는지 확인 (살짝 완화 중)
                 {
                     damageable.TakeDamage(damageBase);
-                    Debug.Log($"Hit! [타겟: {hitCollider.name}] 부채꼴 타격 데미지: {damageBase}\n" +
-                        $"현재 앵글: {angle}, 부채꼴 범위: {coneAngle} / 2");
+                    Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {coneAngle}");
                 }
             }
         }
