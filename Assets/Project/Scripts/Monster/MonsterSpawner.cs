@@ -7,7 +7,7 @@ namespace Monster
     public class MonsterSpawner : MonoBehaviour
     {
         [Header("Spawn Settings")]
-        public GameObject monsterPrefab;
+        public List<GameObject> monsterPrefab;
         public float spawnTime = 5f;
         public int maxMonsterCount = 12;
         public int minSpawnCount = 1;
@@ -39,7 +39,9 @@ namespace Monster
             int weight = 10;
             for (int i = 0; i < maxMonsterCount + weight; i++)
             {
-                GameObject monster = Instantiate(monsterPrefab, transform);
+                //TODO: 지금은 랜덤으로 프리팹 꺼내옴. 추후 기획에 맞추기
+                int randomIndex = Random.Range(0, monsterPrefab.Count);
+                GameObject monster = Instantiate(monsterPrefab[randomIndex], transform);
                 monster.SetActive(false);
                 _monsterList.Enqueue(monster);
             }

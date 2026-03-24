@@ -94,7 +94,7 @@ namespace Monster
             // 쿨타임 초기화
             if (data != null)
             {
-                lastAttackTime = -data.AttackCooltime;
+                lastAttackTime = -data.AttackInterval;
             }
         }
 
@@ -106,9 +106,9 @@ namespace Monster
 
             float directionX = 0f;
 
-            if(MonsterManager.Instance.playerTransform == null) return;
+            if(MonsterManager.Instance.player == null) return;
 
-            Transform playerTransform = MonsterManager.Instance.playerTransform;
+            Transform playerTransform = MonsterManager.Instance.player.transform;
             
             // 공격 중이거나 제자리에 서 있을 때
             if (isAttacking || agent.velocity.sqrMagnitude < 0.01f)

@@ -8,8 +8,7 @@ namespace Monster
         
         public int targetClearCount = 30;
         public MonsterSpawner monsterSpawner;
-        public Transform playerTransform;
-        
+        public GameObject player;
         private int _currentKillCount = 0; 
         private bool _isStageCleared = false;
        
@@ -29,10 +28,10 @@ namespace Monster
 
         private void Start()
         {
-            if (playerTransform == null)
+            if (player == null)
             {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                if (player != null) playerTransform = player.transform;
+                GameObject _player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null) player = _player;
             }
         }
         
