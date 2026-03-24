@@ -5866,7 +5866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5796912905840949037}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.12, y: -0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6003,14 +6003,14 @@ MonoBehaviour:
   bodyMaxHP: 100
   armMaxHP: 100
   legMaxHP: 100
-  headInjuryLevel: 0
-  bodyInjuryLevel: 0
-  armInjuryLevel: 0
-  legInjuryLevel: 0
   _headCurHP: 100
   _bodyCurHP: 100
   _armCurHP: 100
   _legCurHP: 100
+  headInjuryLevel: 0
+  bodyInjuryLevel: 0
+  armInjuryLevel: 0
+  legInjuryLevel: 0
 --- !u!114 &7837590399723540022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6023,11 +6023,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9304b905c8bb43aec30135a72ced8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeadPart
-  globalVolume: {fileID: 0}
   step1: 0.2
   step2: 0.27
   step3: 0.43
-  step4: 0.8
+  step4: 0.65
   tweenDuration: 0.5
   tweenEase: 4
 --- !u!114 &2294146037350510064
@@ -6042,8 +6041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61886a97531cb2f4da872ec61737b763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 3
-  health: 500
 --- !u!1 &5822979517044335130
 GameObject:
   m_ObjectHideFlags: 0
@@ -7686,7 +7683,7 @@ Transform:
   m_GameObject: {fileID: 7901074250818645711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: 0, z: 0}
+  m_LocalPosition: {x: 0.798, y: 0.239, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

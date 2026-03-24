@@ -104,17 +104,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6838f0b9bd9b75f4faa4773b258ba60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
-  runtime: {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
+  data: {fileID: 0}
   Name: 
   attackType: 0
   damageBase: 0
   attackInterval: 0
-  rangeEnable: 0
+  maxAmmo: 0
   rangeValue: 0
-  knockbackEnable: 0
-  knockbackPower: 0
+  sectorEnable: 0
+  sectorAngle: 0
   splashEnable: 0
   splashRadius: 0
-  maxAmmo: 0
-  reloadType: 0
-  reloadTime: 0
+  splashDecay: 0
+  stunEnable: 0
+  stunTime: 0
+  penetrateCount: 0
+  penetrateDecay: 0
+  chargeEnable: 0
+  chargeTime: 0
+  failCooldown: 0
+  spreadEnable: 0
+  spreadAngle: 0
+  screenShakeEnable: 0

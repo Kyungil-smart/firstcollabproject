@@ -2,10 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// 플레이어의 입력, 이동, 애니메이션, 피격/사망 연출을 담당합니다.
-/// 체력/스탯 계산은 PlayerBody에서 처리합니다.
-/// </summary>
 public class PlayerController : MonoBehaviour
 {
     #region Private
@@ -38,12 +34,14 @@ public class PlayerController : MonoBehaviour
     {
         PlayerBody.OnDamaged += HandleDamaged;
         PlayerBody.OnPlayerDeath += HandleDeath;
+        WeaponBase.OnAttacked += HandleAttack;
     }
 
     private void OnDisable()
     {
         PlayerBody.OnDamaged -= HandleDamaged;
         PlayerBody.OnPlayerDeath -= HandleDeath;
+        WeaponBase.OnAttacked -= HandleAttack;
     }
 
     private void FixedUpdate()
@@ -62,6 +60,10 @@ public class PlayerController : MonoBehaviour
         inputVector = value.Get<Vector2>();
     }
 
+    private void HandleAttack()
+    {
+        _anim.SetTrigger("2_Attack");
+    }
     private void HandleDamaged(BodyPart part)
     {
         _anim.SetTrigger("3_Damaged");
@@ -107,11 +109,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             _anim.SetBool("1_Move", false);
-        }
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            _anim.SetTrigger("2_Attack");
         }
     }
 }

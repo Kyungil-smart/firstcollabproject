@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 public class WeaponController : MonoBehaviour
 {
+    PlayerBody _owner;
     [SerializeField] BattleInputReader _input;
 
     public Transform mountPoint; // ÀåÂø À§Ä¡
@@ -32,7 +33,10 @@ public class WeaponController : MonoBehaviour
         }
     }
 #endif
-
+    private void Awake()
+    {
+        _owner = GetComponent<PlayerBody>();
+    }
     private void Start()
     {
         _input.Enable();
@@ -66,7 +70,7 @@ public class WeaponController : MonoBehaviour
 
         if (_object != null) Destroy(_object);
 
-        _object = _factory.CreateWeapon(weaponSO);
+        _object = _factory.CreateWeapon(weaponSO, _owner);
         _curWeapon = _object.GetComponent<WeaponBase>();
 
         _object.transform.SetParent(mountPoint);

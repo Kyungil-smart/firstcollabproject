@@ -5,7 +5,7 @@ public class SectorWeapon : WeaponBase
     [Header("부채꼴 공격 설정")]
     float _sectorAngle; // 부채꼴 공격의 총 각도
 
-    public override void Attack()
+    public override void Attack(float damage)
     {
         _sectorAngle = sectorAngle;
         // 현재 위치를 기준으로 사거리 내의 모든 2D 콜라이더 검색
@@ -28,7 +28,7 @@ public class SectorWeapon : WeaponBase
 
                 if (angle <= _sectorAngle)
                 {
-                    damageable.TakeDamage(damageBase);
+                    damageable.TakeDamage(damage);
                     Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {_sectorAngle}");
                 }
             }
