@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6625765250814172215}
   - component: {fileID: 3077482366858516537}
   m_Layer: 0
-  m_Name: Room
+  m_Name: Elevator_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
