@@ -29,7 +29,6 @@ public class SectorWeapon : WeaponBase
                 if (angle <= _sectorAngle / 2f) // 중심을 기준으로 앵글을 나눔
                 {
                     damageable.TakeDamage(damage);
-                    Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {_sectorAngle}");
                 }
             }
         }
