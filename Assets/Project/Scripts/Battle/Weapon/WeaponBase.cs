@@ -23,28 +23,31 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 
     public AttackType attackType;
     public float damageBase;
-    public float attackInterval;
-    public bool rangeEnable;
+    public float attackInterval; // Use() 함수가 다음 공격이 가능한 시점까지의 간격
+    public int maxAmmo;
     public float rangeValue;
+
+    public bool sectorEnable;
+    public float sectorAngle;
 
     public bool splashEnable;
     public float splashRadius;
-    public float splashDecayPercent;
-
-    public float meleeRange;
-    public bool sectorEnable;
-    public float sectorAngle;
+    public float splashDecay;
 
     public bool stunEnable;
     public float stunTime;
 
-    public bool penetrateEnable;
     public int penetrateCount;
     public float penetrateDecay;
 
     public bool chargeEnable;
     public float chargeTime;
     public float failCooldown;
+
+    public bool spreadEnable;
+    public float spreadAngle;
+
+    public bool screenShakeEnable;
 
 
     public void Init(WeaponSO config)
@@ -55,27 +58,30 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         attackType = config.attackType;
         damageBase = config.damageBase;
         attackInterval = config.attackInterval;
-        rangeEnable = config.rangeEnable;
+        maxAmmo = config.maxAmmo;
         rangeValue = config.rangeValue;
+
+        sectorEnable = config.sectorEnable;
+        sectorAngle = config.sectorAngle;
 
         splashEnable = config.splashEnable;
         splashRadius = config.splashRadius;
-        splashDecayPercent = config.splashDecayPercent;
-
-        meleeRange = config.meleeRange;
-        sectorEnable = config.sectorEnable;
-        sectorAngle = config.sectorAngle;
+        splashDecay = config.splashDecay;
 
         stunEnable = config.stunEnable;
         stunTime = config.stunTime;
 
-        penetrateEnable = config.penetrateEnable;
         penetrateCount = config.penetrateCount;
         penetrateDecay = config.penetrateDecay;
 
         chargeEnable = config.chargeEnable;
         chargeTime = config.chargeTime;
         failCooldown = config.failCooldown;
+
+        spreadEnable = config.spreadEnable;
+        spreadAngle = config.spreadAngle;
+
+        screenShakeEnable = config.screenShakeEnable;
     }
 
     public virtual void Equip()
