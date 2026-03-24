@@ -35,4 +35,4 @@ MonoBehaviour:
   spreadEnable: 0
   spreadAngle: 0
   screenShakeEnable: 0
-  prefab: {fileID: 1025270293846115570, guid: 50e2433ca2a91fc4182a9995f9cab383, type: 3}
+  prefab: {fileID: 8187088320716388886, guid: 003fa0dde840d58498700409bf5a5497, type: 3}
