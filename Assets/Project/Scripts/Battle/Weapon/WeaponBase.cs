@@ -62,7 +62,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         rangeValue = config.rangeValue;
 
         sectorEnable = config.sectorEnable;
-        sectorAngle = config.sectorAngle;
+        sectorAngle = config.sectorAngle; // 부채꼴 각도
 
         splashEnable = config.splashEnable;
         splashRadius = config.splashRadius;
@@ -97,10 +97,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         Attack();
     }
     
-    public virtual void Charge()
-    {
-        Debug.Log("차지중...");
-    }
+    public virtual void Charging() { }
     public abstract void Attack();
 }
 

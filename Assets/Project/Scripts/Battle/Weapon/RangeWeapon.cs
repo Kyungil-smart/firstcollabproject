@@ -4,7 +4,7 @@ using System.Linq;
 public class RangeWeapon : WeaponBase
 {
     [Header("ÆÇÁ¤ ¼³Á¤")]
-    public float attackThickness = 0.5f;
+    float attackThickness = 0.03f;
 
     public override void Attack()
     {
@@ -25,7 +25,7 @@ public class RangeWeapon : WeaponBase
             if (damageable != null)
             {
                 damageable.TakeDamage(currentDamage);
-                Debug.Log($"[Å¸°Ù: {hit.collider.name}]");
+                //Debug.Log($"[Å¸°Ù: {hit.collider.name}]");
 
                 if (remainPenetrateCount > 0)
                 {

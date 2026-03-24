@@ -90,6 +90,6 @@ public class WeaponController : MonoBehaviour
     }
     void Charge()
     {
-        _curWeapon.Charge();
+        _curWeapon.Charging();
     }
 }

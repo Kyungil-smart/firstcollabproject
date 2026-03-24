@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SectorWeapon : WeaponBase
+public class ChargeWeapon : WeaponBase
 {
     [Header("부채꼴 공격 설정")]
     float _sectorAngle; // 부채꼴 공격의 총 각도
