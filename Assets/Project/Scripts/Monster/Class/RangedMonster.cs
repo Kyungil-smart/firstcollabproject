@@ -26,7 +26,7 @@ namespace Monster
         {
             if (agent == null || !agent.isOnNavMesh || data == null) return;
             
-            Transform playerTransform = MonsterManager.Instance.playerTransform;
+            Transform playerTransform = MonsterManager.Instance.player.transform;
             
             if ( playerTransform == null) return;
 
@@ -115,7 +115,7 @@ namespace Monster
                 return; 
             }
             
-            Transform playerTransform = MonsterManager.Instance.playerTransform;
+            Transform playerTransform = MonsterManager.Instance.player.transform;
             
             if ( playerTransform == null) return;
 

@@ -45,8 +45,18 @@ namespace Monster
             // 플레이어 피격
             if (other.CompareTag("Player"))
             {
-                // TODO: 플레이어 데미지 
-                Debug.Log($"플레이어에게 {_damage} 데미지로 공격");
+                Debug.Log("Player hit " + other.name);
+                PlayerBody playerBody = MonsterManager.Instance.player.GetComponent<PlayerBody>();
+
+                if (playerBody != null)
+                {
+                    playerBody.TakeDamage(_damage);
+                }
+                else
+                {
+                    Debug.Log("PlayerBody Component is Null");
+                }
+                    
                 Destroy(gameObject); 
             }
             // TODO: 가구나 벽에 막혔을 때

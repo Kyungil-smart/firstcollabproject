@@ -15,9 +15,9 @@ namespace Monster
             
             if (agent == null || !agent.isOnNavMesh || data == null) return;
             
-            if(MonsterManager.Instance.playerTransform == null) return;
+            if(MonsterManager.Instance.player == null) return;
 
-            Transform playerTransform = MonsterManager.Instance.playerTransform;
+            Transform playerTransform = MonsterManager.Instance.player.transform;
             
             if ( playerTransform == null) return;
             
@@ -25,7 +25,7 @@ namespace Monster
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
             // 사거리 이내면 공격
-            if (distanceToPlayer <= data.AttackRange && Time.time >= lastAttackTime + data.AttackCooltime)
+            if (distanceToPlayer <= data.AttackRange && Time.time >= lastAttackTime + data.AttackInterval)
             {
                 if (!isAttacking)
                 {
@@ -70,8 +70,17 @@ namespace Monster
                 animator.SetTrigger("2_Attack");
             }
 
-            // TODO: 플레이어 데미지
-            Debug.Log($"플레이어에게 {data.Atk} 데미지로 공격");
+            //플레이어에게 데미지 공격
+            PlayerBody playerBody = MonsterManager.Instance.player.GetComponent<PlayerBody>();
+
+            if (playerBody != null)
+            {
+                playerBody.TakeDamage(data.Atk);
+            }
+            else
+            {
+                Debug.Log("PlayerBody Component is Null");
+            }
 
             // 후딜레이 대기
             if (data.HasPostDelay && data.PostDelayTime > 0)
