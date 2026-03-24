@@ -8,7 +8,6 @@ using PrimeTween;
 /// </summary>
 public class HeadPart : MonoBehaviour
 {
-    [SerializeField] Volume globalVolume;
     [Header("Vignette Settings")]
     [SerializeField] float step1 = 0.2f;
     [SerializeField] float step2 = 0.4f;
@@ -18,12 +17,14 @@ public class HeadPart : MonoBehaviour
     [SerializeField] float tweenDuration = 0.5f;
     [SerializeField] Ease tweenEase = Ease.InOutSine;
 
+    Volume _globalVolume;
     Vignette _vignette;
     Tween _vignetteTween;
 
     private void Start()
     {
-        globalVolume.profile.TryGet(out _vignette);
+        _globalVolume = GetComponentInChildren<Volume>();
+        _globalVolume.profile.TryGet(out _vignette);
         PlayerBody.OnHeadInjuryChanged += UpdateVignette;
     }
     private void OnDisable()

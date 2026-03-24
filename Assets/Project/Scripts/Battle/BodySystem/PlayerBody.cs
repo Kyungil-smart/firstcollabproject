@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System;
 
 public enum BodyPart { Head, Body, Arm, Leg }
@@ -9,21 +8,25 @@ public enum BodyPart { Head, Body, Arm, Leg }
 /// </summary>
 public class PlayerBody : MonoBehaviour, IDamageable
 {
-    //부위 레벨
-    //public int headLevel = 1;
-    //public int bodyLevel = 1;
-    //public int armLevel = 1;
-    //public int legLevel = 1;
-
     public float headMaxHP = 100f;
     public float bodyMaxHP = 100f;
     public float armMaxHP = 100f;
     public float legMaxHP = 100f;
+    [SerializeField] float _headCurHP = 100f;
+    [SerializeField] float _bodyCurHP = 100f;
+    [SerializeField] float _armCurHP = 100f;
+    [SerializeField] float _legCurHP = 100f;
 
     public static event Action<int> OnHeadInjuryChanged;
     public static event Action<int> OnBodyInjuryChanged;
     public static event Action<int> OnArmInjuryChanged;
     public static event Action<int> OnLegInjuryChanged;
+
+    public static event Action<BodyPart> OnDamaged;
+    public static event Action OnPlayerDeath;
+
+    bool _isAlive = true;
+    public bool IsInvincible { get; set; }
 
     //부상 레벨  0: 정상, 1~3: 부상 단계, 4: 재기불능
     public int headInjuryLevel;
@@ -31,10 +34,6 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public int armInjuryLevel;
     public int legInjuryLevel;
 
-    [SerializeField] float _headCurHP = 100f;
-    [SerializeField] float _bodyCurHP = 100f;
-    [SerializeField] float _armCurHP = 100f;
-    [SerializeField] float _legCurHP = 100f;
     public float HeadCurHP
     {
         get => _headCurHP;
@@ -151,6 +150,8 @@ public class PlayerBody : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if (!_isAlive || IsInvincible) return;
+
         // 4가지 부위 중 랜덤한 부위에 피해를 적용합니다
         BodyPart randomPart = (BodyPart)UnityEngine.Random.Range(0, 4);
         switch (randomPart)
@@ -161,14 +162,13 @@ public class PlayerBody : MonoBehaviour, IDamageable
             case BodyPart.Leg: LegCurHP -= damage; break;
         }
         Debug.Log($"[{randomPart}] {damage}의 피해를 입었습니다");
-    }
 
-    // 테스트용 코드
-    private void Update()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        OnDamaged?.Invoke(randomPart);
+
+        if (TotalCurHP <= 0f)
         {
-            TakeDamage(10f);
+            _isAlive = false;
+            OnPlayerDeath?.Invoke();
         }
     }
 }
