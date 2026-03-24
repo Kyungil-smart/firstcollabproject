@@ -63,7 +63,7 @@ public class WeaponController : MonoBehaviour
     void EquipSpecialWeapon() => EquipWeaponSlot(_specialWeapon);
 
     float _nextEquipTime;
-    void EquipWeaponSlot(WeaponSO weaponSO)
+    public void EquipWeaponSlot(WeaponSO weaponSO)
     {
         if (Time.time < _nextEquipTime) return;
         _nextEquipTime = Time.time + 1f;
@@ -81,6 +81,7 @@ public class WeaponController : MonoBehaviour
     }
 
     public float CurrentRange => _curWeapon?.rangeValue ?? 0f;
+    public float CurrentSectorAngle => _curWeapon?.sectorAngle ?? 0f;
 
     private void Use()
     {

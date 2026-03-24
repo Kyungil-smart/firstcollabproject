@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1010888144911424845}
   - component: {fileID: 2769956185780534981}
   m_Layer: 0
-  m_Name: Test_Bat
+  m_Name: "1001_\uB9E8\uC8FC\uBA39"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3336000073550313660}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6838f0b9bd9b75f4faa4773b258ba60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 38da5e3246fae6b4a9db1e078cf986a5, type: 2}
   Name: 
   attackType: 0
   damageBase: 0
