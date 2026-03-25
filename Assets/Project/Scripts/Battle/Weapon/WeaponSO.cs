@@ -3,7 +3,8 @@ using UnityEngine;
 public enum AttackType
 {
     Melee,
-    Range
+    Range,
+    Consume
 }
 
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "SheetData/Weapon Data SO")]
@@ -39,6 +40,9 @@ public class WeaponSO : SheetDataSOBase
     public float spreadAngle;
 
     public bool screenShakeEnable;
+
+    [Header("참조")]
+    public WeaponPerkSO[] perkSO;
 
     [Header("연출")]
     public GameObject prefab;
