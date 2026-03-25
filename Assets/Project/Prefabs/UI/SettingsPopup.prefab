@@ -471,13 +471,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 7331854583390650212}
+        m_TargetAssemblyTypeName: UI.SettingPopup, Assembly-CSharp
+        m_MethodName: OnKeyButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1960,12 +1960,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3857,6 +3857,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cff2734cce4ebcbb5d2abae655c149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.SettingPopup
+  moveUpText: {fileID: 841297717367348748}
+  moveDownText: {fileID: 6642047441521933973}
+  moveLeftText: {fileID: 2773528339333941058}
+  moveRightText: {fileID: 7618664580327415281}
+  useInteractText: {fileID: 6184818984494990623}
+  weapon1Text: {fileID: 4866356136743612769}
+  weapon2Text: {fileID: 9198558058862916573}
+  weapon3Text: {fileID: 8198498462354376017}
+  menuText: {fileID: 5065022745634722284}
 --- !u!1 &5866992697590147457
 GameObject:
   m_ObjectHideFlags: 0
