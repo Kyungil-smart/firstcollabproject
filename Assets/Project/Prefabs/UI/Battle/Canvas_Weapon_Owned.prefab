@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 2177144509547878155}
   - component: {fileID: 1558695146904858224}
   - component: {fileID: 8707240340207302570}
+  - component: {fileID: 370755717067728228}
   m_Layer: 5
   m_Name: Canvas_Weapon_Owned
   m_TagString: Untagged
@@ -241,6 +242,26 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &370755717067728228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964648496626466406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd94e38bdd5469543bbda8dcd8bf4328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSlotsHUD
+  _weaponController: {fileID: 0}
+  _slots:
+  - coolTimeClock: {fileID: 2809776210494536366}
+    ammoText: {fileID: 0}
+  - coolTimeClock: {fileID: 8855404257800953275}
+    ammoText: {fileID: 1248622643155799200}
+  - coolTimeClock: {fileID: 1333444901468160913}
+    ammoText: {fileID: 6178694770542172817}
 --- !u!1 &2462934185597841687
 GameObject:
   m_ObjectHideFlags: 0

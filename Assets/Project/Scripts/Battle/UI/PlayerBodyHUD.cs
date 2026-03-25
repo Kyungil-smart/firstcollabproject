@@ -49,7 +49,7 @@ public class PlayerBodyHUD : MonoBehaviour
             Color.yellow,
             new Color(1f, 0.5f, 0f), // ÁÖÈ²»ö
             Color.red,
-            Color.black
+            Color.gray,
         };
 
         critChanceText.color = injuryColors[headInjury];

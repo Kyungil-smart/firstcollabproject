@@ -57,7 +57,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         data = config;
         Name = config.Name;
 
-        attackType = config.attackType;
+        attackType = config.attackType; // range 라면 ammo 사용
         damageBase = config.damageBase;
         attackInterval = config.attackInterval; // 공격 쿨타임으로 사용중
         ammo = config.maxAmmo;
@@ -98,6 +98,14 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     {
         if (Time.time < _nextAttackTime) { Debug.Log("무기 쿨타임 중"); return; }
         _nextAttackTime = Time.time + attackInterval;
+
+        if (attackType == AttackType.Range && ammo <= 0)
+        {
+            Debug.Log("탄약 부족"); // TODO: 빈 탄창 소리나 텍스트 연출
+            return;
+        }
+        else { ammo--; }
+
         float curDamage = damageBase;
         // 크리티컬 히트 계산
         if (_owner.RollCrit())

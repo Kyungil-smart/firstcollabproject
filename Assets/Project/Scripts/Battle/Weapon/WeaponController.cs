@@ -13,9 +13,7 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯
     [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯
-    [SerializeField] WeaponSO _specialWeapon; //3번 슬롯
-    GameObject _object; // 생성할 실제 오브젝트
-    WeaponBase _curWeapon;
+    [SerializeField] WeaponSO _consumeWeapon; //3번 슬롯
 
 #if UNITY_EDITOR
     private void Reset()
@@ -42,13 +40,13 @@ public class WeaponController : MonoBehaviour
         _input.Enable();
         _input.on1 += EquipMeleeWeapon;
         _input.on2 += EquipRangeWeapon;
-        _input.on3 += EquipSpecialWeapon;
+        _input.on3 += EquipConsumeWeapon;
         _input.onAttack += Use;
         _input.onCharge += Charge;
 
         _weapons[0] = CreateAndInit(_meleeWeapon);
         _weapons[1] = CreateAndInit(_rangeWeapon);
-        _weapons[2] = CreateAndInit(_specialWeapon);
+        _weapons[2] = CreateAndInit(_consumeWeapon);
 
         SwitchToSlot(0, true);
     }
@@ -56,13 +54,13 @@ public class WeaponController : MonoBehaviour
     {
         _input.on1 -= EquipMeleeWeapon;
         _input.on2 -= EquipRangeWeapon;
-        _input.on3 -= EquipSpecialWeapon;
+        _input.on3 -= EquipConsumeWeapon;
         _input.onAttack -= Use;
         _input.onCharge -= Charge;
     }
 
     public WeaponBase[] _weapons = new WeaponBase[3];
-    public WeaponBase CurrentWeapon => CurrentWeaponIndex >= 0 && CurrentWeaponIndex < 3 ? _weapons[CurrentWeaponIndex] : null;
+    public WeaponBase CurrentWeapon => _weapons[CurrentWeaponIndex];
     public int CurrentWeaponIndex { get; set; } = 0;
 
     WeaponBase CreateAndInit(WeaponSO weaponSO)
@@ -95,7 +93,7 @@ public class WeaponController : MonoBehaviour
 
     void EquipMeleeWeapon() => SwitchToSlot(0);
     void EquipRangeWeapon() => SwitchToSlot(1);
-    void EquipSpecialWeapon() => SwitchToSlot(2);
+    void EquipConsumeWeapon() => SwitchToSlot(2);
 
     float _nextEquipTime;
     public float NextEquipTime => _nextEquipTime;
@@ -109,6 +107,19 @@ public class WeaponController : MonoBehaviour
         _weapons[CurrentWeaponIndex] = CreateAndInit(weaponSO);
         _weapons[CurrentWeaponIndex].gameObject.SetActive(true);
         _weapons[CurrentWeaponIndex].Equip();
+    }
+
+    /// <summary>
+    /// 특정 슬롯에 무기를 교체 장착한다 (Melee=0, Range=1, Consume=2)
+    /// </summary>
+    public void EquipWeaponToSlot(WeaponSO weaponSO, int slotIndex)
+    {
+        if (weaponSO == null || slotIndex < 0 || slotIndex >= _weapons.Length) return;
+
+        if (_weapons[slotIndex] != null) Destroy(_weapons[slotIndex].gameObject);
+
+        _weapons[slotIndex] = CreateAndInit(weaponSO);
+        SwitchToSlot(slotIndex, true);
     }
 
     public float CurrentRange => CurrentWeapon?.rangeValue ?? 0f;

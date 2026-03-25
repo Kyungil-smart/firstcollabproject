@@ -144,7 +144,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public float MoveSpeed
     {
         get => _moveSpeed * GetStatMultiplier(BodyPart.Leg);
-        set => _moveSpeed = value;
+        set => _moveSpeed = Mathf.Max(value, 0.5f);
     }
     float _evasionPercent = 0.05f; // 회피율
     public float EvasionPercent
@@ -163,7 +163,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
         if (UnityEngine.Random.value < EvasionPercent)
         {
             OnEvaded?.Invoke();
-            Debug.Log("<color=blue>공격을 회피했습니다!</color>");
+            Debug.Log("<color=cyan>공격을 회피했습니다!</color>"); // todo: 공격 회피시 연출
             return;
         }
 

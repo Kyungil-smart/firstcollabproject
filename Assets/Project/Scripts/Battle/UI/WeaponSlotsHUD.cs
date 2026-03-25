@@ -21,7 +21,7 @@ public class WeaponSlotsHUD : MonoBehaviour
     [SerializeField] WeaponSlotUI[] _slots = new WeaponSlotUI[3];
 
     private void Update()
-    { 
+    {
         int activeIndex = _weaponController.CurrentWeaponIndex;
         float nextEquip = _weaponController.NextEquipTime;
         float remainingEquipTime = nextEquip - Time.time;
@@ -30,48 +30,39 @@ public class WeaponSlotsHUD : MonoBehaviour
         for (int i = 0; i < _slots.Length; i++)
         {
             var slot = _slots[i];
-            if (slot == null) continue;
 
             WeaponBase weapon = i < _weaponController._weapons.Length ? _weaponController._weapons[i] : null;
 
-            // 탄약 표시 (무기가 존재할 때만)
-            if (slot.ammoText != null)
-            {
-                if (weapon != null)
-                    slot.ammoText.text = weapon.ammo.ToString();
-                else
-                    slot.ammoText.text = "";
-            }
+            if (weapon.ammo > 0) slot.ammoText.text = weapon.ammo.ToString();
+            else slot.ammoText.text = "";
 
             // 쿨타임 UI 처리
-            if (slot.coolTimeClock != null)
+            if (isEquipCooling)
             {
-                if (isEquipCooling)
+                // 스왑 쿨타임 (모든 슬롯에 동일하게 1초 기준 적용)
+                slot.coolTimeClock.fillAmount = remainingEquipTime / 1f;
+            }
+            else
+            {
+                if (i == activeIndex)
                 {
-                    // 스왑 쿨타임 (모든 슬롯에 동일하게 1초 기준 적용)
-                    slot.coolTimeClock.fillAmount = remainingEquipTime / 1f;
-                }
-                else
-                {
-                    if (i == activeIndex && weapon != null)
+                    // 현재 장착중인 무기의 공격 쿨타임 표시
+                    float nextAttack = weapon.NextAttackTime;
+                    float interval = weapon.attackInterval;
+                    if (Time.time < nextAttack && interval > 0f)
                     {
-                        // 현재 장착중인 무기의 공격 쿨타임 표시
-                        float nextAttack = weapon.NextAttackTime;
-                        float interval = weapon.attackInterval;
-                        if (Time.time < nextAttack && interval > 0f)
-                        {
-                            slot.coolTimeClock.fillAmount = (nextAttack - Time.time) / interval;
-                        }
-                        else
-                        {
-                            slot.coolTimeClock.fillAmount = 0f;
-                        }
+                        if (weapon.ammo <= 0 && weapon.attackType == AttackType.Range) continue;
+                        slot.coolTimeClock.fillAmount = (nextAttack - Time.time) / interval;
                     }
                     else
                     {
-                        // 쿨타임 아님 / 비활성 슬롯
                         slot.coolTimeClock.fillAmount = 0f;
                     }
+                }
+                else
+                {
+                    // 비활성 슬롯
+                    slot.coolTimeClock.fillAmount = 0f;
                 }
             }
         }
