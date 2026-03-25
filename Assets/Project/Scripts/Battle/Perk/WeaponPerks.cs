@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UI;
 
 /// <summary>
 /// 플레이어 강화와 무기 강화를 당담
@@ -6,6 +8,10 @@ using UnityEngine;
 public class WeaponPerks : MonoBehaviour
 {
     WeaponController _weaponController;
+
+    [Header("업그레이드 팝업")]
+    [SerializeField] RewardPopup _rewardPopup;
+    [SerializeField] WeaponSO[] _allWeaponPerks;
 
     public int weaponUpgradeCount;
     [Header("무기 강화 요소")]
@@ -26,9 +32,54 @@ public class WeaponPerks : MonoBehaviour
     /// </summary>
     public static WeaponPerkSO GetPerkForStage(WeaponSO weaponSO, int stage)
     {
+        if (weaponSO?.perkSO == null) return null;
+
         foreach (var p in weaponSO.perkSO)
-            if (p != null && p.stage == stage) return p;
+            if (p.stage == stage) return p;
         return null;
+    }
+
+    /// <summary>
+    /// 3개의 무기 강화 후보를 랜덤으로 반환 (중복 없음)
+    /// </summary>
+    public WeaponSO[] GetRandomWeaponPerks(int count = 3)
+    {
+        int stage = GameManager.Instance.currentStage;
+        List<WeaponSO> allWeaponPerks = new();
+
+        foreach (WeaponSO weaponSO in _allWeaponPerks)
+        {
+            allWeaponPerks.Add(weaponSO);
+        }
+
+        WeaponSO[] selected = new WeaponSO[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            int randomIndex = Random.Range(0, allWeaponPerks.Count);
+            selected[i] = allWeaponPerks[randomIndex];
+            allWeaponPerks.RemoveAt(randomIndex);
+        }
+
+        return selected;
+    }
+
+    public void OpenRandomUpgradePopup()
+    {
+        if (_rewardPopup == null)
+        {
+            Debug.LogWarning("RewardPopup 참조가 없습니다.");
+            return;
+        }
+
+        WeaponSO[] selected = GetRandomWeaponPerks();
+        if (selected.Length == 0 || selected[0] == null)
+        {
+            Debug.LogWarning("현재 스테이지에 표시할 무기 강화 후보가 없습니다.");
+            return;
+        }
+
+        _rewardPopup.Open(selected, this);
     }
 
     /// <summary>

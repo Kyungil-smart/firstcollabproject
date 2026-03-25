@@ -7143,6 +7143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 149147863125878915, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 454
+      objectReference: {fileID: 0}
     - target: {fileID: 372000503845241533, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: m_Name
       value: Canvas_PlayerBody_Stats
@@ -7396,11 +7400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f53a64a2fd57b84d92375ce97e22707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TEST_WeaponUpgrade
-  _testWeapons:
-  - {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
-  - {fileID: 11400000, guid: 612663be98232a84e81d635fb0dac46b, type: 2}
-  - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
-  _rewardPopup: {fileID: 1348657620}
 --- !u!114 &8106131196979554202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7413,6 +7412,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650a1ecb6610dba4685cd129cd8ed673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPerk
+  _rewardPopup: {fileID: 1348657620}
+  _allWeaponPerks:
+  - {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
+  - {fileID: 11400000, guid: 993bf614d463f804d925aef93e9b062d, type: 2}
+  - {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
+  - {fileID: 11400000, guid: 612663be98232a84e81d635fb0dac46b, type: 2}
+  - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
+  - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
+  - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
+  - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
   weaponUpgradeCount: 0
   weaponDmgBonus: 0
   rangeBonusPoint: 0
