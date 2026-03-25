@@ -26,7 +26,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public AttackType attackType;
     public float damageBase;
     public float attackInterval; // Use() 함수가 다음 공격이 가능한 시점까지의 간격
-    public int maxAmmo;
+    public int ammo;
     public float rangeValue;
 
     public bool sectorEnable;
@@ -60,7 +60,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         attackType = config.attackType;
         damageBase = config.damageBase;
         attackInterval = config.attackInterval; // 공격 쿨타임으로 사용중
-        maxAmmo = config.maxAmmo;
+        ammo = config.maxAmmo;
         rangeValue = config.rangeValue;
 
         sectorEnable = config.sectorEnable;
@@ -93,6 +93,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     }
 
     float _nextAttackTime;
+    public float NextAttackTime => _nextAttackTime;
     public virtual void Use()
     {
         if (Time.time < _nextAttackTime) { Debug.Log("무기 쿨타임 중"); return; }
