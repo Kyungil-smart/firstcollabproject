@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RandomWalk : MonoBehaviour
 {
-    [SerializeField] private Visualizer visualizer;
+    [SerializeField] private RoomManager visualizer;
     
     [SerializeField] 
     protected Vector2Int startPosition = Vector2Int.zero;
