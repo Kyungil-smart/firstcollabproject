@@ -65,6 +65,12 @@ namespace UI
         public void OnApply()
         {
            // TODO: PlayerPrefs로 현재 세팅 저장
+           foreach (KeyValuePair<ActionKeyType, KeyCode> key in keyBindings)
+           {
+               PlayerPrefs.SetString(key.Key.ToString(), key.Value.ToString());
+           }
+           
+           PlayerPrefs.Save();
         }
         
         /// <summary>
