@@ -361,7 +361,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 47.65
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RandomWalk
   visualizer: {fileID: 1841064840}
   startPosition: {x: 0, y: 0}
-  targetRoomCount: 10
+  targetRoomCount: 8
 --- !u!4 &1265791049
 Transform:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f8aca3f66c7504a954c1908ebbb91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Visualizer
-  roomPrefab: {fileID: 612288759673291212, guid: 197df039d32ba5d4fab09cc9ef62ddd6, type: 3}
+  roomPrefab: {fileID: 8972901531356261557, guid: 8537cd96eb187a64980fa1d6fc6fc6a2, type: 3}
   roomOffset: 16
 --- !u!4 &1841064841
 Transform:

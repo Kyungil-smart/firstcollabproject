@@ -19,17 +19,17 @@ public class Visualizer : MonoBehaviour
             Vector2 worldPosition = new Vector2(position.x *  roomOffset, position.y * roomOffset);
             
             GameObject newRoom = Instantiate(roomPrefab, worldPosition, Quaternion.identity);
+            
             Room room = newRoom.GetComponent<Room>();
-            room.SetRoomIndex(roomIndex++);
+            // room.SetRoomIndex(roomIndex++);
             
             _roomDic.Add(position,room);
             
-            TrySpawnDoors();
+            // TrySpawnDoors();
         }
-        
-        
     }
     
+    /*
     private void TrySpawnDoors()
     {
         foreach (var roomKey in _roomDic)
@@ -59,6 +59,7 @@ public class Visualizer : MonoBehaviour
             }
         }
     }
+    */
 
     private void ClearMap()
     {
