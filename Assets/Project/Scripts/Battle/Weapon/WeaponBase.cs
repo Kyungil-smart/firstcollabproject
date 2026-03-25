@@ -1,10 +1,11 @@
 using UnityEngine;
+using System;
 public interface IDamageable { void TakeDamage(float damage); }
 
 public interface IWeapon
 {
     //int AnimationHash { get; }
-    void Init(WeaponSO config);
+    void Init(WeaponSO config, PlayerBody owner);
     void Equip();
     void Use();
 }
@@ -14,10 +15,11 @@ public interface IWeapon
 /// </summary>
 public abstract class WeaponBase : MonoBehaviour, IWeapon
 {
-    public WeaponSO data;
-
+    PlayerBody _owner;
+    public static event Action OnAttacked;
     //public int AnimationHash => Animator.StringToHash(data?.animationName);
 
+    public WeaponSO data;
     [Header("런타임 데이터")]
     public string Name;
 
@@ -49,9 +51,9 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 
     public bool screenShakeEnable;
 
-
-    public void Init(WeaponSO config)
+    public void Init(WeaponSO config, PlayerBody owner)
     {
+        _owner = owner;
         data = config;
         Name = config.Name;
 
@@ -62,7 +64,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         rangeValue = config.rangeValue;
 
         sectorEnable = config.sectorEnable;
-        sectorAngle = config.sectorAngle;
+        sectorAngle = config.sectorAngle; // 부채꼴 각도
 
         splashEnable = config.splashEnable;
         splashRadius = config.splashRadius;
@@ -82,6 +84,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         spreadAngle = config.spreadAngle;
 
         screenShakeEnable = config.screenShakeEnable;
+
     }
 
     public virtual void Equip()
@@ -89,28 +92,33 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         //
     }
 
-    protected float nextAttackTime;
+    float _nextAttackTime;
     public virtual void Use()
     {
-        if (Time.time < nextAttackTime) return;
-        nextAttackTime = Time.time + attackInterval;
-        Attack();
+        if (Time.time < _nextAttackTime) { Debug.Log("무기 쿨타임 중"); return; }
+        _nextAttackTime = Time.time + attackInterval;
+        float curDamage = damageBase;
+        // 크리티컬 히트 계산
+        if (_owner.RollCrit())
+        {
+            curDamage *= _owner.CritDamage;
+            Debug.Log("<color=yellow>크리티컬 히트!</color>");
+        }
+        Attack(curDamage);
+        OnAttacked?.Invoke();
     }
     
-    public virtual void Charge()
-    {
-        Debug.Log("차지중...");
-    }
-    public abstract void Attack();
+    public virtual void Charging() { }
+    public abstract void Attack(float damage);
 }
 
 public class WeaponFactory
 {
-    public GameObject CreateWeapon(WeaponSO config)
+    public GameObject CreateWeapon(WeaponSO config, PlayerBody owner)
     {
-        GameObject weapon = Object.Instantiate(config.prefab);
+        GameObject weapon = UnityEngine.Object.Instantiate(config.prefab, owner.transform);
         var initializeWeapon = weapon.GetComponent<WeaponBase>();
-        initializeWeapon?.Init(config);
+        initializeWeapon?.Init(config, owner);
         return weapon;
     }
 }

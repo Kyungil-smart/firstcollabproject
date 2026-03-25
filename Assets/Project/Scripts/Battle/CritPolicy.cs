@@ -14,7 +14,6 @@ public struct CritPolicy : ICritPolicy
     public static CritPolicy Get(float rate) => new CritPolicy(rate);
     public bool Roll()
     {
-        Debug.Log(rate);
         return UnityEngine.Random.value <= Chance(rate);
     }
     public float Chance(float luck) => Mathf.Clamp01(luck);

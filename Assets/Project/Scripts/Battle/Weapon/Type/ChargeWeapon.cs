@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class SectorWeapon : WeaponBase
+public class ChargeWeapon : WeaponBase
 {
     [Header("부채꼴 공격 설정")]
-    public float coneAngle = 45f; // 부채꼴 공격의 총 각도
+    float _sectorAngle; // 부채꼴 공격의 총 각도
 
-    public override void Attack()
+    public override void Attack(float damage)
     {
+        _sectorAngle = sectorAngle;
         // 현재 위치를 기준으로 사거리 내의 모든 2D 콜라이더 검색
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, rangeValue);
 
@@ -25,10 +26,10 @@ public class SectorWeapon : WeaponBase
                 // RotatePointToMouse 가 XY 2D 평면을 회전시키므로 주로 right가 앞 방향
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= coneAngle)
+                if (angle <= _sectorAngle)
                 {
-                    damageable.TakeDamage(damageBase);
-                    Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {coneAngle}");
+                    damageable.TakeDamage(damage);
+                    Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {_sectorAngle}");
                 }
             }
         }

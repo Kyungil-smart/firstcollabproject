@@ -1,14 +1,12 @@
 using UnityEngine;
 using System.Linq;
 
-public class RangeWeapon : WeaponBase
+public class SplashWeapon : WeaponBase
 {
-    [Header("판정 설정")]
-    public float attackThickness = 0.5f;
+    float attackThickness = 0.03f;
 
-    public override void Attack()
+    public override void Attack(float damage)
     {
-        float currentDamage = damageBase;
         int remainPenetrateCount = penetrateCount;
 
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, rangeValue);
@@ -24,13 +22,13 @@ public class RangeWeapon : WeaponBase
             var damageable = hit.collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(currentDamage);
-                Debug.Log($"[타겟: {hit.collider.name}]");
+                damageable.TakeDamage(damage);
+                //Debug.Log($"[타겟: {hit.collider.name}]");
 
                 if (remainPenetrateCount > 0)
                 {
                     remainPenetrateCount--;
-                    currentDamage *= penetrateDecay; // 데미지 감쇠 적용
+                    damage *= penetrateDecay; // 데미지 감쇠 적용
                 }
                 else
                 {
