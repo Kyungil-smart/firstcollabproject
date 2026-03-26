@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace Monster
 {
@@ -8,13 +10,16 @@ namespace Monster
     {
         public static MonsterManager Instance { get; private set; }
 
-        public int targetClearCount = 30;
         public MonsterSpawner monsterSpawner;
         public GameObject player;
 
+        [SerializeField] private DataRequestSet spawnDataSet;
+
         [SerializeField] private Slider progressBar;
         [SerializeField] private TextMeshProUGUI progressText;
+        [HideInInspector] public int targetClearCount;
 
+        private List<SpawnDataSO> _spawnDataList;
         private int _currentKillCount = 0;
         private bool _isStageCleared = false;
 
@@ -28,6 +33,17 @@ namespace Monster
             else
             {
                 Destroy(gameObject); // 중복 생성 방지
+            }
+
+            if (spawnDataSet != null)
+            {
+                _spawnDataList = spawnDataSet.targetSOList
+                    .OfType<SpawnDataSO>()
+                    .ToList();
+            }
+            else
+            {
+                Debug.LogError("spawnDataSet is null");
             }
         }
 
@@ -50,8 +66,26 @@ namespace Monster
             _currentKillCount = 0;
             _isStageCleared = false;
 
-            // 스폰 시작 명령
+            // 게임 매니저에서 현재 스테이지 번호 가져오기
+            int currentStageId = GameManager.Instance.currentStage;
+
+            // DataSet에서 현재 스테이지 ID와 일치하는 데이터 찾기
+            SpawnDataSO currentData = _spawnDataList.FirstOrDefault(data => data.id == currentStageId);
+
+            if (currentData == null)
+            {
+                Debug.LogError($"[MonsterManager] StageID가 {currentStageId}인 SpawnData를 찾을 수 없습니다! 스폰을 시작하지 못했습니다.");
+                return;
+            }
+
+            // 클리어 목표 마릿수를 시트 데이터와 동기화
+            targetClearCount = currentData.MaxTotalMonster;
+
+            // 스포너에 데이터 주입 후 스폰 시작 명령
+            monsterSpawner.InitSpawner(currentData);
             monsterSpawner.StartSpawner();
+
+            Debug.Log($"스테이지 {currentStageId} 스폰 시작! (목표 처치 수: {targetClearCount})");
         }
 
         /// <summary>
@@ -93,7 +127,7 @@ namespace Monster
                 monsterSpawner.ResetSpawner();
             }
 
-            // TODO: 클리어 UI 이벤트 호출
+            // TODO: 클리어 되면 문 열리는 로직 추가
         }
     }
 }

@@ -17,7 +17,7 @@ MonoBehaviour:
   Name: "\uC7A5\uAC80"
   attackType: 0
   damageBase: 120
-  attackInterval: 1
+  attackInterval: 0
   maxAmmo: 0
   rangeValue: 2
   sectorEnable: 1
@@ -31,10 +31,12 @@ MonoBehaviour:
   penetrateDecay: 0
   chargeEnable: 1
   chargeTime: 3
-  failCooldown: 0.5
+  failCooldown: 0
   spreadEnable: 0
   spreadAngle: 0
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}
   prefab: {fileID: 7447025797547786004, guid: cd0475f192fd21949aa9e62fdb6da778, type: 3}
+  statusEffect: 0
+  projectilePrefab: {fileID: 0}

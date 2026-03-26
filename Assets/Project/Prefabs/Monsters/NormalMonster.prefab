@@ -280,7 +280,7 @@ MonoBehaviour:
   hpSlider: {fileID: 5039766714776829497}
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 67674577216460736}
-  data: {fileID: 11400000, guid: 20fc5b92b1277c946a7de70fb51b027f, type: 2}
+  statSo: {fileID: 11400000, guid: 5cfd9bb01a783754dba7f9d2fca6c490, type: 2}
 --- !u!61 &7390840146264122405
 BoxCollider2D:
   m_ObjectHideFlags: 0

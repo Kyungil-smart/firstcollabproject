@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Monster
 {
@@ -13,7 +14,7 @@ namespace Monster
         [SerializeField] protected GameObject damageTextPrefab;
         [SerializeField] protected GameObject bodyPrefab;
         
-        public MonsterData data;
+        [FormerlySerializedAs("data")] public MonsterStatSO statSo;
 
         private float _currentHp;
         protected bool isDead = false;
@@ -35,6 +36,7 @@ namespace Monster
                 // 3D처럼 회전하지 않도록 막고, Y축 기준으로 2D 이동
                 agent.updateRotation = false; 
                 agent.updateUpAxis = false;
+                agent.enabled = false;
             }
         }
         
@@ -49,7 +51,7 @@ namespace Monster
         {
             isDead = false;
             isAttacking = false;
-            _currentHp = data.MaxHp; 
+            _currentHp = statSo.Hp; 
             gameObject.layer = LayerMask.NameToLayer("Monster");
             
             if (animator != null)
@@ -61,7 +63,7 @@ namespace Monster
             if (hpSlider != null)
             {
                 hpSlider.gameObject.SetActive(true);
-                hpSlider.maxValue = data.MaxHp;
+                hpSlider.maxValue = statSo.Hp;
                 hpSlider.value = _currentHp;
             }
             
@@ -72,22 +74,34 @@ namespace Monster
             
             
             //세팅 끝나면 NavMeshAgent 활성화
-            if (agent != null && data != null)
+            if (agent != null && statSo != null)
             {
                 agent.enabled = false;
-                agent.transform.position = transform.position;
+        
+                // 실제 스폰될 위치로 오브젝트 이동
+                transform.position = transform.position;
+                
+                // NavMesh 위로 강제 고정
                 agent.enabled = true;
-                agent.Warp(transform.position); 
+                agent.Warp(transform.position);
 
-                agent.speed = data.MoveSpeed;             
-                agent.stoppingDistance = data.AttackRange; 
-                agent.isStopped = false;
+                agent.speed = statSo.MoveSpeed;             
+                agent.stoppingDistance = statSo.AtkRange; 
+
+                if (agent.isOnNavMesh)
+                {
+                    agent.isStopped = false;
+                }
+                else
+                {
+                    Debug.LogWarning($"스폰 위치가 벽이거나 길찾기 영역 밖인지 확인 필요. (위치: {transform.position})");
+                }
             }
             
             // 쿨타임 초기화
-            if (data != null)
+            if (statSo != null)
             {
-                lastAttackTime = -data.AttackInterval;
+                lastAttackTime = -statSo.AttackInterval;
             }
         }
 
@@ -162,14 +176,14 @@ namespace Monster
         {
             if (isDead) return;
             
+            isDead = true;
+            
             // 추격 정지
             if (agent != null)
             {
                 agent.isStopped = true;
                 agent.enabled = false;
             }
-            
-            isDead = true;
             
             if (hpSlider != null)
             {
@@ -183,7 +197,19 @@ namespace Monster
                 MonsterManager.Instance.ReportMonsterKilled();
             }
             
-            StartCoroutine(DeathRoutine());
+            if (gameObject.activeInHierarchy) 
+            {
+                StartCoroutine(DeathRoutine());
+            }
+            else 
+            {
+                // 풀로 반환 처리
+                Registry<MonsterAction>.Remove(this);
+                if (MonsterManager.Instance?.monsterSpawner != null)
+                {
+                    MonsterManager.Instance.monsterSpawner.ReturnMonster(gameObject);
+                }
+            }
         }
         
         private IEnumerator DeathRoutine()

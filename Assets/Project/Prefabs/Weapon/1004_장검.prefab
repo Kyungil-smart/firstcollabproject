@@ -109,7 +109,7 @@ MonoBehaviour:
   attackType: 0
   damageBase: 0
   attackInterval: 0
-  maxAmmo: 0
+  ammo: 0
   rangeValue: 0
   sectorEnable: 0
   sectorAngle: 0
