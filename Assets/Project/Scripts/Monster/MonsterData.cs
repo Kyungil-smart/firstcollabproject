@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Monster
 {
-    [CreateAssetMenu(fileName = "MonsterData", menuName = "ScriptableObject/Monster/Data")]
+    [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Objects/Monster/Data")]
     public class MonsterData : ScriptableObject
     {
         //몬스터 타입

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742c363db6fa1734d8764efbb7e8dd33, type: 3}
+  m_Name: MonsterSpawnDataSet
+  m_EditorClassIdentifier: Assembly-CSharp-Editor::DataRequestSet
+  index: 4
+  sheetData:
+    url: https://docs.google.com/spreadsheets/d/1CSY1jieeNB6th_qtfBAB44gcrci9XPqfMGobrmM4KEk/edit?gid=2140448430#gid=2140448430
+    type: 0
+  targetSOList:
+  - {fileID: 11400000, guid: dc490bbc7c7962549ac33308086e7ba8, type: 2}
+  - {fileID: 11400000, guid: 548c960b779e7f74684169ab42c86c62, type: 2}
+  - {fileID: 11400000, guid: ddbb951c570a9c24f89b204121bb67ca, type: 2}
+  - {fileID: 11400000, guid: 73a38fe3fb6ed2546b78694f24976106, type: 2}
+  - {fileID: 11400000, guid: 2a86730b725a8be4380fe25c4738120a, type: 2}
+  - {fileID: 11400000, guid: e7a3a5a07b274074f812b8d4fb6b6829, type: 2}
+  - {fileID: 11400000, guid: 026a5a606f688eb47bedb85df2bd673d, type: 2}
+  - {fileID: 11400000, guid: 90e4f4aa1946722428ee6ed0bf3d2f44, type: 2}
+  - {fileID: 11400000, guid: bba2c87b4933d9c47bfee38fff21d8d2, type: 2}
+  renameSOBySheetName: 0
+  startRow: 6
