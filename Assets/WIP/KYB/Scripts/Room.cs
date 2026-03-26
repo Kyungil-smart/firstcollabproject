@@ -25,6 +25,10 @@ public class Room : MonoBehaviour
         StartCoroutine(SpawnPointRoutine());
     }
 
+    /// <summary>
+    /// 스폰 포인트에 대한 코루틴
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SpawnPointRoutine()
     {
         while (true)
@@ -34,14 +38,15 @@ public class Room : MonoBehaviour
             foreach (var point in spawnPoints)
             {
                 Vector3 viewPos = Camera.main.WorldToViewportPoint(point.position);
-
+                
+                // WorldToViewportPoint를 써서 카메라 뷰 안에 스폰 포인트가 있는지 확인
                 if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
                 {
-                    Vector2Int girdPos = new Vector2Int(Mathf.RoundToInt(point.position.x), Mathf.RoundToInt(point.position.y));
-                    offScreenPoint.Add(girdPos);
+                    Vector2Int gridPos = new Vector2Int(Mathf.RoundToInt(point.position.x), Mathf.RoundToInt(point.position.y));
+                    offScreenPoint.Add(gridPos);
                 }
             }
-
+            
             if (spawner != null && spawnPoints.Count > 0)
             {
                 spawner.UpdateSpawnableTiles(offScreenPoint);
@@ -65,9 +70,29 @@ public class Room : MonoBehaviour
         else if (direction == Vector2Int.right) rightDoor.SetActive(true);
     }
 
+    
+    public void ClearRoom()
+    {
+        
+    }
+    
+    /// <summary>
+    /// 방에 들어왔을 때, 스포너를 모두 받아오는 메서드
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        MonsterManager.Instance.monsterSpawner = this.spawner;
-        MonsterManager.Instance.StartStage();
+        bool isVisit = false;
+        
+        if (other.CompareTag("Player"))
+        {
+            if (!isVisit)
+            {
+                MonsterManager.Instance.monsterSpawner = this.spawner;
+                MonsterManager.Instance.StartStage();
+            }
+        }
+        
+        // 아직 미완성입니다 계속 보완해 가겠습니다
     }
+    
 }
