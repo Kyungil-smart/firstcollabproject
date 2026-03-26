@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855e63b6286c442599cdc09736575d71, type: 3}
+  m_Name: "2002_\uC6D0\uAC70\uB9AC\uC880\uBE44"
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterStatSO
+  id: 2002
+  row: 7
+  Name: "\uC6D0\uAC70\uB9AC \uC880\uBE44"
+  Grade: 0
+  Hp: 60
+  MoveSpeed: 3
+  Atk: 15
+  AttackInterval: 2
+  AtkTrigger: 5
+  AtkPreDelay: 0.5
+  AtkRange: 1
+  ExpReward: 100
