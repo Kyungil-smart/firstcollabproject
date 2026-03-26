@@ -30,6 +30,7 @@ public class TEST_Upgrade : MonoBehaviour
         // Home 키 누르면 씬 재시작
         if (kb[Key.Home].wasPressedThisFrame)
         {
+            Time.timeScale = 1f;
             SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex).Cancel();
         }
 
