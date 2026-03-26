@@ -3,8 +3,6 @@ using UnityEngine;
 
 public static class ProceduralGeneration
 {
-    private static List<GameObject> _spawnedRooms = new List<GameObject>();
-    
     /// <summary>
     /// Random Walk 알고리즘
     /// </summary>
@@ -28,6 +26,9 @@ public static class ProceduralGeneration
     }
 }
 
+/// <summary>
+/// Random Walk에서 쓸 4방향 벡터
+/// </summary>
 public static class Direction2D
 {
     public static List<Vector2Int> CardinalDirectionList = new List<Vector2Int>

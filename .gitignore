@@ -103,5 +103,3 @@ ServerData
 # Ignore imported assets
 Assets/Imports/**
 Assets/WIP/PEY**
-Assets/Settings/Font/MapoBackpacking SDF.asset
-Assets/Settings/Font/MapoBackpacking SDF.asset.meta
