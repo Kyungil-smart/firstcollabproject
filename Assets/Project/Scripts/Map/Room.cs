@@ -91,9 +91,10 @@ public class Room : MonoBehaviour
                 isVisited = true;
                 
                 MonsterManager.Instance.monsterSpawner = this.spawner;
-
-                int currentStageId = this.spawner.currentSpawnData.id;
-
+                
+                int currentStageId = RoomManager.Instance.GetNextStageId();
+                Debug.Log($"roomID: {currentStageId}");
+                
                 GameManager.Instance.currentStage = currentStageId;
                 
                 MonsterManager.Instance.StartStage();

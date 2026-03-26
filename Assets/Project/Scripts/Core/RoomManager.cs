@@ -1,26 +1,44 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour
 {
+    public static RoomManager Instance { get; private set; }
+
+    [Header("방 데이터 세팅")] public int startStageId = 10001;
+    
+    
+
     [Header("방 프리팹 참조")]
     [SerializeField] private GameObject startRoomPrefab;
     [SerializeField] private GameObject bossRoomPrefab;
     [SerializeField] private List<GameObject> normalRoomPrefabs;
     
+    [Header("플레이어 프리팹 참조")]
     [SerializeField] private GameObject playerPrefab;
     
-    private Dictionary<Vector2Int, Room> _roomDic =  new Dictionary<Vector2Int, Room>();
-
+    [Header("방 크기에 맞춘 오프셋")]
     [SerializeField] private float roomOffset;
     
-    
+    private Dictionary<Vector2Int, Room> _roomDic =  new Dictionary<Vector2Int, Room>();
+    private Queue<int> _roomIdQueue = new Queue<int>();
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+
     public void VisualizeMap(HashSet<Vector2Int> floorPositions)
     {
         ClearGrid(); 
         ShuffleRoom(normalRoomPrefabs);
 
         int roomIndex = 0;
+        int normalRoomCount = 0;
         float maxDistance = 0f;
         Vector2Int farthestPosition = Vector2Int.zero;
         
@@ -39,6 +57,7 @@ public class RoomManager : MonoBehaviour
                 int index = roomIndex % normalRoomPrefabs.Count;
                 spawnedRoom = Instantiate(normalRoomPrefabs[index], worldPosition, Quaternion.identity);
                 roomIndex++;
+                normalRoomCount++;
 
                 float distance = Vector2.Distance(Vector2Int.zero, position);
 
@@ -64,13 +83,24 @@ public class RoomManager : MonoBehaviour
         }
         
         TrySpawnDoors();
+        InitStageQueue(normalRoomCount);
 
         if (playerPrefab != null)
         {
             Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         }
     }
-    
+
+    private void InitStageQueue(int roomQueue)
+    {
+        _roomIdQueue.Clear();
+
+        for (int i = 0; i < roomQueue; i++)
+        {
+            _roomIdQueue.Enqueue(startStageId + i);
+        }
+    }
+
     private void TrySpawnDoors()
     {
         foreach (var roomKey in _roomDic)
@@ -111,6 +141,8 @@ public class RoomManager : MonoBehaviour
         _roomDic.Clear();
     }
     
+    
+    
     private void ShuffleRoom<T>(List<T> roomList)
     {
         for (int i = 0; i < roomList.Count - 1; i++)
@@ -125,5 +157,15 @@ public class RoomManager : MonoBehaviour
         var temp = roomList[i]; 
         roomList[i] = roomList[randomRoomIndex];
         roomList[randomRoomIndex] = temp;
+    }
+
+    public int GetNextStageId()
+    {
+        if (_roomIdQueue.Count > 0)
+        {
+            return _roomIdQueue.Dequeue();
+        }
+
+        return startStageId;
     }
 }
