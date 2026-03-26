@@ -33,7 +33,7 @@ public class ProjectToolbar
                 EditorUtility.OpenPropertyEditor(DataRequestSet.Get(1));
             });
 
-            menu.AddItem(new GUIContent("Monster"), false, () =>
+            menu.AddItem(new GUIContent("Consumable"), false, () =>
             {
                 EditorUtility.OpenPropertyEditor(DataRequestSet.Get(2));
             });

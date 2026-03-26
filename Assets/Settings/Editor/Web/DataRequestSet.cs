@@ -58,7 +58,7 @@ public class DataRequestSet : ScriptableObject
             {
                 if (string.IsNullOrEmpty(cols[0]))
                 {
-                    Debug.Log($"데이터가 더 존재하나 id가 비어있습니다 \n주석이라 판단하고 종료합니다: {i + 1}행");
+                    Debug.Log($"데이터가 더 존재하나 id가 비어있습니다 \n주석이라 판단하고 종료합니다: {i + 1}행 이후");
                 }
                 else
                 {
