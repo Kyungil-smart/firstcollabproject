@@ -28,14 +28,14 @@ public class WeaponPerks : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 스테이지에 맞는 WeaponPerkSO를 반환
+    /// 현재 스테이지 번호에 맞는 WeaponPerkSO를 반환
     /// </summary>
     public static WeaponPerkSO GetPerkForStage(WeaponSO weaponSO, int stage)
     {
         if (weaponSO?.perkSO == null) return null;
 
         foreach (var p in weaponSO.perkSO)
-            if (p.stage == stage) return p;
+            if (p.stage + 10000 == stage) return p;
         return null;
     }
 
