@@ -100,7 +100,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6166484002347353986}
-  - component: {fileID: 6221191571769375085}
   m_Layer: 0
   m_Name: SpawnPoint_3
   m_TagString: Untagged
@@ -123,23 +122,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6221191571769375085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373480075065166354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
 --- !u!1 &1168607072701688377
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7511587720964851237}
+  - component: {fileID: 3502974391526101155}
   m_Layer: 0
   m_Name: SpawnPoints
   m_TagString: Untagged
@@ -179,6 +162,23 @@ Transform:
   - {fileID: 9167146386410388907}
   m_Father: {fileID: 624610463793830609}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3502974391526101155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168607072701688377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
+  monsterPrefab: []
+  spawnTime: 5
+  maxMonsterCount: 12
+  minSpawnCount: 1
+  maxSpawnCount: 3
 --- !u!1 &1201780756450047234
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +439,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 47930456688965123}
-  - component: {fileID: 1573399680053930696}
   m_Layer: 0
   m_Name: SpawnPoint_1
   m_TagString: Untagged
@@ -462,23 +461,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1573399680053930696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803782272938009218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
 --- !u!1 &1882162885692624457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,7 +2890,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8891466954596770455}
-  - component: {fileID: 4591735237898000238}
   m_Layer: 0
   m_Name: SpawnPoint_2
   m_TagString: Untagged
@@ -2931,23 +2912,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4591735237898000238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3675278453264817915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
 --- !u!1 &4421354444777893825
 GameObject:
   m_ObjectHideFlags: 0
@@ -4516,7 +4480,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a381d3633490d641919243eec77c460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
-  spawner: {fileID: 0}
+  spawner: {fileID: 3502974391526101155}
+  spawnPoints:
+  - {fileID: 3183496600836226107}
+  - {fileID: 47930456688965123}
+  - {fileID: 8891466954596770455}
+  - {fileID: 6166484002347353986}
+  - {fileID: 1256721916143838220}
+  - {fileID: 8037062757697584936}
+  - {fileID: 2002622947106513680}
+  - {fileID: 9167146386410388907}
   upDoor: {fileID: 1431752948561791244}
   downDoor: {fileID: 3466689747769000038}
   leftDoor: {fileID: 1201780756450047234}
@@ -4530,7 +4503,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8037062757697584936}
-  - component: {fileID: 6929917558806016756}
   m_Layer: 0
   m_Name: SpawnPoint_5
   m_TagString: Untagged
@@ -4553,23 +4525,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6929917558806016756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5625372002823209963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
 --- !u!1 &5760120439387693745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,7 +4534,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9167146386410388907}
-  - component: {fileID: 33811195091781043}
   m_Layer: 0
   m_Name: SpawnPoint_7
   m_TagString: Untagged
@@ -4602,23 +4556,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &33811195091781043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5760120439387693745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
 --- !u!1 &6119341491361727135
 GameObject:
   m_ObjectHideFlags: 0
@@ -4719,7 +4656,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3183496600836226107}
-  - component: {fileID: 630950217891528959}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -4742,23 +4678,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &630950217891528959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6520458142166610199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
 --- !u!1 &6708134623201294442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5799,7 +5718,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1256721916143838220}
-  - component: {fileID: 418559900432107379}
   m_Layer: 0
   m_Name: SpawnPoint_4
   m_TagString: Untagged
@@ -5822,23 +5740,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &418559900432107379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8473792078133652879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
 --- !u!1 &8577469561703036218
 GameObject:
   m_ObjectHideFlags: 0
@@ -5939,7 +5840,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2002622947106513680}
-  - component: {fileID: 5934906491764888101}
   m_Layer: 0
   m_Name: SpawnPoint_6
   m_TagString: Untagged
@@ -5962,20 +5862,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511587720964851237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5934906491764888101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8800354508732511347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab: []
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
