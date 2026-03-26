@@ -708,6 +708,7 @@ GameObject:
   - component: {fileID: 5061608117689590212}
   - component: {fileID: 2892086037189842772}
   - component: {fileID: 421100933377126415}
+  - component: {fileID: -3345202688316808626}
   m_Layer: 0
   m_Name: Rooby_Grid
   m_TagString: Untagged
@@ -773,6 +774,52 @@ MonoBehaviour:
   downDoor: {fileID: 3062537690578614054}
   leftDoor: {fileID: 769132827586573494}
   rightDoor: {fileID: 125042449923908308}
+--- !u!61 &-3345202688316808626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236943696069161790}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 16, y: 16}
+  m_EdgeRadius: 0
 --- !u!1 &4581462282857056411
 GameObject:
   m_ObjectHideFlags: 0

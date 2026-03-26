@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
+/// <summary>
+/// 추후 리팩토링이나 코드 개선을 위해 만들어 놓은 enum
+/// </summary>
 public enum RoomType
 {
     StartRoom,
@@ -14,7 +17,7 @@ public enum RoomType
 
 public class Room : MonoBehaviour
 {  
-    public Monster.MonsterSpawner spawner;
+    public MonsterSpawner spawner;
     public List<Transform> spawnPoints;
 
     private void Start()
@@ -61,6 +64,10 @@ public class Room : MonoBehaviour
         else if (direction == Vector2Int.left) leftDoor.SetActive(true);
         else if (direction == Vector2Int.right) rightDoor.SetActive(true);
     }
-    
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        MonsterManager.Instance.monsterSpawner = this.spawner;
+        MonsterManager.Instance.StartStage();
+    }
 }
