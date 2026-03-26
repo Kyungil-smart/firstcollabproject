@@ -502,9 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f88f2331287a004bb33e237126732a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
-  monsterPrefab:
-  - {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
-  - {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
+  randomSpawnController: {fileID: 0}
   currentSpawnData: {fileID: 0}
 --- !u!1 &3487553879748368790
 GameObject:
@@ -831,6 +829,7 @@ MonoBehaviour:
   - {fileID: 7320639054973827796}
   - {fileID: 4831839758029107271}
   - {fileID: 1332652868159602617}
+  isVisited: 0
   upDoor: {fileID: 5489311818191254074}
   downDoor: {fileID: 1167227715971867980}
   leftDoor: {fileID: 3487553879748368790}

@@ -3902,6 +3902,7 @@ MonoBehaviour:
   roomType: 2
   spawner: {fileID: 0}
   spawnPoints: []
+  isVisited: 0
   upDoor: {fileID: 5334367393215496889}
   downDoor: {fileID: 7680685318692745008}
   leftDoor: {fileID: 1877829499620375667}

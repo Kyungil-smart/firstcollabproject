@@ -4,7 +4,6 @@ namespace Monster
     {
         Normal,
         Ranged,
-        Police,
         Bomb,
         Brute
     }

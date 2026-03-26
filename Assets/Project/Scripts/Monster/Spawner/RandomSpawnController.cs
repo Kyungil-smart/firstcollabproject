@@ -26,7 +26,9 @@ namespace Monster
         
         public GameObject GetMonsterPrefab(int stageId)
         {
-            MonsterType monsterType = GetRandomMonsterType(stageId); 
+            MonsterType monsterType = GetRandomMonsterType(stageId);
+            
+            Debug.Log($"GetMonsterPrefab {monsterType}");
             SpawnData data = monsterPrefab.FirstOrDefault(item => item.monsterType == monsterType);
             if (data != null) return data.monsterPrefab;
             return null;
@@ -43,8 +45,8 @@ namespace Monster
             cumulative += percentData.Normal;
             if (randomValue <= cumulative) return MonsterType.Normal;
 
-            cumulative += percentData.Police;
-            if (randomValue <= cumulative) return MonsterType.Police;
+            cumulative += percentData.Ranged;
+            if (randomValue <= cumulative) return MonsterType.Ranged;
 
             cumulative += percentData.Bomb;
             if (randomValue <= cumulative) return MonsterType.Bomb;
