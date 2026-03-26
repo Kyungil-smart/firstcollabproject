@@ -6,8 +6,23 @@ namespace Monster
 {
     public class RandomSpawnController : MonoBehaviour
     {
-        public List<SpawnPercentSO> spawnPercentData;
+        [SerializeField] private DataRequestSet spawnPercentDataSet;
+        private List<SpawnPercentSO> _spawnPercentData;
         public List<SpawnData> monsterPrefab;
+
+        private void Awake()
+        {
+            if (spawnPercentDataSet != null)
+            {
+                _spawnPercentData = spawnPercentDataSet.targetSOList
+                    .OfType<SpawnPercentSO>()
+                    .ToList();
+            }
+            else
+            {
+                Debug.LogError("spawnPercentDataSet is null");
+            }
+        }
         
         public GameObject GetMonsterPrefab(int stageId)
         {
@@ -19,9 +34,9 @@ namespace Monster
         
         private MonsterType GetRandomMonsterType(int stageId)
         {
-            if (spawnPercentData == null) return MonsterType.Normal;
+            if (_spawnPercentData == null) return MonsterType.Normal;
 
-            SpawnPercentSO percentData = spawnPercentData.FirstOrDefault(data => data.id == stageId);
+            SpawnPercentSO percentData = _spawnPercentData.FirstOrDefault(data => data.id == stageId);
             float randomValue = Random.Range(0f, 100f);
             float cumulative = 0f;
 
