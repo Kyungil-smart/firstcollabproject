@@ -1,17 +1,23 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Monster
 {
     public class MonsterManager : MonoBehaviour
     {
         public static MonsterManager Instance { get; private set; }
-        
+
         public int targetClearCount = 30;
         public MonsterSpawner monsterSpawner;
         public GameObject player;
-        private int _currentKillCount = 0; 
+
+        [SerializeField] private Slider progressBar;
+        [SerializeField] private TextMeshProUGUI progressText;
+
+        private int _currentKillCount = 0;
         private bool _isStageCleared = false;
-        
+
         private void Awake()
         {
             // 싱글톤 초기화
@@ -32,8 +38,10 @@ namespace Monster
                 GameObject _player = GameObject.FindGameObjectWithTag("Player");
                 if (player != null) player = _player;
             }
+
+            ShowProgressStage();
         }
-        
+
         /// <summary>
         /// 스테이지 시작 시 호출
         /// </summary>
@@ -41,11 +49,11 @@ namespace Monster
         {
             _currentKillCount = 0;
             _isStageCleared = false;
-            
+
             // 스폰 시작 명령
             monsterSpawner.StartSpawner();
         }
-        
+
         /// <summary>
         /// 몬스터 죽으면 카운트
         /// </summary>
@@ -55,14 +63,25 @@ namespace Monster
 
             _currentKillCount++;
             Debug.Log($"몬스터 처치됨 ({_currentKillCount} / {targetClearCount})");
-            
+
+            ShowProgressStage();
+
             // 목표 처치 수 달성 시 클리어 처리
             if (_currentKillCount >= targetClearCount)
             {
                 ClearStage();
             }
         }
-        
+
+        private void ShowProgressStage()
+        {
+            //목표 표시
+            float progressRatio = (float)_currentKillCount / targetClearCount;
+            if (progressBar != null) progressBar.value = progressRatio;
+            int percentage = Mathf.RoundToInt(progressRatio * 100f);
+            if (progressText != null) progressText.text = $"ROOM CLEARING: {percentage}%";
+        }
+
         private void ClearStage()
         {
             _isStageCleared = true;
@@ -73,9 +92,8 @@ namespace Monster
             {
                 monsterSpawner.ResetSpawner();
             }
-            
+
             // TODO: 클리어 UI 이벤트 호출
         }
-        
     }
 }

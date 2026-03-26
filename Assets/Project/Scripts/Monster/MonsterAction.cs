@@ -23,16 +23,6 @@ namespace Monster
         private SpriteRenderer[] _spriteRenderers;
         protected NavMeshAgent agent;
         
-        //TODO: 테스트 전용. 후에 삭제하기
-        private void OnMouseDown()
-        {
-            // 마우스 클릭으로 데미지 입히기
-            if (!isDead)
-            {
-                TakeDamage(10);
-            }
-        }
-        
         protected virtual void Awake()
         {
             _spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);

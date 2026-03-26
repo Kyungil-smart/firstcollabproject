@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 일시정지 중이면 로직 빠져나감.
+        if (Time.timeScale == 0f) return;
+        
         Vector2 nextVec = inputVector.normalized * _body.MoveSpeed * Time.fixedDeltaTime;
         _rb.MovePosition(_rb.position + nextVec);
     }
