@@ -6,11 +6,9 @@ namespace Monster
 {
     public class MonsterSpawner : MonoBehaviour
     {
+        [SerializeField] private RandomSpawnController randomSpawnController;
         
-        [Header("Spawn Settings")]
-        public List<GameObject> monsterPrefab;
-        public SpawnDataSO currentSpawnData;
-        
+        private SpawnDataSO _currentSpawnData;
         private List<Vector2Int> _currentSpawnableTiles = new List<Vector2Int>();
         private Queue<GameObject> _monsterList = new Queue<GameObject>();
         private List<GameObject> _activeMonsters = new List<GameObject>(); 
@@ -20,15 +18,15 @@ namespace Monster
         // 이번 스테이지에서 총 생성된 몬스터 수
         private int _totalSpawnedCount = 0; 
         
-        private int _minSpawnCount = 1;
-        private int _maxSpawnCount = 3;
+        private readonly int _minSpawnCount = 1;
+        private readonly int _maxSpawnCount = 3;
         // 스폰 진행 여부 플래그
         private bool _isSpawning = false; 
 
 
         public void InitSpawner(SpawnDataSO spawnData)
         {
-            currentSpawnData = spawnData;
+            _currentSpawnData = spawnData;
         }
         
         
@@ -37,7 +35,7 @@ namespace Monster
         /// </summary>
         public void StartSpawner()
         {
-            if (currentSpawnData == null) return;
+            if (_currentSpawnData == null) return;
             
             SetMonsterPool();
             _isSpawning = true;
@@ -50,17 +48,19 @@ namespace Monster
             if (_monsterList.Count > 0) return;
             
             int weight = 10;
-            int poolSize = currentSpawnData.MaxSimultaneous + weight;
+            int poolSize = _currentSpawnData.MaxSimultaneous + weight;
 
             for (int i = 0; i < poolSize; i++)
             {
-                int randomIndex = Random.Range(0, monsterPrefab.Count);
-                GameObject monster = Instantiate(monsterPrefab[randomIndex], transform);
-                monster.SetActive(false);
-                _monsterList.Enqueue(monster);
+                //스테이지별 확률로 뽑아옴
+                GameObject monsterPrefab = randomSpawnController.GetMonsterPrefab(_currentSpawnData.id);
+                if (monsterPrefab == null) continue;
+
+                GameObject newMonster = Instantiate(monsterPrefab, transform);
+                newMonster.SetActive(false);
+                _monsterList.Enqueue(newMonster);
             }
         }
-
         
         /// <summary>
         /// 맵의 세이프존이 갱신될 때마다 호출
@@ -76,11 +76,15 @@ namespace Monster
             while (_isSpawning)
             {
                 // 데이터에 입력된 주기(SpawnInterval)만큼 대기
-                yield return new WaitForSeconds(currentSpawnData.SpawnInterval); 
+                yield return new WaitForSeconds(_currentSpawnData.SpawnInterval); 
                 
-                // 지정된 범위 내에서 랜덤하게 스폰 시도
-                int spawnCount = Random.Range(_minSpawnCount, _maxSpawnCount + 1);
-                TrySpawnMonsters(spawnCount);
+                // [최대 마릿수 - 현재 마릿수] 계산
+                int emptySlotCount = _currentSpawnData.MaxSimultaneous - _currentAliveCount;
+                
+                if (emptySlotCount > 0)
+                {
+                    TrySpawnMonsters(emptySlotCount);
+                }
             }
         }
         
@@ -89,43 +93,35 @@ namespace Monster
             if (!_isSpawning) return;
             if (_currentSpawnableTiles == null || _currentSpawnableTiles.Count == 0) return;
 
-            List<int> usedIndices = new List<int>();
-            
             for (int i = 0; i < countToSpawn; i++)
             {
                 // 잡아야 하는 총 마릿수를 채웠다면 더 이상 스폰하지 않음
-                if (_totalSpawnedCount >= currentSpawnData.MaxTotalMonster)
+                if (_totalSpawnedCount >= _currentSpawnData.MaxTotalMonster)
                 {
                     _isSpawning = false; // 코루틴이 돌더라도 다음부터 스폰 로직을 타지 않음
                     break;
                 }
 
                 // 현재 필드 마릿수가 최대치에 도달했다면 이번 차례 스폰 중단
-                if (_currentAliveCount >= currentSpawnData.MaxSimultaneous) break; 
+                if (_currentAliveCount >= _currentSpawnData.MaxSimultaneous) break; 
                 
                 // 풀이 비어있으면 중단
                 if (_monsterList.Count == 0) break;
                 
-                int randomIndex;
-                int safetyCount = 0;
-
-                do
-                {
-                    randomIndex = Random.Range(0, _currentSpawnableTiles.Count);
-                    safetyCount++;
-                } 
-                while (usedIndices.Contains(randomIndex) && safetyCount < 10);
-
-                usedIndices.Add(randomIndex);
-
+                // 스폰 가능한 타일 중 랜덤 선택
+                int randomIndex = Random.Range(0, _currentSpawnableTiles.Count);
                 Vector2Int spawnTarget = _currentSpawnableTiles[randomIndex];
+                
                 SpawnMonsterAt(spawnTarget);
             }
         }
         
         private void SpawnMonsterAt(Vector2 position)
         {
+            if (_monsterList.Count == 0) return;
+            
             GameObject monster = _monsterList.Dequeue();
+            
             
             Vector3 spawnPosition = new Vector3(position.x, position.y, 0f); 
         
@@ -179,9 +175,10 @@ namespace Monster
             
             _activeMonsters.Clear();
             _currentSpawnableTiles.Clear();
+            _monsterList.Clear();
             
-            _currentAliveCount = 0;
             _totalSpawnedCount = 0;
+            _currentAliveCount = 0;
             
             Debug.Log("스포너 데이터 리셋 완료");
         }
