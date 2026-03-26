@@ -87,7 +87,15 @@ namespace Monster
 
                 agent.speed = statSo.MoveSpeed;             
                 agent.stoppingDistance = statSo.AtkRange; 
-                agent.isStopped = false;
+
+                if (agent.isOnNavMesh)
+                {
+                    agent.isStopped = false;
+                }
+                else
+                {
+                    Debug.LogWarning($"스폰 위치가 벽이거나 길찾기 영역 밖인지 확인 필요. (위치: {transform.position})");
+                }
             }
             
             // 쿨타임 초기화
