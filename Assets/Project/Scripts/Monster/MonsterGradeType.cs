@@ -1,6 +1,6 @@
 namespace Monster
 {
-    public enum MonsterGradeType
+    public enum GradeType
     {
         Normal,
         Boss

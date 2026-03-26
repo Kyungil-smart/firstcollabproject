@@ -13,7 +13,7 @@ namespace Monster
         {
             if (isDead) return;
             
-            if (agent == null || !agent.isOnNavMesh || data == null) return;
+            if (agent == null || !agent.isOnNavMesh || statSo == null) return;
             
             if(MonsterManager.Instance.player == null) return;
 
@@ -25,7 +25,7 @@ namespace Monster
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
             // 사거리 이내면 공격
-            if (distanceToPlayer <= data.AttackRange && Time.time >= lastAttackTime + data.AttackInterval)
+            if (distanceToPlayer <= statSo.AtkRange && Time.time >= lastAttackTime + statSo.AttackInterval)
             {
                 if (!isAttacking)
                 {
@@ -56,9 +56,9 @@ namespace Monster
             isAttacking = true;
             
             // 선딜레이 대기
-            if (data.HasPreDelay && data.PreDelayTime > 0)
+            if (statSo.AtkPreDelay > 0)
             {
-                yield return new WaitForSeconds(data.PreDelayTime);
+                yield return new WaitForSeconds(statSo.AtkPreDelay);
             }
 
             // 선딜레이 동안 죽었으면 공격 취소
@@ -75,18 +75,13 @@ namespace Monster
 
             if (playerBody != null)
             {
-                playerBody.TakeDamage(data.Atk);
+                playerBody.TakeDamage(statSo.Atk);
             }
             else
             {
                 Debug.Log("PlayerBody Component is Null");
             }
 
-            // 후딜레이 대기
-            if (data.HasPostDelay && data.PostDelayTime > 0)
-            {
-                yield return new WaitForSeconds(data.PostDelayTime);
-            }
 
             // 쿨타임 및 상태 리셋
             lastAttackTime = Time.time;

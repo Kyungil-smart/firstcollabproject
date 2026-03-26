@@ -15,11 +15,13 @@ namespace Monster
         private Queue<GameObject> _monsterList = new Queue<GameObject>();
         private List<GameObject> _activeMonsters = new List<GameObject>(); 
         
-        private int _currentAliveCount = 0; // 필드에 살아있는 몬스터 수
-        private int _totalSpawnedCount = 0; // 이번 스테이지에서 총 생성된 몬스터 수
+        // 현재 필드에 살아있는 몬스터 수
+        private int _currentAliveCount = 0; 
+        // 이번 스테이지에서 총 생성된 몬스터 수
+        private int _totalSpawnedCount = 0; 
         
-        private int minSpawnCount = 1;
-        private int maxSpawnCount = 3;
+        private int _minSpawnCount = 1;
+        private int _maxSpawnCount = 3;
         // 스폰 진행 여부 플래그
         private bool _isSpawning = false; 
 
@@ -35,11 +37,7 @@ namespace Monster
         /// </summary>
         public void StartSpawner()
         {
-            if (currentSpawnData == null)
-            {
-                Debug.LogError("SpawnData가 할당되지 않았습니다!");
-                return;
-            }
+            if (currentSpawnData == null) return;
             
             SetMonsterPool();
             _isSpawning = true;
@@ -81,7 +79,7 @@ namespace Monster
                 yield return new WaitForSeconds(currentSpawnData.SpawnInterval); 
                 
                 // 지정된 범위 내에서 랜덤하게 스폰 시도
-                int spawnCount = Random.Range(minSpawnCount, maxSpawnCount + 1);
+                int spawnCount = Random.Range(_minSpawnCount, _maxSpawnCount + 1);
                 TrySpawnMonsters(spawnCount);
             }
         }

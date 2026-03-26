@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Monster
 {
@@ -13,7 +14,7 @@ namespace Monster
         [SerializeField] protected GameObject damageTextPrefab;
         [SerializeField] protected GameObject bodyPrefab;
         
-        public MonsterData data;
+        [FormerlySerializedAs("data")] public MonsterStatSO statSo;
 
         private float _currentHp;
         protected bool isDead = false;
@@ -49,7 +50,7 @@ namespace Monster
         {
             isDead = false;
             isAttacking = false;
-            _currentHp = data.MaxHp; 
+            _currentHp = statSo.Hp; 
             gameObject.layer = LayerMask.NameToLayer("Monster");
             
             if (animator != null)
@@ -61,7 +62,7 @@ namespace Monster
             if (hpSlider != null)
             {
                 hpSlider.gameObject.SetActive(true);
-                hpSlider.maxValue = data.MaxHp;
+                hpSlider.maxValue = statSo.Hp;
                 hpSlider.value = _currentHp;
             }
             
@@ -72,22 +73,22 @@ namespace Monster
             
             
             //세팅 끝나면 NavMeshAgent 활성화
-            if (agent != null && data != null)
+            if (agent != null && statSo != null)
             {
                 agent.enabled = false;
                 agent.transform.position = transform.position;
                 agent.enabled = true;
                 agent.Warp(transform.position); 
 
-                agent.speed = data.MoveSpeed;             
-                agent.stoppingDistance = data.AttackRange; 
+                agent.speed = statSo.MoveSpeed;             
+                agent.stoppingDistance = statSo.AtkRange; 
                 agent.isStopped = false;
             }
             
             // 쿨타임 초기화
-            if (data != null)
+            if (statSo != null)
             {
-                lastAttackTime = -data.AttackInterval;
+                lastAttackTime = -statSo.AttackInterval;
             }
         }
 
