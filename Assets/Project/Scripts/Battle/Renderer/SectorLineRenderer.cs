@@ -16,21 +16,19 @@ public class SectorLineRenderer : MonoBehaviour
         _weaponController = GetComponentInParent<WeaponController>();
         _line = GetComponent<LineRenderer>();
         _line.useWorldSpace = true;
-        _line.startColor = Color.green;
-        _line.endColor = Color.green;
         _line.loop = false;
     }
 
     private void Update()
     {
-        float range = _weaponController.CurrentRange;
         float halfAngle = _weaponController.CurrentSectorAngle / 2f;
 
-        if (halfAngle <= 0f || range <= 0f)
+        if (halfAngle <= 0f)
         {
             _line.positionCount = 0;
             return;
         }
+        float range = _weaponController.CurrentRange;
 
         // 중심 → 왼쪽 끝 → 호 → 오른쪽 끝 → 중심
         // 총 꼭짓점 = 1(중심) + arcSegments+1(호) + 1(중심) = arcSegments + 3

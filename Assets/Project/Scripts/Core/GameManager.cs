@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public int currentStage;
+    public int currentStage; // 방 ID 단위: 10001 , 10002, ...
+    public int currentFloor; // 전체 층 단위: 1, 2, 3, ...
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)] // 게임 시작 전에 GameManager를 만듭니다
     private static void CreateInstance()

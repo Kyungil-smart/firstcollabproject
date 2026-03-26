@@ -18,7 +18,7 @@ MonoBehaviour:
   itemType: 0
   damage: 30
   range: 5
-  explosionRadius: 2
+  splashRadius: 2
   readyTime: 0
   effectID: 702
   maxStack: 4

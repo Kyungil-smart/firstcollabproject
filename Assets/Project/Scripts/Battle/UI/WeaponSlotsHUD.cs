@@ -14,11 +14,16 @@ public class WeaponSlotsHUD : MonoBehaviour
         public TextMeshProUGUI ammoText;
     }
 
-    [Header("참조")]
-    [SerializeField] WeaponController _weaponController;
+    WeaponController _weaponController;
 
     [Header("슬롯 UI (1~3번)")]
     [SerializeField] WeaponSlotUI[] _slots = new WeaponSlotUI[3];
+
+    private void Start()
+    {
+        _weaponController = FindFirstObjectByType<WeaponController>();
+        if (_weaponController == null) { Debug.LogError("WeaponController가 게임에 없습니다!"); }
+    }
 
     private void Update()
     {

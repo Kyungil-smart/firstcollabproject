@@ -43,8 +43,8 @@ namespace UI
             _weaponData = weaponData;
             _weaponPerks = weaponPerks;
 
-            int stage = GameManager.Instance.currentStage;
-            WeaponPerkSO perk = WeaponPerks.GetPerkForStage(weaponData, stage);
+            int floor = GameManager.Instance.currentFloor;
+            WeaponPerkSO perk = WeaponPerks.GetPerkForFloor(weaponData, floor);
 
             _rolledBonus = Random.Range(perk.bonusMin, perk.bonusMax);
 
@@ -55,7 +55,7 @@ namespace UI
                 AttackType.Consume => weaponPerks.consDmgBonus,
                 _ => 0f
             };
-            float remaining = Mathf.Max(0f, perk.stageBonusMax - currentAccum);
+            float remaining = Mathf.Max(0f, perk.levelBonusMax - currentAccum);
             _rolledBonus = Mathf.Min(_rolledBonus, remaining);
 
             nameText.text = weaponData.Name;
@@ -70,14 +70,14 @@ namespace UI
             {
                 case AttackType.Melee:
                     {
-                        float plusDmg = Mathf.Min(_rolledBonus + player.weaponDmgBonus, perk.stageBonusMax);
+                        float plusDmg = Mathf.Min(_rolledBonus + player.weaponDmgBonus, perk.levelBonusMax);
                         return $"공격력: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
                                $"근접 성장 수치: +{perk.maxJump:F0}";
                     }
                 case AttackType.Range:
                     {
                         var (dmgR, ammoR) = WeaponPerks.GetRangeRatios(perk.rangeBounusType);
-                        float cappedTotal = Mathf.Min(_rolledBonus + player.rangeBonusPoint, perk.stageBonusMax);
+                        float cappedTotal = Mathf.Min(_rolledBonus + player.rangeBonusPoint, perk.levelBonusMax);
                         float plusDmg = cappedTotal * dmgR;
                         int plusAmmo = (int)(cappedTotal * ammoR);
 
@@ -87,7 +87,7 @@ namespace UI
                     }
                 case AttackType.Consume:
                     {
-                        float plusDmg = Mathf.Min(_rolledBonus + player.consDmgBonus, perk.stageBonusMax);
+                        float plusDmg = Mathf.Min(_rolledBonus + player.consDmgBonus, perk.levelBonusMax);
                         return $"공격력 {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
                                $"소모품 성장 수치: +{perk.maxJump:F0}";
                     }

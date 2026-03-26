@@ -48,6 +48,9 @@ public class WeaponSO : SheetDataSOBase
     public GameObject prefab;
     //public string animationName;
 
+    [Header("추가 정보")]
+    public StatusEffect statusEffect;
+
     public override void SetData(string[] data)
     {
         id = ParseInt(data[0]);

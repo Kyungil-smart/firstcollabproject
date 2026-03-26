@@ -12,12 +12,20 @@ public class ShootLineRenderer : MonoBehaviour
     {
         _weaponController = GetComponentInParent<WeaponController>();
         _line = GetComponent<LineRenderer>();
-        _line.positionCount = 2;
         _line.useWorldSpace = true;
     }
 
     private void Update()
     {
+        if (_weaponController.CurrentAttackType != AttackType.Range)
+        {
+            _line.positionCount = 0;
+            return;
+        }
+        else
+        {
+            _line.positionCount = 2;
+        }
         float range = _weaponController.CurrentRange;
 
         Vector3 start = transform.position;
