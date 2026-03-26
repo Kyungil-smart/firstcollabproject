@@ -12,7 +12,7 @@ using System;
 /// </summary>
 public class ConsumeWeapon : WeaponBase
 {
-    // 억지로 소모품을 WeaponSO로 만들려니까 힘들다
+    // 억지로 소모품을 WeaponSO로 만들려니까 힘들다... todo: 코드 갈아없기
     public override void Attack(float damage)
     {
         throw new NotImplementedException();
