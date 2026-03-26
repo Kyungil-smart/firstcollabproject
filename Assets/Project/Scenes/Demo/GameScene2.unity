@@ -6811,6 +6811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
   randomSpawnController: {fileID: 976402303}
+  currentSpawnData: {fileID: 0}
 --- !u!4 &976402302
 Transform:
   m_ObjectHideFlags: 0
@@ -6838,16 +6839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64476bc65ad3443bb81f3ac281c58f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.RandomSpawnController
-  spawnPercentData:
-  - {fileID: 11400000, guid: dea2c4a605b871b45b44c820395b80e1, type: 2}
-  - {fileID: 11400000, guid: 0d46631ed957e8f4f8e83efde156027a, type: 2}
-  - {fileID: 11400000, guid: 1fc77a1367ac7c64094a2d8e76582a00, type: 2}
-  - {fileID: 11400000, guid: d40ed6a1b04da94488ce58e158edfb01, type: 2}
-  - {fileID: 11400000, guid: 14fa6c93935367a4981ba000a58256bf, type: 2}
-  - {fileID: 11400000, guid: 9c1d5d5646a94674cb2f0b17c37c326a, type: 2}
-  - {fileID: 11400000, guid: 27e80c334f256cb48bee8b104925c768, type: 2}
-  - {fileID: 11400000, guid: deaaee4fa7a762c44b6fac9bba587246, type: 2}
-  - {fileID: 11400000, guid: 19fa2db33d2f4674fa0add5f67428649, type: 2}
+  spawnPercentDataSet: {fileID: 11400000, guid: 3c6af14bac4e8814e96ee5c27dc69974, type: 2}
   monsterPrefab:
   - monsterType: 0
     monsterPrefab: {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
@@ -6882,9 +6874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac2029d76dc4e9397e7055326aa717c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterManager
-  spawnDataList: []
   monsterSpawner: {fileID: 976402301}
   player: {fileID: 1395009393}
+  spawnDataSet: {fileID: 11400000, guid: b033d9c42eb238d4298526e3c92c97da, type: 2}
   progressBar: {fileID: 928457807}
   progressText: {fileID: 1631429643}
   targetClearCount: 30

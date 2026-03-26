@@ -36,6 +36,7 @@ namespace Monster
                 // 3D처럼 회전하지 않도록 막고, Y축 기준으로 2D 이동
                 agent.updateRotation = false; 
                 agent.updateUpAxis = false;
+                agent.enabled = false;
             }
         }
         
@@ -76,9 +77,13 @@ namespace Monster
             if (agent != null && statSo != null)
             {
                 agent.enabled = false;
-                agent.transform.position = transform.position;
+        
+                // 실제 스폰될 위치로 오브젝트 이동
+                transform.position = transform.position;
+                
+                // NavMesh 위로 강제 고정
                 agent.enabled = true;
-                agent.Warp(transform.position); 
+                agent.Warp(transform.position);
 
                 agent.speed = statSo.MoveSpeed;             
                 agent.stoppingDistance = statSo.AtkRange; 
@@ -163,14 +168,14 @@ namespace Monster
         {
             if (isDead) return;
             
+            isDead = true;
+            
             // 추격 정지
             if (agent != null)
             {
                 agent.isStopped = true;
                 agent.enabled = false;
             }
-            
-            isDead = true;
             
             if (hpSlider != null)
             {
@@ -184,7 +189,19 @@ namespace Monster
                 MonsterManager.Instance.ReportMonsterKilled();
             }
             
-            StartCoroutine(DeathRoutine());
+            if (gameObject.activeInHierarchy) 
+            {
+                StartCoroutine(DeathRoutine());
+            }
+            else 
+            {
+                // 풀로 반환 처리
+                Registry<MonsterAction>.Remove(this);
+                if (MonsterManager.Instance?.monsterSpawner != null)
+                {
+                    MonsterManager.Instance.monsterSpawner.ReturnMonster(gameObject);
+                }
+            }
         }
         
         private IEnumerator DeathRoutine()
