@@ -3899,6 +3899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a381d3633490d641919243eec77c460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
+  roomType: 2
   spawner: {fileID: 0}
   spawnPoints: []
   upDoor: {fileID: 5334367393215496889}

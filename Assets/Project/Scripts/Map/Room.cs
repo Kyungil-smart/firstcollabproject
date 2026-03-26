@@ -5,23 +5,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
-/// <summary>
-/// 추후 리팩토링이나 코드 개선을 위해 만들어 놓은 enum
-/// </summary>
-public enum RoomType
-{
-    StartRoom,
-    NormalRoom,
-    BossRoom
-}
-
 public class Room : MonoBehaviour
 {  
+    [Header("Room Info")]
+    public RoomType roomType;
+    
     public MonsterSpawner spawner;
     public List<Transform> spawnPoints;
 
     private void Start()
     {
+        Debug.Log($"[Room Info] 위치: {transform.position}, 타입: {roomType}");
+        
         StartCoroutine(SpawnPointRoutine());
     }
 
@@ -85,7 +80,11 @@ public class Room : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            MonsterManager.Instance.monsterSpawner = this.spawner;
+            if (roomType == RoomType.NormalRoom)
+            {
+                MonsterManager.Instance.monsterSpawner = this.spawner;
+            }
+            
             MonsterManager.Instance.StartStage();
         }
         
