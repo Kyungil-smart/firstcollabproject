@@ -8,7 +8,7 @@ namespace UI
     public class LoadingUI : MonoBehaviour
     {
         [SerializeField] private Slider progressBar;
-        [SerializeField] private string gameSceneName = "GameSceneName";
+        [SerializeField] private string gameSceneName = "GameScene";
         
         void Start()
         {
@@ -26,9 +26,9 @@ namespace UI
         {
             yield return StartCoroutine(FetchGameData());
 
-            // TODO: 임시 3초 동안 대기
+            // TODO: 임시로직임. 후에 삭제 필요.
             float timer = 0f;
-            float loadingTime = 3.0f;
+            float loadingTime = 2.0f;
 
             while (timer < loadingTime)
             {
@@ -42,7 +42,9 @@ namespace UI
                 yield return null;
             }
             
-            SceneManager.LoadScene("GameScene");
+            timer = 0f;
+            
+            SceneManager.LoadScene(gameSceneName);
         }
         
         IEnumerator FetchGameData()
