@@ -7,8 +7,8 @@ namespace Monster
     public class MonsterSpawner : MonoBehaviour
     {
         [SerializeField] private RandomSpawnController randomSpawnController;
-        
         [HideInInspector] public SpawnDataSO currentSpawnData;
+        
         private List<Vector2Int> _currentSpawnableTiles = new List<Vector2Int>();
         private Queue<GameObject> _monsterList = new Queue<GameObject>();
         private List<GameObject> _activeMonsters = new List<GameObject>(); 
