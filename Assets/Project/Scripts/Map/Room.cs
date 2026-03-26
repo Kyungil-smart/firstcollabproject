@@ -13,6 +13,9 @@ public class Room : MonoBehaviour
     public MonsterSpawner spawner;
     public List<Transform> spawnPoints;
 
+    // 방문 확인용
+    [SerializeField]private bool isVisited = false;
+    
     private void Start()
     {
         Debug.Log($"[Room Info] 위치: {transform.position}, 타입: {roomType}");
@@ -65,10 +68,15 @@ public class Room : MonoBehaviour
         else if (direction == Vector2Int.right) rightDoor.SetActive(true);
     }
 
+    private bool _isCleared = false;
     
     public void ClearRoom()
     {
-        
+        if (_isCleared) return;
+
+        _isCleared = true;
+
+        Door.OpenDoors();
     }
     
     /// <summary>
@@ -76,19 +84,21 @@ public class Room : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // ool isVisit = false;
-        
         if (other.CompareTag("Player"))
         {
-            if (roomType == RoomType.NormalRoom)
+            if (roomType == RoomType.NormalRoom && !isVisited)
             {
+                isVisited = true;
+                
                 MonsterManager.Instance.monsterSpawner = this.spawner;
+
+                int currentStageId = this.spawner.currentSpawnData.id;
+
+                GameManager.Instance.currentStage = currentStageId;
+                
+                MonsterManager.Instance.StartStage();
             }
-            
-            MonsterManager.Instance.StartStage();
         }
-        
-        // 아직 미완성입니다 계속 보완해 가겠습니다
     }
     
 }

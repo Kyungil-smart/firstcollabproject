@@ -2,14 +2,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    // TODO: 문에 대한 작업 해야함.. !!!!!!!!!!!!!
+    public static void OpenDoors()
     {
         
     }
