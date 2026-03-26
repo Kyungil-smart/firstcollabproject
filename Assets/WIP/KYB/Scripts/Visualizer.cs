@@ -12,7 +12,7 @@ public class Visualizer : MonoBehaviour
     public void VisualizeMap(HashSet<Vector2Int> floorPositions)
     {
         ClearMap();
-        int roomIndex = 0;
+        // int roomIndex = 0;
         
         foreach (var position in floorPositions)
         { 

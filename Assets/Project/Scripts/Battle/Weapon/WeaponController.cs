@@ -13,9 +13,7 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯
     [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯
-    [SerializeField] WeaponSO _specialWeapon; //3번 슬롯
-    GameObject _object; // 생성할 실제 오브젝트
-    WeaponBase _curWeapon;
+    [SerializeField] WeaponSO _consumeWeapon; //3번 슬롯
 
 #if UNITY_EDITOR
     private void Reset()
@@ -42,51 +40,95 @@ public class WeaponController : MonoBehaviour
         _input.Enable();
         _input.on1 += EquipMeleeWeapon;
         _input.on2 += EquipRangeWeapon;
-        _input.on3 += EquipSpecialWeapon;
+        _input.on3 += EquipConsumeWeapon;
         _input.onAttack += Use;
         _input.onCharge += Charge;
 
-        // 시작시 근접 무기 장착
-        EquipMeleeWeapon();
+        _weapons[0] = CreateAndInit(_meleeWeapon);
+        _weapons[1] = CreateAndInit(_rangeWeapon);
+        _weapons[2] = CreateAndInit(_consumeWeapon);
+
+        SwitchToSlot(0, true);
     }
     private void OnDisable()
     {
         _input.on1 -= EquipMeleeWeapon;
         _input.on2 -= EquipRangeWeapon;
-        _input.on3 -= EquipSpecialWeapon;
+        _input.on3 -= EquipConsumeWeapon;
         _input.onAttack -= Use;
         _input.onCharge -= Charge;
     }
 
-    void EquipMeleeWeapon() => EquipWeaponSlot(_meleeWeapon);
-    void EquipRangeWeapon() => EquipWeaponSlot(_rangeWeapon);
-    void EquipSpecialWeapon() => EquipWeaponSlot(_specialWeapon);
+    public WeaponBase[] _weapons = new WeaponBase[3];
+    public WeaponBase CurrentWeapon => _weapons[CurrentWeaponIndex];
+    public int CurrentWeaponIndex { get; set; } = 0;
+
+    WeaponBase CreateAndInit(WeaponSO weaponSO)
+    {
+        if (weaponSO == null) return null;
+        GameObject obj = _factory.CreateWeapon(weaponSO, _owner);
+        obj.transform.SetParent(mountPoint);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
+        obj.SetActive(false);
+        return obj.GetComponent<WeaponBase>();
+    }
+
+    void SwitchToSlot(int slotIndex, bool ignoreCooldown = false)
+    {
+        if (!ignoreCooldown && Time.time < _nextEquipTime) return;
+        if (_weapons[slotIndex] == null) return;
+
+        if (!ignoreCooldown) _nextEquipTime = Time.time + 1f;
+        CurrentWeaponIndex = slotIndex;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (_weapons[i] != null)
+                _weapons[i].gameObject.SetActive(i == slotIndex);
+        }
+
+        CurrentWeapon.Equip();
+    }
+
+    void EquipMeleeWeapon() => SwitchToSlot(0);
+    void EquipRangeWeapon() => SwitchToSlot(1);
+    void EquipConsumeWeapon() => SwitchToSlot(2);
 
     float _nextEquipTime;
+    public float NextEquipTime => _nextEquipTime;
     public void EquipWeaponSlot(WeaponSO weaponSO)
     {
         if (Time.time < _nextEquipTime) return;
         _nextEquipTime = Time.time + 1f;
 
-        if (_object != null) Destroy(_object);
+        if (_weapons[CurrentWeaponIndex] != null) Destroy(_weapons[CurrentWeaponIndex].gameObject);
 
-        _object = _factory.CreateWeapon(weaponSO, _owner);
-        _curWeapon = _object.GetComponent<WeaponBase>();
-
-        _object.transform.SetParent(mountPoint);
-        _object.transform.localPosition = Vector3.zero;
-        _object.transform.localRotation = Quaternion.identity;
-
-        _curWeapon.Equip();
+        _weapons[CurrentWeaponIndex] = CreateAndInit(weaponSO);
+        _weapons[CurrentWeaponIndex].gameObject.SetActive(true);
+        _weapons[CurrentWeaponIndex].Equip();
     }
 
-    public float CurrentRange => _curWeapon?.rangeValue ?? 0f;
-    public float CurrentSectorAngle => _curWeapon?.sectorAngle ?? 0f;
+    /// <summary>
+    /// 특정 슬롯에 무기를 교체 장착한다 (Melee=0, Range=1, Consume=2)
+    /// </summary>
+    public void EquipWeaponToSlot(WeaponSO weaponSO, int slotIndex)
+    {
+        if (weaponSO == null || slotIndex < 0 || slotIndex >= _weapons.Length) return;
+
+        if (_weapons[slotIndex] != null) Destroy(_weapons[slotIndex].gameObject);
+
+        _weapons[slotIndex] = CreateAndInit(weaponSO);
+        SwitchToSlot(slotIndex, true);
+    }
+
+    public float CurrentRange => CurrentWeapon?.rangeValue ?? 0f;
+    public float CurrentSectorAngle => CurrentWeapon?.sectorAngle ?? 0f;
 
     private void Use()
     {
-        _curWeapon.Use();
-        //_anim?.PlayAnimation(_curWeapon.AnimationHash);
+        CurrentWeapon?.Use();
+        //_anim?.PlayAnimation(CurrentWeapon.AnimationHash);
     }
 
     private void Update()
@@ -95,6 +137,6 @@ public class WeaponController : MonoBehaviour
     }
     void Charge()
     {
-        _curWeapon.Charging();
+        CurrentWeapon?.Charging();
     }
 }

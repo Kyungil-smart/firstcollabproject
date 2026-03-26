@@ -23,6 +23,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public static event Action<int> OnLegInjuryChanged;
 
     public static event Action<BodyPart> OnDamaged;
+    public static event Action OnEvaded;
     public static event Action OnPlayerDeath;
 
     bool _isAlive = true;
@@ -143,7 +144,18 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public float MoveSpeed
     {
         get => _moveSpeed * GetStatMultiplier(BodyPart.Leg);
-        set => _moveSpeed = value;
+        set => _moveSpeed = Mathf.Max(value, 0.5f);
+    }
+    public void AddBaseCritPercent(float value) { _critPercent += value; }
+    public void AddBaseRecoveryPercent(float value) { _recoveryPercent += value; }
+    public void AddBaseCritDamage(float value) { _critDamage += value; }
+    public void AddBaseMoveSpeed(float value) { _moveSpeed += value; }
+
+    float _evasionPercent = 0.05f; // 회피율
+    public float EvasionPercent
+    {
+        get => _evasionPercent;
+        set => _evasionPercent = value;
     }
 
     public bool RollCrit() => CritPolicy.Get(CritPercent).Roll();
@@ -151,6 +163,14 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         if (!_isAlive || IsInvincible) return;
+
+        // 회피 판정
+        if (UnityEngine.Random.value < EvasionPercent)
+        {
+            OnEvaded?.Invoke();
+            Debug.Log("<color=cyan>공격을 회피했습니다!</color>"); // todo: 공격 회피시 연출
+            return;
+        }
 
         // 4가지 부위 중 랜덤한 부위에 피해를 적용합니다
         BodyPart randomPart = (BodyPart)UnityEngine.Random.Range(0, 4);
@@ -161,7 +181,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
             case BodyPart.Arm: ArmCurHP -= damage; break;
             case BodyPart.Leg: LegCurHP -= damage; break;
         }
-        Debug.Log($"[{randomPart}] {damage}의 피해를 입었습니다");
+        //Debug.Log($"[{randomPart}] {damage}의 피해를 입었습니다");
 
         OnDamaged?.Invoke(randomPart);
 

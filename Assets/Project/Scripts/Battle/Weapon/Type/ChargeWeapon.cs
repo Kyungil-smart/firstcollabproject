@@ -29,7 +29,7 @@ public class ChargeWeapon : WeaponBase
                 if (angle <= _sectorAngle)
                 {
                     damageable.TakeDamage(damage);
-                    Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {_sectorAngle}");
+                    //Debug.Log($"[타겟: {hitCollider.name}] 현재 앵글: {angle}, 부채꼴 범위: {_sectorAngle}");
                 }
             }
         }

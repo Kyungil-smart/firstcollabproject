@@ -1,13 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICritPolicy
-{
-    float Chance(float luck); // 확률 반환
-    bool Roll();    // 실제 결과 반환
-}
-
-public struct CritPolicy : ICritPolicy
+public struct CritPolicy
 {
     public float rate;
     public CritPolicy(float rate) => this.rate = rate;
