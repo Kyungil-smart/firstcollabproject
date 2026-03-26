@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
   m_Name: "6001_\uC218\uB958\uD0C4SO"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
-  id: 0
+  id: 6001
   row: 0
-  Name: 
-  attackType: 0
-  damageBase: 0
+  Name: "\uC218\uB958\uD0C4"
+  attackType: 2
+  damageBase: 100
   attackInterval: 0
-  maxAmmo: 0
-  rangeValue: 0
+  maxAmmo: 50
+  rangeValue: 5
   sectorEnable: 0
   sectorAngle: 0
-  splashEnable: 0
-  splashRadius: 0
+  splashEnable: 1
+  splashRadius: 2
   splashDecay: 0
   stunEnable: 0
-  stunTime: 0
+  stunTime: 1
   penetrateCount: 0
   penetrateDecay: 0
   chargeEnable: 0
@@ -36,4 +36,4 @@ MonoBehaviour:
   spreadAngle: 0
   screenShakeEnable: 0
   perkSO: []
-  prefab: {fileID: 0}
+  prefab: {fileID: 2300503684806237442, guid: f60c05c5000a72445812655edb70a10c, type: 3}

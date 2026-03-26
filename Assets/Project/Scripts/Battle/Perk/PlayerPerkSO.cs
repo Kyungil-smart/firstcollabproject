@@ -14,7 +14,7 @@ public enum Target_List
 public class PlayerPerkSO : SheetDataSOBase
 {
     [Header("Á¤º¸")]
-    public int stage;
+    public int floor;
     public Target_List target;
     public float minValue;
     public float maxValue;
@@ -22,7 +22,7 @@ public class PlayerPerkSO : SheetDataSOBase
     public override void SetData(string[] data)
     {
         id = ParseInt(data[0]);
-        stage = ParseInt(data[1]);
+        floor = ParseInt(data[1]);
         target = ParseEnum<Target_List>(data[2]);
         minValue = ParseFloat(data[3]);
         maxValue = ParseFloat(data[4]);

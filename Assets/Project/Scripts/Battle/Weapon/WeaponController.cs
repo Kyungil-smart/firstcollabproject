@@ -122,8 +122,10 @@ public class WeaponController : MonoBehaviour
         SwitchToSlot(slotIndex, true);
     }
 
-    public float CurrentRange => CurrentWeapon?.rangeValue ?? 0f;
-    public float CurrentSectorAngle => CurrentWeapon?.sectorAngle ?? 0f;
+    public AttackType CurrentAttackType => CurrentWeapon.attackType;
+    public float CurrentRange => CurrentWeapon.rangeValue;
+    public float CurrentSectorAngle => CurrentWeapon.sectorAngle;
+
 
     private void Use()
     {

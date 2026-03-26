@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PerkSO
   id: 50101
   row: 6
-  stage: 1
+  floor: 1
   target: 0
   minValue: 5
   maxValue: 10

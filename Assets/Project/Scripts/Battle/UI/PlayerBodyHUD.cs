@@ -7,8 +7,7 @@ using TMPro;
 /// </summary>
 public class PlayerBodyHUD : MonoBehaviour
 {
-    [Header("두근두근 의존성 주입")]
-    [SerializeField] PlayerBody _playerBody;
+    PlayerBody _playerBody;
 
     [Header("UI 텍스트")]
     public TextMeshProUGUI critChanceText;
@@ -23,10 +22,14 @@ public class PlayerBodyHUD : MonoBehaviour
     public Image armImage;
     public Image legImage;
 
+    private void Start()
+    {
+        _playerBody = FindFirstObjectByType<PlayerBody>();
+        if (_playerBody == null) { Debug.LogError("PlayerBody가 게임에 없습니다!"); }
+    }
+
     private void Update()
     {
-        if (_playerBody == null) return;
-
         critChanceText.text = $"치명타 확률: {(_playerBody.CritPercent * 100):F1}%";
         critDamageText.text = $"치명타 데미지: {(_playerBody.CritDamage * 100):F1}%";
         recoveryText.text = $"회복력: {(_playerBody.RecoveryPercent * 100):F1}%";

@@ -56,7 +56,7 @@ public class ConsumableToWeaponConverterEditor : Editor
 
             Undo.RecordObject(targetSO, "Convert Consumable to WeaponSO");
 
-            // 데이터 이동
+            //==================== 데이터 이동 ====================//
             targetSO.id = source.id;
             targetSO.Name = source.Name;
             targetSO.attackType = AttackType.Consume;
@@ -64,25 +64,20 @@ public class ConsumableToWeaponConverterEditor : Editor
             targetSO.damageBase = source.damage;
             targetSO.rangeValue = source.range;
             
-            // maxStack -> maxAmmo
             targetSO.maxAmmo = source.maxStack;
-            
-            // readyTime -> splashRadius (요청사항 반영)
-            // 소모품에서 효과가 발동되는 반경으로 사용하기 위함.
-            targetSO.splashEnable = source.readyTime > 0;
-            targetSO.splashRadius = source.readyTime;
 
-            // 스턴(Hard_CC) 여부 변환 로직 (예시로 추가, ControlType이 CC라면 stun 적용)
+            targetSO.splashEnable = true;
+            targetSO.splashRadius = source.splashRadius;
+
             targetSO.stunEnable = (source.effectID == ControlType.Hard_CC);
-            if (targetSO.stunEnable) 
-                targetSO.stunTime = 2f; // 기본 스턴 시간 예시
+            targetSO.stunTime = 1f;
 
             EditorUtility.SetDirty(targetSO);
             convertCount++;
         }
 
         AssetDatabase.SaveAssets();
-        Debug.Log($"<color=green>Convert Complete!</color> 성공적으로 {convertCount}개의 데이터를 WeaponSO로 이동했습니다.");
+        Debug.Log($"<color=green>Convert Complete!</color> {convertCount}개의 데이터를 WeaponSO로 이동했습니다");
     }
 }
 #endif
