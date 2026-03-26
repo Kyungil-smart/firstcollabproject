@@ -15,7 +15,7 @@ public class RoomManager : MonoBehaviour
     
     public void VisualizeMap(HashSet<Vector2Int> floorPositions)
     {
-        ClearMap(); 
+        ClearGrid(); 
         ShuffleRoom(normalRoomPrefabs);
 
         int roomIndex = 0;
@@ -94,7 +94,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private void ClearMap()
+    private void ClearGrid()
     {
         foreach (var room in _roomDic.Values)
         {
