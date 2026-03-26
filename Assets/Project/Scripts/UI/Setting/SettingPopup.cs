@@ -23,6 +23,9 @@ namespace UI
         private bool _isWaitingForKey = false;
         private ActionKeyType _currentActionKey;
         
+        private readonly Color _normalColor = Color.white;
+        private readonly Color _highlightColor = Color.red;
+        
         private void Start()
         {
             OnDefault();
@@ -33,6 +36,7 @@ namespace UI
             // 유저가 키보드 버튼을 클릭해서 새 키를 입력받기 위해 대기 중일 때
             if (_isWaitingForKey && Input.anyKeyDown)
             {
+                
                 foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
                 {
                     if (Input.GetKeyDown(keyCode))
@@ -57,6 +61,44 @@ namespace UI
         {
             _isWaitingForKey = true;
             _currentActionKey = (ActionKeyType)action;
+            
+            ResetAllTextColors();
+
+            TextMeshProUGUI selectedText = GetTextByAction(_currentActionKey);
+            if (selectedText != null)
+            {
+                selectedText.color = _highlightColor;
+            }
+        }
+        
+        private TextMeshProUGUI GetTextByAction(ActionKeyType action)
+        {
+            switch (action)
+            {
+                case ActionKeyType.MoveUp: return moveUpText;
+                case ActionKeyType.MoveDown: return moveDownText;
+                case ActionKeyType.MoveLeft: return moveLeftText;
+                case ActionKeyType.MoveRight: return moveRightText;
+                case ActionKeyType.Interact: return useInteractText;
+                case ActionKeyType.Weapon1: return weapon1Text;
+                case ActionKeyType.Weapon2: return weapon2Text;
+                case ActionKeyType.Weapon3: return weapon3Text;
+                case ActionKeyType.Menu: return menuText;
+                default: return null;
+            }
+        }
+        
+        private void ResetAllTextColors()
+        {
+            if (moveUpText) moveUpText.color = _normalColor;
+            if (moveDownText) moveDownText.color = _normalColor;
+            if (moveLeftText) moveLeftText.color = _normalColor;
+            if (moveRightText) moveRightText.color = _normalColor;
+            if (useInteractText) useInteractText.color = _normalColor;
+            if (weapon1Text) weapon1Text.color = _normalColor;
+            if (weapon2Text) weapon2Text.color = _normalColor;
+            if (weapon3Text) weapon3Text.color = _normalColor;
+            if (menuText) menuText.color = _normalColor;
         }
         
         /// <summary>
@@ -64,7 +106,6 @@ namespace UI
         /// </summary>
         public void OnApply()
         {
-           // TODO: PlayerPrefs로 현재 세팅 저장
            foreach (KeyValuePair<ActionKeyType, KeyCode> key in keyBindings)
            {
                PlayerPrefs.SetString(key.Key.ToString(), key.Value.ToString());
@@ -97,12 +138,13 @@ namespace UI
         /// </summary>
         public void OnClose()
         {
+            ResetAllTextColors();
             gameObject.SetActive(false);
         }
         
         private void UpdateUI()
         {
-            // TODO: 딕셔너리 값에 맞춰 UI 텍스트(W, S, A, D 등)를 갱신
+            ResetAllTextColors();
             if(moveUpText) moveUpText.text = keyBindings[ActionKeyType.MoveUp].ToString();
             if (moveDownText) moveDownText.text = keyBindings[ActionKeyType.MoveDown].ToString();
             if (moveLeftText) moveLeftText.text = keyBindings[ActionKeyType.MoveLeft].ToString();

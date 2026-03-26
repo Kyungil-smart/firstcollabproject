@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // 일시정지 중이면 로직 빠져나감.
+        if (Time.timeScale == 0f) return;
+        
         Anim();
     }
 
