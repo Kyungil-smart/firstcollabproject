@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906116e7e1546fe46a0ae3ecc5d459ff, type: 3}
+  m_Name: "6002_\uC12C\uAD11\uD0C4"
+  m_EditorClassIdentifier: Assembly-CSharp::ConsumableSheetData
+  id: 6002
+  row: 7
+  Name: "\uC12C\uAD11\uD0C4"
+  itemType: 0
+  damage: 30
+  range: 5
+  explosionRadius: 2
+  readyTime: 0
+  effectID: 702
+  maxStack: 4
