@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 855e63b6286c442599cdc09736575d71, type: 3}
-  m_Name: NormalMonsterData
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterData
-  Type: 0
+  m_Name: "2004_\uADF8\uB8E8\uD2B8\uC880\uBE44"
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterStatSO
+  id: 2004
+  row: 9
+  Name: "\uBE0C\uB8E8\uD2B8 \uC880\uBE44"
   Grade: 0
-  MaxHp: 100
+  Hp: 400
+  MoveSpeed: 3
   Atk: 25
-  MoveSpeed: 4.5
-  AttackInterval: 0
-  DetectionRange: 5
-  AttackRange: 1
-  HasStun: 1
-  HasPreDelay: 1
-  PreDelayTime: 0.5
-  HasPostDelay: 0
-  PostDelayTime: 0
-  ExpReward: 0
+  AttackInterval: 3
+  AtkTrigger: 0
+  AtkPreDelay: 0
+  AtkRange: 2
+  ExpReward: 100
