@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78013e9ba162db94eb7bdc1f61ca1e11, type: 3}
-  m_Name: "3001_\uD314 \uAC15\uD654"
+  m_Name: 50101_HP
   m_EditorClassIdentifier: Assembly-CSharp::PerkSO
-  id: 3001
+  id: 50101
   row: 6
-  Name: "\uD314 \uAC15\uD654"
-  part: 2
-  statType: 0
-  targetStat: 0
-  value: 5
-  valueType: 0
-  description: 
+  stage: 1
+  target: 0
+  minValue: 5
+  maxValue: 10

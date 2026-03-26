@@ -3,18 +3,18 @@ using UnityEngine;
 using UI;
 
 /// <summary>
-/// 플레이어 강화와 무기 강화를 당담
+/// 무기 강화를 당담
 /// </summary>
 public class WeaponPerks : MonoBehaviour
 {
-    WeaponController _weaponController;
+    WeaponController _controller;
 
     [Header("업그레이드 팝업")]
-    [SerializeField] RewardPopup _rewardPopup;
-    [SerializeField] WeaponSO[] _allWeaponPerks;
+    [SerializeField] ClearRewardPopup _rewardPopup;
+    [SerializeField] WeaponSO[] _allPerks;
 
     public int weaponUpgradeCount;
-    [Header("무기 강화 요소")]
+    [Header("강화 요소")]
     public float weaponDmgBonus;
     public float rangeBonusPoint;
     public float rangeDmgBonus;
@@ -24,7 +24,7 @@ public class WeaponPerks : MonoBehaviour
 
     private void Awake()
     {
-        _weaponController = GetComponent<WeaponController>();
+        _controller = GetComponent<WeaponController>();
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ public class WeaponPerks : MonoBehaviour
         int stage = GameManager.Instance.currentStage;
         List<WeaponSO> allWeaponPerks = new();
 
-        foreach (WeaponSO weaponSO in _allWeaponPerks)
+        foreach (WeaponSO weaponSO in _allPerks)
         {
             allWeaponPerks.Add(weaponSO);
         }
@@ -109,8 +109,8 @@ public class WeaponPerks : MonoBehaviour
             _ => 0
         };
 
-        _weaponController.EquipWeaponToSlot(weaponSO, slotIndex);
-        WeaponBase weapon = _weaponController._weapons[slotIndex];
+        _controller.EquipWeaponToSlot(weaponSO, slotIndex);
+        WeaponBase weapon = _controller._weapons[slotIndex];
         if (weapon == null) return;
 
         switch (weaponSO.attackType)
