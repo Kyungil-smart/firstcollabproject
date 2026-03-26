@@ -44,7 +44,7 @@ namespace Monster
             if (randomValue <= cumulative) return MonsterType.Normal;
 
             cumulative += percentData.Police;
-            if (randomValue <= cumulative) return MonsterType.Police;
+            if (randomValue <= cumulative) return MonsterType.Ranged;
 
             cumulative += percentData.Bomb;
             if (randomValue <= cumulative) return MonsterType.Bomb;
