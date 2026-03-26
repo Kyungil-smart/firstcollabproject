@@ -19,10 +19,11 @@ public class PlayerBow : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"화살 {gameObject.name}의 생존 시간 : {lifeTime}");
         Destroy(gameObject, lifeTime);
     }
 
-    private void SetDirection(Vector2 direction)
+    public void SetDirection(Vector2 direction)
     {
         _direction = direction.normalized;
         
@@ -38,12 +39,14 @@ public class PlayerBow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player")) return;
+        
         Debug.Log($"화살이 부딪친 대상 '{other.name}' 태그: {other.tag} 입니다");
         
-        if (other.CompareTag("Wall") || other.CompareTag("Monster"))
-        {
-            Destroy(gameObject);
-        }
+         if (other.CompareTag("Wall") || other.CompareTag("Monster"))
+         {
+             Destroy(gameObject);
+         }
     }
 }
 
