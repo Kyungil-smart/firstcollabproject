@@ -8,7 +8,7 @@ namespace Monster
     {
         [SerializeField] private RandomSpawnController randomSpawnController;
         
-        private SpawnDataSO _currentSpawnData;
+        [HideInInspector] public SpawnDataSO currentSpawnData;
         private List<Vector2Int> _currentSpawnableTiles = new List<Vector2Int>();
         private Queue<GameObject> _monsterList = new Queue<GameObject>();
         private List<GameObject> _activeMonsters = new List<GameObject>(); 
@@ -26,7 +26,7 @@ namespace Monster
 
         public void InitSpawner(SpawnDataSO spawnData)
         {
-            _currentSpawnData = spawnData;
+            currentSpawnData = spawnData;
         }
         
         
@@ -35,7 +35,7 @@ namespace Monster
         /// </summary>
         public void StartSpawner()
         {
-            if (_currentSpawnData == null) return;
+            if (currentSpawnData == null) return;
             
             SetMonsterPool();
             _isSpawning = true;
@@ -48,12 +48,12 @@ namespace Monster
             if (_monsterList.Count > 0) return;
             
             int weight = 10;
-            int poolSize = _currentSpawnData.MaxSimultaneous + weight;
+            int poolSize = currentSpawnData.MaxSimultaneous + weight;
 
             for (int i = 0; i < poolSize; i++)
             {
                 //스테이지별 확률로 뽑아옴
-                GameObject monsterPrefab = randomSpawnController.GetMonsterPrefab(_currentSpawnData.id);
+                GameObject monsterPrefab = randomSpawnController.GetMonsterPrefab(currentSpawnData.id);
                 if (monsterPrefab == null) continue;
 
                 GameObject newMonster = Instantiate(monsterPrefab, transform);
@@ -76,10 +76,10 @@ namespace Monster
             while (_isSpawning)
             {
                 // 데이터에 입력된 주기(SpawnInterval)만큼 대기
-                yield return new WaitForSeconds(_currentSpawnData.SpawnInterval); 
+                yield return new WaitForSeconds(currentSpawnData.SpawnInterval); 
                 
                 // [최대 마릿수 - 현재 마릿수] 계산
-                int emptySlotCount = _currentSpawnData.MaxSimultaneous - _currentAliveCount;
+                int emptySlotCount = currentSpawnData.MaxSimultaneous - _currentAliveCount;
                 
                 if (emptySlotCount > 0)
                 {
@@ -96,14 +96,14 @@ namespace Monster
             for (int i = 0; i < countToSpawn; i++)
             {
                 // 잡아야 하는 총 마릿수를 채웠다면 더 이상 스폰하지 않음
-                if (_totalSpawnedCount >= _currentSpawnData.MaxTotalMonster)
+                if (_totalSpawnedCount >= currentSpawnData.MaxTotalMonster)
                 {
                     _isSpawning = false; // 코루틴이 돌더라도 다음부터 스폰 로직을 타지 않음
                     break;
                 }
 
                 // 현재 필드 마릿수가 최대치에 도달했다면 이번 차례 스폰 중단
-                if (_currentAliveCount >= _currentSpawnData.MaxSimultaneous) break; 
+                if (_currentAliveCount >= currentSpawnData.MaxSimultaneous) break; 
                 
                 // 풀이 비어있으면 중단
                 if (_monsterList.Count == 0) break;
