@@ -5852,7 +5852,10 @@ GameObject:
   - component: {fileID: 5856682874185130112}
   - component: {fileID: 7837590399723540022}
   - component: {fileID: 2294146037350510064}
+  - component: {fileID: 5779710587645710517}
+  - component: {fileID: 4771612577379655055}
   - component: {fileID: 9217619452028172012}
+  - component: {fileID: 6127591905545702451}
   m_Layer: 7
   m_Name: Player_Charactor
   m_TagString: Player
@@ -5894,7 +5897,11 @@ MonoBehaviour:
   mountPoint: {fileID: 1182674427533592512}
   _meleeWeapon: {fileID: 11400000, guid: 38da5e3246fae6b4a9db1e078cf986a5, type: 2}
   _rangeWeapon: {fileID: 11400000, guid: 9a4d17ea3a6560f40bb0c67199805c87, type: 2}
-  _specialWeapon: {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
+  _consumeWeapon: {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
+  _weapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8431954362772498351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6043,6 +6050,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61886a97531cb2f4da872ec61737b763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &5779710587645710517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2082226c2e993d4fbf3283eac2c2639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPerk
+  _rewardPopup: {fileID: 0}
+  _allPerks:
+  - {fileID: 11400000, guid: d507400c2c2d2a94ea3a5509f009ce98, type: 2}
+  - {fileID: 11400000, guid: 6960c5345b7edb24f8d02d59dae4ebab, type: 2}
+  - {fileID: 11400000, guid: 5658eaf67f3452e4abcd0c517fe03b61, type: 2}
+  - {fileID: 11400000, guid: ece560b3a92c67e4880133b012850356, type: 2}
+  - {fileID: 11400000, guid: e734d9fa43dbbcb429fd6beea826d806, type: 2}
+  currentExp: 0
+  requiredExp: 100
+  expIncrement: 50
+  playerUpgradeCount: 0
+  HeadHpBonus: 0
+  BodyHpBonus: 0
+  ArmHpBonus: 0
+  LegHpBonus: 0
+  critPercentBonus: 0
+  recoveryBonus: 0
+  critDmgBonus: 0
+  moveSpeedBonus: 0
+--- !u!114 &4771612577379655055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650a1ecb6610dba4685cd129cd8ed673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPerk
+  _rewardPopup: {fileID: 0}
+  _allPerks:
+  - {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
+  - {fileID: 11400000, guid: 993bf614d463f804d925aef93e9b062d, type: 2}
+  - {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
+  - {fileID: 11400000, guid: 612663be98232a84e81d635fb0dac46b, type: 2}
+  - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
+  - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
+  - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
+  - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
+  weaponUpgradeCount: 0
+  weaponDmgBonus: 0
+  rangeBonusPoint: 0
+  rangeDmgBonus: 0
+  rangeAmmoBonus: 0
+  consDmgBonus: 0
+  consStackBonus: 0
 --- !u!114 &9217619452028172012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6067,6 +6134,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
   - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
   ignoreEquipCooldown: 1
+--- !u!114 &6127591905545702451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f53a64a2fd57b84d92375ce97e22707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TEST_WeaponUpgrade
 --- !u!1 &5822979517044335130
 GameObject:
   m_ObjectHideFlags: 0

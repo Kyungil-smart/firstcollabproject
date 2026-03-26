@@ -96,12 +96,12 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public float NextAttackTime => _nextAttackTime;
     public virtual void Use()
     {
-        if (Time.time < _nextAttackTime) { Debug.Log("¹«±â ÄðÅ¸ÀÓ Áß"); return; }
+        if (Time.time < _nextAttackTime) return;
         _nextAttackTime = Time.time + attackInterval;
 
         if (attackType == AttackType.Range && ammo <= 0)
         {
-            Debug.Log("Åº¾à ºÎÁ·"); // TODO: ºó ÅºÃ¢ ¼Ò¸®³ª ÅØ½ºÆ® ¿¬Ãâ
+            // TODO: ºó ÅºÃ¢ ¼Ò¸®³ª ÅØ½ºÆ® ¿¬Ãâ
             return;
         }
         else { ammo--; }

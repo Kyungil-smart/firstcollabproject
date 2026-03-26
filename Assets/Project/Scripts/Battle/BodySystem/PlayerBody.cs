@@ -146,6 +146,11 @@ public class PlayerBody : MonoBehaviour, IDamageable
         get => _moveSpeed * GetStatMultiplier(BodyPart.Leg);
         set => _moveSpeed = Mathf.Max(value, 0.5f);
     }
+    public void AddBaseCritPercent(float value) { _critPercent += value; }
+    public void AddBaseRecoveryPercent(float value) { _recoveryPercent += value; }
+    public void AddBaseCritDamage(float value) { _critDamage += value; }
+    public void AddBaseMoveSpeed(float value) { _moveSpeed += value; }
+
     float _evasionPercent = 0.05f; // 회피율
     public float EvasionPercent
     {
@@ -176,7 +181,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
             case BodyPart.Arm: ArmCurHP -= damage; break;
             case BodyPart.Leg: LegCurHP -= damage; break;
         }
-        Debug.Log($"[{randomPart}] {damage}의 피해를 입었습니다");
+        //Debug.Log($"[{randomPart}] {damage}의 피해를 입었습니다");
 
         OnDamaged?.Invoke(randomPart);
 
