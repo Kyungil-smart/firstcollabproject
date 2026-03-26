@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 using UnityEngine.AI;
 
 namespace Monster
@@ -9,6 +10,8 @@ namespace Monster
     {
         [SerializeField] protected Animator animator;
         [SerializeField] protected Slider hpSlider;
+        [SerializeField] protected GameObject damageTextPrefab;
+        [SerializeField] protected GameObject bodyPrefab;
         
         public MonsterData data;
 
@@ -139,7 +142,7 @@ namespace Monster
                 currentScale.x = Mathf.Abs(currentScale.x);
             }
 
-            transform.localScale = currentScale;
+            bodyPrefab.transform.localScale = currentScale;
         }
         
         public virtual void TakeDamage(float damage)
@@ -148,6 +151,14 @@ namespace Monster
 
             _currentHp -= damage;
             
+            Canvas myCanvas = GetComponentInChildren<Canvas>();
+            if (myCanvas != null)
+            {
+                DamageText.ShowDamageText(
+                    damageTextPrefab, myCanvas.transform, Mathf.RoundToInt(damage));
+            }
+
+            
             if (hpSlider != null)
             {
                 hpSlider.value = _currentHp;
@@ -155,6 +166,7 @@ namespace Monster
             
             if (_currentHp <= 0) Die();
         }
+
 
         protected virtual void Die()
         {
