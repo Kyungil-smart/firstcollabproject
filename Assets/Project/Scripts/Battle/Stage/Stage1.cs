@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class Stage1 : MonoBehaviour
 {
-    const int STAGE_INDEX = 10001;
+    // 첫 시작지점
+    const int STAGE_ID = 10001;
+    const int FLOOR = 1;
 
     private void Awake()
     {
-        GameManager.Instance.currentStage = STAGE_INDEX;
+        GameManager.Instance.currentStage = STAGE_ID;
+        GameManager.Instance.currentFloor = FLOOR;
     }
 }

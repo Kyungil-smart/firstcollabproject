@@ -43,10 +43,15 @@ public class WeaponSO : SheetDataSOBase
 
     [Header("참조")]
     public WeaponPerkSO[] perkSO;
-
-    [Header("연출")]
     public GameObject prefab;
+
+    [Header("추가 정보")]
+    public StatusEffect statusEffect;
+
+    [Header("투사체")]
+    public GameObject projectilePrefab;
     //public string animationName;
+
 
     public override void SetData(string[] data)
     {

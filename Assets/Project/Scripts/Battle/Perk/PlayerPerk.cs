@@ -63,10 +63,13 @@ public class PlayerPerk : MonoBehaviour
     // TODO: 각 슬롯에 대응하는 종류의 무기만 뜨도록 수정
     public (PlayerPerkSO perk, BodyPart part)[] GetRandomPerks(int count = 3)
     {
+        int floor = GameManager.Instance.currentFloor;
         List<(PlayerPerkSO perk, BodyPart part)> pool = new();
 
         foreach (var perk in _allPerks)
         {
+            if (perk.floor != floor) continue;
+
             if (perk.target == Target_List.HP)
             {
                 pool.Add((perk, BodyPart.Head));
