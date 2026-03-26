@@ -291,7 +291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3836508659542651153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -328,10 +328,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI.RewardPopupUI
   cardSlotPrefab: {fileID: 239134574501130285, guid: 00403d646fa35044093b4e6af5c3bd09, type: 3}
   cardListParent: {fileID: 2158641942781930653}
-  TEST_WEAPON_DATA:
-  - {fileID: 11400000, guid: 286d7cb8afb8664429c43c0e51b5b6c3, type: 2}
-  - {fileID: 11400000, guid: c39586a625a55514fbec7d801c2f55a8, type: 2}
-  - {fileID: 11400000, guid: 4bf16f3a19b3c34448197d5859b12275, type: 2}
 --- !u!1 &9099575881979224492
 GameObject:
   m_ObjectHideFlags: 0

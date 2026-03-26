@@ -35,4 +35,6 @@ MonoBehaviour:
   spreadEnable: 0
   spreadAngle: 0
   screenShakeEnable: 1
+  perkSO:
+  - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}
   prefab: {fileID: 6914405558847928829, guid: 741f6a3fe36250645bf04ac87890b6f6, type: 3}

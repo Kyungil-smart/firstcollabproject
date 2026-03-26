@@ -8,17 +8,7 @@ namespace UI
         [SerializeField] private GameObject cardSlotPrefab;
         [SerializeField] private Transform cardListParent;
         
-        //TODO: 테스트 용도, 후에 삭제 필요.
-        [SerializeField] private WeaponSO[] TEST_WEAPON_DATA;
-        
         private readonly List<RewardCardSlot> _cardSlotList = new List<RewardCardSlot>();
-
-
-        //TODO: 테스트 용도, 후에 삭제 필요.
-        private void Start()
-        {
-            Open(TEST_WEAPON_DATA);
-        }
 
         private void Awake()
         {
@@ -41,25 +31,22 @@ namespace UI
         }
 
         /// <summary>
-        /// 레벨업 팝업 열기
+        /// 무기 강화 팝업 열기
         /// </summary>
-        public void Open(WeaponSO[] data)
+        public void Open(WeaponSO[] weaponDatas, WeaponPerks playerPerk)
         {
             gameObject.SetActive(true);
             Time.timeScale = 0f;
-            SetData(data);
+            SetData(weaponDatas, playerPerk);
         }
-
-        private void SetData(WeaponSO[] data)
+        private void SetData(WeaponSO[] weaponDatas, WeaponPerks playerPerk)
         {
-            if (data == null || data.Length == 0) return;
-
             for (int i = 0; i < _cardSlotList.Count; i++)
             {
-                if (data[i] != null)
+                if (i < weaponDatas.Length && weaponDatas[i] != null)
                 {
                     _cardSlotList[i].gameObject.SetActive(true);
-                    _cardSlotList[i].SetCardData(data[i]);
+                    _cardSlotList[i].SetCardData(weaponDatas[i], playerPerk);
                 }
                 else
                 {
@@ -68,6 +55,31 @@ namespace UI
             }
         }
         
+        /// <summary>
+        /// 플레이어 강화 팝업 열기
+        /// </summary>
+        public void Open(PlayerPerkSO[] perkDatas, BodyPart[] bodyParts, PlayerPerk playerPerk)
+        {
+            gameObject.SetActive(true);
+            Time.timeScale = 0f;
+            SetData(perkDatas, bodyParts, playerPerk);
+        }
+        private void SetData(PlayerPerkSO[] perkDatas, BodyPart[] bodyParts, PlayerPerk playerPerk)
+        {
+            for (int i = 0; i < _cardSlotList.Count; i++)
+            {
+                if (i < perkDatas.Length && perkDatas[i] != null)
+                {
+                    _cardSlotList[i].gameObject.SetActive(true);
+                    _cardSlotList[i].SetCardData(perkDatas[i], bodyParts[i], playerPerk);
+                }
+                else
+                {
+                    _cardSlotList[i].gameObject.SetActive(false);
+                }
+            }
+        }
+
         /// <summary>
         /// 선택하기 전에
         /// 기존 선택 카드 초기화

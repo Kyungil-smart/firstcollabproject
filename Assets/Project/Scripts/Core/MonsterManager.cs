@@ -11,7 +11,6 @@ namespace Monster
         public GameObject player;
         private int _currentKillCount = 0; 
         private bool _isStageCleared = false;
-       
         
         private void Awake()
         {
