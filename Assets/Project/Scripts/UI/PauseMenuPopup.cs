@@ -7,19 +7,18 @@ namespace UI
     {
         [SerializeField] private GameObject  settingsPopup;
         [SerializeField] private GameObject confirmPopup;
-        public string titleSceneName = "TitleSceneName";
+        public string titleSceneName = "TitleScene";
 
         public void Open()
         {
-            Time.timeScale = 0f;
             gameObject.SetActive(true);
+            Time.timeScale = 0f;
         }
         
         public void Resume()
         {
-            //TODO: DontDestroyOnLoad 다 초기화하는 로직 필요
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            Time.timeScale = 1f;
+            SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex).Cancel();
         }
         
         public void OpenSettings()
@@ -39,13 +38,14 @@ namespace UI
 
         public void ToLobby()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(titleSceneName);
         }
         
         public void Close()
         {
             Time.timeScale = 1f;
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
         
     }
