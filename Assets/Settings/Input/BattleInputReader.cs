@@ -14,7 +14,7 @@ public class BattleInputReader : ScriptableObject, IBattleActions
     public event Action on2;
     public event Action on3;
 
-    public event Action onAttack; public event Action onCharge;
+    public event Action onAttack; public event Action onCharge; public event Action onChargeRelease;
     bool isCharging;
     public void Enable()
     {
@@ -45,7 +45,7 @@ public class BattleInputReader : ScriptableObject, IBattleActions
     {
         if (context.started) onAttack?.Invoke();
         if (context.performed) isCharging = true;  // »¶µÂ Ω√¿€
-        if (context.canceled) isCharging = false; // ∂º∏È ¡æ∑·
+        if (context.canceled) { isCharging = false; onChargeRelease?.Invoke(); }
     }
     public void Tick()
     {

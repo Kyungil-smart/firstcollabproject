@@ -5856,6 +5856,7 @@ GameObject:
   - component: {fileID: 4771612577379655055}
   - component: {fileID: 9217619452028172012}
   - component: {fileID: 6127591905545702451}
+  - component: {fileID: 533216733813298578}
   m_Layer: 7
   m_Name: Player_Charactor
   m_TagString: Player
@@ -5897,7 +5898,7 @@ MonoBehaviour:
   mountPoint: {fileID: 1182674427533592512}
   _meleeWeapon: {fileID: 11400000, guid: 38da5e3246fae6b4a9db1e078cf986a5, type: 2}
   _rangeWeapon: {fileID: 11400000, guid: 9a4d17ea3a6560f40bb0c67199805c87, type: 2}
-  _consumeWeapon: {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
+  _consumeWeapon: {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
   _weapons:
   - {fileID: 0}
   - {fileID: 0}
@@ -6146,6 +6147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f53a64a2fd57b84d92375ce97e22707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TEST_WeaponUpgrade
+--- !u!210 &533216733813298578
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 6
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &5822979517044335130
 GameObject:
   m_ObjectHideFlags: 0
@@ -6446,7 +6460,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3183519503921664805}
-  - component: {fileID: 7757535486507730030}
   - component: {fileID: 2352056664933142105}
   - component: {fileID: 2127078386657633775}
   m_Layer: 0
@@ -6473,19 +6486,6 @@ Transform:
   - {fileID: 7270937418514324063}
   m_Father: {fileID: 6062772545001039576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &7757535486507730030
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6351114650973748506}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_SortAtRoot: 0
-  m_Sort3DAs2D: 0
 --- !u!95 &2352056664933142105
 Animator:
   serializedVersion: 7

@@ -43,6 +43,7 @@ public class WeaponController : MonoBehaviour
         _input.on3 += EquipConsumeWeapon;
         _input.onAttack += Use;
         _input.onCharge += Charge;
+        _input.onChargeRelease += ChargeRelease;
 
         _weapons[0] = CreateAndInit(_meleeWeapon);
         _weapons[1] = CreateAndInit(_rangeWeapon);
@@ -57,6 +58,7 @@ public class WeaponController : MonoBehaviour
         _input.on3 -= EquipConsumeWeapon;
         _input.onAttack -= Use;
         _input.onCharge -= Charge;
+        _input.onChargeRelease -= ChargeRelease;
     }
 
     public WeaponBase[] _weapons = new WeaponBase[3];
@@ -140,5 +142,9 @@ public class WeaponController : MonoBehaviour
     void Charge()
     {
         CurrentWeapon?.Charging();
+    }
+    void ChargeRelease()
+    {
+        CurrentWeapon?.ChargeRelease();
     }
 }
