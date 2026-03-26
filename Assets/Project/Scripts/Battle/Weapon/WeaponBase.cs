@@ -15,7 +15,7 @@ public interface IWeapon
 /// </summary>
 public abstract class WeaponBase : MonoBehaviour, IWeapon
 {
-    PlayerBody _owner;
+    protected PlayerBody _owner;
     public static event Action OnAttacked;
     //public int AnimationHash => Animator.StringToHash(data?.animationName);
 
@@ -92,7 +92,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         //
     }
 
-    float _nextAttackTime;
+    protected float _nextAttackTime;
     public float NextAttackTime => _nextAttackTime;
     public virtual void Use()
     {
