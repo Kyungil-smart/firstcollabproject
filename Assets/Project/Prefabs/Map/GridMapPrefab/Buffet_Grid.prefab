@@ -177,10 +177,7 @@ MonoBehaviour:
   monsterPrefab:
   - {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
   - {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
-  spawnTime: 5
-  maxMonsterCount: 12
-  minSpawnCount: 1
-  maxSpawnCount: 3
+  currentSpawnData: {fileID: 0}
 --- !u!1 &1201780756450047234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,6 +4480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a381d3633490d641919243eec77c460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
+  roomType: 1
   spawner: {fileID: 3502974391526101155}
   spawnPoints:
   - {fileID: 3183496600836226107}
