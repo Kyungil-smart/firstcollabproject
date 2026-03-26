@@ -23,6 +23,13 @@ namespace Monster
         // 스폰 진행 여부 플래그
         private bool _isSpawning = false; 
 
+        private void Awake()
+        {
+            if (randomSpawnController == null)
+            {
+                randomSpawnController = GetComponent<RandomSpawnController>();
+            }
+        }
 
         public void InitSpawner(SpawnDataSO spawnData)
         {

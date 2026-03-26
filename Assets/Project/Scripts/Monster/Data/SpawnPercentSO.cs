@@ -6,7 +6,7 @@ namespace Monster
     public class SpawnPercentSO : SheetDataSOBase
     {
         public float Normal;
-        public float Police;
+        public float Ranged;
         public float Bomb;
         public float Brute;
         
@@ -14,7 +14,7 @@ namespace Monster
         {
             id = ParseInt(data[0]);
             Normal = ParseFloat(data[1]);
-            Police = ParseFloat(data[2]);
+            Ranged = ParseFloat(data[2]);
             Bomb =ParseFloat(data[3]);
             Brute = ParseFloat(data[4]);
         }
