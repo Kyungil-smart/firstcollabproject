@@ -81,15 +81,12 @@ public class Room : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        bool isVisit = false;
+        // ool isVisit = false;
         
         if (other.CompareTag("Player"))
         {
-            if (!isVisit)
-            {
-                MonsterManager.Instance.monsterSpawner = this.spawner;
-                MonsterManager.Instance.StartStage();
-            }
+            MonsterManager.Instance.monsterSpawner = this.spawner;
+            MonsterManager.Instance.StartStage();
         }
         
         // 아직 미완성입니다 계속 보완해 가겠습니다

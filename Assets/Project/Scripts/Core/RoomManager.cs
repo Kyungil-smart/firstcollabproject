@@ -8,6 +8,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject bossRoomPrefab;
     [SerializeField] private List<GameObject> normalRoomPrefabs;
     
+    [SerializeField] private GameObject playerPrefab;
+    
     private Dictionary<Vector2Int, Room> _roomDic =  new Dictionary<Vector2Int, Room>();
 
     [SerializeField] private float roomOffset;
@@ -62,6 +64,11 @@ public class RoomManager : MonoBehaviour
         }
         
         TrySpawnDoors();
+
+        if (playerPrefab != null)
+        {
+            Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        }
     }
     
     private void TrySpawnDoors()
