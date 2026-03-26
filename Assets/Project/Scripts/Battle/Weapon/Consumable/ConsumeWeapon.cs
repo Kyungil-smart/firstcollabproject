@@ -2,9 +2,6 @@ using UnityEngine;
 using System;
 
 /// <summary>
-/// 소모품 무기 베이스 클래스.
-/// WeaponBase를 상속하되 Use()를 소모품 전용 로직으로 완전 재정의한다.
-///
 /// ── WeaponSO 필드 매핑 ──
 ///   maxAmmo         → ammo = 보유 개수 (스택)
 ///   attackInterval  → 사용 쿨타임
@@ -15,25 +12,9 @@ using System;
 /// </summary>
 public class ConsumeWeapon : WeaponBase
 {
-    
-    public override void Use() // 특이사항: 크리티컬 계산을 안함
-    {
-        if (Time.time < _nextAttackTime) return;
-        if (ammo <= 0) return;
-
-        _nextAttackTime = Time.time + attackInterval;
-        ammo--;
-
-        ApplyEffect();
-    }
-
-    protected virtual void ApplyEffect()
-    {
-        Attack(damageBase);
-    }
-
+    // 억지로 소모품을 WeaponSO로 만들려니까 힘들다
     public override void Attack(float damage)
     {
-        
+        throw new NotImplementedException();
     }
 }
