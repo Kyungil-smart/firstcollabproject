@@ -114,7 +114,8 @@ namespace Monster
                 monsterSpawner.ResetSpawner();
             }
 
-            // TODO: 클리어 UI 이벤트 호출
+            // TODO: 클리어 되면 문 열리는 로직 추가
         }
+        
     }
 }

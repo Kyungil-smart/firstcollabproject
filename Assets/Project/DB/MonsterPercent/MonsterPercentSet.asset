@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742c363db6fa1734d8764efbb7e8dd33, type: 3}
+  m_Name: MonsterPercentSet
+  m_EditorClassIdentifier: Assembly-CSharp-Editor::DataRequestSet
+  index: 6
+  sheetData:
+    url: https://docs.google.com/spreadsheets/d/1CSY1jieeNB6th_qtfBAB44gcrci9XPqfMGobrmM4KEk/edit?gid=1141574835#gid=1141574835
+    type: 0
+  targetSOList:
+  - {fileID: 11400000, guid: dea2c4a605b871b45b44c820395b80e1, type: 2}
+  - {fileID: 11400000, guid: 0d46631ed957e8f4f8e83efde156027a, type: 2}
+  - {fileID: 11400000, guid: 1fc77a1367ac7c64094a2d8e76582a00, type: 2}
+  - {fileID: 11400000, guid: d40ed6a1b04da94488ce58e158edfb01, type: 2}
+  - {fileID: 11400000, guid: 14fa6c93935367a4981ba000a58256bf, type: 2}
+  - {fileID: 11400000, guid: 9c1d5d5646a94674cb2f0b17c37c326a, type: 2}
+  - {fileID: 11400000, guid: 27e80c334f256cb48bee8b104925c768, type: 2}
+  - {fileID: 11400000, guid: deaaee4fa7a762c44b6fac9bba587246, type: 2}
+  - {fileID: 11400000, guid: 19fa2db33d2f4674fa0add5f67428649, type: 2}
+  renameSOBySheetName: 0
+  startRow: 6
