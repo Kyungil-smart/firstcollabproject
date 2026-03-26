@@ -13,10 +13,7 @@ EditorBuildSettings:
     guid: d492411ebf049264f9e504526b824ea0
   - enabled: 1
     path: Assets/Project/Scenes/GameScene.unity
-    guid: 0d234b4b4642a234fbbab6781d60816f
-  - enabled: 1
-    path: Assets/Project/Scenes/Demo/ProtoTypeAlpha.unity
-    guid: ada55205bf444c0468e0371ce85b0f00
+    guid: a04d82ebc03e54e49a46e89ababde834
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 9008f73feef332c46827d5839c3e732c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
