@@ -9,19 +9,19 @@ public class Room : MonoBehaviour
 {  
     [Header("Room Info")]
     public RoomType roomType;
-    
-    public MonsterSpawner spawner;
     public List<Transform> spawnPoints;
 
     // 방문 확인용
     [SerializeField]private bool isVisited = false;
     
+    /*
     private void Start()
     {
         Debug.Log($"[Room Info] 위치: {transform.position}, 타입: {roomType}");
         
         StartCoroutine(SpawnPointRoutine());
     }
+    */
 
     /// <summary>
     /// 스폰 포인트에 대한 코루틴
@@ -29,7 +29,7 @@ public class Room : MonoBehaviour
     /// <returns></returns>
     private IEnumerator SpawnPointRoutine()
     {
-        while (true)
+        while (!_isCleared)
         {
             List<Vector2Int> offScreenPoint = new List<Vector2Int>();
 
@@ -45,9 +45,9 @@ public class Room : MonoBehaviour
                 }
             }
             
-            if (spawner != null && spawnPoints.Count > 0)
+            if (MonsterManager.Instance.monsterSpawner != null && spawnPoints.Count > 0)
             {
-                spawner.UpdateSpawnableTiles(offScreenPoint);
+                MonsterManager.Instance.monsterSpawner.UpdateSpawnableTiles(offScreenPoint);
             }
             
             yield return new WaitForSeconds(0.5f);
@@ -90,7 +90,7 @@ public class Room : MonoBehaviour
             {
                 isVisited = true;
                 
-                MonsterManager.Instance.monsterSpawner = this.spawner;
+                StartCoroutine(SpawnPointRoutine());
                 
                 int currentStageId = RoomManager.Instance.GetNextStageId();
                 Debug.Log($"roomID: {currentStageId}");
