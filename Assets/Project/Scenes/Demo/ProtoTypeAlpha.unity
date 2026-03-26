@@ -555,12 +555,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSpawner
   monsterPrefab:
-  - monsterType: 0
-    monsterPrefab: {fileID: 0}
-  - monsterType: 0
-    monsterPrefab: {fileID: 0}
+  - {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+  - {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
   currentSpawnData: {fileID: 0}
-  randomSpawnController: {fileID: 0}
 --- !u!1 &1250852927
 GameObject:
   m_ObjectHideFlags: 0
@@ -6934,7 +6931,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac2029d76dc4e9397e7055326aa717c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterManager
-  spawnDataList: []
+  spawnDataList:
+  - {fileID: 11400000, guid: dc490bbc7c7962549ac33308086e7ba8, type: 2}
+  - {fileID: 11400000, guid: 548c960b779e7f74684169ab42c86c62, type: 2}
+  - {fileID: 11400000, guid: ddbb951c570a9c24f89b204121bb67ca, type: 2}
+  - {fileID: 11400000, guid: 73a38fe3fb6ed2546b78694f24976106, type: 2}
+  - {fileID: 11400000, guid: 2a86730b725a8be4380fe25c4738120a, type: 2}
+  - {fileID: 11400000, guid: e7a3a5a07b274074f812b8d4fb6b6829, type: 2}
+  - {fileID: 11400000, guid: 026a5a606f688eb47bedb85df2bd673d, type: 2}
+  - {fileID: 11400000, guid: 90e4f4aa1946722428ee6ed0bf3d2f44, type: 2}
+  - {fileID: 11400000, guid: bba2c87b4933d9c47bfee38fff21d8d2, type: 2}
   monsterSpawner: {fileID: 1233020881}
   player: {fileID: 1879814301668405180}
   progressBar: {fileID: 928457807}
@@ -7054,6 +7060,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3335707535554405679, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      propertyPath: _consumeWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: c8e7d459141ebf345bf46f4e5b0d5062, type: 2}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _rewardPopup
       value: 
@@ -7123,34 +7133,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_PlayerBody_Stats
       objectReference: {fileID: 0}
-    - target: {fileID: 372000503845241533, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3829611327412371809, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 3829611327412371809, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5325905019349093251, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5325905019349093251, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5927795820113856175, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5927795820113856175, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6843940919346169736, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7231,22 +7213,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7178746577218409499, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 7178746577218409499, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 8331830023381735987, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 8331830023381735987, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8517710979290352834, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: _playerBody
       value: 
@@ -7430,10 +7396,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_Weapon_Owned
       objectReference: {fileID: 0}
-    - target: {fileID: 1964648496626466406, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3411718041667099533, guid: 15e49492a75d40f489f56108d284c624, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7533,18 +7495,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133365837558353519, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1014760313114415779, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 4f3516401795636439eb34b9b51586df, type: 2}
-    - target: {fileID: 1014760313114415779, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -1504583711434087663, guid: 4f3516401795636439eb34b9b51586df, type: 2}
-    - target: {fileID: 1014760313114415779, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
-      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3401848889981387028, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
@@ -7733,10 +7683,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_StageEvent
       objectReference: {fileID: 0}
-    - target: {fileID: 4486794718822588278, guid: caada59ec3e4b6b4dba99cb8f1dccac0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7783,7 +7729,7 @@ SceneRoots:
   - {fileID: 1591757662}
   - {fileID: 1377531566}
   - {fileID: 1473840285}
-  - {fileID: 1310116941250288364}
   - {fileID: 4396326441175145023}
+  - {fileID: 1310116941250288364}
   - {fileID: 7189677599371830673}
   - {fileID: 956239121}
