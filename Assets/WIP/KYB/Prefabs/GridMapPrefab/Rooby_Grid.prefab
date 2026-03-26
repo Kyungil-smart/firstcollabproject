@@ -41,7 +41,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125042449923908308}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -303,7 +303,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769132827586573494}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -383,7 +383,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3062537690578614054}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a381d3633490d641919243eec77c460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
+  spawner: {fileID: 0}
   upDoor: {fileID: 5128616340035988832}
   downDoor: {fileID: 3062537690578614054}
   leftDoor: {fileID: 769132827586573494}
@@ -2945,7 +2946,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5128616340035988832}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
