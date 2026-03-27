@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 2675692412758700219}
   - component: {fileID: 8576001352381218926}
   - component: {fileID: 7390840146264122405}
+  - component: {fileID: 4393796292848850097}
   - component: {fileID: 1712949204012180837}
   m_Layer: 6
   m_Name: BombMonster
@@ -281,6 +282,8 @@ MonoBehaviour:
   bodyPrefab: {fileID: 3188958947149651557}
   statSo: {fileID: 11400000, guid: 5e97baa7773d3484e84e78474c27765e, type: 2}
   visualSo: {fileID: 11400000, guid: 80e70cdc43b70da48b2de0a8fdf9e8d9, type: 2}
+  blinkDuration: 1
+  blinkCount: 4
 --- !u!61 &7390840146264122405
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -327,6 +330,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.4479283, y: 0.72074825}
   m_EdgeRadius: 0
+--- !u!50 &4393796292848850097
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047037709664641846}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!195 &1712949204012180837
 NavMeshAgent:
   m_ObjectHideFlags: 0
