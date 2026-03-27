@@ -47,12 +47,12 @@ namespace Monster
 
             // 전체 가중치의 합 계산
             float totalWeight = percentData.Normal + percentData.Ranged + percentData.Bomb + percentData.Brute;
-            
-            if (totalWeight <= 0) return MonsterType.Normal;
 
             // 전체 가중치 사이의 랜덤값 추출
             float randomValue = Random.Range(0f, totalWeight);
             float cumulative = 0f;
+            
+            Debug.LogWarning($"randomValue: {randomValue} / cumulative: {cumulative}");
             
             cumulative += percentData.Normal;
             if (randomValue <= cumulative) return MonsterType.Normal;
