@@ -195,6 +195,8 @@ namespace Monster
             
             isDead = true;
             
+            Registry<MonsterAction>.Remove(this);
+            
             // 추격 정지
             if (agent != null)
             {
@@ -206,6 +208,7 @@ namespace Monster
             {
                 hpSlider.gameObject.SetActive(false); 
             }
+            
             
             StopAllCoroutines();
             
@@ -221,7 +224,6 @@ namespace Monster
             else 
             {
                 // 풀로 반환 처리
-                Registry<MonsterAction>.Remove(this);
                 if (MonsterManager.Instance?.monsterSpawner != null)
                 {
                     MonsterManager.Instance.monsterSpawner.ReturnMonster(gameObject);
@@ -256,9 +258,7 @@ namespace Monster
                 
                 yield return null;
             }
-
-            Registry<MonsterAction>.Remove(this);
-
+            
             if (MonsterManager.Instance != null && MonsterManager.Instance.monsterSpawner != null)
             {
                 MonsterManager.Instance.monsterSpawner.ReturnMonster(gameObject);

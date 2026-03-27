@@ -120,7 +120,19 @@ namespace Monster
         private void ClearStage()
         {
             isStageCleared = true;
-            Debug.Log("스테이지 클리어");
+            Debug.Log("Clear Stage");
+
+            WeaponPerks weaponPerks =  player.GetComponent<WeaponPerks>();
+            
+            if (weaponPerks != null)
+            {
+                weaponPerks?.OpenRandomUpgradePopup();
+            }
+            else
+            {
+                Debug.Log("player: weaponPerks is Null.");
+            }
+            
 
             // 스폰 멈추고, 필드 위 몬스터 모두 삭제
             if (monsterSpawner != null)
