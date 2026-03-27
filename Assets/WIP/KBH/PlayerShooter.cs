@@ -3,11 +3,23 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
-    public GameObject arrowPrefab;
-    public Transform firePoint;
+    public enum WeaponType { Melee, Bow }
+    public WeaponType currentWeapon = WeaponType.Melee;
+    
+    [Header("Prefabs")]
+    // [SerializeField] private GameObject meleePrefab;
+    [SerializeField] private GameObject arrowPrefab;
+    
+    [Header("Settings")]
+    [SerializeField] private Transform firePoint;
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) currentWeapon = WeaponType.Melee;
+        Debug.Log("근접 무기");
+        if (Input.GetKeyDown(KeyCode.Alpha2)) currentWeapon = WeaponType.Bow;
+        Debug.Log("원거리 무기");
+        
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
@@ -19,12 +31,32 @@ public class PlayerShooter : MonoBehaviour
         // 마우스 위치 계산
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10f;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+       
+        // 방향 계산 (마우스 위치 - 발사 지점)
+        Vector2 dir = (Vector2)(worldPos - firePoint.position);
         
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
-        
-        
-        Vector2 dir = (Vector2)(mouseWorldPos - firePoint.position);
-        
+        // 무기에 따른 발사 로직
+        switch (currentWeapon)
+        {
+            case WeaponType.Melee:
+                Debug.Log("근접 무기 휘두르기");
+                break;
+            case WeaponType.Bow:
+                if (arrowPrefab != null)
+                {
+                    GameObject bullet = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
+                    bullet.GetComponent<TestBow>().SetDirection(dir);
+                }
+                break;
+        }
+
+
+
+
+
+
+
         // 화살 프리펩 생성
         GameObject arrow = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
         
