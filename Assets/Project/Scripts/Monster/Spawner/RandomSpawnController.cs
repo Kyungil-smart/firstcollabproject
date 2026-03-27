@@ -38,10 +38,22 @@ namespace Monster
         {
             if (_spawnPercentData == null) return MonsterType.Normal;
 
-            SpawnPercentSO percentData = _spawnPercentData.FirstOrDefault(data => data.id == stageId);
-            float randomValue = Random.Range(0f, 100f);
-            float cumulative = 0f;
+            var percentData = _spawnPercentData.FirstOrDefault(data => data.id == stageId);
+            if (percentData == null) 
+            {
+                Debug.LogWarning($"Stage {stageId} Data is Null");
+                return MonsterType.Normal;
+            }
 
+            // 전체 가중치의 합 계산
+            float totalWeight = percentData.Normal + percentData.Ranged + percentData.Bomb + percentData.Brute;
+            
+            if (totalWeight <= 0) return MonsterType.Normal;
+
+            // 전체 가중치 사이의 랜덤값 추출
+            float randomValue = Random.Range(0f, totalWeight);
+            float cumulative = 0f;
+            
             cumulative += percentData.Normal;
             if (randomValue <= cumulative) return MonsterType.Normal;
 
@@ -50,11 +62,8 @@ namespace Monster
 
             cumulative += percentData.Bomb;
             if (randomValue <= cumulative) return MonsterType.Bomb;
-
-            cumulative += percentData.Brute;
-            if (randomValue <= cumulative) return MonsterType.Brute;
-
-            return MonsterType.Normal;
+            
+            return MonsterType.Brute;
         }
     }
 }
