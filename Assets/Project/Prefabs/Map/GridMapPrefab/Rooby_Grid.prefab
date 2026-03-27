@@ -761,7 +761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
   roomType: 1
-  spawner: {fileID: 5584981360324707646}
   spawnPoints:
   - {fileID: 1413483118674983120}
   - {fileID: 969947841718923178}
@@ -833,7 +832,8 @@ GameObject:
   - component: {fileID: 1121400632511291070}
   - component: {fileID: 1461779934269391960}
   - component: {fileID: 8568995430945538492}
-  m_Layer: 0
+  - component: {fileID: 567862770687447241}
+  m_Layer: 8
   m_Name: Rooby_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3057,6 +3057,22 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
+--- !u!114 &567862770687447241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581462282857056411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &4899878860191284492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,7 +3198,8 @@ GameObject:
   - component: {fileID: 4368301866441889008}
   - component: {fileID: 6046785430979776467}
   - component: {fileID: 2940002893776349875}
-  m_Layer: 0
+  - component: {fileID: 5759840471656737160}
+  m_Layer: 10
   m_Name: Rooby_Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3986,6 +4003,22 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &5759840471656737160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5153033941213990824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5566223298522053111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,7 +4610,8 @@ GameObject:
   - component: {fileID: 1641832923128856656}
   - component: {fileID: 2887211525865246801}
   - component: {fileID: 4591351568314267594}
-  m_Layer: 0
+  - component: {fileID: 185987231253744698}
+  m_Layer: 9
   m_Name: Rooby_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5477,3 +5511,19 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 8767327400876117944}
+--- !u!114 &185987231253744698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767327400876117944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
