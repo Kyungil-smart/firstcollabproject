@@ -24,6 +24,8 @@ namespace Monster
         
         protected override void Motion()
         {
+            if (isDead || isStop) return;
+            
             if (agent == null || !agent.isOnNavMesh || statSo == null) return;
             
             Transform playerTransform = MonsterManager.Instance.player.transform;

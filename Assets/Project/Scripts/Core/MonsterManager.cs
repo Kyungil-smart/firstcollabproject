@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.Serialization;
 
 namespace Monster
 {
@@ -21,7 +22,7 @@ namespace Monster
 
         private List<SpawnDataSO> _spawnDataList;
         private int _currentKillCount = 0;
-        private bool _isStageCleared = false;
+        public bool isStageCleared = false;
 
         private void Awake()
         {
@@ -64,7 +65,7 @@ namespace Monster
         public void StartStage()
         {
             _currentKillCount = 0;
-            _isStageCleared = false;
+            isStageCleared = false;
 
             // 게임 매니저에서 현재 스테이지 번호 가져오기
             int currentStageId = GameManager.Instance.currentStage;
@@ -93,7 +94,7 @@ namespace Monster
         /// </summary>
         public void ReportMonsterKilled()
         {
-            if (_isStageCleared) return;
+            if (isStageCleared) return;
 
             _currentKillCount++;
             Debug.Log($"몬스터 처치됨 ({_currentKillCount} / {targetClearCount})");
@@ -118,8 +119,20 @@ namespace Monster
 
         private void ClearStage()
         {
-            _isStageCleared = true;
-            Debug.Log("스테이지 클리어");
+            isStageCleared = true;
+            Debug.Log("Clear Stage");
+
+            WeaponPerks weaponPerks =  player.GetComponent<WeaponPerks>();
+            
+            if (weaponPerks != null)
+            {
+                weaponPerks?.OpenRandomUpgradePopup();
+            }
+            else
+            {
+                Debug.Log("player: weaponPerks is Null.");
+            }
+            
 
             // 스폰 멈추고, 필드 위 몬스터 모두 삭제
             if (monsterSpawner != null)

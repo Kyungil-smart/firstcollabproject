@@ -180,9 +180,15 @@ namespace Monster
                 _monsterList.Enqueue(monster);
             }
             
+            foreach (GameObject monster in _monsterList)
+            {
+                monster.SetActive(false);
+            }
+            
             _activeMonsters.Clear();
             _currentSpawnableTiles.Clear();
             _monsterList.Clear();
+            
             
             _totalSpawnedCount = 0;
             _currentAliveCount = 0;

@@ -11,7 +11,7 @@ namespace Monster
         
         protected override void Motion()
         {
-            if (isDead) return;
+            if (isDead || isStop) return;
             
             if (agent == null || !agent.isOnNavMesh || statSo == null) return;
             

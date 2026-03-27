@@ -17,9 +17,9 @@ MonoBehaviour:
     url: https://docs.google.com/spreadsheets/d/1CSY1jieeNB6th_qtfBAB44gcrci9XPqfMGobrmM4KEk/edit?gid=1805957039#gid=1805957039
     type: 0
   targetSOList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d5436ded086c9a249b08a90fe22d717c, type: 2}
+  - {fileID: 11400000, guid: fbe889c6ba95abe4aad84d5663671612, type: 2}
+  - {fileID: 11400000, guid: 80e70cdc43b70da48b2de0a8fdf9e8d9, type: 2}
+  - {fileID: 11400000, guid: 2c0a59254a3275a4eb2558e534a73b8e, type: 2}
   renameSOBySheetName: 0
   startRow: 6
