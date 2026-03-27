@@ -43,9 +43,9 @@ public class PlayerPerk : MonoBehaviour
         Registry<MonsterAction>.OnRemoved -= OnMonsterRemoved;
     }
 
-    void OnMonsterRemoved(MonsterAction monster, int expReward)
+    void OnMonsterRemoved(MonsterAction monster)
     {
-        AddExp(expReward);
+        AddExp(monster.statSo.ExpReward);
     }
 
     public void AddExp(int amount)

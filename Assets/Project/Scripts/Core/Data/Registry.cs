@@ -10,16 +10,16 @@ public static class Registry<T> where T : class
 {
     static readonly HashSet<T> _items = new();
     public static int Count => _items.Count;
-    public static event Action<T, int> OnRemoved;
+    public static event Action<T> OnRemoved;
 
     public static bool TryAdd(T item)
     {
         return item != null && _items.Add(item);
     }
 
-    public static void Remove(T item, int expReward = 100)
+    public static void Remove(T item)
     {
-        if (_items.Remove(item)) OnRemoved?.Invoke(item, expReward);
+        if (_items.Remove(item)) OnRemoved?.Invoke(item);
     }
     public static void Clear()
     {
