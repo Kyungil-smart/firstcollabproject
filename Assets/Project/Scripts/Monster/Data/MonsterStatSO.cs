@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Objects/Monster/StatData")]
+    [CreateAssetMenu(fileName = "MonsterStatSO", menuName = "Scriptable Objects/Monster/Stat")]
     public class MonsterStatSO : SheetDataSOBase
     {
         // 명칭

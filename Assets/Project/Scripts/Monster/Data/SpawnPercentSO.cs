@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Objects/Spawn/Percent")]
+    [CreateAssetMenu(fileName = "SpawnPercentSO", menuName = "Scriptable Objects/Spawn/Percent")]
     public class SpawnPercentSO : SheetDataSOBase
     {
         public float Normal;
