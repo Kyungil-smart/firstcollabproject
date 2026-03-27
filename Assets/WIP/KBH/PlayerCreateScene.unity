@@ -1820,6 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7a88740b3ced4085c2490713e91ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooter
+  currentWeapon: 0
   arrowPrefab: {fileID: 5295285690855142305, guid: 40c4e5c8dc8b4d345b6260127ed141aa, type: 3}
   firePoint: {fileID: 635402991}
 --- !u!4 &975329854 stripped
