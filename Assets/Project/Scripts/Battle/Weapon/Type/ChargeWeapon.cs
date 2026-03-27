@@ -2,6 +2,9 @@
 
 public class ChargeWeapon : WeaponBase
 {
+    [SerializeField] int chargeTime = 3;
+    [SerializeField] float failCooldown = 0.5f;
+
     bool _isCharging;
     float _chargeTimer;
 
@@ -19,7 +22,6 @@ public class ChargeWeapon : WeaponBase
         _spriteRenderer = GetComponent<SpriteRenderer>();
         if (_spriteRenderer != null)
             _defaultColor = _spriteRenderer.color;
-        else Debug.LogWarning("ChargeWeapon에 SpriteRenderer가 없습니다");
     }
 
     void ResetColor()
@@ -37,8 +39,7 @@ public class ChargeWeapon : WeaponBase
         _isCharging = true;
         _chargeTimer = 0f;
 
-        if (_spriteRenderer != null)
-            _spriteRenderer.color = ChargeStartColor;
+        _spriteRenderer.color = ChargeStartColor;
     }
 
     /// <summary>
@@ -84,7 +85,7 @@ public class ChargeWeapon : WeaponBase
     public override void Attack(float damage)
     {
         _sectorAngle = sectorAngle;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, rangeValue);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, range);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -97,7 +98,13 @@ public class ChargeWeapon : WeaponBase
                 Vector3 dirToTarget = (hitCollider.transform.position - transform.position).normalized;
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= _sectorAngle)
+                if (_owner.RollCrit())
+                {
+                    damage *= _owner.CritDamage;
+                    Debug.Log("<color=yellow>크리티컬 히트!</color>"); // Use를 재정의해서 크리티컬 계산
+                }
+
+                if (angle <= _sectorAngle / 1.5f)
                 {
                     damageable.TakeDamage(damage);
                 }

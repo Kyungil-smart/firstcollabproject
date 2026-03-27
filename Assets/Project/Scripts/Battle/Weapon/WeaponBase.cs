@@ -28,27 +28,15 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public float damageBase;
     public float attackInterval; // Use() 함수가 다음 공격이 가능한 시점까지의 간격
     public int ammo;
-    public float rangeValue;
+    public float range;
 
-    public bool sectorEnable;
     public float sectorAngle;
 
-    public bool splashEnable;
     public float splashRadius;
     public float splashDecay;
 
-    public bool stunEnable;
-    public float stunTime;
-
     public int penetrateCount;
     public float penetrateDecay;
-
-    public bool chargeEnable;
-    public float chargeTime;
-    public float failCooldown;
-
-    public bool spreadEnable;
-    public float spreadAngle;
 
     public bool screenShakeEnable;
 
@@ -62,27 +50,15 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         damageBase = config.damageBase;
         attackInterval = config.attackInterval; // 공격 쿨타임으로 사용중
         ammo = config.maxAmmo;
-        rangeValue = config.rangeValue;
+        range = config.range;
 
-        sectorEnable = config.sectorEnable;
         sectorAngle = config.sectorAngle; // 부채꼴 각도
 
-        splashEnable = config.splashEnable;
         splashRadius = config.splashRadius;
         splashDecay = config.splashDecay;
 
-        stunEnable = config.stunEnable;
-        stunTime = config.stunTime;
-
         penetrateCount = config.penetrateCount;
         penetrateDecay = config.penetrateDecay;
-
-        chargeEnable = config.chargeEnable;
-        chargeTime = config.chargeTime;
-        failCooldown = config.failCooldown; // 차지의 쿨타임으로 사용 예정
-
-        spreadEnable = config.spreadEnable;
-        spreadAngle = config.spreadAngle;
 
         screenShakeEnable = config.screenShakeEnable;
 

@@ -125,7 +125,7 @@ public class WeaponController : MonoBehaviour
     }
 
     public AttackType CurrentAttackType => CurrentWeapon.attackType;
-    public float CurrentRange => CurrentWeapon.rangeValue;
+    public float CurrentRange => CurrentWeapon.range;
     public float CurrentSectorAngle => CurrentWeapon.sectorAngle;
 
 

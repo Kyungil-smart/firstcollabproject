@@ -9,7 +9,7 @@ public class SectorWeapon : WeaponBase
     {
         _sectorAngle = sectorAngle;
         // 현재 위치를 기준으로 사거리 내의 모든 2D 콜라이더 검색
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, rangeValue);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, range);
 
         foreach (var hitCollider in hitColliders)
         {
