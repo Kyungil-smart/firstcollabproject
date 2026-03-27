@@ -68,7 +68,7 @@ namespace Monster
 
             if (isAttacking || agent.isStopped || isStop) 
             {
-                rb.velocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
             }
             else
             {
@@ -76,12 +76,12 @@ namespace Monster
                 float distanceToTarget = Vector2.Distance(transform.position, agent.steeringTarget);
                 if (distanceToTarget < 0.1f) 
                 {
-                    rb.velocity = Vector2.zero;
+                    rb.linearVelocity = Vector2.zero;
                 }
                 else
                 {
                     Vector2 direction = (agent.steeringTarget - transform.position).normalized;
-                    rb.velocity = direction * statSo.MoveSpeed;
+                    rb.linearVelocity = direction * statSo.MoveSpeed;
                 }
             }
 
