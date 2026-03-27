@@ -578,7 +578,7 @@ MonoBehaviour:
   - monsterType: 2
     monsterPrefab: {fileID: 7047037709664641846, guid: 0f5774ae8a6a2354dbb5979c7386871c, type: 3}
   - monsterType: 3
-    monsterPrefab: {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
+    monsterPrefab: {fileID: 7047037709664641846, guid: 1c0febafb8688cd46baf9c28e18350f0, type: 3}
 --- !u!1 &1265791047
 GameObject:
   m_ObjectHideFlags: 0
