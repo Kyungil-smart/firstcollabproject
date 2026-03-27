@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1015337692229691341}
   - component: {fileID: 6359735727071243162}
   - component: {fileID: -7946492346765330702}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PlayerArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5295285690855142305}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.595, y: 0.291, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4683018567473037587
 SpriteRenderer:
   serializedVersion: 2
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1476570266, guid: cc7a32b693c282541821cb358eefd54a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
