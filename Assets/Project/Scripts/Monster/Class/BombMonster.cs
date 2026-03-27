@@ -9,6 +9,7 @@ namespace Monster
         [SerializeField] private int blinkCount = 4;
         
         private bool _isExploded = false;
+        private bool _isSelfDie = false;
         
         public override void TakeDamage(float damage)
         {
@@ -39,6 +40,7 @@ namespace Monster
             // 플레이어에게 닿았을 때 자폭 피해
             if (distanceToPlayer <= statSo.AtkRange)
             {
+                _isSelfDie = true;
                 Explode();
             }
             // 공격 중이 아니면 플레이어 추격
@@ -81,7 +83,7 @@ namespace Monster
             }
 
             // 데미지 처리
-            if (animator != null) animator.SetTrigger("2_Attack");
+            // TODO: 터지는 이펙트 추가
 
             PlayerBody playerBody = MonsterManager.Instance.player.GetComponent<PlayerBody>();
             if (playerBody != null)
@@ -91,7 +93,20 @@ namespace Monster
 
             // 자폭 후 즉시 사망 처리
             Die();
-            yield break;
+        }
+        
+        protected override void Die()
+        {
+            if (isDead) return;
+
+            //자폭한게 아닐때만 
+            if (!_isSelfDie)
+            {
+                Registry<MonsterAction>.Remove(this);
+            }
+            
+            _isSelfDie = false;
+            base.Die();
         }
         
         private void SetRenderersColor(SpriteRenderer[] renderers, Color color)

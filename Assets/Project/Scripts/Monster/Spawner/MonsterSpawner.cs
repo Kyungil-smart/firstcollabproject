@@ -47,6 +47,13 @@ namespace Monster
             SetMonsterPool();
             _isSpawning = true;
             
+            if (currentSpawnData.StartSimultaneous > 0)
+            {
+                // 초기 스폰 시에는 최대 동시 존재수를 넘지 않도록 보정
+                int initialSpawnCount = Mathf.Min(currentSpawnData.StartSimultaneous, currentSpawnData.MaxSimultaneous);
+                TrySpawnMonsters(initialSpawnCount);
+            }
+            
             StartCoroutine(SpawnTimerRoutine());
         }
 
@@ -95,7 +102,7 @@ namespace Monster
             }
         }
         
-        private void TrySpawnMonsters(int countToSpawn)
+        public void TrySpawnMonsters(int countToSpawn)
         {
             if (!_isSpawning) return;
             if (_currentSpawnableTiles == null || _currentSpawnableTiles.Count == 0) return;
