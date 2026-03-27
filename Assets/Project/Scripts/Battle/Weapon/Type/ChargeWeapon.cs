@@ -97,7 +97,7 @@ public class ChargeWeapon : WeaponBase
                 Vector3 dirToTarget = (hitCollider.transform.position - transform.position).normalized;
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= _sectorAngle / 2f)
+                if (angle <= _sectorAngle)
                 {
                     damageable.TakeDamage(damage);
                 }

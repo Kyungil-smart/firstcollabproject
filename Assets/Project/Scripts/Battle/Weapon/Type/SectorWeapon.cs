@@ -26,7 +26,7 @@ public class SectorWeapon : WeaponBase
                 // RotatePointToMouse 가 XY 2D 평면을 회전시키므로 주로 right가 앞 방향
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= _sectorAngle / 2f) // 중심을 기준으로 앵글을 나눔
+                if (angle <= _sectorAngle / 1.5f)
                 {
                     damageable.TakeDamage(damage);
                 }
