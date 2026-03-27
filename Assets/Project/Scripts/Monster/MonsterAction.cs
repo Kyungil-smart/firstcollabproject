@@ -21,7 +21,8 @@ namespace Monster
         protected float lastAttackTime = 0f;
         protected bool isStop = false;
         protected bool hasSuperArmor = false;
-
+        protected Rigidbody2D rb;
+        
         private SpriteRenderer[] _spriteRenderers;
         protected NavMeshAgent agent;
         
@@ -31,7 +32,7 @@ namespace Monster
             
             //NavMeshAgent 세팅
             agent = GetComponent<NavMeshAgent>();
-
+            
             if (agent != null)
             {
                 // 3D처럼 회전하지 않도록 막고, Y축 기준으로 2D 이동
@@ -51,6 +52,41 @@ namespace Monster
             }
             Motion();
             LookAtTarget();
+        }
+        
+        private void FixedUpdate()
+        {
+            if (isDead) return;
+            SyncPhysicsMovement(); 
+        }
+        
+        private void SyncPhysicsMovement()
+        {
+            rb = GetComponent<Rigidbody2D>();
+
+            if (rb == null || agent == null || !agent.isOnNavMesh) return;
+
+            if (isAttacking || agent.isStopped || isStop) 
+            {
+                rb.velocity = Vector2.zero;
+            }
+            else
+            {
+                // 몬스터가 플레이어와 너무 가까울 때는 억지로 밀지 않도록 속도를 줄이거나 멈춤
+                float distanceToTarget = Vector2.Distance(transform.position, agent.steeringTarget);
+                if (distanceToTarget < 0.1f) 
+                {
+                    rb.velocity = Vector2.zero;
+                }
+                else
+                {
+                    Vector2 direction = (agent.steeringTarget - transform.position).normalized;
+                    rb.velocity = direction * statSo.MoveSpeed;
+                }
+            }
+
+            // transform.position 대신 rb.position을 사용하여 물리 좌표 기준으로 동기화
+            agent.nextPosition = rb.position; 
         }
         
         public virtual void Init()
@@ -173,12 +209,14 @@ namespace Monster
                 hpSlider.value = currentHp;
             }
 
-            if (!hasSuperArmor && !isStop)
+            if (currentHp <= 0) 
             {
-              StartCoroutine(StopDuration());
+                Die();
             }
-            
-            if (currentHp <= 0) Die();
+            else if (!hasSuperArmor && !isStop)
+            {
+                StartCoroutine(StopDuration());
+            }
         }
 
         private IEnumerator StopDuration()
