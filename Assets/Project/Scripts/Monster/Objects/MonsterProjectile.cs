@@ -35,7 +35,6 @@ namespace Monster
             float traveledDistance = Vector2.Distance(_startPosition, transform.position);
             if (traveledDistance >= _maxDistance)
             {
-                // TODO: 화살표 이펙트
                 Destroy(gameObject); 
             }
         }
