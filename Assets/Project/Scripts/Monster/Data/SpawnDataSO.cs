@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-    [CreateAssetMenu(fileName = "SpawnData", menuName = "Scriptable Objects/Spawn/Data")]
+    [CreateAssetMenu(fileName = "SpawnDataSO", menuName = "Scriptable Objects/Spawn/Data")]
     public class SpawnDataSO : SheetDataSOBase
     {
         // 스폰 체크 주기(s)

@@ -312,6 +312,7 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 6271991823754040064}
   statSo: {fileID: 11400000, guid: 5ec7fd95d547d60469263dd704d25ca0, type: 2}
+  visualSo: {fileID: 11400000, guid: fbe889c6ba95abe4aad84d5663671612, type: 2}
   projectilePrefab: {fileID: 5295285690855142305, guid: f7d527613d0e39f44be26bb5c26a3197, type: 3}
   firePoint: {fileID: 8733117192257678904}
 --- !u!61 &7390840146264122405

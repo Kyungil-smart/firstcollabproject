@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using TMPro;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace Monster
 {
@@ -14,12 +12,15 @@ namespace Monster
         [SerializeField] protected GameObject damageTextPrefab;
         [SerializeField] protected GameObject bodyPrefab;
         
-        [FormerlySerializedAs("data")] public MonsterStatSO statSo;
+        public MonsterStatSO statSo;
+        public MonsterVisualSO visualSo;
 
-        private float _currentHp;
+        protected float currentHp;
         protected bool isDead = false;
         protected bool isAttacking = false;
         protected float lastAttackTime = 0f;
+        protected bool isStop = false;
+        protected bool hasSuperArmor = false;
 
         private SpriteRenderer[] _spriteRenderers;
         protected NavMeshAgent agent;
@@ -43,6 +44,11 @@ namespace Monster
         protected void Update()
         {
             if (isDead) return;
+
+            if (MonsterManager.Instance.isStageCleared)
+            {
+                gameObject.SetActive(false);
+            }
             Motion();
             LookAtTarget();
         }
@@ -51,7 +57,7 @@ namespace Monster
         {
             isDead = false;
             isAttacking = false;
-            _currentHp = statSo.Hp; 
+            currentHp = statSo.Hp; 
             gameObject.layer = LayerMask.NameToLayer("Monster");
             
             if (animator != null)
@@ -60,11 +66,11 @@ namespace Monster
                 animator.Play("IDLE"); 
             }
             
-            if (hpSlider != null)
+            if (hpSlider != null) 
             {
                 hpSlider.gameObject.SetActive(true);
                 hpSlider.maxValue = statSo.Hp;
-                hpSlider.value = _currentHp;
+                hpSlider.value = currentHp;
             }
             
             SetAlpha(1f);
@@ -153,7 +159,7 @@ namespace Monster
         {
             if (isDead) return; 
 
-            _currentHp -= damage;
+            currentHp -= damage;
             
             Canvas myCanvas = GetComponentInChildren<Canvas>();
             if (myCanvas != null)
@@ -161,14 +167,25 @@ namespace Monster
                 DamageText.ShowDamageText(
                     damageTextPrefab, myCanvas.transform, Mathf.RoundToInt(damage));
             }
-
             
             if (hpSlider != null)
             {
-                hpSlider.value = _currentHp;
+                hpSlider.value = currentHp;
+            }
+
+            if (!hasSuperArmor && !isStop)
+            {
+              StartCoroutine(StopDuration());
             }
             
-            if (_currentHp <= 0) Die();
+            if (currentHp <= 0) Die();
+        }
+
+        private IEnumerator StopDuration()
+        {
+            isStop =  true;
+            yield return new WaitForSeconds(visualSo.HitStopDuration);
+            isStop = false;
         }
 
 
@@ -214,7 +231,6 @@ namespace Monster
         
         private IEnumerator DeathRoutine()
         {
-            //TODO: 좀비의 시체는 벽과 같은 물리 판정 연출하기
             gameObject.layer = LayerMask.NameToLayer("Default");
             
             if (animator != null)
@@ -222,8 +238,13 @@ namespace Monster
                 animator.SetTrigger("4_Death"); 
                 animator.SetBool("isDeath", true);
             }
-            
+
             float fadeDuration = 1f;
+            if (visualSo != null && visualSo.CorpseTime > 0)
+            {
+                fadeDuration = visualSo.CorpseTime;
+            }
+         
             float elapsedTime = 0f;
 
             while (elapsedTime < fadeDuration)

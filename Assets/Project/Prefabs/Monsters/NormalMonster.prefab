@@ -281,6 +281,7 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 67674577216460736}
   statSo: {fileID: 11400000, guid: 5cfd9bb01a783754dba7f9d2fca6c490, type: 2}
+  visualSo: {fileID: 11400000, guid: d5436ded086c9a249b08a90fe22d717c, type: 2}
 --- !u!61 &7390840146264122405
 BoxCollider2D:
   m_ObjectHideFlags: 0
