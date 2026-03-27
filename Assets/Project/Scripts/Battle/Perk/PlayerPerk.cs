@@ -43,9 +43,9 @@ public class PlayerPerk : MonoBehaviour
         Registry<MonsterAction>.OnRemoved -= OnMonsterRemoved;
     }
 
-    void OnMonsterRemoved(MonsterAction monster)
+    void OnMonsterRemoved(MonsterAction monster, int expReward)
     {
-        AddExp(20); // todo: 몬스터 종류에 따라 경험치 차등 지급
+        AddExp(expReward);
     }
 
     public void AddExp(int amount)

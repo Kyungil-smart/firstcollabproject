@@ -10,20 +10,18 @@ public static class Registry<T> where T : class
 {
     static readonly HashSet<T> _items = new();
     public static int Count => _items.Count;
-    public static event Action<T> OnRemoved;
+    public static event Action<T, int> OnRemoved;
 
     public static bool TryAdd(T item)
     {
         return item != null && _items.Add(item);
     }
 
-    public static bool Remove(T item)
+    public static void Remove(T item, int expReward = 100)
     {
-        bool removed = _items.Remove(item);
-        if (removed) OnRemoved?.Invoke(item);
-        return removed;
+        if (_items.Remove(item)) OnRemoved?.Invoke(item, expReward);
     }
-    public static void Clear() // static 데이터들은 씬이 넘어가도 남아있어서 명시적 초기화를 해야한다 (Remove처리 잘 해뒀으면 쓸일 없음)
+    public static void Clear()
     {
         _items.Clear();
     }
