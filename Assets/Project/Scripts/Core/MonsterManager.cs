@@ -84,6 +84,7 @@ namespace Monster
 
             // 스포너에 데이터 주입 후 스폰 시작 명령
             monsterSpawner.InitSpawner(currentData);
+            ShowProgressStage();
             monsterSpawner.StartSpawner();
 
             Debug.Log($"스테이지 {currentStageId} 스폰 시작! (목표 처치 수: {targetClearCount})");
