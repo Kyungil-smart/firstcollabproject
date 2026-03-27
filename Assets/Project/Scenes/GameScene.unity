@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: MENU
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4f3516401795636439eb34b9b51586df, type: 2}
+  m_sharedMaterial: {fileID: -1504583711434087663, guid: 4f3516401795636439eb34b9b51586df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -576,7 +576,7 @@ MonoBehaviour:
   - monsterType: 1
     monsterPrefab: {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
   - monsterType: 2
-    monsterPrefab: {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
+    monsterPrefab: {fileID: 7047037709664641846, guid: 0f5774ae8a6a2354dbb5979c7386871c, type: 3}
   - monsterType: 3
     monsterPrefab: {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
 --- !u!1 &1265791047
