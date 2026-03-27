@@ -149,7 +149,7 @@ namespace UI
                 case Target_List.Recovery_Percent:
                     return $"회복력: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 case Target_List.Crit_Damage:
-                    return $"치명타 데미지: +<color=green>{_rolledBonus:F2}</color>";
+                    return $"치명타 데미지: +<color=green>{_rolledBonus:F2}%</color>";
                 case Target_List.Move_Speed:
                     return $"이동속도: +<color=green>{_rolledBonus:F2}</color>";
                 //$"누적 보너스: {player.moveSpeedBonus:F2}";
