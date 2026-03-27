@@ -191,11 +191,7 @@ namespace Monster
 
         protected virtual void Die()
         {
-            if (isDead) return;
-            
             isDead = true;
-            
-            Registry<MonsterAction>.Remove(this);
             
             // 추격 정지
             if (agent != null)
@@ -208,7 +204,6 @@ namespace Monster
             {
                 hpSlider.gameObject.SetActive(false); 
             }
-            
             
             StopAllCoroutines();
             
