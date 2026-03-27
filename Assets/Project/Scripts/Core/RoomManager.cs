@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NavMeshPlus.Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +17,10 @@ public class RoomManager : MonoBehaviour
     
     [Header("플레이어 프리팹 참조")]
     [SerializeField] private GameObject playerPrefab;
+
+    [Header("NavMesh Surface")]
+    [SerializeField]
+    private NavMeshSurface navMeshSurfaces;
     
     [Header("방 크기에 맞춘 오프셋")]
     [SerializeField] private float roomOffset;
@@ -72,7 +77,7 @@ public class RoomManager : MonoBehaviour
 
         if (farthestPosition != Vector2.zero)
         {
-            Destroy(_roomDic[farthestPosition].gameObject);
+            DestroyImmediate(_roomDic[farthestPosition].gameObject);
             
             Vector2 bossWorldPos = new Vector2(farthestPosition.x * roomOffset, farthestPosition.y * roomOffset);
             GameObject bossRoom = Instantiate(bossRoomPrefab, bossWorldPos, Quaternion.identity);
@@ -82,6 +87,23 @@ public class RoomManager : MonoBehaviour
         
         TrySpawnDoors();
         InitStageQueue(normalRoomCount);
+        
+        //TODO: NavMesh로 맵 굽기
+        
+        // 방들의 Collider 좌표를 모두 동기화
+        Physics2D.SyncTransforms();
+
+        if (navMeshSurfaces != null)
+        {
+            navMeshSurfaces.RemoveData(); // 전에 베이크 됐던 네브메쉬 삭제
+            // navMeshSurfaces.BuildNavMeshAsync(); // 비동기 방식으로 런타임에 Bake
+            navMeshSurfaces.BuildNavMesh(); // 둘 중에 뭐가 낫지? 
+            Debug.Log("NavMesh Bake Complete");
+        }
+        else
+        {
+            Debug.Log("NavMeshSurface 연결 되지 않았음");
+        }
 
         if (playerPrefab != null)
         {
@@ -133,7 +155,7 @@ public class RoomManager : MonoBehaviour
     {
         foreach (var room in _roomDic.Values)
         {
-            Destroy(room.gameObject);
+            DestroyImmediate(room.gameObject);
         }
         
         _roomDic.Clear();
