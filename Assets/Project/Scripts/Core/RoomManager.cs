@@ -15,8 +15,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject bossRoomPrefab;
     [SerializeField] private List<GameObject> normalRoomPrefabs;
     
-    [Header("플레이어 프리팹 참조")]
-    [SerializeField] private GameObject playerPrefab;
+    // [Header("플레이어 프리팹 참조")]
+    // [SerializeField] private GameObject playerPrefab;
 
     [Header("NavMesh Surface")]
     [SerializeField]
@@ -105,10 +105,12 @@ public class RoomManager : MonoBehaviour
             Debug.Log("NavMeshSurface 연결 되지 않았음");
         }
 
+        /*
         if (playerPrefab != null)
         {
             Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         }
+        */
     }
 
     private void InitStageQueue(int roomQueue)
