@@ -4,7 +4,8 @@ public enum AttackType
 {
     Melee,
     Range,
-    Consume
+    Throwable,
+    Deployable
 }
 
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "SheetData/Weapon Data SO")]
@@ -19,13 +20,11 @@ public class WeaponSO : SheetDataSOBase
     public int maxAmmo;
     public float range;
 
+    public float splashRadius;
+
     public float sectorAngle;
 
-    public float splashRadius;
-    public float splashDecay;
-
     public int penetrateCount;
-    public float penetrateDecay;
 
     public bool screenShakeEnable;
 
@@ -33,13 +32,13 @@ public class WeaponSO : SheetDataSOBase
     public WeaponPerkSO[] perkSO;
     public GameObject prefab;
 
+    [Header("연출")]
+    public GameObject projectilePrefab;
+
     [Header("추가 정보")]
     public StatusEffect statusEffect;
 
-    [Header("투사체")]
-    public GameObject projectilePrefab;
     //public string animationName;
-
 
     public override void SetData(string[] data)
     {
@@ -52,14 +51,12 @@ public class WeaponSO : SheetDataSOBase
         maxAmmo = ParseInt(data[5]);
         range = ParseFloat(data[6]);
 
-        sectorAngle = ParseFloat(data[7]);
+        splashRadius = ParseFloat(data[7]);
 
-        splashRadius = ParseFloat(data[8]);
-        splashDecay = ParseFloat(data[9]);
+        sectorAngle = ParseFloat(data[8]);
 
-        penetrateCount = ParseInt(data[10]);
-        penetrateDecay = ParseFloat(data[11]);
+        penetrateCount = ParseInt(data[9]);
 
-        screenShakeEnable = ParseBool(data[12]);
+        screenShakeEnable = ParseBool(data[10]);
     }
 }

@@ -52,7 +52,7 @@ namespace UI
             {
                 AttackType.Melee => weaponPerks.weaponDmgBonus,
                 AttackType.Range => weaponPerks.rangeBonusPoint,
-                AttackType.Consume => weaponPerks.consDmgBonus,
+                (AttackType.Throwable | AttackType.Deployable) => weaponPerks.consDmgBonus,
                 _ => 0f
             };
             float remaining = Mathf.Max(0f, perk.levelBonusMax - currentAccum);
@@ -85,7 +85,7 @@ namespace UI
                                $"탄창: {weapon.maxAmmo} + <color=green>{plusAmmo}</color>\n" +
                                $"원거리 성장 수치: +{perk.maxJump:F0}";
                     }
-                case AttackType.Consume:
+                case (AttackType.Throwable | AttackType.Deployable):
                     {
                         float plusDmg = Mathf.Min(_rolledBonus + player.consDmgBonus, perk.levelBonusMax);
                         return $"공격력 {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +

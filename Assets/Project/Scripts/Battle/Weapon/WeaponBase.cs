@@ -30,15 +30,13 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public int ammo;
     public float range;
 
-    public float sectorAngle;
-
     public float splashRadius;
-    public float splashDecay;
-
+    public float sectorAngle;
     public int penetrateCount;
-    public float penetrateDecay;
-
     public bool screenShakeEnable;
+
+    [Header("연출")]
+    public GameObject projectilePrefab;
 
     public void Init(WeaponSO config, PlayerBody owner)
     {
@@ -52,22 +50,15 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         ammo = config.maxAmmo;
         range = config.range;
 
-        sectorAngle = config.sectorAngle; // 부채꼴 각도
-
         splashRadius = config.splashRadius;
-        splashDecay = config.splashDecay;
-
+        sectorAngle = config.sectorAngle; // 부채꼴 각도
         penetrateCount = config.penetrateCount;
-        penetrateDecay = config.penetrateDecay;
-
         screenShakeEnable = config.screenShakeEnable;
 
+        projectilePrefab = config.projectilePrefab;
     }
 
-    public virtual void Equip()
-    {
-        //
-    }
+    public virtual void Equip() { }
 
     protected float _nextAttackTime;
     public float NextAttackTime => _nextAttackTime;

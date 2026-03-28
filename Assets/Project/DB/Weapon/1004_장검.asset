@@ -17,14 +17,12 @@ MonoBehaviour:
   Name: "\uC7A5\uAC80"
   attackType: 0
   damageBase: 120
-  attackInterval: 0.5
+  attackInterval: 1
   maxAmmo: 0
   range: 2
-  sectorAngle: 30
   splashRadius: 0
-  splashDecay: 0
+  sectorAngle: 30
   penetrateCount: 0
-  penetrateDecay: 0
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}

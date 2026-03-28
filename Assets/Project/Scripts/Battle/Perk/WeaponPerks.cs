@@ -105,7 +105,7 @@ public class WeaponPerks : MonoBehaviour
         {
             AttackType.Melee   => 0,
             AttackType.Range   => 1,
-            AttackType.Consume => 2,
+            (AttackType.Throwable | AttackType.Deployable) => 2,
             _ => 0
         };
 
@@ -141,7 +141,7 @@ public class WeaponPerks : MonoBehaviour
                 }
                 break;
 
-            case AttackType.Consume:
+            case (AttackType.Throwable | AttackType.Deployable):
             {
                 float cap   = perkSO != null ? perkSO.levelBonusMax : float.MaxValue;
                 float total = Mathf.Min(rolledBonus + consDmgBonus, cap);

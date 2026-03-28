@@ -141,10 +141,11 @@ public class PlayerBody : MonoBehaviour, IDamageable
         set => _critDamage = value;
     }
     float _moveSpeed = 4f;
+    float _moveSpeedMin = 2f;
     public float MoveSpeed
     {
-        get => _moveSpeed * GetStatMultiplier(BodyPart.Leg);
-        set => _moveSpeed = Mathf.Max(value, 0.5f);
+        get => Math.Max(_moveSpeed * GetStatMultiplier(BodyPart.Leg), _moveSpeedMin);
+        set => _moveSpeed = Mathf.Max(value, _moveSpeedMin);
     }
     public void AddBaseCritPercent(float value) { _critPercent += value; }
     public void AddBaseRecoveryPercent(float value) { _recoveryPercent += value; }

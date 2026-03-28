@@ -68,7 +68,7 @@ public class PlayerShooter : MonoBehaviour
                 if (grenadePrefab != null)
                 {
                     GameObject throwable = Instantiate(grenadePrefab, firePoint.position, Quaternion.identity);
-                    throwable.GetComponent<ThrowableItem>().SetTarget(worldPos);
+                    throwable.GetComponent<ThrowableItem>().Init(dir, 10f, 2f, 10f, null);
                 }
                 break;
         }

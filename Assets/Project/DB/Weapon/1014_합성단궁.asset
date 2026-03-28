@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
-  m_Name: "1015_\uB3CC\uACA9\uC18C\uCD1D"
+  m_Name: "1014_\uD569\uC131\uB2E8\uAD81"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
-  id: 1015
-  row: 14
-  Name: "\uB3CC\uACA9\uC18C\uCD1D"
+  id: 1014
+  row: 13
+  Name: "\uD569\uC131\uB2E8\uAD81"
   attackType: 1
   damageBase: 25
   attackInterval: 0.25
-  maxAmmo: 20
+  maxAmmo: 15
   range: 6
-  sectorAngle: 0
   splashRadius: 0
-  splashDecay: 0
-  penetrateCount: 3
-  penetrateDecay: 0.82
+  sectorAngle: 0
+  penetrateCount: 0
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: a6f0bb44252d0ff40a68e1e8d9616dcb, type: 2}

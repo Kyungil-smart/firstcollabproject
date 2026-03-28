@@ -20,11 +20,9 @@ MonoBehaviour:
   attackInterval: 0.2
   maxAmmo: 0
   range: 2
-  sectorAngle: 60
   splashRadius: 0
-  splashDecay: 0
+  sectorAngle: 60
   penetrateCount: 0
-  penetrateDecay: 0
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}
