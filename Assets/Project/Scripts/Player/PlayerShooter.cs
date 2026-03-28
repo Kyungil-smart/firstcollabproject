@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
-    public enum WeaponType { Melee, Bow, Grenade }
+    public enum WeaponType { Melee, Bow, Grenade, Molotov, LandMine }
     public WeaponType currentWeapon = WeaponType.Melee;
     
     [Header("Prefabs")]
     [SerializeField] private GameObject meleePrefab;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private GameObject grenadePrefab;
+    [SerializeField] private GameObject MolotovPrefab;
+    [SerializeField] private GameObject LandMinePrefab;
     
     [Header("Settings")]
     [SerializeField] private Transform firePoint;
@@ -32,6 +34,18 @@ public class PlayerShooter : MonoBehaviour
         {
             currentWeapon = WeaponType.Grenade;
             Debug.Log("수류탄");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentWeapon = WeaponType.Molotov;
+            Debug.Log("화염병");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            currentWeapon = WeaponType.LandMine;
+            Debug.Log("지뢰");
         }
         
         if (Input.GetMouseButtonDown(0))
@@ -69,6 +83,20 @@ public class PlayerShooter : MonoBehaviour
                 {
                     GameObject throwable = Instantiate(grenadePrefab, firePoint.position, Quaternion.identity);
                     throwable.GetComponent<ThrowableItem>().SetTarget(worldPos);
+                }
+                break;
+            case WeaponType.Molotov:
+                if (MolotovPrefab != null)
+                {
+                    GameObject molotov = Instantiate(MolotovPrefab, firePoint.position, Quaternion.identity);
+                    molotov.GetComponent<Molotov>().SetTargetPos(worldPos);
+                }
+                break;
+            case WeaponType.LandMine:
+                if (LandMinePrefab != null)
+                {
+                    Instantiate(LandMinePrefab, transform.position, Quaternion.identity);
+                    Debug.Log("지뢰 설치");
                 }
                 break;
         }
