@@ -24,6 +24,24 @@ namespace Monster
         private int _currentKillCount = 0;
         public bool isStageCleared = false;
 
+        #region 플레이어 바디 참조
+        PlayerBody _playerBody;
+        public bool RollPlayerCrit()
+        {
+            CachePlayerBody();
+            return _playerBody.RollCrit();
+        }
+        public float GetPlayerCritDamage()
+        {
+            CachePlayerBody();
+            return _playerBody.CritDamage;
+        }
+        void CachePlayerBody()
+        {
+            if (_playerBody == null)
+                _playerBody = player.GetComponent<PlayerBody>();
+        }
+        #endregion
         private void Awake()
         {
             // 싱글톤 초기화
@@ -54,6 +72,7 @@ namespace Monster
             {
                 GameObject _player = GameObject.FindGameObjectWithTag("Player");
                 if (player != null) player = _player;
+
             }
 
             ShowProgressStage();

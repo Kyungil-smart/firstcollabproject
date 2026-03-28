@@ -3,6 +3,7 @@ using System.Linq;
 
 public class RangeWeapon : WeaponBase
 {
+    float penetrateDecay = 0.5f;
     float attackThickness = 0.03f;
 
     public override void Attack(float damage)

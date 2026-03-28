@@ -3,6 +3,7 @@ using System.Linq;
 
 public class SplashWeapon : WeaponBase
 {
+    float splashDecay = 0.7f;
     float attackThickness = 0.03f;
 
     public override void Attack(float damage)
@@ -28,7 +29,7 @@ public class SplashWeapon : WeaponBase
                 if (remainPenetrateCount > 0)
                 {
                     remainPenetrateCount--;
-                    damage *= penetrateDecay; // 데미지 감쇠 적용
+                    damage *= splashDecay; // 데미지 감쇠 적용
                 }
                 else
                 {

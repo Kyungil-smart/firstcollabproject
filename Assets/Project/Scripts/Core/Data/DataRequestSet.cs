@@ -1,4 +1,3 @@
-//# if UNITY_EDITOR
 using UnityEngine;
 # if UNITY_EDITOR
 using UnityEditor;
@@ -13,7 +12,7 @@ using Cysharp.Threading.Tasks;
 [CreateAssetMenu(fileName = "DataRequestSet", menuName = "Scriptable Objects/DataRequestSet")]
 public class DataRequestSet : ScriptableObject
 {
-    public int index; // 여러 시트를 관리할 때 구분하기 위한 번호
+    public int index; // 여러 시트를 관리할 때 구분하기 위한 번호 (에디터 드롭다운 툴바용)
     public SheetData sheetData;
     public List<SheetDataSOBase> targetSOList;
     public Dictionary<int, SheetDataSOBase> targetSODic = new();

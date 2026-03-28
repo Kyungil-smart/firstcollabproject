@@ -16,5 +16,5 @@ MonoBehaviour:
   row: 10
   floor: 1
   target: 4
-  minValue: 0.03
-  maxValue: 0.05
+  minValue: 0.06
+  maxValue: 0.1

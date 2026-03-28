@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
+  m_Name: "1012_\uC2AC\uB7EC\uADF8 \uBCF4\uC6B0"
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
+  id: 1012
+  row: 11
+  Name: "\uC2AC\uB7EC\uADF8 \uBCF4\uC6B0"
+  attackType: 1
+  damageBase: 80
+  attackInterval: 1
+  maxAmmo: 5
+  range: 3
+  splashRadius: 0
+  sectorAngle: 90
+  penetrateCount: 0
+  screenShakeEnable: 1
+  perkSO:
+  - {fileID: 11400000, guid: cbcbf8530779c6441853bb1572e66cf2, type: 2}
+  prefab: {fileID: 6750218193983612526, guid: 5c1dda004a936474dbf05f0fee6bee9e, type: 3}
+  projectilePrefab: {fileID: 0}
+  statusEffect: 0

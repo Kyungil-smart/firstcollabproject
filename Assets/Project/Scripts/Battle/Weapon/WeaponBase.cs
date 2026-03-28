@@ -30,15 +30,13 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public int ammo;
     public float range;
 
-    public float sectorAngle;
-
     public float splashRadius;
-    public float splashDecay;
-
+    public float sectorAngle;
     public int penetrateCount;
-    public float penetrateDecay;
-
     public bool screenShakeEnable;
+
+    [Header("연출")]
+    public GameObject projectilePrefab;
 
     public void Init(WeaponSO config, PlayerBody owner)
     {
@@ -52,45 +50,30 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         ammo = config.maxAmmo;
         range = config.range;
 
-        sectorAngle = config.sectorAngle; // 부채꼴 각도
-
         splashRadius = config.splashRadius;
-        splashDecay = config.splashDecay;
-
+        sectorAngle = config.sectorAngle; // 부채꼴 각도
         penetrateCount = config.penetrateCount;
-        penetrateDecay = config.penetrateDecay;
-
         screenShakeEnable = config.screenShakeEnable;
 
+        projectilePrefab = config.projectilePrefab;
     }
 
-    public virtual void Equip()
-    {
-        //
-    }
+    public virtual void Equip() { }
 
     protected float _nextAttackTime;
     public float NextAttackTime => _nextAttackTime;
     public virtual void Use()
     {
         if (Time.time < _nextAttackTime) return;
-        _nextAttackTime = Time.time + attackInterval;
-
-        if (attackType == AttackType.Range && ammo <= 0)
+        if ((attackType != AttackType.Melee) && ammo <= 0)
         {
             // TODO: 빈 탄창 소리나 텍스트 연출
             return;
         }
         else { ammo--; }
+        _nextAttackTime = Time.time + attackInterval;
 
-        float curDamage = damageBase;
-        // 크리티컬 히트 계산
-        if (_owner.RollCrit())
-        {
-            curDamage *= _owner.CritDamage;
-            Debug.Log("<color=yellow>크리티컬 히트!</color>");
-        }
-        Attack(curDamage);
+        Attack(damageBase);
         OnAttacked?.Invoke();
     }
     
@@ -109,12 +92,11 @@ public class WeaponFactory
         return weapon;
     }
 }
-public interface IMeleeType { void Execute(Vector3 target, GameObject image); }
-public interface IRangeType { void Execute(Vector3 target); }
-public class AoEDrawCone : IMeleeType
+public interface ISplashType { void Execute(Vector3 target, GameObject image); }
+public class AoEDrawCircle : ISplashType
 {
     public void Execute(Vector3 target, GameObject image)
     {
-        // TODO: 범위 공격 시 타겟 위치에 범위 표시: 원뿔형(밀리 디폴트)
+        // TODO: 범위 공격 시 타겟 위치에 범위 표시
     }
 }

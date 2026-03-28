@@ -10,24 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015c24cce0506d4ca46d0aa63382272, type: 3}
-  m_Name: "1015_\uB3CC\uACA9\uC18C\uCD1D"
+  m_Name: "1011_\uC20F\uBCF4\uC6B0"
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
-  id: 1015
-  row: 14
-  Name: "\uB3CC\uACA9\uC18C\uCD1D"
+  id: 1011
+  row: 10
+  Name: "\uC20F\uBCF4\uC6B0"
   attackType: 1
-  damageBase: 25
-  attackInterval: 0.25
-  maxAmmo: 20
-  range: 6
-  sectorAngle: 0
+  damageBase: 30
+  attackInterval: 2
+  maxAmmo: 10
+  range: 4
   splashRadius: 0
-  splashDecay: 0
-  penetrateCount: 3
-  penetrateDecay: 0.82
-  screenShakeEnable: 1
+  sectorAngle: 0
+  penetrateCount: 0
+  screenShakeEnable: 0
   perkSO:
-  - {fileID: 11400000, guid: a6f0bb44252d0ff40a68e1e8d9616dcb, type: 2}
-  prefab: {fileID: 6716311642281167658, guid: 208ec56537de0ad49965273749c72c72, type: 3}
-  statusEffect: 0
+  - {fileID: 11400000, guid: 6c2ebeddd5b629d4cb01b19efae88d66, type: 2}
+  prefab: {fileID: 8187088320716388886, guid: 003fa0dde840d58498700409bf5a5497, type: 3}
   projectilePrefab: {fileID: 0}
+  statusEffect: 0

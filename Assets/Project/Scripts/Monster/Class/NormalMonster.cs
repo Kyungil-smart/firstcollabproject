@@ -7,11 +7,12 @@ namespace Monster
 {
     public class NormalMonster : MonsterAction
     {
+        float _meleeRangeOffset = 0.5f; // 근접몹이 너무 가까우면 인식도 잘 못하고 선딜레이도 있고하니 실제 거리보다 멀리서 준비하는 오프셋
+        float _exitRangeMarginMultiplier = 1.75f; // 공격 사거리에서 나갈 때 더 멀리 나가야 하는 추가 범위
 
-        
         protected override void Motion()
         {
-            if (isDead || isStop) return;
+            if (isDead || isStop || IsStunned) return;
             
             if (agent == null || !agent.isOnNavMesh || statSo == null) return;
             
@@ -25,7 +26,7 @@ namespace Monster
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
             // 사거리 이내면 공격
-            if (distanceToPlayer <= statSo.AtkRange && Time.time >= lastAttackTime + statSo.AttackInterval)
+            if (distanceToPlayer <= statSo.AtkRange + _meleeRangeOffset && Time.time >= lastAttackTime + statSo.AttackInterval)
             {
                 if (!isAttacking)
                 {
@@ -70,13 +71,21 @@ namespace Monster
                 yield return new WaitForSeconds(statSo.AtkPreDelay);
             }
 
-            // 선딜레이 동안 죽었으면 공격 취소
-            if (isDead) yield break; 
+            // 선딜레이 동안 죽었거나 기절했으면 공격 취소
+            if (isDead || IsStunned) yield break;
 
             // 공격 애니메이션
             if (animator != null)
             {
                 animator.SetTrigger("2_Attack");
+            }
+
+            // 선딜레이 동안 범위를 벗어났으면 공격 취소
+            float distanceToPlayer = Vector2.Distance(transform.position, MonsterManager.Instance.player.transform.position);
+            if (distanceToPlayer > statSo.AtkRange + (_meleeRangeOffset * _exitRangeMarginMultiplier))
+            {
+                isAttacking = false;
+                yield break;
             }
 
             //플레이어에게 데미지 공격

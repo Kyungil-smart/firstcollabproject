@@ -44,7 +44,7 @@ public class WeaponPerks : MonoBehaviour
     /// </summary>
     public WeaponSO[] GetRandomWeaponPerks(int count = 3)
     {
-        int stage = GameManager.Instance.currentStage;
+        int stage = GameManager.Instance.currentStage; // 특이사항: 참조없음(스테이지 마다 다른 Perk을 보여줘야 하는데 필요성과 사용법 검증필요)
         List<WeaponSO> allWeaponPerks = new();
 
         foreach (WeaponSO weaponSO in _allPerks)
@@ -87,25 +87,25 @@ public class WeaponPerks : MonoBehaviour
     /// </summary>
     public static (float dmgRatio, float ammoRatio) GetRangeRatios(RangeBounusType type) => type switch
     {
-        RangeBounusType.Power   => (0.8f, 0.2f),
+        RangeBounusType.Power => (0.8f, 0.2f),
         RangeBounusType.Balance => (0.5f, 0.5f),
-        RangeBounusType.Rapid   => (0.2f, 0.8f),
+        RangeBounusType.Rapid => (0.2f, 0.8f),
         _ => (0.5f, 0.5f)
     };
 
     /// <summary>
     /// 무기 업그레이드: 롤된 보너스를 무기에 적용하고, maxJump를 영구 강화 필드에 저장
     /// </summary>
-    public void WeaponUpgrade(WeaponSO weaponSO, float rolledBonus)
+    public void WeaponUpgrade(WeaponSO weaponSO, float rolledBonus, int rolledStackBonus = 0)
     {
         int floor = GameManager.Instance.currentFloor;
         WeaponPerkSO perkSO = GetPerkForFloor(weaponSO, floor);
 
         int slotIndex = weaponSO.attackType switch
         {
-            AttackType.Melee   => 0,
-            AttackType.Range   => 1,
-            AttackType.Consume => 2,
+            AttackType.Melee => 0,
+            AttackType.Range => 1,
+            AttackType.Throwable or AttackType.Deployable => 2,
             _ => 0
         };
 
@@ -116,13 +116,13 @@ public class WeaponPerks : MonoBehaviour
         switch (weaponSO.attackType)
         {
             case AttackType.Melee:
-            {
-                float cap   = perkSO != null ? perkSO.levelBonusMax : float.MaxValue;
-                float total = Mathf.Min(rolledBonus + weaponDmgBonus, cap);
-                weapon.damageBase += total;
-                if (perkSO != null) weaponDmgBonus += perkSO.maxJump;
-                break;
-            }
+                {
+                    float cap = perkSO != null ? perkSO.levelBonusMax : float.MaxValue;
+                    float total = Mathf.Min(rolledBonus + weaponDmgBonus, cap);
+                    weapon.damageBase += total;
+                    if (perkSO != null) weaponDmgBonus += perkSO.maxJump;
+                    break;
+                }
 
             case AttackType.Range:
                 if (perkSO != null)
@@ -130,10 +130,10 @@ public class WeaponPerks : MonoBehaviour
                     var (dmgR, ammoR) = GetRangeRatios(perkSO.rangeBounusType);
                     float cappedTotal = Mathf.Min(rolledBonus + rangeBonusPoint, perkSO.levelBonusMax);
                     weapon.damageBase += cappedTotal * dmgR;
-                    weapon.ammo      += (int)(cappedTotal * ammoR);
-                    rangeBonusPoint  += perkSO.maxJump;
-                    rangeDmgBonus    += perkSO.maxJump * dmgR;
-                    rangeAmmoBonus   += perkSO.maxJump * ammoR;
+                    weapon.ammo += (int)(cappedTotal * ammoR);
+                    rangeBonusPoint += perkSO.maxJump;
+                    rangeDmgBonus += perkSO.maxJump * dmgR;
+                    rangeAmmoBonus += perkSO.maxJump * ammoR;
                 }
                 else
                 {
@@ -141,19 +141,20 @@ public class WeaponPerks : MonoBehaviour
                 }
                 break;
 
-            case AttackType.Consume:
-            {
-                float cap   = perkSO != null ? perkSO.levelBonusMax : float.MaxValue;
-                float total = Mathf.Min(rolledBonus + consDmgBonus, cap);
-                weapon.damageBase += total;
-                weapon.ammo += consStackBonus;
-                if (perkSO != null)
+            case AttackType.Throwable:
+            case AttackType.Deployable:
                 {
-                    consDmgBonus   += perkSO.maxJump;
-                    consStackBonus += (int)perkSO.maxJump;
+                    float cap = perkSO != null ? perkSO.levelBonusMax : float.MaxValue;
+                    float total = Mathf.Min(rolledBonus + consDmgBonus, cap);
+                    weapon.damageBase += total;
+                    weapon.ammo += rolledStackBonus;
+                    if (perkSO != null)
+                    {
+                        consDmgBonus += perkSO.maxJump;
+                        consStackBonus += rolledStackBonus;
+                    }
+                    break;
                 }
-                break;
-            }
         }
 
         weaponUpgradeCount++;

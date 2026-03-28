@@ -20,14 +20,12 @@ MonoBehaviour:
   attackInterval: 0.2
   maxAmmo: 0
   range: 2
-  sectorAngle: 60
   splashRadius: 0
-  splashDecay: 0
+  sectorAngle: 60
   penetrateCount: 0
-  penetrateDecay: 0
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}
   prefab: {fileID: 3278363458067842601, guid: 470723573c8c81a4a9629cd213208d35, type: 3}
-  statusEffect: 0
   projectilePrefab: {fileID: 0}
+  statusEffect: 0

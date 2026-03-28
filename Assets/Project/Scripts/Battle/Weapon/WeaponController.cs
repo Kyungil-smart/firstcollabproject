@@ -11,10 +11,13 @@ public class WeaponController : MonoBehaviour
     public Transform mountPoint; // 장착 위치
     WeaponFactory _factory = new();
 
-    [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯
-    [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯
-    [SerializeField] WeaponSO _consumeWeapon; //3번 슬롯
+    [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯 data
+    [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯 data
+    [SerializeField] WeaponSO _consumeWeapon; //3번 슬롯 data
 
+    public WeaponBase[] _weapons = new WeaponBase[3]; // 현재 보유한 무기 인스턴스 (0: 근접, 1: 원거리, 2: 소비)
+    public WeaponBase CurrentWeapon => _weapons[CurrentWeaponIndex];
+    public int CurrentWeaponIndex { get; set; } = 0;
 #if UNITY_EDITOR
     private void Reset()
     {
@@ -60,10 +63,6 @@ public class WeaponController : MonoBehaviour
         _input.onCharge -= Charge;
         _input.onChargeRelease -= ChargeRelease;
     }
-
-    public WeaponBase[] _weapons = new WeaponBase[3];
-    public WeaponBase CurrentWeapon => _weapons[CurrentWeaponIndex];
-    public int CurrentWeaponIndex { get; set; } = 0;
 
     WeaponBase CreateAndInit(WeaponSO weaponSO)
     {
@@ -134,11 +133,6 @@ public class WeaponController : MonoBehaviour
         CurrentWeapon?.Use();
         //_anim?.PlayAnimation(CurrentWeapon.AnimationHash);
     }
-
-    private void Update()
-    {
-        _input.Tick();
-    }
     void Charge()
     {
         CurrentWeapon?.Charging();
@@ -146,5 +140,10 @@ public class WeaponController : MonoBehaviour
     void ChargeRelease()
     {
         CurrentWeapon?.ChargeRelease();
+    }
+
+    private void Update()
+    {
+        _input.Tick();
     }
 }

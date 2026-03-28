@@ -17,5 +17,5 @@ MonoBehaviour:
   rangeBounusType: 0
   bonusMin: 1
   bonusMax: 3
-  levelBonusMax: 0
+  levelBonusMax: 3
   maxJump: 0
