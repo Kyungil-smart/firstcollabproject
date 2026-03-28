@@ -18,7 +18,7 @@ namespace Monster
         
         protected override void Motion()
         {
-            if (isDead || isStop) return;
+            if (isDead || isStop || IsStunned) return;
 
             if (agent == null || !agent.isOnNavMesh || statSo == null) return;
 
@@ -68,7 +68,7 @@ namespace Monster
             // TODO: 몸이 빛나는 이펙트 코드 추가
             yield return new WaitForSeconds(statSo.AtkPreDelay); // 약 1초
 
-            if (isDead) yield break;
+            if (isDead || IsStunned) yield break;
 
             // 돌진 방향 설정
             Vector3 targetPos = MonsterManager.Instance.player.transform.position;
@@ -84,6 +84,13 @@ namespace Monster
 
             while (elapsed < dashDuration)
             {
+                if (IsStunned)
+                {
+                    agent.speed = originalSpeed;
+                    isAttacking = false;
+                    yield break;
+                }
+
                 agent.SetDestination(transform.position + dashDir * 2f);
                 
                 // 돌진 중 플레이어 충돌 체크

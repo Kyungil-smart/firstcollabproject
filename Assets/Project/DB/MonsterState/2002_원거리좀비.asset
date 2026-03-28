@@ -24,3 +24,5 @@ MonoBehaviour:
   AtkPreDelay: 0.5
   AtkRange: 1
   ExpReward: 100
+  CorpseTime: 1
+  StunDuration: 0.1

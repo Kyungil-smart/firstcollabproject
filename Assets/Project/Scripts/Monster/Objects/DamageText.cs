@@ -56,7 +56,8 @@ public class DamageText : MonoBehaviour
         }
     }
 
-    public static void ShowDamageText(GameObject textPrefab, Transform monsterCanvas, int damage)
+
+    public static void ShowDamageText(GameObject textPrefab, Transform monsterCanvas, int damage, bool isCrit = false)
     {
         if (textPrefab == null || monsterCanvas == null) return;
         
@@ -73,7 +74,23 @@ public class DamageText : MonoBehaviour
         if (damageText != null)
         {
             damageText.SetText(damage.ToString());
+
+            if (isCrit)
+            {
+                damageText.ApplyCritStyle();
+            }
         }
     }
 
+    public void ApplyCritStyle()
+    {
+        if (_damageText == null) return;
+
+        // 크리티컬 텍스트 색상
+        _color = new Color(1f, 0.85f, 0f, 1f);
+        _damageText.color = _color;
+
+        // 크리티컬 텍스트 크기
+        transform.localScale *= 1.2f;
+    }
 }

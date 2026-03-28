@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using PrimeTween;
+using Monster;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class FlashBangProjectile : MonoBehaviour
 {
     [Header("고유 설정")]
@@ -58,9 +60,6 @@ public class FlashBangProjectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (_hasExploded) return;
-        // 부딪힌 콜라이더 정보 출력
-        Debug.Log($"<color=yellow> 플레이어 투사체 {other.gameObject.name} 부딪힘: {other.GetContact(0).point}</color>");
-
         Explode();
     }
 
@@ -76,10 +75,14 @@ public class FlashBangProjectile : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(_damage);
+
+                var monster = hit.GetComponent<MonsterAction>();
+                if (monster != null)
+                    monster.ApplyStun(1f);
             }
         }
 
-        FlashBloom();
+        if (_bloom != null) FlashBloom();
         Destroy(gameObject);
     }
 
@@ -87,7 +90,6 @@ public class FlashBangProjectile : MonoBehaviour
     {
         float baseValue = _bloom.intensity.value;
         float halfDuration = bloomFlashDuration * 0.5f;
-        Debug.Log("bloom 작동중");
         Sequence.Create()
             .Chain(Tween.Custom(
                 target: _bloom,

@@ -25,7 +25,7 @@ MonoBehaviour:
   penetrateCount: 0
   screenShakeEnable: 1
   perkSO:
-  - {fileID: 11400000, guid: cbcbf8530779c6441853bb1572e66cf2, type: 2}
-  prefab: {fileID: 158880901037047594, guid: 07b604af97d2aa144a74b2ba5f5aa2ac, type: 3}
+  - {fileID: 11400000, guid: 24c2ddef4ee38ce4383d15280a72d47e, type: 2}
+  prefab: {fileID: 2300503684806237442, guid: f60c05c5000a72445812655edb70a10c, type: 3}
+  projectilePrefab: {fileID: 6060455967080115507, guid: c62c7befa1210d2439b03935c734738f, type: 3}
   statusEffect: 0
-  projectilePrefab: {fileID: 0}

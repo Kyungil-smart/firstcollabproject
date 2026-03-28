@@ -9,8 +9,6 @@ public class FlashBangWeapon : WeaponBase
     {
         if (_globalVolume == null)
             _globalVolume = _owner.GetComponentInChildren<Volume>();
-        else
-            Debug.LogWarning("ThrowableWeapon: 글로벌 볼륨이 없습니다");
     }
 
     public override void Attack(float damage)

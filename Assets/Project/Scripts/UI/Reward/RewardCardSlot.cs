@@ -24,6 +24,7 @@ namespace UI
         private PlayerPerk _playerPerkRef;
         private BodyPart _bodyPart;
         private float _rolledBonus;
+        private int _rolledStackBonus;
 
         protected virtual void Awake()
         {
@@ -48,11 +49,15 @@ namespace UI
 
             _rolledBonus = Random.Range(perk.bonusMin, perk.bonusMax);
 
+            _rolledStackBonus = (weaponData.attackType is AttackType.Throwable or AttackType.Deployable)
+                ? Random.Range(1, 4)
+                : 0;
+
             float currentAccum = weaponData.attackType switch
             {
                 AttackType.Melee => weaponPerks.weaponDmgBonus,
                 AttackType.Range => weaponPerks.rangeBonusPoint,
-                (AttackType.Throwable | AttackType.Deployable) => weaponPerks.consDmgBonus,
+                AttackType.Throwable or AttackType.Deployable => weaponPerks.consDmgBonus,
                 _ => 0f
             };
             float remaining = Mathf.Max(0f, perk.levelBonusMax - currentAccum);
@@ -85,14 +90,16 @@ namespace UI
                                $"탄창: {weapon.maxAmmo} + <color=green>{plusAmmo}</color>\n" +
                                $"원거리 성장 수치: +{perk.maxJump:F0}";
                     }
-                case (AttackType.Throwable | AttackType.Deployable):
+                case AttackType.Throwable:
+                case AttackType.Deployable:
                     {
                         float plusDmg = Mathf.Min(_rolledBonus + player.consDmgBonus, perk.levelBonusMax);
                         return $"공격력 {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
+                               $"보유 개수: {weapon.maxAmmo} + <color=green>{_rolledStackBonus}</color>\n" +
                                $"소모품 성장 수치: +{perk.maxJump:F0}";
                     }
                 default:
-                    return "";
+                    return "버걱스";
             }
         }
 
@@ -173,6 +180,7 @@ namespace UI
             _playerPerkData = null;
             _playerPerkRef = null;
             _rolledBonus = 0f;
+            _rolledStackBonus = 0;
         }
         public void ClearCardData()
         {
@@ -208,7 +216,7 @@ namespace UI
 
             if (_weaponPerks != null && _weaponData != null)
             {
-                _weaponPerks.WeaponUpgrade(_weaponData, _rolledBonus);
+                _weaponPerks.WeaponUpgrade(_weaponData, _rolledBonus, _rolledStackBonus);
             }
             else if (_playerPerkRef != null && _playerPerkData != null)
             {

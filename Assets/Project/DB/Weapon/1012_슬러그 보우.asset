@@ -27,5 +27,5 @@ MonoBehaviour:
   perkSO:
   - {fileID: 11400000, guid: cbcbf8530779c6441853bb1572e66cf2, type: 2}
   prefab: {fileID: 6750218193983612526, guid: 5c1dda004a936474dbf05f0fee6bee9e, type: 3}
-  statusEffect: 0
   projectilePrefab: {fileID: 0}
+  statusEffect: 0

@@ -1344,7 +1344,7 @@ PrefabInstance:
       objectReference: {fileID: 1348657620}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _allPerks.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: '_allPerks.Array.data[3]'
@@ -1364,6 +1364,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: '_allPerks.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
+    - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      propertyPath: '_allPerks.Array.data[8]'
       value: 
       objectReference: {fileID: 11400000, guid: bfc273ba7abe7ce4da2eda3ad09ba27b, type: 2}
     - target: {fileID: 5230605081855053456, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
@@ -1425,6 +1429,10 @@ PrefabInstance:
     - target: {fileID: 5796912905840949037, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: m_Name
       value: Player_Charactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317179706635838655, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      propertyPath: m_Mass
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9217619452028172012, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _slots.Array.size

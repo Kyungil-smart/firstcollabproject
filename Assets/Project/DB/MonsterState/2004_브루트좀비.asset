@@ -17,10 +17,12 @@ MonoBehaviour:
   Name: "\uBE0C\uB8E8\uD2B8 \uC880\uBE44"
   Grade: 0
   Hp: 400
-  MoveSpeed: 3
+  MoveSpeed: 2.5
   Atk: 25
   AttackInterval: 3
   AtkTrigger: 0
   AtkPreDelay: 0
   AtkRange: 2
   ExpReward: 100
+  CorpseTime: 4
+  StunDuration: 0

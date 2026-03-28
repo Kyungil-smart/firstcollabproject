@@ -19,8 +19,10 @@ MonoBehaviour:
   Hp: 100
   MoveSpeed: 2.5
   Atk: 10
-  AttackInterval: 0.7
+  AttackInterval: 1
   AtkTrigger: 1
   AtkPreDelay: 0.5
   AtkRange: 0.5
   ExpReward: 100
+  CorpseTime: 1
+  StunDuration: 0.1

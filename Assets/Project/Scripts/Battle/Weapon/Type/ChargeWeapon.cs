@@ -67,13 +67,7 @@ public class ChargeWeapon : WeaponBase
         {
             _nextAttackTime = Time.time + attackInterval;
 
-            float curDamage = damageBase;
-            if (_owner.RollCrit())
-            {
-                curDamage *= _owner.CritDamage;
-                Debug.Log("<color=yellow>크리티컬 히트!</color>");
-            }
-            Attack(curDamage);
+            Attack(damageBase);
             RaiseOnAttacked();
         }
         else
@@ -97,12 +91,6 @@ public class ChargeWeapon : WeaponBase
             {
                 Vector3 dirToTarget = (hitCollider.transform.position - transform.position).normalized;
                 float angle = Vector3.Angle(transform.right, dirToTarget);
-
-                if (_owner.RollCrit())
-                {
-                    damage *= _owner.CritDamage;
-                    Debug.Log("<color=yellow>크리티컬 히트!</color>"); // Use를 재정의해서 크리티컬 계산
-                }
 
                 if (angle <= _sectorAngle / 1.5f)
                 {
