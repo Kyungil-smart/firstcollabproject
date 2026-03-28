@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class ThrowableWeapon : WeaponBase
+public class FlashBangWeapon : WeaponBase
 {
     Volume _globalVolume;
 
@@ -19,7 +19,7 @@ public class ThrowableWeapon : WeaponBase
 
         Vector2 direction = transform.right;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        var throwable = projectile.GetComponent<ThrowableItem>();
+        var throwable = projectile.GetComponent<FlashBangProjectile>();
         if (throwable != null)
         {
             throwable.Init(direction, damage, splashRadius, range, _globalVolume);

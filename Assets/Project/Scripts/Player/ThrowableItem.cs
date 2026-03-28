@@ -1,113 +1,76 @@
+using System;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
-using PrimeTween;
+using System.Collections;
 
 public class ThrowableItem : MonoBehaviour
 {
-    [Header("고유 설정")]
-    [SerializeField] float speed = 3f;
+    private Vector3 _targetPos;
+    [SerializeField] private float startSpeed = 15f;        // 처음 던지는 속도
+    [SerializeField] private float minSpeed = 1f;           // 최소 속도
+    [SerializeField] private float explosionRadius = 2f;    // 폭발 반경
+    [SerializeField] private int damage;                    // 폭발 데미지
 
-    [Header("폭발 연출")]
-    [SerializeField] private float bloomPeakIntensity = 5f;
-    [SerializeField] private float bloomFlashDuration = 0.3f;
+    private float _currentSpeed;
+    private bool _isArrived = false;
 
-    [Header("무기 데이터 (런타임 주입)")]
-    [SerializeField, Tooltip("WeaponBase.Attack 에서 전달")] private float _damage;
-    [SerializeField, Tooltip("WeaponSO.splashRadius")] private float _splashRadius;
-    [SerializeField, Tooltip("WeaponSO.range")] private float _maxRange;
-
-    private Vector2 _direction;
-    private Vector2 _startPos;
-    private bool _hasExploded;
-    private Bloom _bloom;
-    private Rigidbody2D _rb;
-
-    private void Awake()
+    public void SetTarget(Vector3 target)
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _targetPos = target;
+        _targetPos.z = 0f;
+        _currentSpeed = startSpeed;
+        _isArrived = false;
     }
 
-    public void Init(Vector2 direction, float damage, float splashRadius, float maxRange, Volume globalVolume)
+    private void Update()
     {
-        _direction = direction.normalized;
-        _damage = damage;
-        _splashRadius = splashRadius;
-        _maxRange = maxRange;
-        _startPos = _rb.position;
-
-        if (globalVolume != null)
-            globalVolume.profile.TryGet(out _bloom);
-
-        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        _rb.linearVelocity = _direction * speed;
-    }
-
-    private void FixedUpdate()
-    {
-        if (_hasExploded) return;
-
-        if (Vector2.Distance(_startPos, _rb.position) >= _maxRange)
+        if (_isArrived) return;
+        
+        // 현재 위치에서 목표까지의 남은 거리 계산
+        float distance = Vector2.Distance(transform.position, _targetPos);
+        
+        if (distance > 0.05f)
         {
-            Explode();
+            // 남은 거리 비례해서 속도 조절 (거리 멀면 빠르게, 가까우면 느리게)
+            // distance 작아질수록 속도도 startSpeed에서 minSpeed 사이로 줄어듭니당
+            _currentSpeed = Mathf.Lerp(minSpeed, startSpeed, distance / 5f);
+            
+            // 이동 처리
+            transform.position = Vector3.MoveTowards(transform.position, _targetPos, _currentSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // 목표 지점(마우스 클릭한 위치)도착
+            _isArrived = true;
+            transform.position = _targetPos;
+            StartCoroutine(ExplodeAfterDelay(2f));
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private IEnumerator ExplodeAfterDelay(float delay)
     {
-        if (_hasExploded) return;
-        // 부딪힌 콜라이더 정보 출력
-        Debug.Log($"<color=yellow> 플레이어 투사체 {other.gameObject.name} 부딪힘: {other.GetContact(0).point}</color>");
+        Debug.Log("폭탄 목표에 도착 2초뒤 폭발");
+        yield return new WaitForSeconds(delay);
+        
+        // 폭발 로직
+        Collider2D[] hitMonsters = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
-        Explode();
-    }
-
-    private void Explode()
-    {
-        if (_hasExploded) return;
-        _hasExploded = true;
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _splashRadius);
-        foreach (var hit in hits)
+        foreach (Collider2D monster in hitMonsters)
         {
-            var damageable = hit.GetComponent<IDamageable>();
-            if (damageable != null)
+            if (monster.CompareTag("Monster"))
             {
-                damageable.TakeDamage(_damage);
+                // 몬스터의 체력 시스템 함수 호출
+                // monster.GetComponent<MonsterHP>()?.TakeDamage(damage);
+                Debug.Log($" {monster.name}에게 {damage}만큼 데미지!");
             }
         }
-
-        FlashBloom();
+        
+        Debug.Log("펑");
         Destroy(gameObject);
     }
 
-    private void FlashBloom()
+    private void OnDrawGizmosSelected()
     {
-        float baseValue = _bloom.intensity.value;
-        float halfDuration = bloomFlashDuration * 0.5f;
-        Debug.Log("bloom 작동중");
-        Sequence.Create()
-            .Chain(Tween.Custom(
-                target: _bloom,
-                startValue: baseValue,
-                endValue: bloomPeakIntensity,
-                duration: halfDuration,
-                ease: Ease.OutQuad,
-                onValueChange: static (b, val) => b.intensity.Override(val)))
-            .Chain(Tween.Custom(
-                target: _bloom,
-                startValue: bloomPeakIntensity,
-                endValue: baseValue,
-                duration: halfDuration,
-                ease: Ease.InQuad,
-                onValueChange: static (b, val) => b.intensity.Override(val)));
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
-
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, _splashRadius > 0 ? _splashRadius : 1f);
-    //}
 }
