@@ -47,12 +47,6 @@ namespace UI
             int floor = GameManager.Instance.currentFloor;
             WeaponPerkSO perk = WeaponPerks.GetPerkForFloor(weaponData, floor);
 
-            _rolledBonus = Random.Range(perk.bonusMin, perk.bonusMax);
-
-            _rolledStackBonus = (weaponData.attackType is AttackType.Throwable or AttackType.Deployable)
-                ? Random.Range(1, 4)
-                : 0;
-
             float currentAccum = weaponData.attackType switch
             {
                 AttackType.Melee => weaponPerks.weaponDmgBonus,
@@ -60,8 +54,12 @@ namespace UI
                 AttackType.Throwable or AttackType.Deployable => weaponPerks.consDmgBonus,
                 _ => 0f
             };
-            float remaining = Mathf.Max(0f, perk.levelBonusMax - currentAccum);
-            _rolledBonus = Mathf.Min(_rolledBonus, remaining);
+
+            _rolledBonus = WeaponPerkPolicy.RollBonus(perk, currentAccum);
+
+            _rolledStackBonus = (weaponData.attackType is AttackType.Throwable or AttackType.Deployable)
+                ? Random.Range(1, 4)
+                : 0;
 
             nameText.text = weaponData.Name;
             descriptionText.text = BuildWeaponDescription(weaponData, perk, weaponPerks);
@@ -75,16 +73,14 @@ namespace UI
             {
                 case AttackType.Melee:
                     {
-                        float plusDmg = Mathf.Min(_rolledBonus + player.weaponDmgBonus, perk.levelBonusMax);
+                        float plusDmg = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.weaponDmgBonus, perk);
                         return $"공격력: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
                                $"근접 성장 수치: +{perk.maxJump:F0}";
                     }
                 case AttackType.Range:
                     {
-                        var (dmgR, ammoR) = WeaponPerks.GetRangeRatios(perk.rangeBounusType);
-                        float cappedTotal = Mathf.Min(_rolledBonus + player.rangeBonusPoint, perk.levelBonusMax);
-                        float plusDmg = cappedTotal * dmgR;
-                        int plusAmmo = (int)(cappedTotal * ammoR);
+                        float cappedTotal = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.rangeBonusPoint, perk);
+                        var (plusDmg, plusAmmo) = WeaponPerkPolicy.CalculateRangeTotalBonus(cappedTotal, perk.rangeBounusType);
 
                         return $"공격력: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
                                $"탄창: {weapon.maxAmmo} + <color=green>{plusAmmo}</color>\n" +
@@ -93,7 +89,7 @@ namespace UI
                 case AttackType.Throwable:
                 case AttackType.Deployable:
                     {
-                        float plusDmg = Mathf.Min(_rolledBonus + player.consDmgBonus, perk.levelBonusMax);
+                        float plusDmg = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.consDmgBonus, perk);
                         return $"공격력 {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
                                $"보유 개수: {weapon.maxAmmo} + <color=green>{_rolledStackBonus}</color>\n" +
                                $"소모품 성장 수치: +{perk.maxJump:F0}";
