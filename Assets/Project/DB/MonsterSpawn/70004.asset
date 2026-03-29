@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98c8ed9097594defa18bf99044eeda9c, type: 3}
-  m_Name: 10008
+  m_Name: 70004
   m_EditorClassIdentifier: Assembly-CSharp::SpawnDataSO
-  id: 10008
-  row: 13
-  SpawnInterval: 4
-  MaxTotalMonster: 20
-  StartSimultaneous: 12
+  id: 70004
+  row: 9
+  SpawnInterval: 5
+  MaxTotalMonster: 10
+  StartSimultaneous: 6
   MaxSimultaneous: 12
+  Normal: 0.8
+  Ranged: 0.2
+  Bomb: 0
+  Brute: 0

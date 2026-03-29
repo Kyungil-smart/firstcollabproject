@@ -26,7 +26,7 @@ namespace Monster
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
             // 사거리 이내면 공격
-            if (distanceToPlayer <= statSo.AtkRange + _meleeRangeOffset && Time.time >= lastAttackTime + statSo.AttackInterval)
+            if (distanceToPlayer <= statSo.AtkTrigger + _meleeRangeOffset && Time.time >= lastAttackTime + statSo.AttackInterval)
             {
                 if (!isAttacking)
                 {

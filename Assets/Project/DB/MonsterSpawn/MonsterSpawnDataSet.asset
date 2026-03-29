@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp-Editor::DataRequestSet
   index: 4
   sheetData:
-    url: https://docs.google.com/spreadsheets/d/1CSY1jieeNB6th_qtfBAB44gcrci9XPqfMGobrmM4KEk/edit?gid=2140448430#gid=2140448430
+    url: https://docs.google.com/spreadsheets/d/1CMc44k67snazjOw3d17Unbzm2NL2rTG_kjR3f6UpVsg/edit?gid=2140448430#gid=2140448430
     type: 0
   targetSOList:
   - {fileID: 11400000, guid: dc490bbc7c7962549ac33308086e7ba8, type: 2}

@@ -36,16 +36,15 @@ namespace Monster
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
             
             // 사거리 이내면 공격
-            if (distanceToPlayer <= statSo.AtkRange && Time.time >= lastAttackTime + _currentRandomCooldown)
+            if (distanceToPlayer <= statSo.AtkTrigger)
             {
-                
-                if (!isAttacking)
+                // 이동 멈춤
+                agent.isStopped = true;
+                if (animator != null) animator.SetBool("1_Move", false);
+
+                // 멈춘 상태에서 쿨타임이 찼을 때만 공격 시작
+                if (Time.time >= lastAttackTime + _currentRandomCooldown)
                 {
-                    // 추격 멈추기
-                    agent.isStopped = true;
-                    if (animator != null) animator.SetBool("1_Move", false);
-                    
-                    // 공격 시작
                     StartCoroutine(AttackRoutine());
                 }
             }
@@ -54,7 +53,7 @@ namespace Monster
             {
                 agent.isStopped = false;
                 agent.SetDestination(playerTransform.position); 
-                
+            
                 if (animator != null) 
                 {
                     bool isMoving = agent.velocity.sqrMagnitude > 0.01f;

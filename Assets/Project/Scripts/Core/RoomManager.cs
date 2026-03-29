@@ -8,7 +8,7 @@ public class RoomManager : MonoBehaviour
 {
     public static RoomManager Instance { get; private set; }
 
-    [Header("방 데이터 세팅")] public int startStageId = 10001;
+    [Header("방 데이터 세팅")] public int startStageId = 70001;
 
     [Header("방 프리팹 참조")]
     [SerializeField] private GameObject startRoomPrefab;

@@ -59,6 +59,12 @@ namespace Monster
                 _spawnDataList = spawnDataSet.targetSOList
                     .OfType<SpawnDataSO>()
                     .ToList();
+
+    
+                foreach (var data in _spawnDataList)
+                {
+                    Debug.Log($"[로드된 SO 확인] 파일 이름: {data.name} / 세팅된 스테이지 ID: {data.id}");
+                }
             }
             else
             {
@@ -86,18 +92,20 @@ namespace Monster
             _currentKillCount = 0;
             isStageCleared = false;
 
-            // 게임 매니저에서 현재 스테이지 번호 가져오기
+            // 스테이지 번호 가져오기
             int currentStageId = GameManager.Instance.currentStage;
+            
+            Debug.Log($"startStageId: {currentStageId}");
 
             // DataSet에서 현재 스테이지 ID와 일치하는 데이터 찾기
             SpawnDataSO currentData = _spawnDataList.FirstOrDefault(data => data.id == currentStageId);
 
             if (currentData == null)
             {
-                Debug.LogError($"[MonsterManager] StageID가 {currentStageId}인 SpawnData를 찾을 수 없습니다! 스폰을 시작하지 못했습니다.");
+                Debug.LogError($"{currentStageId}: SpawnData is Null");
                 return;
             }
-
+            
             // 클리어 목표 마릿수를 시트 데이터와 동기화
             targetClearCount = currentData.MaxTotalMonster;
 
@@ -106,7 +114,7 @@ namespace Monster
             ShowProgressStage();
             monsterSpawner.StartSpawner();
 
-            Debug.Log($"스테이지 {currentStageId} 스폰 시작! (목표 처치 수: {targetClearCount})");
+            Debug.Log($"스테이지 {currentStageId} 목표 처치 수: {targetClearCount})");
         }
 
         /// <summary>
