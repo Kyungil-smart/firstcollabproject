@@ -20,9 +20,8 @@ MonoBehaviour:
   MoveSpeed: 3.5
   Atk: 30
   AttackInterval: 1.5
-  AtkTrigger: 0
+  AtkTrigger: 1
   AtkPreDelay: 0
-  AtkRange: 1
   ExpReward: 100
   CorpseTime: 0.2
   StunDuration: 0.1

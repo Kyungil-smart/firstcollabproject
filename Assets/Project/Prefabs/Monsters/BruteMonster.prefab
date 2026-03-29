@@ -282,7 +282,7 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 2888551026089071993}
   statSo: {fileID: 11400000, guid: 9b744d759ce270c4b82dd0f39dd7f891, type: 2}
-  dashSpeedMultiplier: 2.5
+  dashSpeedMultiplier: 3
   dashDuration: 0.5
 --- !u!195 &1712949204012180837
 NavMeshAgent:
