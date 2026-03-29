@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &271352490 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1816720510202608365, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-  m_PrefabInstance: {fileID: 4396326441175145023}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &373451421
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,17 +300,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &580402861 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 534604880789499749, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-  m_PrefabInstance: {fileID: 4396326441175145023}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &928457807 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8626636461979779117, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
@@ -333,17 +311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &933825831 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5863858978268504339, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-  m_PrefabInstance: {fileID: 4396326441175145023}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &956239117
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64476bc65ad3443bb81f3ac281c58f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.RandomSpawnController
-  spawnPercentDataSet: {fileID: 11400000, guid: 3c6af14bac4e8814e96ee5c27dc69974, type: 2}
   monsterPrefab:
   - monsterType: 0
     monsterPrefab: {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
@@ -824,7 +790,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.11666667
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
@@ -1182,7 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30216a3efd277534fbd6b1531bbab234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
-  startStageId: 10001
+  startStageId: 70001
   startRoomPrefab: {fileID: 8972901531356261557, guid: 8537cd96eb187a64980fa1d6fc6fc6a2, type: 3}
   bossRoomPrefab: {fileID: 4346302431610844793, guid: 3670ed7c0a9852f4d8a4084c610f6ea3, type: 3}
   normalRoomPrefabs:
@@ -1494,10 +1460,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5796912905840949037, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8106131196979554207}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
 --- !u!1001 &1310116941250288364
 PrefabInstance:
@@ -1842,25 +1805,9 @@ PrefabInstance:
       propertyPath: _weaponController
       value: 
       objectReference: {fileID: 8106131196979554193}
-    - target: {fileID: 370755717067728228, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-      propertyPath: _slots.Array.data[0].indexText
-      value: 
-      objectReference: {fileID: 271352490}
-    - target: {fileID: 370755717067728228, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-      propertyPath: _slots.Array.data[1].indexText
-      value: 
-      objectReference: {fileID: 580402861}
-    - target: {fileID: 370755717067728228, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-      propertyPath: _slots.Array.data[2].indexText
-      value: 
-      objectReference: {fileID: 933825831}
     - target: {fileID: 1964648496626466406, guid: 15e49492a75d40f489f56108d284c624, type: 3}
       propertyPath: m_Name
       value: Canvas_Weapon_Owned
-      objectReference: {fileID: 0}
-    - target: {fileID: 1964648496626466406, guid: 15e49492a75d40f489f56108d284c624, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3411718041667099533, guid: 15e49492a75d40f489f56108d284c624, type: 3}
       propertyPath: m_Pivot.x
@@ -2193,18 +2140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f55f1ad02e3f9f4f8d5757264ee853c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
---- !u!114 &8106131196979554207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879814301668405180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b50b4d71113b94ea8c6fb5805a3bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageEvent
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

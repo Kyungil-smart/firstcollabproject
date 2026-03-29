@@ -12,14 +12,13 @@ namespace Monster
         private List<Vector2Int> _currentSpawnableTiles = new List<Vector2Int>();
         private Queue<GameObject> _monsterList = new Queue<GameObject>();
         private List<GameObject> _activeMonsters = new List<GameObject>(); 
+        private Dictionary<string, Queue<GameObject>> _monsterPools = new Dictionary<string, Queue<GameObject>>();
         
         // 현재 필드에 살아있는 몬스터 수
         private int _currentAliveCount = 0; 
         // 이번 스테이지에서 총 생성된 몬스터 수
         private int _totalSpawnedCount = 0; 
-        
-        private readonly int _minSpawnCount = 1;
-        private readonly int _maxSpawnCount = 3;
+
         // 스폰 진행 여부 플래그
         private bool _isSpawning = false; 
 
@@ -59,20 +58,31 @@ namespace Monster
 
         private void SetMonsterPool()
         {
-            if (_monsterList.Count > 0) return;
-            
-            int weight = 10;
-            int poolSize = currentSpawnData.MaxSimultaneous + weight;
-
-            for (int i = 0; i < poolSize; i++)
+            // 등록된 모든 몬스터 프리팹에 대해 타입별로 풀 생성
+            foreach (var spawnData in randomSpawnController.monsterPrefab)
             {
-                //스테이지별 확률로 뽑아옴
-                GameObject monsterPrefab = randomSpawnController.GetMonsterPrefab(currentSpawnData.id);
-                if (monsterPrefab == null) continue;
+                GameObject prefab = spawnData.monsterPrefab;
+                if (prefab == null) continue;
 
-                GameObject newMonster = Instantiate(monsterPrefab, transform);
-                newMonster.SetActive(false);
-                _monsterList.Enqueue(newMonster);
+                string poolKey = prefab.name;
+                
+                if (!_monsterPools.ContainsKey(poolKey))
+                {
+                    _monsterPools[poolKey] = new Queue<GameObject>();
+                }
+
+                // 스테이지 동시 등장 최대치만큼 생성
+                int prewarmCount = currentSpawnData.MaxSimultaneous; 
+                
+                // 기존에 만들어둔 몬스터가 부족할 때
+                int amountToCreate = prewarmCount - _monsterPools[poolKey].Count;
+                for (int i = 0; i < amountToCreate; i++)
+                {
+                    GameObject newMonster = Instantiate(prefab, transform);
+                    newMonster.name = poolKey; 
+                    newMonster.SetActive(false);
+                    _monsterPools[poolKey].Enqueue(newMonster);
+                }
             }
         }
         
@@ -87,6 +97,7 @@ namespace Monster
         
         private IEnumerator SpawnTimerRoutine()
         {
+            
             while (_isSpawning)
             {
                 // 데이터에 입력된 주기(SpawnInterval)만큼 대기
@@ -119,22 +130,37 @@ namespace Monster
                 // 현재 필드 마릿수가 최대치에 도달했다면 이번 차례 스폰 중단
                 if (_currentAliveCount >= currentSpawnData.MaxSimultaneous) break; 
                 
-                // 풀이 비어있으면 중단
-                if (_monsterList.Count == 0) break;
+                // 확률로 몬스터 프리팹 생성
+                GameObject monsterPrefab = randomSpawnController.GetMonsterPrefab();
+                
+                if (monsterPrefab == null)
+                {
+                    Debug.LogError("스폰 실패");
+                    continue; 
+                }
                 
                 // 스폰 가능한 타일 중 랜덤 선택
                 int randomIndex = Random.Range(0, _currentSpawnableTiles.Count);
                 Vector2Int spawnTarget = _currentSpawnableTiles[randomIndex];
                 
-                SpawnMonsterAt(spawnTarget);
+                SpawnMonsterAt(spawnTarget, monsterPrefab);
             }
         }
         
-        private void SpawnMonsterAt(Vector2 position)
+        private void SpawnMonsterAt(Vector2 position, GameObject prefab)
         {
-            if (_monsterList.Count == 0) return;
+            string poolKey = prefab.name;
+            GameObject monster;
             
-            GameObject monster = _monsterList.Dequeue();
+            if (_monsterPools.ContainsKey(poolKey) && _monsterPools[poolKey].Count > 0)
+            {
+                monster = _monsterPools[poolKey].Dequeue();
+            }
+            else
+            {
+                monster = Instantiate(prefab, transform);
+                monster.name = poolKey; 
+            }
             
             
             Vector3 spawnPosition = new Vector3(position.x, position.y, 0f); 
@@ -164,9 +190,15 @@ namespace Monster
             if (_activeMonsters.Contains(monster))
             {
                 monster.SetActive(false);
-                _monsterList.Enqueue(monster);
-                _activeMonsters.Remove(monster);
                 
+                string poolKey = monster.name;
+                if (!_monsterPools.ContainsKey(poolKey))
+                {
+                    _monsterPools[poolKey] = new Queue<GameObject>();
+                }
+                _monsterPools[poolKey].Enqueue(monster);
+                
+                _activeMonsters.Remove(monster);
                 _currentAliveCount--;
             }
         }
@@ -184,18 +216,16 @@ namespace Monster
             foreach (GameObject monster in _activeMonsters)
             {
                 monster.SetActive(false);
-                _monsterList.Enqueue(monster);
-            }
-            
-            foreach (GameObject monster in _monsterList)
-            {
-                monster.SetActive(false);
+                
+                string poolKey = monster.name;
+                if (_monsterPools.ContainsKey(poolKey))
+                {
+                    _monsterPools[poolKey].Enqueue(monster);
+                }
             }
             
             _activeMonsters.Clear();
             _currentSpawnableTiles.Clear();
-            _monsterList.Clear();
-            
             
             _totalSpawnedCount = 0;
             _currentAliveCount = 0;
