@@ -35,8 +35,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public int penetrateCount;
     public bool screenShakeEnable;
 
-    [Header("ø¨√‚")]
-    public GameObject projectilePrefab;
+    protected GameObject projectilePrefab;
 
     public void Init(WeaponSO config, PlayerBody owner)
     {

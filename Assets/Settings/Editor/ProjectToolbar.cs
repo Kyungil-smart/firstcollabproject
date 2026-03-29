@@ -67,11 +67,6 @@ public class ProjectToolbar
                 EditorUtility.OpenPropertyEditor(DataRequestSet.Get(5));
             });
 
-            menu.AddItem(new GUIContent("MonsterPercent"), false, () =>
-            {
-                EditorUtility.OpenPropertyEditor(DataRequestSet.Get(6));
-            });
-
             menu.DropDown(rect);
         });
     }

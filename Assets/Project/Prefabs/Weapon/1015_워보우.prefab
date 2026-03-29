@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089586281416168587}
   - component: {fileID: 1642769219041830266}
-  - component: {fileID: 6078164505508998478}
+  - component: {fileID: -4546986802780231685}
   m_Layer: 0
   m_Name: "1015_\uC6CC\uBCF4\uC6B0"
   m_TagString: Untagged
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &6078164505508998478
+--- !u!114 &-4546986802780231685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,28 +101,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 158880901037047594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4df131473375bc4eabab6b6576a7fcb, type: 3}
+  m_Script: {fileID: 11500000, guid: 74dfa4fe570fbbe47adda033df66aa18, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SplashWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::SplashRangeWeapon
   data: {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
   Name: 
   attackType: 0
   damageBase: 0
   attackInterval: 0
-  maxAmmo: 0
-  rangeValue: 0
-  sectorEnable: 0
-  sectorAngle: 0
-  splashEnable: 0
+  ammo: 0
+  range: 0
   splashRadius: 0
-  splashDecay: 0
-  stunEnable: 0
-  stunTime: 0
+  sectorAngle: 0
   penetrateCount: 0
-  penetrateDecay: 0
-  chargeEnable: 0
-  chargeTime: 0
-  failCooldown: 0
-  spreadEnable: 0
-  spreadAngle: 0
   screenShakeEnable: 0
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 10

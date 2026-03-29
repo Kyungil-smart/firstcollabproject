@@ -79,7 +79,8 @@ public class ChargeWeapon : WeaponBase
     public override void Attack(float damage)
     {
         _sectorAngle = sectorAngle;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, range);
+        Vector3 ownerPos = _owner.transform.position;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -89,10 +90,10 @@ public class ChargeWeapon : WeaponBase
             var damageable = hitCollider.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                Vector3 dirToTarget = (hitCollider.transform.position - transform.position).normalized;
+                Vector3 dirToTarget = (hitCollider.transform.position - ownerPos).normalized;
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= _sectorAngle / 1.5f)
+                if (angle <= _sectorAngle / 1.56f)
                 {
                     damageable.TakeDamage(damage);
                 }

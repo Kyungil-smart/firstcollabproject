@@ -8,8 +8,11 @@ public class SectorWeapon : WeaponBase
     public override void Attack(float damage)
     {
         _sectorAngle = sectorAngle;
-        // 현재 위치를 기준으로 사거리 내의 모든 2D 콜라이더 검색
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, range);
+
+        // 플레이어 위치를 기준으로 사거리 내의 모든 2D 콜라이더 검색
+        Vector3 ownerPos = _owner.transform.position;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range);
+
 
         foreach (var hitCollider in hitColliders)
         {
@@ -20,13 +23,13 @@ public class SectorWeapon : WeaponBase
             if (damageable != null)
             {
                 // 적이 위치한 방향 벡터 계산
-                Vector3 dirToTarget = (hitCollider.transform.position - transform.position).normalized;
+                Vector3 dirToTarget = (hitCollider.transform.position - ownerPos).normalized;
 
                 // 무기가 바라보는 정방향(transform.right)과 적 사이의 각도 계산
                 // RotatePointToMouse 가 XY 2D 평면을 회전시키므로 주로 right가 앞 방향
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= _sectorAngle / 1.5f)
+                if (angle <= _sectorAngle / 1.56f)
                 {
                     damageable.TakeDamage(damage);
                 }
