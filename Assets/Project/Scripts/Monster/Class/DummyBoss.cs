@@ -34,7 +34,7 @@ namespace Monster
             statSo.AttackInterval = _attackInterval;
             statSo.AtkTrigger = _atkRange;
             statSo.AtkPreDelay = _atkPreDelay;
-            statSo.AtkRange = _atkRange;
+            //statSo.AtkRange = _atkRange;
             statSo.ExpReward = 0;
             statSo.CorpseTime = 2f;
             statSo.StunDuration = 0f;
