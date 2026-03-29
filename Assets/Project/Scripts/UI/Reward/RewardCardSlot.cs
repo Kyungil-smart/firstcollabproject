@@ -24,6 +24,7 @@ namespace UI
         private PlayerPerk _playerPerkRef;
         private BodyPart _bodyPart;
         private float _rolledBonus;
+        private int _rolledStackBonus;
 
         protected virtual void Awake()
         {
@@ -46,17 +47,19 @@ namespace UI
             int floor = GameManager.Instance.currentFloor;
             WeaponPerkSO perk = WeaponPerks.GetPerkForFloor(weaponData, floor);
 
-            _rolledBonus = Random.Range(perk.bonusMin, perk.bonusMax);
-
             float currentAccum = weaponData.attackType switch
             {
                 AttackType.Melee => weaponPerks.weaponDmgBonus,
                 AttackType.Range => weaponPerks.rangeBonusPoint,
-                AttackType.Consume => weaponPerks.consDmgBonus,
+                AttackType.Throwable or AttackType.Deployable => weaponPerks.consDmgBonus,
                 _ => 0f
             };
-            float remaining = Mathf.Max(0f, perk.levelBonusMax - currentAccum);
-            _rolledBonus = Mathf.Min(_rolledBonus, remaining);
+
+            _rolledBonus = WeaponPerkPolicy.RollBonus(perk, currentAccum);
+
+            _rolledStackBonus = (weaponData.attackType is AttackType.Throwable or AttackType.Deployable)
+                ? Random.Range(1, 4)
+                : 0;
 
             nameText.text = weaponData.Name;
             descriptionText.text = BuildWeaponDescription(weaponData, perk, weaponPerks);
@@ -70,29 +73,29 @@ namespace UI
             {
                 case AttackType.Melee:
                     {
-                        float plusDmg = Mathf.Min(_rolledBonus + player.weaponDmgBonus, perk.levelBonusMax);
+                        float plusDmg = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.weaponDmgBonus, perk);
                         return $"공격력: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
                                $"근접 성장 수치: +{perk.maxJump:F0}";
                     }
                 case AttackType.Range:
                     {
-                        var (dmgR, ammoR) = WeaponPerks.GetRangeRatios(perk.rangeBounusType);
-                        float cappedTotal = Mathf.Min(_rolledBonus + player.rangeBonusPoint, perk.levelBonusMax);
-                        float plusDmg = cappedTotal * dmgR;
-                        int plusAmmo = (int)(cappedTotal * ammoR);
+                        float cappedTotal = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.rangeBonusPoint, perk);
+                        var (plusDmg, plusAmmo) = WeaponPerkPolicy.CalculateRangeTotalBonus(cappedTotal, perk.rangeBounusType);
 
                         return $"공격력: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
                                $"탄창: {weapon.maxAmmo} + <color=green>{plusAmmo}</color>\n" +
                                $"원거리 성장 수치: +{perk.maxJump:F0}";
                     }
-                case AttackType.Consume:
+                case AttackType.Throwable:
+                case AttackType.Deployable:
                     {
-                        float plusDmg = Mathf.Min(_rolledBonus + player.consDmgBonus, perk.levelBonusMax);
+                        float plusDmg = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.consDmgBonus, perk);
                         return $"공격력 {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
+                               $"보유 개수: {weapon.maxAmmo} + <color=green>{_rolledStackBonus}</color>\n" +
                                $"소모품 성장 수치: +{perk.maxJump:F0}";
                     }
                 default:
-                    return "";
+                    return "버걱스";
             }
         }
 
@@ -149,7 +152,7 @@ namespace UI
                 case Target_List.Recovery_Percent:
                     return $"회복력: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 case Target_List.Crit_Damage:
-                    return $"치명타 데미지: +<color=green>{_rolledBonus:F2}</color>";
+                    return $"치명타 데미지: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 case Target_List.Move_Speed:
                     return $"이동속도: +<color=green>{_rolledBonus:F2}</color>";
                 //$"누적 보너스: {player.moveSpeedBonus:F2}";
@@ -173,6 +176,7 @@ namespace UI
             _playerPerkData = null;
             _playerPerkRef = null;
             _rolledBonus = 0f;
+            _rolledStackBonus = 0;
         }
         public void ClearCardData()
         {
@@ -208,11 +212,17 @@ namespace UI
 
             if (_weaponPerks != null && _weaponData != null)
             {
-                _weaponPerks.WeaponUpgrade(_weaponData, _rolledBonus);
+                _weaponPerks.WeaponUpgrade(_weaponData, _rolledBonus, _rolledStackBonus);
             }
             else if (_playerPerkRef != null && _playerPerkData != null)
             {
                 _playerPerkRef.PlayerUpgrade(_playerPerkData, _bodyPart, _rolledBonus);
+
+                if (_playerPerkRef.HasPendingUpgrades)
+                {
+                    _playerPerkRef.ConsumeNextUpgrade();
+                    return;
+                }
             }
 
             if (RewardPopup != null)

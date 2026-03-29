@@ -46,4 +46,28 @@ public class ProjectToolbar
             menu.DropDown(rect);
         });
     }
+
+    [MainToolbarElement("Project/DataRequestSet2", defaultDockPosition = MainToolbarDockPosition.Middle)]
+    public static MainToolbarElement DataRequestSetDropdown2()
+    {
+        var icon = EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D;
+        var content = new MainToolbarContent(icon, "DataRequestSet2");
+
+        return new MainToolbarDropdown(content, (rect) =>
+        {
+            var menu = new GenericMenu();
+
+            menu.AddItem(new GUIContent("MonsterSpawn"), false, () =>
+            {
+                EditorUtility.OpenPropertyEditor(DataRequestSet.Get(4));
+            });
+
+            menu.AddItem(new GUIContent("MonsterState"), false, () =>
+            {
+                EditorUtility.OpenPropertyEditor(DataRequestSet.Get(5));
+            });
+
+            menu.DropDown(rect);
+        });
+    }
 }

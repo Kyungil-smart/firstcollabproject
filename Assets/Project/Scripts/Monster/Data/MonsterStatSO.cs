@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Objects/Monster/StatData")]
+    [CreateAssetMenu(fileName = "MonsterStatSO", menuName = "Scriptable Objects/Monster/Stat")]
     public class MonsterStatSO : SheetDataSOBase
     {
         // 명칭
@@ -35,6 +35,12 @@ namespace Monster
         //경험치
         public int ExpReward;
 
+        //물리 판정 시간(시체)
+        public float CorpseTime;
+
+        //기절 지속 시간
+        public float StunDuration;
+
         public override void SetData(string[] data)
         {
             id = ParseInt(data[0]);
@@ -48,6 +54,8 @@ namespace Monster
             AtkPreDelay = ParseFloat(data[8]);
             AtkRange = ParseFloat(data[9]);
             ExpReward = ParseInt(data[10]);
+            CorpseTime = ParseFloat(data[11]);
+            StunDuration = ParseFloat(data[12]);
         }
     }
 }

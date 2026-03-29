@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
 
     // 방문 확인용
     [SerializeField]private bool isVisited = false;
-
+    public static event Action<Room> OnRoomEntered;
     // whlie문에서 new List, Camera.main 호출 방지 변수
     private Camera _mainCam;
     private List<Vector2Int> _offScreenPoint = new List<Vector2Int>();
@@ -24,7 +24,6 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject leftDoor;
     [SerializeField] private GameObject rightDoor;
     
-
     /*
     private void Start()
     {
@@ -132,6 +131,7 @@ public class Room : MonoBehaviour
 
                 MonsterManager.Instance.currentRoom = this;
                 MonsterManager.Instance.StartStage();
+                OnRoomEntered?.Invoke(this);
             }
         }
     }

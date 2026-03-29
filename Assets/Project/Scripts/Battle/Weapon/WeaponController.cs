@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// 무기를 장착하고 공격하는 인풋의 실행 함수를 담는 컨트롤러입니다
@@ -9,12 +10,16 @@ public class WeaponController : MonoBehaviour
     [SerializeField] BattleInputReader _input;
 
     public Transform mountPoint; // 장착 위치
+    bool _isPointerOverUI;
+
     WeaponFactory _factory = new();
+    [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯 data
+    [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯 data
+    [SerializeField] WeaponSO _consumeWeapon; //3번 슬롯 data
 
-    [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯
-    [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯
-    [SerializeField] WeaponSO _consumeWeapon; //3번 슬롯
-
+    public WeaponBase[] _weapons = new WeaponBase[3]; // 현재 보유한 무기 인스턴스 (0: 근접, 1: 원거리, 2: 소비)
+    public WeaponBase CurrentWeapon => _weapons[CurrentWeaponIndex];
+    public int CurrentWeaponIndex { get; set; } = 0;
 #if UNITY_EDITOR
     private void Reset()
     {
@@ -43,6 +48,7 @@ public class WeaponController : MonoBehaviour
         _input.on3 += EquipConsumeWeapon;
         _input.onAttack += Use;
         _input.onCharge += Charge;
+        _input.onChargeRelease += ChargeRelease;
 
         _weapons[0] = CreateAndInit(_meleeWeapon);
         _weapons[1] = CreateAndInit(_rangeWeapon);
@@ -57,11 +63,8 @@ public class WeaponController : MonoBehaviour
         _input.on3 -= EquipConsumeWeapon;
         _input.onAttack -= Use;
         _input.onCharge -= Charge;
+        _input.onChargeRelease -= ChargeRelease;
     }
-
-    public WeaponBase[] _weapons = new WeaponBase[3];
-    public WeaponBase CurrentWeapon => _weapons[CurrentWeaponIndex];
-    public int CurrentWeaponIndex { get; set; } = 0;
 
     WeaponBase CreateAndInit(WeaponSO weaponSO)
     {
@@ -123,22 +126,53 @@ public class WeaponController : MonoBehaviour
     }
 
     public AttackType CurrentAttackType => CurrentWeapon.attackType;
-    public float CurrentRange => CurrentWeapon.rangeValue;
+    public float CurrentRange => CurrentWeapon.range;
     public float CurrentSectorAngle => CurrentWeapon.sectorAngle;
 
+    public void RestoreAmmo() // 모든 슬롯의 탄창을 (WeaponSO 기본 탄창 + 업그레이드 보너스) 최대치로 복구
+    {
+        WeaponPerks perks = GetComponent<WeaponPerks>();
+
+        for (int i = 0; i < _weapons.Length; i++)
+        {
+            WeaponBase weapon = _weapons[i];
+            if (weapon == null || weapon.data == null) { Debug.LogWarning("RestoreAmmo를 호출할 수 없습니다. 뭔가 null 입니다"); continue; }
+
+            int baseAmmo = weapon.data.maxAmmo;
+            int bonus = 0;
+
+            switch (weapon.attackType)
+            {
+                case AttackType.Range:
+                    bonus = perks.rangeAmmoBonus;
+                    break;
+                case AttackType.Throwable:
+                case AttackType.Deployable:
+                    bonus = perks.consStackBonus;
+                    break;
+            }
+
+            weapon.ammo = baseAmmo + bonus;
+        }
+    }
 
     private void Use()
     {
+        if (_isPointerOverUI) return; // UI 위에서 공격 입력 무시
         CurrentWeapon?.Use();
-        //_anim?.PlayAnimation(CurrentWeapon.AnimationHash);
-    }
-
-    private void Update()
-    {
-        _input.Tick();
     }
     void Charge()
     {
         CurrentWeapon?.Charging();
+    }
+    void ChargeRelease()
+    {
+        CurrentWeapon?.ChargeRelease();
+    }
+
+    private void Update()
+    {
+        _isPointerOverUI = EventSystem.current.IsPointerOverGameObject();
+        _input.Tick();
     }
 }

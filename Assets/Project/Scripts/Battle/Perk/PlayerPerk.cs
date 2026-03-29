@@ -18,6 +18,8 @@ public class PlayerPerk : MonoBehaviour
     public int expIncrement = 50;
 
     public int playerUpgradeCount;
+    int _pendingUpgrades;
+    public bool HasPendingUpgrades => _pendingUpgrades > 0;
     [Header("강화 요소")]
     public float HeadHpBonus;
     public float BodyHpBonus;
@@ -45,22 +47,37 @@ public class PlayerPerk : MonoBehaviour
 
     void OnMonsterRemoved(MonsterAction monster)
     {
-        AddExp(20); // todo: 몬스터 종류에 따라 경험치 차등 지급
+        AddExp(monster.statSo.ExpReward);
     }
 
     public void AddExp(int amount)
     {
         currentExp += amount;
-        if (currentExp >= requiredExp)
+        while (currentExp >= requiredExp)
         {
             currentExp -= requiredExp;
             requiredExp += expIncrement;
-            OpenPlayerUpgradePopup();
+            _pendingUpgrades++;
+        }
+
+        if (_pendingUpgrades > 0 && !_rewardPopup.gameObject.activeSelf)
+        {
+            ConsumeNextUpgrade();
         }
     }
 
+    /// <summary>
+    /// 대기 중인 다음 강화 팝업을 연다
+    /// </summary>
+    public void ConsumeNextUpgrade()
+    {
+        if (_pendingUpgrades <= 0) return;
+        _pendingUpgrades--;
+        _rewardPopup.InitSelectedState();
+        OpenPlayerUpgradePopup();
+    }
+
     // 5가지 퍼크에서 HP를 4부위로 확장한 풀(8개)에서 랜덤 3개 선택
-    // TODO: 각 슬롯에 대응하는 종류의 무기만 뜨도록 수정
     public (PlayerPerkSO perk, BodyPart part)[] GetRandomPerks(int count = 3)
     {
         int floor = GameManager.Instance.currentFloor;

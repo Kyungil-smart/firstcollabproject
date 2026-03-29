@@ -3,13 +3,14 @@ using System.Linq;
 
 public class RangeWeapon : WeaponBase
 {
+    float penetrateDecay = 0.5f;
     float attackThickness = 0.03f;
 
     public override void Attack(float damage)
     {
         int remainPenetrateCount = penetrateCount;
 
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, rangeValue);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, range);
 
         // 가장 가까운 대상부터 순서대로 타격하기 위해 정렬
         var sortedHits = hits.OrderBy(h => h.distance).ToArray();

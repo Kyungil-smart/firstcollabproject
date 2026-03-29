@@ -17,13 +17,11 @@ public static class Registry<T> where T : class
         return item != null && _items.Add(item);
     }
 
-    public static bool Remove(T item)
+    public static void Remove(T item)
     {
-        bool removed = _items.Remove(item);
-        if (removed) OnRemoved?.Invoke(item);
-        return removed;
+        if (_items.Remove(item)) OnRemoved?.Invoke(item);
     }
-    public static void Clear() // static 데이터들은 씬이 넘어가도 남아있어서 명시적 초기화를 해야한다 (Remove처리 잘 해뒀으면 쓸일 없음)
+    public static void Clear()
     {
         _items.Clear();
     }

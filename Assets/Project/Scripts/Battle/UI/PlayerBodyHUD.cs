@@ -11,8 +11,8 @@ public class PlayerBodyHUD : MonoBehaviour
 
     [Header("UI 텍스트")]
     public TextMeshProUGUI critChanceText;
-    public TextMeshProUGUI critDamageText;
     public TextMeshProUGUI recoveryText;
+    public TextMeshProUGUI critDamageText;
     public TextMeshProUGUI moveSpeedText;
     public TextMeshProUGUI evasionText;
 
@@ -31,9 +31,9 @@ public class PlayerBodyHUD : MonoBehaviour
     private void Update()
     {
         critChanceText.text = $"치명타 확률: {(_playerBody.CritPercent * 100):F1}%";
-        critDamageText.text = $"치명타 데미지: {(_playerBody.CritDamage * 100):F1}%";
         recoveryText.text = $"회복력: {(_playerBody.RecoveryPercent * 100):F1}%";
-        moveSpeedText.text = $"이동 속도: {(_playerBody.MoveSpeed):F1}";
+        critDamageText.text = $"치명타 데미지: {(_playerBody.CritDamage * 100):F1}%";
+        moveSpeedText.text = $"이동 속도: {(_playerBody.MoveSpeed):F2}";
         evasionText.text = $"회피율: {(_playerBody.EvasionPercent * 100):F1}%";
 
         UpdateColors();

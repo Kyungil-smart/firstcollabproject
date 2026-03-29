@@ -12,10 +12,10 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public float bodyMaxHP = 100f;
     public float armMaxHP = 100f;
     public float legMaxHP = 100f;
-    [SerializeField] float _headCurHP = 100f;
-    [SerializeField] float _bodyCurHP = 100f;
-    [SerializeField] float _armCurHP = 100f;
-    [SerializeField] float _legCurHP = 100f;
+    float _headCurHP = 100f;
+    float _bodyCurHP = 100f;
+    float _armCurHP = 100f;
+    float _legCurHP = 100f;
 
     public static event Action<int> OnHeadInjuryChanged;
     public static event Action<int> OnBodyInjuryChanged;
@@ -30,10 +30,10 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public bool IsInvincible { get; set; }
 
     //부상 레벨  0: 정상, 1~3: 부상 단계, 4: 재기불능
-    public int headInjuryLevel;
-    public int bodyInjuryLevel;
-    public int armInjuryLevel;
-    public int legInjuryLevel;
+    int _headInjuryLevel;
+    int _bodyInjuryLevel;
+    int _armInjuryLevel;
+    int _legInjuryLevel;
 
     public float HeadCurHP
     {
@@ -42,10 +42,10 @@ public class PlayerBody : MonoBehaviour, IDamageable
         {
             _headCurHP = Mathf.Clamp(value, 0f, headMaxHP);
             int state = GetInjuryLevel(BodyPart.Head);
-            if (state != headInjuryLevel)
+            if (state != _headInjuryLevel)
             {
-                headInjuryLevel = state;
-                OnHeadInjuryChanged?.Invoke(headInjuryLevel);
+                _headInjuryLevel = state;
+                OnHeadInjuryChanged?.Invoke(_headInjuryLevel);
             }
         }
     }
@@ -56,10 +56,10 @@ public class PlayerBody : MonoBehaviour, IDamageable
         {
             _bodyCurHP = Mathf.Clamp(value, 0f, bodyMaxHP);
             int state = GetInjuryLevel(BodyPart.Body);
-            if (state != bodyInjuryLevel)
+            if (state != _bodyInjuryLevel)
             {
-                bodyInjuryLevel = state;
-                OnBodyInjuryChanged?.Invoke(bodyInjuryLevel);
+                _bodyInjuryLevel = state;
+                OnBodyInjuryChanged?.Invoke(_bodyInjuryLevel);
             }
         }
     }
@@ -70,10 +70,10 @@ public class PlayerBody : MonoBehaviour, IDamageable
         {
             _armCurHP = Mathf.Clamp(value, 0f, armMaxHP);
             int state = GetInjuryLevel(BodyPart.Arm);
-            if (state != armInjuryLevel)
+            if (state != _armInjuryLevel)
             {
-                armInjuryLevel = state;
-                OnArmInjuryChanged?.Invoke(armInjuryLevel);
+                _armInjuryLevel = state;
+                OnArmInjuryChanged?.Invoke(_armInjuryLevel);
             }
         }
     }
@@ -84,10 +84,10 @@ public class PlayerBody : MonoBehaviour, IDamageable
         {
             _legCurHP = Mathf.Clamp(value, 0f, legMaxHP);
             int state = GetInjuryLevel(BodyPart.Leg);
-            if (state != legInjuryLevel)
+            if (state != _legInjuryLevel)
             {
-                legInjuryLevel = state;
-                OnLegInjuryChanged?.Invoke(legInjuryLevel);
+                _legInjuryLevel = state;
+                OnLegInjuryChanged?.Invoke(_legInjuryLevel);
             }
         }
     }
@@ -122,36 +122,37 @@ public class PlayerBody : MonoBehaviour, IDamageable
         _ => 0.1f
     };
     // 부위별 관련 스탯
-    float _critPercent = 0.05f;
+    [SerializeField] float _critPercent = 0.05f;
     public float CritPercent
     {
         get => _critPercent * GetStatMultiplier(BodyPart.Head);
         set => _critPercent = value;
     }
-    float _recoveryPercent = 0.1f;
+    [SerializeField] float _recoveryPercent = 0.1f;
     public float RecoveryPercent
     {
         get => _recoveryPercent * GetStatMultiplier(BodyPart.Body);
         set => _recoveryPercent = value;
     }
-    float _critDamage = 1.5f;
+    [SerializeField] float _critDamage = 1.5f;
     public float CritDamage
     {
         get => _critDamage * GetStatMultiplier(BodyPart.Arm);
         set => _critDamage = value;
     }
-    float _moveSpeed = 4f;
+    [SerializeField] float _moveSpeed = 4f;
+    [SerializeField] float _moveSpeedMin = 2f;
     public float MoveSpeed
     {
-        get => _moveSpeed * GetStatMultiplier(BodyPart.Leg);
-        set => _moveSpeed = Mathf.Max(value, 0.5f);
+        get => Math.Max(_moveSpeed * GetStatMultiplier(BodyPart.Leg), _moveSpeedMin);
+        set => _moveSpeed = Mathf.Max(value, _moveSpeedMin);
     }
     public void AddBaseCritPercent(float value) { _critPercent += value; }
     public void AddBaseRecoveryPercent(float value) { _recoveryPercent += value; }
     public void AddBaseCritDamage(float value) { _critDamage += value; }
     public void AddBaseMoveSpeed(float value) { _moveSpeed += value; }
 
-    float _evasionPercent = 0.05f; // 회피율
+    [SerializeField] float _evasionPercent = 0.05f; // 회피율
     public float EvasionPercent
     {
         get => _evasionPercent;
@@ -159,6 +160,24 @@ public class PlayerBody : MonoBehaviour, IDamageable
     }
 
     public bool RollCrit() => CritPolicy.Get(CritPercent).Roll();
+
+    public void RestoreHealth() // 4개 부위를 회복력 만큼 회복
+    {
+        HeadCurHP += headMaxHP * RecoveryPercent;
+        BodyCurHP += bodyMaxHP * RecoveryPercent;
+        ArmCurHP  += armMaxHP  * RecoveryPercent;
+        LegCurHP  += legMaxHP  * RecoveryPercent;
+        // TODO: 회복 시 연출
+    }
+
+
+    private void Awake()
+    {
+        _headCurHP = headMaxHP;
+        _bodyCurHP = bodyMaxHP;
+        _armCurHP = armMaxHP;
+        _legCurHP = legMaxHP;
+    }
 
     public void TakeDamage(float damage)
     {

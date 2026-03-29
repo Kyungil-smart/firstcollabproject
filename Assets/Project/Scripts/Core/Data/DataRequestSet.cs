@@ -1,5 +1,7 @@
 using UnityEngine;
+# if UNITY_EDITOR
 using UnityEditor;
+# endif
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -10,7 +12,14 @@ using Cysharp.Threading.Tasks;
 [CreateAssetMenu(fileName = "DataRequestSet", menuName = "Scriptable Objects/DataRequestSet")]
 public class DataRequestSet : ScriptableObject
 {
-    public int index; // 여러 시트를 관리할 때 구분하기 위한 번호
+    public int index; // 여러 시트를 관리할 때 구분하기 위한 번호 (에디터 드롭다운 툴바용)
+    public SheetData sheetData;
+    public List<SheetDataSOBase> targetSOList;
+    public Dictionary<int, SheetDataSOBase> targetSODic = new();
+    public bool renameSOBySheetName; // 이름 컬럼 기준으로 에셋 파일명 변경
+    public int startRow = 6; // 데이터 시작 행
+
+#if UNITY_EDITOR
     public static DataRequestSet Get(int index)
     {
         string[] guids = AssetDatabase.FindAssets("t:DataRequestSet");
@@ -26,13 +35,9 @@ public class DataRequestSet : ScriptableObject
         Debug.LogWarning($"index가 {index}인 DataRequestSet을 찾을 수 없습니다.");
         return null;
     }
+#endif
 
-    public SheetData sheetData;
-    public List<SheetDataSOBase> targetSOList;
-    Dictionary<int, SheetDataSOBase> targetSODic = new();
-    public bool renameSOBySheetName; // 이름 컬럼 기준으로 에셋 파일명 변경
-    public int startRow = 6; // 데이터 시작 행
-
+#if UNITY_EDITOR
     public void Load()
     {
         targetSODic.Clear();
@@ -91,7 +96,9 @@ public class DataRequestSet : ScriptableObject
         AssetDatabase.SaveAssets();
         Debug.Log("파싱 종료");
     }
+#endif
 }
+#if UNITY_EDITOR
 [CustomEditor(typeof(DataRequestSet))]
 public class WebRequestButton : Editor
 {
@@ -105,3 +112,4 @@ public class WebRequestButton : Editor
         }
     }
 }
+#endif

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,11 @@ namespace UI
         [SerializeField] private GameObject confirmPopup;
         public string titleSceneName = "TitleScene";
 
+        public void Update()
+        {
+            if  (Input.GetKeyDown(KeyCode.Escape)) Open();
+        }
+
         public void Open()
         {
             gameObject.SetActive(true);
@@ -18,7 +24,12 @@ namespace UI
         public void Resume()
         {
             Time.timeScale = 1f;
-            SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex).Cancel();
+            
+            if (settingsPopup != null) settingsPopup.SetActive(false);
+            if (confirmPopup != null) confirmPopup.SetActive(false);
+            
+            gameObject.SetActive(false);
+            // SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex).Cancel();
         }
         
         public void OpenSettings()
@@ -44,9 +55,7 @@ namespace UI
         
         public void Close()
         {
-            Time.timeScale = 1f;
-            gameObject.SetActive(false);
+            Resume();
         }
-        
     }
 }

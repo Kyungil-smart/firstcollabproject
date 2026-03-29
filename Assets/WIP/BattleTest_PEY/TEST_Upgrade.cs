@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Monster;
 
 /// <summary>
 /// [INS] 키 : WeaponUpgrade 팝업 테스트
@@ -34,5 +35,11 @@ public class TEST_Upgrade : MonoBehaviour
             SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex).Cancel();
         }
 
+        // End 키 누르면 몬스터 데미지
+        if (kb[Key.End].wasPressedThisFrame)
+        {
+            var monster = Registry<MonsterAction>.GetFirst();
+            monster?.TakeDamage(1000f);
+        }
     }
 }

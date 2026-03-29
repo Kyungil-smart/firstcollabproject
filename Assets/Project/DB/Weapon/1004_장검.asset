@@ -19,22 +19,13 @@ MonoBehaviour:
   damageBase: 120
   attackInterval: 1
   maxAmmo: 0
-  rangeValue: 2
-  sectorEnable: 1
-  sectorAngle: 30
-  splashEnable: 0
+  range: 2
   splashRadius: 0
-  splashDecay: 0
-  stunEnable: 0
-  stunTime: 0
+  sectorAngle: 30
   penetrateCount: 0
-  penetrateDecay: 0
-  chargeEnable: 1
-  chargeTime: 3
-  failCooldown: 0.5
-  spreadEnable: 0
-  spreadAngle: 0
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}
   prefab: {fileID: 7447025797547786004, guid: cd0475f192fd21949aa9e62fdb6da778, type: 3}
+  projectilePrefab: {fileID: 0}
+  statusEffect: 0

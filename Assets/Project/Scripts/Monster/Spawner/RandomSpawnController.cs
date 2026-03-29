@@ -6,55 +6,52 @@ namespace Monster
 {
     public class RandomSpawnController : MonoBehaviour
     {
-        [SerializeField] private DataRequestSet spawnPercentDataSet;
-        private List<SpawnPercentSO> _spawnPercentData;
+
         public List<SpawnData> monsterPrefab;
 
-        private void Awake()
-        {
-            if (spawnPercentDataSet != null)
-            {
-                _spawnPercentData = spawnPercentDataSet.targetSOList
-                    .OfType<SpawnPercentSO>()
-                    .ToList();
-            }
-            else
-            {
-                Debug.LogError("spawnPercentDataSet is null");
-            }
-        }
         
-        public GameObject GetMonsterPrefab(int stageId)
+        public GameObject GetMonsterPrefab()
         {
-            MonsterType monsterType = GetRandomMonsterType(stageId);
             
-            Debug.Log($"GetMonsterPrefab {monsterType}");
+            MonsterType monsterType = GetRandomMonsterType();
+            
             SpawnData data = monsterPrefab.FirstOrDefault(item => item.monsterType == monsterType);
+            
+            Debug.LogWarning($"cumulative: {data.monsterType}");
             if (data != null) return data.monsterPrefab;
             return null;
         }
         
-        private MonsterType GetRandomMonsterType(int stageId)
+        private MonsterType GetRandomMonsterType()
         {
-            if (_spawnPercentData == null) return MonsterType.Normal;
+            SpawnDataSO spawnData = MonsterManager.Instance.monsterSpawner.currentSpawnData;
+            
+            if (spawnData == null) 
+            {
+                Debug.LogError("spawnData is Null");
+                return MonsterType.Normal;
+            }
+            
+            // 전체 가중치의 합 계산
+            float totalWeight = spawnData.Normal + spawnData.Ranged + spawnData.Bomb + spawnData.Brute;
 
-            SpawnPercentSO percentData = _spawnPercentData.FirstOrDefault(data => data.id == stageId);
-            float randomValue = Random.Range(0f, 100f);
+            // 전체 가중치 사이의 랜덤값 추출
+            float randomValue = Random.Range(0f, totalWeight);
             float cumulative = 0f;
-
-            cumulative += percentData.Normal;
+            
+            cumulative += spawnData.Brute;
+            if (randomValue <= cumulative) return MonsterType.Brute;
+            
+            cumulative += spawnData.Bomb;
+            if (randomValue <= cumulative) return MonsterType.Bomb;
+            
+            cumulative += spawnData.Ranged;
+            if (randomValue <= cumulative) return MonsterType.Ranged;
+            
+            cumulative += spawnData.Normal;
             if (randomValue <= cumulative) return MonsterType.Normal;
 
-            cumulative += percentData.Ranged;
-            if (randomValue <= cumulative) return MonsterType.Ranged;
-
-            cumulative += percentData.Bomb;
-            if (randomValue <= cumulative) return MonsterType.Bomb;
-
-            cumulative += percentData.Brute;
-            if (randomValue <= cumulative) return MonsterType.Brute;
-
-            return MonsterType.Normal;
+            return MonsterType.Brute;
         }
     }
 }

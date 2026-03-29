@@ -1,15 +1,86 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ChargeWeapon : WeaponBase
 {
-    [Header("ºÎÃ¤²Ã °ø°İ ¼³Á¤")]
-    float _sectorAngle; // ºÎÃ¤²Ã °ø°İÀÇ ÃÑ °¢µµ
+    [SerializeField] int chargeTime = 3;
+    [SerializeField] float failCooldown = 0.5f;
+
+    bool _isCharging;
+    float _chargeTimer;
+
+    [Header("ë¶€ì±„ê¼´ ê³µê²© ì„¤ì •")]
+    float _sectorAngle;
+
+    [Header("ì°¨ì§€ ì‹œê°í™”")]
+    SpriteRenderer _spriteRenderer;
+    Color _defaultColor;
+    static readonly Color ChargeStartColor = Color.black;
+    static readonly Color ChargeCompleteColor = Color.red;
+
+    void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (_spriteRenderer != null)
+            _defaultColor = _spriteRenderer.color;
+    }
+
+    void ResetColor()
+    {
+        _spriteRenderer.color = _defaultColor;
+    }
+
+    /// <summary>
+    /// ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ì°¨ì§€ ì‹œì‘
+    /// </summary>
+    public override void Use()
+    {
+        if (Time.time < _nextAttackTime) return;
+
+        _isCharging = true;
+        _chargeTimer = 0f;
+
+        _spriteRenderer.color = ChargeStartColor;
+    }
+
+    /// <summary>
+    /// í™€ë“œ ì¤‘ ë§¤ í”„ë ˆì„ í˜¸ì¶œ â€” ì°¨ì§€ ì‹œê°„ ëˆ„ì  + ìƒ‰ìƒ ë³´ê°„
+    /// </summary>
+    public override void Charging()
+    {
+        if (!_isCharging) return;
+        _chargeTimer += Time.deltaTime;
+
+        float t = Mathf.Clamp01(_chargeTimer / chargeTime);
+        _spriteRenderer.color = Color.Lerp(ChargeStartColor, ChargeCompleteColor, t);
+    }
+
+    /// <summary>
+    /// ë²„íŠ¼ì„ ë–¼ë©´ í˜¸ì¶œ â€” ì°¨ì§€ ì™„ë£Œ ì‹œ ê³µê²©, ë¯¸ì™„ë£Œ ì‹œ failCooldown ì ìš©
+    /// </summary>
+    public override void ChargeRelease()
+    {
+        if (!_isCharging) return;
+        _isCharging = false;
+        ResetColor();
+
+        if (_chargeTimer >= chargeTime)
+        {
+            _nextAttackTime = Time.time + attackInterval;
+
+            Attack(damageBase);
+            RaiseOnAttacked();
+        }
+        else
+        {
+            _nextAttackTime = Time.time + failCooldown;
+        }
+    }
 
     public override void Attack(float damage)
     {
         _sectorAngle = sectorAngle;
-        // ÇöÀç À§Ä¡¸¦ ±âÁØÀ¸·Î »ç°Å¸® ³»ÀÇ ¸ğµç 2D Äİ¶óÀÌ´õ °Ë»ö
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, rangeValue);
+        Vector3 ownerPos = _owner.transform.position;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -19,17 +90,12 @@ public class ChargeWeapon : WeaponBase
             var damageable = hitCollider.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                // ÀûÀÌ À§Ä¡ÇÑ ¹æÇâ º¤ÅÍ °è»ê
-                Vector3 dirToTarget = (hitCollider.transform.position - transform.position).normalized;
-
-                // ¹«±â°¡ ¹Ù¶óº¸´Â Á¤¹æÇâ(transform.right)°ú Àû »çÀÌÀÇ °¢µµ °è»ê
-                // RotatePointToMouse °¡ XY 2D Æò¸éÀ» È¸Àü½ÃÅ°¹Ç·Î ÁÖ·Î right°¡ ¾Õ ¹æÇâ
+                Vector3 dirToTarget = (hitCollider.transform.position - ownerPos).normalized;
                 float angle = Vector3.Angle(transform.right, dirToTarget);
 
-                if (angle <= _sectorAngle)
+                if (angle <= _sectorAngle / 1.56f)
                 {
                     damageable.TakeDamage(damage);
-                    //Debug.Log($"[Å¸°Ù: {hitCollider.name}] ÇöÀç ¾Ş±Û: {angle}, ºÎÃ¤²Ã ¹üÀ§: {_sectorAngle}");
                 }
             }
         }
