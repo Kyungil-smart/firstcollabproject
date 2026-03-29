@@ -59,7 +59,7 @@ namespace Monster
                 Destroy(gameObject); 
             }
             // TODO: 가구나 벽에 막혔을 때
-            else if (other.gameObject.layer == LayerMask.NameToLayer(""))
+            else if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
             {
                 Destroy(gameObject);
             }

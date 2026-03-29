@@ -282,7 +282,7 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 2888551026089071993}
   statSo: {fileID: 11400000, guid: 9b744d759ce270c4b82dd0f39dd7f891, type: 2}
-  dashSpeedMultiplier: 2.5
+  dashSpeedMultiplier: 3
   dashDuration: 0.5
 --- !u!195 &1712949204012180837
 NavMeshAgent:
@@ -404,8 +404,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.021209866, y: 0.32954854}
-  m_Size: {x: 0.5342832, y: 0.73942673}
+  m_Offset: {x: 0.01944238, y: 0.33131602}
+  m_Size: {x: 0.6521009, y: 0.7853814}
   m_Direction: 0
 --- !u!1 &8502126232935694248
 GameObject:

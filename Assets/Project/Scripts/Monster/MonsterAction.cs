@@ -128,7 +128,7 @@ namespace Monster
                 agent.Warp(transform.position);
 
                 agent.speed = statSo.MoveSpeed;
-                agent.stoppingDistance = statSo.AtkRange;
+                agent.stoppingDistance = statSo.AtkTrigger;
 
                 if (agent.isOnNavMesh)
                 {
