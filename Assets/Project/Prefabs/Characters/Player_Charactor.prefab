@@ -6118,7 +6118,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ece560b3a92c67e4880133b012850356, type: 2}
   - {fileID: 11400000, guid: e734d9fa43dbbcb429fd6beea826d806, type: 2}
   currentExp: 0
-  requiredExp: 300
+  requiredExp: 100
   expIncrement: 100
   playerUpgradeCount: 0
   HeadHpBonus: 0

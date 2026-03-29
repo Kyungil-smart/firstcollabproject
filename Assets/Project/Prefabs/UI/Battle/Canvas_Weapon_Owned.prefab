@@ -254,13 +254,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd94e38bdd5469543bbda8dcd8bf4328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSlotsHUD
-  _weaponController: {fileID: 0}
   _slots:
-  - coolTimeClock: {fileID: 2809776210494536366}
+  - indexText: {fileID: 1816720510202608365}
+    coolTimeClock: {fileID: 2809776210494536366}
     ammoText: {fileID: 1637370612354520441}
-  - coolTimeClock: {fileID: 8855404257800953275}
+  - indexText: {fileID: 534604880789499749}
+    coolTimeClock: {fileID: 8855404257800953275}
     ammoText: {fileID: 1248622643155799200}
-  - coolTimeClock: {fileID: 1333444901468160913}
+  - indexText: {fileID: 5863858978268504339}
+    coolTimeClock: {fileID: 1333444901468160913}
     ammoText: {fileID: 6178694770542172817}
 --- !u!1 &2462934185597841687
 GameObject:

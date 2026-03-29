@@ -217,6 +217,12 @@ namespace UI
             else if (_playerPerkRef != null && _playerPerkData != null)
             {
                 _playerPerkRef.PlayerUpgrade(_playerPerkData, _bodyPart, _rolledBonus);
+
+                if (_playerPerkRef.HasPendingUpgrades)
+                {
+                    _playerPerkRef.ConsumeNextUpgrade();
+                    return;
+                }
             }
 
             if (RewardPopup != null)
