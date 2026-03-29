@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &12216453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4791159881439614160, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+  m_PrefabInstance: {fileID: 1310116941250288364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &373451421
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +267,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373451421}
   m_CullTransparentMesh: 1
+--- !u!114 &461548202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5863858978268504339, guid: 15e49492a75d40f489f56108d284c624, type: 3}
+  m_PrefabInstance: {fileID: 4396326441175145023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &481543005
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +322,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &924389413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3747017638695502400, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+  m_PrefabInstance: {fileID: 1310116941250288364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &928457807 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8626636461979779117, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
@@ -1104,6 +1137,17 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &1654947436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 534604880789499749, guid: 15e49492a75d40f489f56108d284c624, type: 3}
+  m_PrefabInstance: {fileID: 4396326441175145023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1841064839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1204,17 @@ MonoBehaviour:
   - {fileID: 4236943696069161790, guid: f5497282e0870274e90a7dd3262e3837, type: 3}
   navMeshSurfaces: {fileID: 1377531568}
   roomOffset: 16
+--- !u!114 &1915235650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1816720510202608365, guid: 15e49492a75d40f489f56108d284c624, type: 3}
+  m_PrefabInstance: {fileID: 4396326441175145023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &1988162980 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6767256151925692086, guid: caada59ec3e4b6b4dba99cb8f1dccac0, type: 3}
@@ -1595,6 +1650,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8517710979290352834, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: armImage
+      value: 
+      objectReference: {fileID: 924389413}
+    - target: {fileID: 8517710979290352834, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: bodyImage
+      value: 
+      objectReference: {fileID: 12216453}
+    - target: {fileID: 8517710979290352834, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: _playerBody
       value: 
       objectReference: {fileID: 8106131196979554189}
@@ -1805,6 +1868,18 @@ PrefabInstance:
       propertyPath: _weaponController
       value: 
       objectReference: {fileID: 8106131196979554193}
+    - target: {fileID: 370755717067728228, guid: 15e49492a75d40f489f56108d284c624, type: 3}
+      propertyPath: _slots.Array.data[0].indexText
+      value: 
+      objectReference: {fileID: 1915235650}
+    - target: {fileID: 370755717067728228, guid: 15e49492a75d40f489f56108d284c624, type: 3}
+      propertyPath: _slots.Array.data[1].indexText
+      value: 
+      objectReference: {fileID: 1654947436}
+    - target: {fileID: 370755717067728228, guid: 15e49492a75d40f489f56108d284c624, type: 3}
+      propertyPath: _slots.Array.data[2].indexText
+      value: 
+      objectReference: {fileID: 461548202}
     - target: {fileID: 1964648496626466406, guid: 15e49492a75d40f489f56108d284c624, type: 3}
       propertyPath: m_Name
       value: Canvas_Weapon_Owned
