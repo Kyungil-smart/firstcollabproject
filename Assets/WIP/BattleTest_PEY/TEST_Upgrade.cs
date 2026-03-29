@@ -39,7 +39,8 @@ public class TEST_Upgrade : MonoBehaviour
         if (kb[Key.End].wasPressedThisFrame)
         {
             var monster = Registry<MonsterAction>.GetFirst();
-            monster?.TakeDamage(1000f);
+            if (monster != null)
+                monster.TakeDamage(1000f);
         }
     }
 }

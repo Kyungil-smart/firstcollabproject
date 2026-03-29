@@ -133,6 +133,11 @@ public class Room : MonoBehaviour
                 MonsterManager.Instance.StartStage();
                 OnRoomEntered?.Invoke(this);
             }
+            else if (roomType == RoomType.BossRoom && !isVisited)
+            {
+                isVisited = true;
+                OnRoomEntered?.Invoke(this);
+            }
         }
     }
     

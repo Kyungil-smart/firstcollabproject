@@ -1322,6 +1322,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2018566112003243479, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      propertyPath: _bossPrefab
+      value: 
+      objectReference: {fileID: 7047037709664641846, guid: 6383b4647ecdfbf488369a0e3a8f6619, type: 3}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _rewardPopup
       value: 
