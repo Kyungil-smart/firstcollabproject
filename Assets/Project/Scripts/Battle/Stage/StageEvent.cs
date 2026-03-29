@@ -1,5 +1,6 @@
 using Monster;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// 방기반 스테이지 이벤트를 처리합니다. 플레이어에 붙여 사용
@@ -42,14 +43,20 @@ public class StageEvent : MonoBehaviour
 
     void SpawnBoss(Room room)
     {
-        // 이전 스테이지 클리어 플래그 리셋 (MonsterAction.Update 에서 체크하므로)
         MonsterManager.Instance.isStageCleared = false;
 
         Vector3 center = room.transform.position;
+
+        if (NavMesh.SamplePosition(center, out NavMeshHit hit, 10f, NavMesh.AllAreas))
+            center = hit.position;
+
         GameObject bossObj = Instantiate(_bossPrefab, center, Quaternion.identity);
 
         var boss = bossObj.GetComponent<MonsterAction>();
         if (boss != null)
+        {
             boss.Init();
+            Debug.LogWarning("보스 등장!!!!!!");
+        }
     }
 }

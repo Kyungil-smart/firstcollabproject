@@ -236,11 +236,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2675692412758700219}
-  - component: {fileID: 1060859374010459713}
   - component: {fileID: 1343336463991735366}
   - component: {fileID: 1712949204012180837}
   - component: {fileID: 5148632673833359302}
   - component: {fileID: 1161149056653699639}
+  - component: {fileID: -5138359652335340699}
   m_Layer: 6
   m_Name: DummyBoss
   m_TagString: Monster
@@ -258,30 +258,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.26, y: 2.26, z: 2.26}
+  m_LocalScale: {x: 1.41, y: 1.41, z: 1.41}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 483433089806240808}
   - {fileID: 6372171936221142187}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1060859374010459713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7047037709664641846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e6ae8d82ad94e28aa48260db559aac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Monster.NormalMonster
-  animator: {fileID: 5287522808016968198}
-  hpSlider: {fileID: 5039766714776829497}
-  damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
-  bodyPrefab: {fileID: 67674577216460736}
-  statSo: {fileID: 11400000, guid: 5cfd9bb01a783754dba7f9d2fca6c490, type: 2}
 --- !u!50 &1343336463991735366
 Rigidbody2D:
   serializedVersion: 5
@@ -402,9 +385,35 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.3611375}
-  m_Size: {x: 0.5, y: 0.77634835}
+  m_Offset: {x: 0.005470988, y: 0.32466426}
+  m_Size: {x: 0.430701, y: 0.6085718}
   m_Direction: 0
+--- !u!114 &-5138359652335340699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047037709664641846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2d603207df5a3418b8c81af4f3a582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.DummyBoss
+  animator: {fileID: 5287522808016968198}
+  hpSlider: {fileID: 5039766714776829497}
+  damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
+  bodyPrefab: {fileID: 7047037709664641846}
+  statSo: {fileID: 11400000, guid: 5cfd9bb01a783754dba7f9d2fca6c490, type: 2}
+  _maxHp: 1000
+  _moveSpeed: 2.5
+  _atk: 50
+  _attackInterval: 3
+  _atkRange: 4
+  _aoERadius: 2.5
+  _atkPreDelay: 0.5
+  _contactDamage: 20
+  _contactInterval: 0.5
 --- !u!1 &8502126232935694248
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,11 +669,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d6415675c8cf8c46b6a0f81ef008726, type: 3}
---- !u!1 &67674577216460736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2249770042294655047, guid: 0d6415675c8cf8c46b6a0f81ef008726, type: 3}
-  m_PrefabInstance: {fileID: 2290261023992975239}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &5287522808016968198 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6244708995654129025, guid: 0d6415675c8cf8c46b6a0f81ef008726, type: 3}

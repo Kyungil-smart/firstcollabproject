@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Monster;
+using UnityEngine;
 
 public delegate T SelectionStrategy<T>(IEnumerable<T> items);
 /// <summary>
@@ -8,7 +10,7 @@ public delegate T SelectionStrategy<T>(IEnumerable<T> items);
 /// </summary>
 public static class Registry<T> where T : class
 {
-    static readonly HashSet<T> _items = new();
+    static HashSet<T> _items = new();
     public static int Count => _items.Count;
     public static event Action<T> OnRemoved;
 
@@ -21,10 +23,6 @@ public static class Registry<T> where T : class
     {
         if (_items.Remove(item)) OnRemoved?.Invoke(item);
     }
-    public static void Clear()
-    {
-        _items.Clear();
-    }
 
     public static T GetFirst()
     {
@@ -35,4 +33,21 @@ public static class Registry<T> where T : class
 
     public static IEnumerable<T> All => _items;
 
+    public static void Reset()
+    {
+        _items = new HashSet<T>();
+        OnRemoved = null;
+    }
+}
+
+/// <summary>
+/// 도메인 리로드 OFF 환경에서 플레이 시작 전 Registry 정적 상태를 초기화합니다
+/// </summary>
+internal static class RegistryManager
+{
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetAll()
+    {
+        Registry<MonsterAction>.Reset();
+    }
 }
