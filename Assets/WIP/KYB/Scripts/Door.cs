@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Sprite openDoorSprite;
     [SerializeField] private Sprite closedSprite; 
     
-    private static BoxCollider2D _collider;
+    private BoxCollider2D _collider;
     private SpriteRenderer[] _spriteRenderers;
 
     private void Awake()
