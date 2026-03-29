@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// 무기를 장착하고 공격하는 인풋의 실행 함수를 담는 컨트롤러입니다
@@ -127,11 +128,33 @@ public class WeaponController : MonoBehaviour
     public float CurrentRange => CurrentWeapon.range;
     public float CurrentSectorAngle => CurrentWeapon.sectorAngle;
 
+    public void RestoreAmmo() // 모든 슬롯의 탄창을 (WeaponSO 기본 탄창 + 업그레이드 보너스) 최대치로 복구
+    {
+        WeaponPerks perks = GetComponent<WeaponPerks>();
+
+        for (int i = 0; i < _weapons.Length; i++)
+        {
+            WeaponBase weapon = _weapons[i];
+            //if (weapon == null || weapon.data == null) continue;
+
+            int baseAmmo = weapon.data.maxAmmo;
+            int bonus = 0;
+
+            bonus = weapon.attackType switch
+            {
+                AttackType.Range => (int)perks.rangeAmmoBonus,
+                AttackType.Throwable or AttackType.Deployable => perks.consStackBonus,
+                _ => 0
+            };
+
+            weapon.ammo = baseAmmo + bonus;
+        }
+    }
 
     private void Use()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return; // UI 위에서 공격 입력 무시
         CurrentWeapon?.Use();
-        //_anim?.PlayAnimation(CurrentWeapon.AnimationHash);
     }
     void Charge()
     {
