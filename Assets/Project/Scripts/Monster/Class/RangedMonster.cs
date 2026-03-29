@@ -36,10 +36,13 @@ namespace Monster
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
             
             // 사거리 이내면 공격
-            if (distanceToPlayer <= statSo.AtkTrigger)
+            if (!isAttacking && distanceToPlayer <= statSo.AtkTrigger)
             {
-                // 이동 멈춤
+                // 빙글빙글 도는 현상 방지용 완벽 정지
                 agent.isStopped = true;
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+            
                 if (animator != null) animator.SetBool("1_Move", false);
 
                 // 멈춘 상태에서 쿨타임이 찼을 때만 공격 시작
@@ -49,7 +52,7 @@ namespace Monster
                 }
             }
             // 공격 중이 아니면 플레이어 추격
-            else if (!isAttacking)
+            else if (!isAttacking && distanceToPlayer > statSo.AtkTrigger + 0.1f)
             {
                 agent.isStopped = false;
                 agent.SetDestination(playerTransform.position); 
@@ -136,7 +139,7 @@ namespace Monster
             MonsterProjectile projectile = projectileObj.GetComponent<MonsterProjectile>();
             if (projectile != null)
             {
-                projectile.Init(direction, statSo.Atk, statSo.AtkRange); 
+                projectile.Init(direction, statSo.Atk, statSo.AtkTrigger); 
             }
         }
         

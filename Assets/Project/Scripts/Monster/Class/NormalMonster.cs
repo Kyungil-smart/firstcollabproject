@@ -82,7 +82,7 @@ namespace Monster
 
             // 선딜레이 동안 범위를 벗어났으면 공격 취소
             float distanceToPlayer = Vector2.Distance(transform.position, MonsterManager.Instance.player.transform.position);
-            if (distanceToPlayer > statSo.AtkRange + (_meleeRangeOffset * _exitRangeMarginMultiplier))
+            if (distanceToPlayer > statSo.AtkPreDelay + (_meleeRangeOffset * _exitRangeMarginMultiplier))
             {
                 isAttacking = false;
                 yield break;

@@ -30,7 +30,7 @@ namespace Monster
         public float AtkPreDelay;
 
         // 공격 범위
-        public float AtkRange;
+        // public float AtkRange;
 
         //경험치
         public int ExpReward;
@@ -52,7 +52,7 @@ namespace Monster
             AttackInterval = ParseFloat(data[6]);
             AtkTrigger = ParseFloat(data[7]);
             AtkPreDelay = ParseFloat(data[8]);
-            AtkRange = ParseFloat(data[9]);
+            // AtkRange = ParseFloat(data[9]);
             ExpReward = ParseInt(data[10]);
             CorpseTime = ParseFloat(data[11]);
             StunDuration = ParseFloat(data[12]);
