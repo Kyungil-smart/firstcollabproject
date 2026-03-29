@@ -1203,8 +1203,7 @@ MonoBehaviour:
   - {fileID: 4236943696069161790, guid: c8260ffa8b7be4143bc66dfda936bd70, type: 3}
   - {fileID: 5475187613254417535, guid: 6f7c186be881ea94fb3d77ec28bbc859, type: 3}
   - {fileID: 4236943696069161790, guid: f5497282e0870274e90a7dd3262e3837, type: 3}
-  playerPrefab: {fileID: 0}
-  navMeshSurfaces: {fileID: 0}
+  navMeshSurfaces: {fileID: 1377531568}
   roomOffset: 16
 --- !u!114 &1988162980 stripped
 MonoBehaviour:
@@ -1248,6 +1247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterManager
   monsterSpawner: {fileID: 1233020881}
   player: {fileID: 1879814301668405180}
+  currentRoom: {fileID: 0}
   spawnDataSet: {fileID: 11400000, guid: b033d9c42eb238d4298526e3c92c97da, type: 2}
   progressBar: {fileID: 928457807}
   progressText: {fileID: 1631429643}

@@ -13,7 +13,18 @@ public class Room : MonoBehaviour
 
     // 방문 확인용
     [SerializeField]private bool isVisited = false;
+
+    // whlie문에서 new List, Camera.main 호출 방지 변수
+    private Camera _mainCam;
+    private List<Vector2Int> _offScreenPoint = new List<Vector2Int>();
     
+    [Header("Door Prefabs")] 
+    [SerializeField] private GameObject upDoor;
+    [SerializeField] private GameObject downDoor;
+    [SerializeField] private GameObject leftDoor;
+    [SerializeField] private GameObject rightDoor;
+    
+
     /*
     private void Start()
     {
@@ -23,43 +34,52 @@ public class Room : MonoBehaviour
     }
     */
 
+    private void Awake()
+    {
+        _mainCam = Camera.main;
+    }
+
     /// <summary>
     /// 스폰 포인트에 대한 코루틴
     /// </summary>
     /// <returns></returns>
     private IEnumerator SpawnPointRoutine()
     {
+        if (_mainCam == null)
+        {
+            Debug.LogWarning("MainCam이 Null입니다.");
+            yield break;
+        }
+        
         while (!_isCleared)
         {
-            List<Vector2Int> offScreenPoint = new List<Vector2Int>();
+            _offScreenPoint.Clear();
 
             foreach (var point in spawnPoints)
             {
-                Vector3 viewPos = Camera.main.WorldToViewportPoint(point.position);
+                Vector3 viewPos = _mainCam.WorldToViewportPoint(point.position);
                 
                 // WorldToViewportPoint를 써서 카메라 뷰 안에 스폰 포인트가 있는지 확인
                 if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
                 {
                     Vector2Int gridPos = new Vector2Int(Mathf.RoundToInt(point.position.x), Mathf.RoundToInt(point.position.y));
-                    offScreenPoint.Add(gridPos);
+                    _offScreenPoint.Add(gridPos);
                 }
             }
             
             if (MonsterManager.Instance.monsterSpawner != null && spawnPoints.Count > 0)
             {
-                MonsterManager.Instance.monsterSpawner.UpdateSpawnableTiles(offScreenPoint);
+                MonsterManager.Instance.monsterSpawner.UpdateSpawnableTiles(_offScreenPoint);
             }
             
             yield return new WaitForSeconds(0.5f);
         }
     }
 
-    [Header("Door Prefabs")] 
-    [SerializeField] private GameObject upDoor;
-    [SerializeField] private GameObject downDoor;
-    [SerializeField] private GameObject leftDoor;
-    [SerializeField] private GameObject rightDoor;
-
+    /// <summary>
+    /// 현재 방과 이웃 방에 문 배치해주는 메서드
+    /// </summary>
+    /// <param name="direction"></param>
     public void PlaceDoor(Vector2Int direction)
     {
         if (direction == Vector2Int.up) upDoor.SetActive(true); 
@@ -73,11 +93,22 @@ public class Room : MonoBehaviour
     public void ClearRoom()
     {
         if (_isCleared) return;
-
         _isCleared = true;
 
-        Door.OpenDoors();
+        if (upDoor.activeSelf && upDoor.TryGetComponent(out Door up)) up.Open();
+        if (downDoor.activeSelf && downDoor.TryGetComponent(out Door down)) down.Open();
+        if (leftDoor.activeSelf && leftDoor.TryGetComponent(out Door left)) left.Open();
+        if (rightDoor.activeSelf && rightDoor.TryGetComponent(out Door right)) right.Open();
     }
+
+    private void CloseDoors()
+    {
+        if (upDoor.activeSelf && upDoor.TryGetComponent(out Door up)) up.Close();
+        if (downDoor.activeSelf && downDoor.TryGetComponent(out Door down)) down.Close();
+        if (leftDoor.activeSelf && leftDoor.TryGetComponent(out Door left)) left.Close();
+        if (rightDoor.activeSelf && rightDoor.TryGetComponent(out Door right)) right.Close();
+    }
+
     
     /// <summary>
     /// 방에 들어왔을 때, 스포너를 모두 받아오는 메서드
@@ -90,13 +121,16 @@ public class Room : MonoBehaviour
             {
                 isVisited = true;
                 
+                CloseDoors();
+                
                 StartCoroutine(SpawnPointRoutine());
                 
                 int currentStageId = RoomManager.Instance.GetNextStageId();
                 Debug.Log($"roomID: {currentStageId}");
                 
                 GameManager.Instance.currentStage = currentStageId;
-                
+
+                MonsterManager.Instance.currentRoom = this;
                 MonsterManager.Instance.StartStage();
             }
         }

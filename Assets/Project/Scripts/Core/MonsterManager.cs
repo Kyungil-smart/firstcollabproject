@@ -13,6 +13,8 @@ namespace Monster
         public MonsterSpawner monsterSpawner;
         public GameObject player;
 
+        [HideInInspector] public Room currentRoom;
+
         [SerializeField] private DataRequestSet spawnDataSet;
 
         [SerializeField] private Slider progressBar;
@@ -128,6 +130,10 @@ namespace Monster
             }
 
             // TODO: 클리어 되면 문 열리는 로직 추가
+            if (currentRoom != null)
+            {
+                currentRoom.ClearRoom();
+            }
         }
     }
 }
