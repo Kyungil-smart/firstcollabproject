@@ -5859,6 +5859,7 @@ GameObject:
   - component: {fileID: 6127591905545702451}
   - component: {fileID: 533216733813298578}
   - component: {fileID: 6970941092887172910}
+  - component: {fileID: 2018566112003243479}
   m_Layer: 7
   m_Name: Player_Charactor
   m_TagString: Player
@@ -5900,7 +5901,7 @@ MonoBehaviour:
   mountPoint: {fileID: 1182674427533592512}
   _meleeWeapon: {fileID: 11400000, guid: 38da5e3246fae6b4a9db1e078cf986a5, type: 2}
   _rangeWeapon: {fileID: 11400000, guid: 9a4d17ea3a6560f40bb0c67199805c87, type: 2}
-  _consumeWeapon: {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
+  _consumeWeapon: {fileID: 11400000, guid: bfc273ba7abe7ce4da2eda3ad09ba27b, type: 2}
   _weapons:
   - {fileID: 0}
   - {fileID: 0}
@@ -5947,7 +5948,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 5
   m_LinearDamping: 20
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -5978,7 +5979,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -6061,14 +6062,12 @@ MonoBehaviour:
   bodyMaxHP: 100
   armMaxHP: 100
   legMaxHP: 100
-  _headCurHP: 100
-  _bodyCurHP: 100
-  _armCurHP: 100
-  _legCurHP: 100
-  headInjuryLevel: 0
-  bodyInjuryLevel: 0
-  armInjuryLevel: 0
-  legInjuryLevel: 0
+  _critPercent: 0.05
+  _recoveryPercent: 0.1
+  _critDamage: 1.5
+  _moveSpeed: 4
+  _moveSpeedMin: 2
+  _evasionPercent: 0.05
 --- !u!114 &7837590399723540022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6111,7 +6110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2082226c2e993d4fbf3283eac2c2639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPerk
-  _rewardPopup: {fileID: 256902356848842773, guid: 6bd0109d7dbb7da4aafd156599371a0c, type: 3}
+  _rewardPopup: {fileID: 0}
   _allPerks:
   - {fileID: 11400000, guid: d507400c2c2d2a94ea3a5509f009ce98, type: 2}
   - {fileID: 11400000, guid: 6960c5345b7edb24f8d02d59dae4ebab, type: 2}
@@ -6119,8 +6118,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ece560b3a92c67e4880133b012850356, type: 2}
   - {fileID: 11400000, guid: e734d9fa43dbbcb429fd6beea826d806, type: 2}
   currentExp: 0
-  requiredExp: 100
-  expIncrement: 50
+  requiredExp: 300
+  expIncrement: 100
   playerUpgradeCount: 0
   HeadHpBonus: 0
   BodyHpBonus: 0
@@ -6142,16 +6141,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650a1ecb6610dba4685cd129cd8ed673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPerk
-  _rewardPopup: {fileID: 256902356848842773, guid: 6bd0109d7dbb7da4aafd156599371a0c, type: 3}
+  _rewardPopup: {fileID: 0}
   _allPerks:
   - {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
   - {fileID: 11400000, guid: 993bf614d463f804d925aef93e9b062d, type: 2}
   - {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
-  - {fileID: 11400000, guid: 612663be98232a84e81d635fb0dac46b, type: 2}
   - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
   - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
   - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
   - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
+  - {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
+  - {fileID: 11400000, guid: bfc273ba7abe7ce4da2eda3ad09ba27b, type: 2}
   weaponUpgradeCount: 0
   weaponDmgBonus: 0
   rangeBonusPoint: 0
@@ -6177,11 +6177,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 993bf614d463f804d925aef93e9b062d, type: 2}
   - {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
   - {fileID: 11400000, guid: 9a4d17ea3a6560f40bb0c67199805c87, type: 2}
-  - {fileID: 11400000, guid: 612663be98232a84e81d635fb0dac46b, type: 2}
   - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
   - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
   - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
   - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
+  - {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
   ignoreEquipCooldown: 1
 --- !u!114 &6127591905545702451
 MonoBehaviour:
@@ -6224,6 +6224,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.01, y: 0.39, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &2018566112003243479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b50b4d71113b94ea8c6fb5805a3bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageEvent
 --- !u!1 &5822979517044335130
 GameObject:
   m_ObjectHideFlags: 0

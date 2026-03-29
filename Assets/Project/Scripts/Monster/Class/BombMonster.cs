@@ -38,7 +38,7 @@ namespace Monster
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
             // 플레이어에게 닿았을 때 자폭 피해
-            if (distanceToPlayer <= statSo.AtkRange)
+            if (distanceToPlayer <= statSo.AtkTrigger)
             {
                 _isSelfDie = true;
                 Explode();

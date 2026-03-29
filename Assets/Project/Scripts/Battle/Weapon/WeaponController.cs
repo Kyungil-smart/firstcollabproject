@@ -10,8 +10,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField] BattleInputReader _input;
 
     public Transform mountPoint; // 장착 위치
-    WeaponFactory _factory = new();
+    bool _isPointerOverUI;
 
+    WeaponFactory _factory = new();
     [SerializeField] WeaponSO _meleeWeapon;   //1번 슬롯 data
     [SerializeField] WeaponSO _rangeWeapon;   //2번 슬롯 data
     [SerializeField] WeaponSO _consumeWeapon; //3번 슬롯 data
@@ -135,17 +136,21 @@ public class WeaponController : MonoBehaviour
         for (int i = 0; i < _weapons.Length; i++)
         {
             WeaponBase weapon = _weapons[i];
-            //if (weapon == null || weapon.data == null) continue;
+            if (weapon == null || weapon.data == null) { Debug.LogWarning("RestoreAmmo를 호출할 수 없습니다. 뭔가 null 입니다"); continue; }
 
             int baseAmmo = weapon.data.maxAmmo;
             int bonus = 0;
 
-            bonus = weapon.attackType switch
+            switch (weapon.attackType)
             {
-                AttackType.Range => (int)perks.rangeAmmoBonus,
-                AttackType.Throwable or AttackType.Deployable => perks.consStackBonus,
-                _ => 0
-            };
+                case AttackType.Range:
+                    bonus = perks.rangeAmmoBonus;
+                    break;
+                case AttackType.Throwable:
+                case AttackType.Deployable:
+                    bonus = perks.consStackBonus;
+                    break;
+            }
 
             weapon.ammo = baseAmmo + bonus;
         }
@@ -153,7 +158,7 @@ public class WeaponController : MonoBehaviour
 
     private void Use()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return; // UI 위에서 공격 입력 무시
+        if (_isPointerOverUI) return; // UI 위에서 공격 입력 무시
         CurrentWeapon?.Use();
     }
     void Charge()
@@ -167,6 +172,7 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
+        _isPointerOverUI = EventSystem.current.IsPointerOverGameObject();
         _input.Tick();
     }
 }
