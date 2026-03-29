@@ -1,3 +1,4 @@
+using Monster;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +10,9 @@ public class StageEvent : MonoBehaviour
     PlayerBody _body;
     WeaponController _weapon;
 
+    [Header("보스")]
+    [SerializeField] GameObject _bossPrefab;
+
     private void Awake()
     {
         _body = GetComponent<PlayerBody>();
@@ -17,20 +21,35 @@ public class StageEvent : MonoBehaviour
 
     private void OnEnable()
     {
-        Room.OnRoomEntered += RestorePlayer;
+        Room.OnRoomEntered += OnRoomEntered;
     }
 
     private void OnDisable()
     {
-        Room.OnRoomEntered -= RestorePlayer;
+        Room.OnRoomEntered -= OnRoomEntered;
     }
 
-    /// <summary>
-    /// 플레이어 체력을 회복력 만큼 회복하고 탄창을 보충합니다. 방에 입장할 때마다 실행됩니다.
-    /// </summary>
-    private void RestorePlayer(Room room)
+    private void OnRoomEntered(Room room)
     {
         _body.RestoreHealth();
         _weapon.RestoreAmmo();
+
+        if (room.roomType == RoomType.BossRoom && _bossPrefab != null)
+        {
+            SpawnBoss(room);
+        }
+    }
+
+    void SpawnBoss(Room room)
+    {
+        // 이전 스테이지 클리어 플래그 리셋 (MonsterAction.Update 에서 체크하므로)
+        MonsterManager.Instance.isStageCleared = false;
+
+        Vector3 center = room.transform.position;
+        GameObject bossObj = Instantiate(_bossPrefab, center, Quaternion.identity);
+
+        var boss = bossObj.GetComponent<MonsterAction>();
+        if (boss != null)
+            boss.Init();
     }
 }
