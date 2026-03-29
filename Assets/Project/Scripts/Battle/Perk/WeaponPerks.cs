@@ -18,7 +18,7 @@ public class WeaponPerks : MonoBehaviour
     public float weaponDmgBonus;
     public float rangeBonusPoint;
     public float rangeDmgBonus;
-    public float rangeAmmoBonus;
+    public int rangeAmmoBonus;
     public float consDmgBonus;
     public int consStackBonus;
 
@@ -83,17 +83,6 @@ public class WeaponPerks : MonoBehaviour
     }
 
     /// <summary>
-    /// RangeBounusType에 따른 (데미지, 탄창) 비율 반환
-    /// </summary>
-    public static (float dmgRatio, float ammoRatio) GetRangeRatios(RangeBounusType type) => type switch
-    {
-        RangeBounusType.Power => (0.8f, 0.2f),
-        RangeBounusType.Balance => (0.5f, 0.5f),
-        RangeBounusType.Rapid => (0.2f, 0.8f),
-        _ => (0.5f, 0.5f)
-    };
-
-    /// <summary>
     /// 무기 업그레이드: 롤된 보너스를 무기에 적용하고, maxJump를 영구 강화 필드에 저장
     /// </summary>
     public void WeaponUpgrade(WeaponSO weaponSO, float rolledBonus, int rolledStackBonus = 0)
@@ -117,8 +106,7 @@ public class WeaponPerks : MonoBehaviour
         {
             case AttackType.Melee:
                 {
-                    float cap = perkSO != null ? perkSO.levelBonusMax : float.MaxValue;
-                    float total = Mathf.Min(rolledBonus + weaponDmgBonus, cap);
+                    float total = WeaponPerkPolicy.GetTotalBonus(rolledBonus, weaponDmgBonus, perkSO);
                     weapon.damageBase += total;
                     if (perkSO != null) weaponDmgBonus += perkSO.maxJump;
                     break;
@@ -127,13 +115,15 @@ public class WeaponPerks : MonoBehaviour
             case AttackType.Range:
                 if (perkSO != null)
                 {
-                    var (dmgR, ammoR) = GetRangeRatios(perkSO.rangeBounusType);
-                    float cappedTotal = Mathf.Min(rolledBonus + rangeBonusPoint, perkSO.levelBonusMax);
-                    weapon.damageBase += cappedTotal * dmgR;
-                    weapon.ammo += (int)(cappedTotal * ammoR);
+                    float cappedTotal = WeaponPerkPolicy.GetTotalBonus(rolledBonus, rangeBonusPoint, perkSO);
+                    var (plusDmg, plusAmmo) = WeaponPerkPolicy.CalculateRangeTotalBonus(cappedTotal, perkSO.rangeBounusType);
+                    
+                    weapon.damageBase += plusDmg;
+                    weapon.ammo += plusAmmo;
+                    
                     rangeBonusPoint += perkSO.maxJump;
-                    rangeDmgBonus += perkSO.maxJump * dmgR;
-                    rangeAmmoBonus += perkSO.maxJump * ammoR;
+                    rangeDmgBonus = plusDmg;
+                    rangeAmmoBonus = plusAmmo;
                 }
                 else
                 {
@@ -144,19 +134,52 @@ public class WeaponPerks : MonoBehaviour
             case AttackType.Throwable:
             case AttackType.Deployable:
                 {
-                    float cap = perkSO != null ? perkSO.levelBonusMax : float.MaxValue;
-                    float total = Mathf.Min(rolledBonus + consDmgBonus, cap);
+                    float total = WeaponPerkPolicy.GetTotalBonus(rolledBonus, consDmgBonus, perkSO);
                     weapon.damageBase += total;
                     weapon.ammo += rolledStackBonus;
                     if (perkSO != null)
                     {
                         consDmgBonus += perkSO.maxJump;
-                        consStackBonus += rolledStackBonus;
+                        consStackBonus = rolledStackBonus; // 소모품 스택보너스는 누적이 아닌 대입
                     }
                     break;
                 }
         }
 
         weaponUpgradeCount++;
+    }
+}
+
+/// <summary>
+/// 무기 강화 정책: 보너스 값을 계산하는 공통 로직
+/// </summary>
+public static class WeaponPerkPolicy
+{
+    public static (float dmgRatio, float ammoRatio) GetRangeRatios(RangeBounusType type) => type switch
+    {
+        RangeBounusType.Power => (0.8f, 0.2f),
+        RangeBounusType.Balance => (0.5f, 0.5f),
+        RangeBounusType.Rapid => (0.2f, 0.8f),
+        _ => (0.5f, 0.5f)
+    };
+
+    public static float RollBonus(WeaponPerkSO perk, float currentAccum)
+    {
+        if (perk == null) return 0f;
+        float roll = Random.Range(perk.bonusMin, perk.bonusMax);
+        float remaining = Mathf.Max(0f, perk.levelBonusMax - currentAccum);
+        return Mathf.Min(roll, remaining);
+    }
+
+    public static float GetTotalBonus(float rolledBonus, float currentAccum, WeaponPerkSO perk)
+    {
+        if (perk == null) return rolledBonus + currentAccum;
+        return Mathf.Min(rolledBonus + currentAccum, perk.levelBonusMax);
+    }
+
+    public static (float plusDmg, int plusAmmo) CalculateRangeTotalBonus(float totalBonus, RangeBounusType type)
+    {
+        var (dmgR, ammoR) = GetRangeRatios(type);
+        return (totalBonus * dmgR, (int)(totalBonus * ammoR));
     }
 }
