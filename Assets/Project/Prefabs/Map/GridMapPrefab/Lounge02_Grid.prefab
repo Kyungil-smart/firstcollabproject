@@ -264,7 +264,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.018638134}
+  m_Offset: {x: -0.00000023841858, y: 0.018637657}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -274,7 +274,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 13.625759, y: 13.588483}
+  m_Size: {x: 12.972988, y: 12.842461}
   m_EdgeRadius: 0
 --- !u!1 &4581462282857056411
 GameObject:
@@ -4174,6 +4174,7 @@ GameObject:
   - component: {fileID: 159186383601590450}
   - component: {fileID: 3467379508761213977}
   - component: {fileID: 9217920638597955012}
+  - component: {fileID: 5458771052746941396}
   m_Layer: 0
   m_Name: Lounge02_MapJoint
   m_TagString: Untagged
@@ -4434,6 +4435,22 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
+--- !u!114 &5458771052746941396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785008036710740000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &7168037345564944761
 GameObject:
   m_ObjectHideFlags: 0

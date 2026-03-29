@@ -25,7 +25,7 @@ namespace Monster
 
         public override void Init()
         {
-            // 런타임 SO 생성으로 부모 클래스의 statSo 의존성 충족
+            // 런타임 SO 생성으로 statSo 의존성 충족?
             statSo = ScriptableObject.CreateInstance<MonsterStatSO>();
             statSo.Name = "DummyBoss";
             statSo.Hp = (int)_maxHp;
