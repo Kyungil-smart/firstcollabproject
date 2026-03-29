@@ -1202,6 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterManager
   monsterSpawner: {fileID: 1233020881}
   player: {fileID: 1879814301668405180}
+  currentRoom: {fileID: 0}
   spawnDataSet: {fileID: 11400000, guid: b033d9c42eb238d4298526e3c92c97da, type: 2}
   progressBar: {fileID: 928457807}
   progressText: {fileID: 1631429643}
