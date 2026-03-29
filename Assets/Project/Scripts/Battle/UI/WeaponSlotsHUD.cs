@@ -10,6 +10,7 @@ public class WeaponSlotsHUD : MonoBehaviour
     [System.Serializable]
     public class WeaponSlotUI
     {
+        public TextMeshProUGUI indexText;
         public Image coolTimeClock;
         public TextMeshProUGUI ammoText;
     }
@@ -40,6 +41,8 @@ public class WeaponSlotsHUD : MonoBehaviour
 
             if (weapon.ammo > 0) slot.ammoText.text = weapon.ammo.ToString();
             else slot.ammoText.text = "";
+
+            slot.indexText.color = (i == activeIndex) ? Color.green : Color.white; // 활성 슬롯의 인덱스 텍스트 색상을 변경
 
             // 쿨타임 UI 처리
             if (isEquipCooling)

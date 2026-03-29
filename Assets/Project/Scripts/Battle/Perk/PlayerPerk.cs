@@ -60,7 +60,6 @@ public class PlayerPerk : MonoBehaviour
     }
 
     // 5가지 퍼크에서 HP를 4부위로 확장한 풀(8개)에서 랜덤 3개 선택
-    // TODO: 각 슬롯에 대응하는 종류의 무기만 뜨도록 수정
     public (PlayerPerkSO perk, BodyPart part)[] GetRandomPerks(int count = 3)
     {
         int floor = GameManager.Instance.currentFloor;

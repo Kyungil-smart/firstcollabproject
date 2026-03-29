@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
 
     // 방문 확인용
     [SerializeField]private bool isVisited = false;
-    
+    public static event Action<Room> OnRoomEntered;
     /*
     private void Start()
     {
@@ -98,6 +98,7 @@ public class Room : MonoBehaviour
                 GameManager.Instance.currentStage = currentStageId;
                 
                 MonsterManager.Instance.StartStage();
+                OnRoomEntered?.Invoke(this);
             }
         }
     }
