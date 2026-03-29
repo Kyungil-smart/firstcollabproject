@@ -11,6 +11,14 @@ using UnityEngine;
         public int StartSimultaneous;
         // 필드 존재 최대 마릿수
         public int MaxSimultaneous;
+        // 노말 좀비 확률
+        public float Normal;
+        // 원거리 좀비 확률
+        public float Ranged;
+        // 자폭 좀비 확률
+        public float Bomb;
+        // 브루트 좀비 확률
+        public float Brute;
         
         public override void SetData(string[] data)
         {
@@ -19,5 +27,9 @@ using UnityEngine;
             MaxTotalMonster = ParseInt(data[2]);
             StartSimultaneous = ParseInt(data[3]);
             MaxSimultaneous = ParseInt(data[4]);
+            Normal = ParseFloat(data[5]);
+            Ranged = ParseFloat(data[6]);
+            Bomb = ParseFloat(data[7]);
+            Brute = ParseFloat(data[8]);
         }
     }

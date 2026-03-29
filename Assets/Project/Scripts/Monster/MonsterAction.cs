@@ -13,7 +13,6 @@ namespace Monster
         [SerializeField] protected GameObject bodyPrefab;
 
         public MonsterStatSO statSo;
-        public MonsterVisualSO visualSo;
 
         protected float currentHp;
         protected bool isDead = false;
@@ -80,20 +79,10 @@ namespace Monster
             }
             else
             {
-                // 몬스터가 플레이어와 너무 가까울 때는 억지로 밀지 않도록 속도를 줄이거나 멈춤
-                float distanceToTarget = Vector2.Distance(transform.position, agent.steeringTarget);
-                if (distanceToTarget < 0.1f)
-                {
-                    rb.linearVelocity = Vector2.zero;
-                }
-                else
-                {
-                    Vector2 direction = (agent.steeringTarget - transform.position).normalized;
-                    rb.linearVelocity = direction * statSo.MoveSpeed;
-                }
+                Vector2 direction = (agent.steeringTarget - transform.position).normalized;
+                rb.linearVelocity = direction * statSo.MoveSpeed;
             }
 
-            // transform.position 대신 rb.position을 사용하여 물리 좌표 기준으로 동기화
             agent.nextPosition = rb.position;
         }
 
@@ -232,18 +221,8 @@ namespace Monster
             {
                 Die();
             }
-            else if (!hasSuperArmor && !isStop)
-            {
-                StartCoroutine(StopDuration());
-            }
         }
-
-        private IEnumerator StopDuration()
-        {
-            isStop = true;
-            yield return new WaitForSeconds(visualSo.HitStopDuration);
-            isStop = false;
-        }
+        
         #region 상태이상 메서드
         Coroutine _stunCoroutine;
         float _stunEndTime;
@@ -341,9 +320,9 @@ namespace Monster
             }
 
             float fadeDuration = 1f;
-            if (visualSo != null && visualSo.CorpseTime > 0)
+            if (statSo != null && statSo.CorpseTime > 0)
             {
-                fadeDuration = visualSo.CorpseTime;
+                fadeDuration = statSo.CorpseTime;
             }
 
             float elapsedTime = 0f;
