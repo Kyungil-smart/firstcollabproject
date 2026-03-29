@@ -3657,6 +3657,7 @@ GameObject:
   - component: {fileID: 6229692154653846430}
   - component: {fileID: 1333658748278875801}
   - component: {fileID: 3621327324653303054}
+  - component: {fileID: 6320863347593790328}
   m_Layer: 0
   m_Name: Pool_MapJoint
   m_TagString: Untagged
@@ -3903,6 +3904,22 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
+--- !u!114 &6320863347593790328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305012091945758817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5475187613254417535
 GameObject:
   m_ObjectHideFlags: 0
