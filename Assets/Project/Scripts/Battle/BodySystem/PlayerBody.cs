@@ -161,6 +161,15 @@ public class PlayerBody : MonoBehaviour, IDamageable
 
     public bool RollCrit() => CritPolicy.Get(CritPercent).Roll();
 
+    public void RestoreHealth() // 4개 부위를 회복력 만큼 회복
+    {
+        HeadCurHP += headMaxHP * RecoveryPercent;
+        BodyCurHP += bodyMaxHP * RecoveryPercent;
+        ArmCurHP  += armMaxHP  * RecoveryPercent;
+        LegCurHP  += legMaxHP  * RecoveryPercent;
+        // TODO: 회복 시 연출
+    }
+
 
     private void Awake()
     {
