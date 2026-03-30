@@ -1,121 +1,261 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Monster
 {
     public class BombMonster : MonsterAction
     {
-        [SerializeField] private float blinkDuration = 1.0f;
-        [SerializeField] private int blinkCount = 4;
-        
-        private bool _isExploded = false;
-        private bool _isSelfDie = false;
-        
+        [Header("Settings")] 
+        [SerializeField] private float chaseDuration = 1.5f;
+        [SerializeField] private float stopDuration = 0.5f;
+        [SerializeField] private int blinkCount = 6;
+
+        private readonly float _explosionRadius = 1f; 
+        private bool _isExploded = false; 
+        private bool _isSelfDie = false; 
+        private bool _isStoppingForExplosion = false;
+
+        private SpriteRenderer[] _renderers;
+        private Color[] _originalColors;
+        private LineRenderer _explosionLine;
+        private Collider2D _myCollider;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _myCollider = GetComponent<Collider2D>();
+            _renderers = GetComponentsInChildren<SpriteRenderer>();
+            _originalColors = new Color[_renderers.Length];
+
+            for (int i = 0; i < _renderers.Length; i++)
+            {
+                if (_renderers[i] != null) _originalColors[i] = _renderers[i].color;
+            }
+
+            CreateRangeIndicator();
+        }
+
+        public override void Init()
+        {
+            base.Init();
+
+            // 변수 초기화
+            _isExploded = false;
+            _isSelfDie = false;
+            _isStoppingForExplosion = false;
+            isAttacking = false;
+
+            // 컴포넌트 복구
+            rb.simulated = true;
+            if (agent != null) 
+            {
+                agent.enabled = true;
+                agent.isStopped = false;
+            }
+            
+            gameObject.layer = LayerMask.NameToLayer("Monster");
+
+            RestoreOriginalColors();
+            if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
+        }
+
         public override void TakeDamage(float damage)
         {
-            // 플레이어의 공격을 받을 시 그 자리에서 폭발
-            if (!isDead && !_isExploded)
+            if (isDead) return;
+
+            // 시퀀스 미작동 중 피격 시 즉시 시작
+            if (!_isExploded)
             {
                 Explode();
-                return;
             }
+
             base.TakeDamage(damage);
         }
-        
+
         protected override void Motion()
         {
-            if (isDead || isAttacking || _isExploded) return;
-
-            if (agent == null || !agent.isOnNavMesh || statSo == null) return;
-
+            if (isDead || IsStunned || _isStoppingForExplosion) return;
+            if (agent == null || !agent.enabled || !agent.isOnNavMesh || statSo == null) return;
             if (MonsterManager.Instance.player == null) return;
 
             Transform playerTransform = MonsterManager.Instance.player.transform;
-
-            if (playerTransform == null) return;
-
-            // 플레이어와 직선거리 계산
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-            // 플레이어에게 닿았을 때 자폭 피해
-            if (distanceToPlayer <= statSo.AtkTrigger)
+            // 자폭 사거리 진입 체크
+            if (!_isExploded && distanceToPlayer <= statSo.AtkTrigger)
             {
-                _isSelfDie = true;
                 Explode();
             }
-            // 공격 중이 아니면 플레이어 추격
-            else if (!isAttacking)
-            {
-                agent.isStopped = false;
-                agent.SetDestination(playerTransform.position);
 
-                if (animator != null)
-                {
-                    bool isMoving = agent.velocity.sqrMagnitude > 0.01f;
-                    animator.SetBool("1_Move", isMoving);
-                }
+            // 추격
+            agent.isStopped = false;
+            agent.SetDestination(playerTransform.position);
+
+            if (animator != null)
+            {
+                bool isMoving = agent.velocity.sqrMagnitude > 0.1f;
+                animator.SetBool("1_Move", isMoving);
             }
         }
 
         private void Explode()
         {
-            if (_isExploded) return;
+            if (_isExploded || isDead) return;
             _isExploded = true;
-            isAttacking = true;
-            agent.isStopped = true;
+
+            UpdateRangeIndicatorPositions();
+            if (_explosionLine != null) _explosionLine.gameObject.SetActive(true);
 
             StartCoroutine(ExplosionRoutine());
+            StartCoroutine(StopTimerRoutine());
+        }
+
+        private IEnumerator StopTimerRoutine()
+        {
+            yield return new WaitForSeconds(chaseDuration);
+            if (isDead) yield break;
+
+            _isStoppingForExplosion = true;
+            isAttacking = true; 
+            
+            // 플레이어 충돌 무시
+            if (_myCollider != null && MonsterManager.Instance.player != null)
+            {
+                var playerCol = MonsterManager.Instance.player.GetComponent<Collider2D>();
+                if (playerCol != null) Physics2D.IgnoreCollision(_myCollider, playerCol, true);
+            }
+
+            if (agent != null && agent.enabled) 
+            {
+                agent.velocity = Vector2.zero;
+                agent.isStopped = true;
+            }
+    
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            
+            // 조작 방해 금지 레이어
+            gameObject.layer = 2; 
         }
 
         private IEnumerator ExplosionRoutine()
         {
-            // 붉은색으로 깜빡이는 연출 추가
-            float interval = blinkDuration / (blinkCount * 2);
-            SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+            float totalDuration = chaseDuration + stopDuration;
+            float interval = totalDuration / (blinkCount * 2);
 
             for (int i = 0; i < blinkCount; i++)
             {
-                SetRenderersColor(renderers, Color.red);
+                if (isDead) yield break;
+                SetRenderersColor(Color.red);
                 yield return new WaitForSeconds(interval);
-                
-                SetRenderersColor(renderers, Color.white);
+                RestoreOriginalColors();
                 yield return new WaitForSeconds(interval);
             }
 
-            // 데미지 처리
-            // TODO: 터지는 이펙트 추가
+            if (isDead) yield break;
 
-            PlayerBody playerBody = MonsterManager.Instance.player.GetComponent<PlayerBody>();
-            if (playerBody != null)
+            // 폭발 데미지
+            if (MonsterManager.Instance.player != null)
             {
-                playerBody.TakeDamage(statSo.Atk);
+                float finalDistance = Vector2.Distance(transform.position, MonsterManager.Instance.player.transform.position);
+                if (finalDistance <= _explosionRadius)
+                {
+                    var playerBody = MonsterManager.Instance.player.GetComponent<PlayerBody>();
+                    if (playerBody != null) playerBody.TakeDamage(statSo.Atk);
+                }
             }
 
-            // 자폭 후 즉시 사망 처리
+            _isSelfDie = true; 
             Die();
         }
-        
+
         protected override void Die()
         {
-            if (isDead) return;
+            // 중복 사망 방지
+            if (isDead && !_isSelfDie) return; 
 
-            base.Die();
+            StopAllCoroutines();
             
-            //자폭한게 아닐때만 
-            if (!_isSelfDie)
+            // 사망 상태 확정
+            isDead = true; 
+
+            var spawner = FindObjectOfType<MonsterSpawner>();
+
+            if (_isSelfDie)
             {
-                Registry<MonsterAction>.Remove(this);
+                // 자폭 사망
+                if (spawner != null) spawner.NotifyMonsterSuicide();
+            }
+            else
+            {
+                // 기본 사망 로직 실행
+                base.Die();
+            }
+
+            // 공통 정리
+            if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
+            gameObject.layer = LayerMask.NameToLayer("Monster");
+    
+            if (spawner != null)
+            {
+                // 풀 반환 및 비활성화
+                spawner.ReturnMonster(this.gameObject);
             }
             
-            _isSelfDie = false;
-            
+            // 강제 비활성화
+            gameObject.SetActive(false);
         }
-        
-        private void SetRenderersColor(SpriteRenderer[] renderers, Color color)
+
+        private void SetRenderersColor(Color color)
         {
-            foreach (var sr in renderers)
+            if (_renderers == null) return;
+            foreach (var r in _renderers) if (r != null) r.color = color;
+        }
+
+        private void RestoreOriginalColors()
+        {
+            if (_renderers == null || _originalColors == null) return;
+            for (int i = 0; i < _renderers.Length; i++)
+                if (_renderers[i] != null) _renderers[i].color = _originalColors[i];
+        }
+
+        private void CreateRangeIndicator()
+        {
+            Transform existingLine = transform.Find("ExplosionRangeLine");
+            if (existingLine != null) _explosionLine = existingLine.GetComponent<LineRenderer>();
+
+            if (_explosionLine == null)
             {
-                if (sr != null) sr.color = color;
+                GameObject lineObj = new GameObject("ExplosionRangeLine");
+                lineObj.transform.SetParent(transform);
+                lineObj.transform.localPosition = new Vector3(0, 0, -0.1f);
+                _explosionLine = lineObj.AddComponent<LineRenderer>();
+            }
+
+            _explosionLine.useWorldSpace = false;
+            _explosionLine.startWidth = 0.05f;
+            _explosionLine.endWidth = 0.05f;
+            _explosionLine.material = new Material(Shader.Find("Sprites/Default"));
+            _explosionLine.startColor = new Color(1f, 0f, 0f, 0.7f);
+            _explosionLine.endColor = new Color(1f, 0f, 0f, 0.7f);
+            _explosionLine.sortingOrder = 10;
+
+            _explosionLine.positionCount = 51;
+            _explosionLine.loop = true;
+            UpdateRangeIndicatorPositions();
+            _explosionLine.gameObject.SetActive(false);
+        }
+
+        private void UpdateRangeIndicatorPositions()
+        {
+            if (_explosionLine == null) return;
+            for (int i = 0; i < 51; i++)
+            {
+                float angle = i * (360f / 50);
+                float x = Mathf.Cos(Mathf.Deg2Rad * angle) * _explosionRadius;
+                float y = Mathf.Sin(Mathf.Deg2Rad * angle) * _explosionRadius;
+                _explosionLine.SetPosition(i, new Vector3(x, y, 0f));
             }
         }
     }

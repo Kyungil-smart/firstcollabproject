@@ -176,5 +176,7 @@ namespace Monster
                 currentRoom.ClearRoom();
             }
         }
+        
+ 
     }
 }
