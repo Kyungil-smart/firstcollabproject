@@ -42,6 +42,7 @@ namespace Monster
                 // 3D처럼 회전하지 않도록 막고, Y축 기준으로 2D 이동
                 agent.updateRotation = false;
                 agent.updateUpAxis = false;
+                agent.updatePosition = false; 
                 agent.enabled = false;
             }
         }
@@ -76,9 +77,19 @@ namespace Monster
             if (isAttacking || agent.isStopped || isStop || IsStunned)
             {
                 rb.linearVelocity = Vector2.zero;
+                
+                if (rb.bodyType != RigidbodyType2D.Kinematic)
+                {
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                }
             }
             else
             {
+                if (rb.bodyType != RigidbodyType2D.Dynamic)
+                {
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                }
+                
                 Vector2 direction = (agent.steeringTarget - transform.position).normalized;
                 rb.linearVelocity = direction * statSo.MoveSpeed;
             }

@@ -718,17 +718,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1348657620 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8369192575611144517, guid: caada59ec3e4b6b4dba99cb8f1dccac0, type: 3}
-  m_PrefabInstance: {fileID: 7189677599371830673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38511aa547104b6aba9b905edb2fe41d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.ClearRewardPopup
 --- !u!1 &1377531565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,17 +1163,6 @@ MonoBehaviour:
   - {fileID: 4236943696069161790, guid: f5497282e0870274e90a7dd3262e3837, type: 3}
   navMeshSurfaces: {fileID: 1377531568}
   roomOffset: 16
---- !u!114 &1988162980 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6767256151925692086, guid: caada59ec3e4b6b4dba99cb8f1dccac0, type: 3}
-  m_PrefabInstance: {fileID: 7189677599371830673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb319f462e9345a9898286718b7ea522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.RewardPopupUI
 --- !u!1 &2042280719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,14 +1314,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2018566112003243479, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: _bossPrefab
-      value: 
-      objectReference: {fileID: 7047037709664641846, guid: 6383b4647ecdfbf488369a0e3a8f6619, type: 3}
-    - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: _rewardPopup
-      value: 
-      objectReference: {fileID: 1348657620}
     - target: {fileID: 5230605081855053456, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1384,10 +1354,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5779710587645710517, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: _rewardPopup
-      value: 
-      objectReference: {fileID: 1988162980}
     - target: {fileID: 5796912905840949037, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: m_Name
       value: Player_Charactor
