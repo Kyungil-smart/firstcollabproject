@@ -113,7 +113,13 @@ namespace Monster
 
             // 풀에서 꺼내질 때 Registry에 등록
             Registry<MonsterAction>.TryAdd(this);
-
+            
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
 
             //세팅 끝나면 NavMeshAgent 활성화
             if (agent != null && statSo != null)
@@ -271,6 +277,7 @@ namespace Monster
         }
         // 향후 다른 상태이상 효과 추가
         #endregion
+        
         protected virtual void Die()
         {
             isDead = true;
@@ -279,8 +286,16 @@ namespace Monster
             // 추격 정지
             if (agent != null)
             {
-                agent.isStopped = true;
+                if (agent.isOnNavMesh) agent.isStopped = true; // 에러 방지
                 agent.enabled = false;
+            }
+
+            // 시체가 미끄러지지 않도록 관성 제거
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero; 
+                rb.bodyType = RigidbodyType2D.Kinematic;
             }
 
             if (hpSlider != null)
