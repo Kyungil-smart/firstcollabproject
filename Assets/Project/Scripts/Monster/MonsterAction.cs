@@ -220,6 +220,11 @@ namespace Monster
                 isCrit = true;
             }
             damage = Mathf.Max(0f, damage); 
+            
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(HitFlashRoutine(0.05f));
+            }
 
             if (statSo.StunDuration > 0) ApplyStun(statSo.StunDuration);
 
@@ -291,6 +296,25 @@ namespace Monster
         }
         // 향후 다른 상태이상 효과 추가
         #endregion
+        
+        private IEnumerator HitFlashRoutine(float flashDuration)
+        {
+            if (_spriteRenderers == null) yield break;
+
+            // 모든 스프라이트를 빨간색으로 변경
+            for (int i = 0; i < _spriteRenderers.Length; i++)
+            {
+                _spriteRenderers[i].color = Color.red; 
+            }
+
+            yield return new WaitForSeconds(flashDuration);
+
+            // 다시 원래 색상(흰색)으로 복구
+            for (int i = 0; i < _spriteRenderers.Length; i++)
+            {
+                _spriteRenderers[i].color = Color.white; 
+            }
+        }
         
         protected virtual void Die()
         {
