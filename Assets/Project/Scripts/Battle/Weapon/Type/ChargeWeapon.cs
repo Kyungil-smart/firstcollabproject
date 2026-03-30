@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class ChargeWeapon : WeaponBase
 {
@@ -80,13 +81,16 @@ public class ChargeWeapon : WeaponBase
         Vector3 ownerPos = _owner.transform.position;
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range + _rangeOffset);
 
+        // 한 오브젝트에 콜라이더가 여러 개일 때 중복 타격 방지
+        HashSet<IDamageable> alreadyHit = new();
+
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.transform.root == transform.root)
                 continue;
 
             var damageable = hitCollider.GetComponent<IDamageable>();
-            if (damageable != null)
+            if (damageable != null && alreadyHit.Add(damageable))
             {
                 Vector3 dirToTarget = (hitCollider.transform.position - ownerPos).normalized;
                 float angle = Vector3.Angle(transform.right, dirToTarget);

@@ -18,7 +18,7 @@ public class TEST_WeaponSlots : MonoBehaviour
     static readonly Key[] _fKeys =
     {
         Key.F1,  Key.F2,  Key.F3,  Key.F4,  Key.F5,
-        Key.F6,  Key.F7,  Key.F8,  Key.F9,  Key.F10
+        Key.F6,  Key.F7,  Key.F8,  Key.F9,  Key.F10, Key.F11
     };
 
     private void Awake()

@@ -150,7 +150,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public void AddBaseCritPercent(float value) { _critPercent += value; }
     public void AddBaseRecoveryPercent(float value) { _recoveryPercent += value; }
     public void AddBaseCritDamage(float value) { _critDamage += value; }
-    public void AddBaseMoveSpeed(float value) { _moveSpeed += value; }
+    public void AddBaseMoveSpeed(float percent) { _moveSpeed *= (1f + percent); }
 
     [SerializeField] float _evasionPercent = 0.05f; // È¸ÇÇÀ²
     public float EvasionPercent
@@ -184,6 +184,11 @@ public class PlayerBody : MonoBehaviour, IDamageable
 
         Canvas c = GetComponentInChildren<Canvas>();
         _canvas = c.transform;
+    }
+
+    public void ShowStatusText(string text, Color color)
+    {
+        DamageText.ShowText(_textPrefab, _canvas, text, color);
     }
 
     public void TakeDamage(float damage)

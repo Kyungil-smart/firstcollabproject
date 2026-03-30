@@ -151,7 +151,7 @@ namespace UI
                 case Target_List.Crit_Damage:
                     return $"치명타 데미지: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 case Target_List.Move_Speed:
-                    return $"이동속도: +<color=green>{_rolledBonus:F2}</color>";
+                    return $"이동속도: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 //$"누적 보너스: {player.moveSpeedBonus:F2}";
                 default:
                     return "";

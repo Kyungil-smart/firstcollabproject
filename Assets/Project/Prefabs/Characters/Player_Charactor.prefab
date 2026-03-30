@@ -5852,15 +5852,17 @@ GameObject:
   - component: {fileID: 2180599241375244892}
   - component: {fileID: 5856682874185130112}
   - component: {fileID: 7837590399723540022}
-  - component: {fileID: 2294146037350510064}
   - component: {fileID: 5779710587645710517}
   - component: {fileID: 4771612577379655055}
-  - component: {fileID: 9217619452028172012}
-  - component: {fileID: 6127591905545702451}
+  - component: {fileID: 2294146037350510064}
+  - component: {fileID: -3170251282390323655}
+  - component: {fileID: -6931260449682252595}
   - component: {fileID: 533216733813298578}
   - component: {fileID: 6970941092887172910}
-  - component: {fileID: 2018566112003243479}
   - component: {fileID: 1880936097221889851}
+  - component: {fileID: 9217619452028172012}
+  - component: {fileID: 6127591905545702451}
+  - component: {fileID: 2018566112003243479}
   m_Layer: 7
   m_Name: Player_Charactor
   m_TagString: Player
@@ -5954,7 +5956,7 @@ Rigidbody2D:
   m_LinearDamping: 10
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 115f2570fd616f94ca90ea353ac0a618, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6089,18 +6091,6 @@ MonoBehaviour:
   step4: 0.65
   tweenDuration: 0.5
   tweenEase: 4
---- !u!114 &2294146037350510064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5796912905840949037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61886a97531cb2f4da872ec61737b763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!114 &5779710587645710517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6155,6 +6145,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
   - {fileID: 11400000, guid: bfc273ba7abe7ce4da2eda3ad09ba27b, type: 2}
   - {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
+  - {fileID: 11400000, guid: 29968bb8c8573274ab75f00dc105c296, type: 2}
   weaponUpgradeCount: 0
   weaponDmgBonus: 0
   rangeBonusPoint: 0
@@ -6162,7 +6153,7 @@ MonoBehaviour:
   rangeAmmoBonus: 0
   consDmgBonus: 0
   consStackBonus: 0
---- !u!114 &9217619452028172012
+--- !u!114 &2294146037350510064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6171,22 +6162,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5796912905840949037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46589e40efe02e44084a0a231fe930d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 61886a97531cb2f4da872ec61737b763, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TEST_WeaponSlots
-  _slots:
-  - {fileID: 11400000, guid: 38da5e3246fae6b4a9db1e078cf986a5, type: 2}
-  - {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
-  - {fileID: 11400000, guid: 993bf614d463f804d925aef93e9b062d, type: 2}
-  - {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
-  - {fileID: 11400000, guid: 9a4d17ea3a6560f40bb0c67199805c87, type: 2}
-  - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
-  - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
-  - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
-  - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
-  - {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
-  ignoreEquipCooldown: 1
---- !u!114 &6127591905545702451
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &-3170251282390323655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6195,9 +6174,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5796912905840949037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f53a64a2fd57b84d92375ce97e22707, type: 3}
+  m_Script: {fileID: 11500000, guid: 4131219af13905e4ca8b72cd972ae282, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TEST_WeaponUpgrade
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerVisualEffect
+--- !u!114 &-6931260449682252595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79db711d55552054a8f36489591fa192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffect
 --- !u!210 &533216733813298578
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -6227,19 +6218,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.01, y: 0.39, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &2018566112003243479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5796912905840949037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b50b4d71113b94ea8c6fb5805a3bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageEvent
-  _bossPrefab: {fileID: 7047037709664641846, guid: 6383b4647ecdfbf488369a0e3a8f6619, type: 3}
 --- !u!114 &1880936097221889851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6374,6 +6352,56 @@ MonoBehaviour:
     DissipationDistance: 85.1
     PropagationSpeed: 342.55
   DefaultVelocity: {x: 1, y: -1, z: 0}
+--- !u!114 &9217619452028172012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46589e40efe02e44084a0a231fe930d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TEST_WeaponSlots
+  _slots:
+  - {fileID: 11400000, guid: 38da5e3246fae6b4a9db1e078cf986a5, type: 2}
+  - {fileID: 11400000, guid: 86c1799734d5a124eaf0cbfccfcf0f6e, type: 2}
+  - {fileID: 11400000, guid: 993bf614d463f804d925aef93e9b062d, type: 2}
+  - {fileID: 11400000, guid: a1781ca688bc29a4698347f6c2c1b1cb, type: 2}
+  - {fileID: 11400000, guid: 9a4d17ea3a6560f40bb0c67199805c87, type: 2}
+  - {fileID: 11400000, guid: c6aa8abcc629cf14a81136ba82aba448, type: 2}
+  - {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
+  - {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
+  - {fileID: 11400000, guid: c10d2663937d98743ac89e5cdcb49965, type: 2}
+  - {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
+  - {fileID: 11400000, guid: 29968bb8c8573274ab75f00dc105c296, type: 2}
+  ignoreEquipCooldown: 1
+--- !u!114 &6127591905545702451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f53a64a2fd57b84d92375ce97e22707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TEST_WeaponUpgrade
+--- !u!114 &2018566112003243479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b50b4d71113b94ea8c6fb5805a3bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageEvent
+  _bossPrefab: {fileID: 7047037709664641846, guid: 6383b4647ecdfbf488369a0e3a8f6619, type: 3}
 --- !u!1 &5822979517044335130
 GameObject:
   m_ObjectHideFlags: 0

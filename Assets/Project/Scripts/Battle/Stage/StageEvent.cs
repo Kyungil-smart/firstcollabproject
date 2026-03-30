@@ -37,7 +37,7 @@ public class StageEvent : MonoBehaviour
 
         if (room.roomType == RoomType.BossRoom && _bossPrefab != null)
         {
-            //SpawnBoss(room);
+            SpawnBoss(room);
         }
     }
 
