@@ -1430,26 +1430,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3335707535554405679, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: _consumeWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: bfc273ba7abe7ce4da2eda3ad09ba27b, type: 2}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _rewardPopup
       value: 
       objectReference: {fileID: 1348657620}
-    - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: _allPerks.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: '_allPerks.Array.data[9]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 29968bb8c8573274ab75f00dc105c296, type: 2}
-    - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: '_allPerks.Array.data[10]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 29968bb8c8573274ab75f00dc105c296, type: 2}
     - target: {fileID: 5230605081855053456, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1498,14 +1482,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Charactor
       objectReference: {fileID: 0}
-    - target: {fileID: 9217619452028172012, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: _slots.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 9217619452028172012, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: '_slots.Array.data[10]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 29968bb8c8573274ab75f00dc105c296, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
