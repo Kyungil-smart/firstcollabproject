@@ -51,4 +51,13 @@ public class BattleInputReader : ScriptableObject, IBattleActions
     {
         if (isCharging) onCharge?.Invoke();
     }
+
+    public Vector2 MoveInput { get; private set; }
+    public event Action<Vector2> onMove;
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        MoveInput = context.ReadValue<Vector2>();
+        onMove?.Invoke(MoveInput);
+    }
 }
