@@ -24,6 +24,7 @@ public class FlashBangProjectile : MonoBehaviour
     private bool _hasExploded;
     private Bloom _bloom;
     private Rigidbody2D _rb;
+    private IDamageable _directHitDamageable;
 
     private void Awake()
     {
@@ -60,6 +61,7 @@ public class FlashBangProjectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (_hasExploded) return;
+        _directHitDamageable = other.gameObject.GetComponent<IDamageable>();
         Explode();
     }
 
@@ -68,19 +70,13 @@ public class FlashBangProjectile : MonoBehaviour
         if (_hasExploded) return;
         _hasExploded = true;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _splashRadius);
-        foreach (var hit in hits)
-        {
-            var damageable = hit.GetComponent<IDamageable>();
-            if (damageable != null)
+        ExplodePolicy.Apply(transform.position, _splashRadius, _damage,
+            transform, _directHitDamageable,
+            onHit: hit =>
             {
-                damageable.TakeDamage(_damage);
-
                 var monster = hit.GetComponent<MonsterAction>();
-                if (monster != null)
-                    monster.ApplyStun(1f);
-            }
-        }
+                if (monster != null) monster.ApplyStun(1f);
+            });
 
         if (_bloom != null) FlashBloom();
         Destroy(gameObject);

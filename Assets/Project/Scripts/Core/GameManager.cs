@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 /// <summary>
@@ -22,6 +23,14 @@ public class GameManager : MonoBehaviour
         Instance = go.AddComponent<GameManager>();
         DontDestroyOnLoad(go);
     }
+
+    // 카메라 흔들기
+    public void CameraShake(CinemachineImpulseSource impulseSource, float force = 0.1f)
+    {
+        impulseSource.GenerateImpulseWithForce(force);
+    }
+
+
 
     private void OnDestroy()
     {

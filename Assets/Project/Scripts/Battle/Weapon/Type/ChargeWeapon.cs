@@ -4,14 +4,12 @@ public class ChargeWeapon : WeaponBase
 {
     [SerializeField] int chargeTime = 3;
     [SerializeField] float failCooldown = 0.5f;
-
     bool _isCharging;
     float _chargeTimer;
 
-    [Header("부채꼴 공격 설정")]
     float _sectorAngle;
+    float _rangeOffset = 0.23f; // 플레이어 위치로 이동해서 감소한 사거리 보정값
 
-    [Header("차지 시각화")]
     SpriteRenderer _spriteRenderer;
     Color _defaultColor;
     static readonly Color ChargeStartColor = Color.black;
@@ -80,7 +78,7 @@ public class ChargeWeapon : WeaponBase
     {
         _sectorAngle = sectorAngle;
         Vector3 ownerPos = _owner.transform.position;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range + _rangeOffset);
 
         foreach (var hitCollider in hitColliders)
         {

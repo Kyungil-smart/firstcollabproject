@@ -33,20 +33,20 @@ namespace UI
         /// <summary>
         /// 무기 강화 팝업 열기
         /// </summary>
-        public void Open(WeaponSO[] weaponDatas, WeaponPerks playerPerk)
+        public void Open(WeaponSO[] weaponDatas, WeaponPerkSO[] perkDatas, WeaponPerks playerPerk)
         {
             gameObject.SetActive(true);
             Time.timeScale = 0f;
-            SetData(weaponDatas, playerPerk);
+            SetData(weaponDatas, perkDatas, playerPerk);
         }
-        private void SetData(WeaponSO[] weaponDatas, WeaponPerks playerPerk)
+        private void SetData(WeaponSO[] weaponDatas, WeaponPerkSO[] perkDatas, WeaponPerks playerPerk)
         {
             for (int i = 0; i < _cardSlotList.Count; i++)
             {
                 if (i < weaponDatas.Length && weaponDatas[i] != null)
                 {
                     _cardSlotList[i].gameObject.SetActive(true);
-                    _cardSlotList[i].SetCardData(weaponDatas[i], playerPerk);
+                    _cardSlotList[i].SetCardData(weaponDatas[i], perkDatas[i], playerPerk);
                 }
                 else
                 {
