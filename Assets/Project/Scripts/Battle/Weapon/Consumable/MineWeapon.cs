@@ -22,9 +22,9 @@ public class MineWeapon : WeaponBase
         _isDeploying = true;
 
         // 설치 중 플레이어 기절(Stun) 상태 적용 ? 이동·공격 모두 불가
-        var playerController = _owner.GetComponent<PlayerController>();
-        if (playerController != null)
-            playerController.ApplyStun(deployTime);
+        var statusEffect = _owner.GetComponent<PlayerStatusEffect>();
+        if (statusEffect != null)
+            statusEffect.ApplyStun(deployTime);
 
         // '지뢰설치중' 텍스트 표시
         _owner.ShowStatusText("지뢰설치중", Color.yellow);
