@@ -305,14 +305,15 @@ namespace Monster
 
             StopAllCoroutines();
 
-            if (MonsterManager.Instance != null)
-            {
-                MonsterManager.Instance.ReportMonsterKilled();
-            }
-
             if (gameObject.activeInHierarchy)
             {
                 StartCoroutine(DeathRoutine());
+                
+                // 몬스터 카운트
+                if (MonsterManager.Instance != null)
+                {
+                    MonsterManager.Instance.ReportMonsterKilled();
+                }
             }
             else
             {
@@ -326,31 +327,38 @@ namespace Monster
 
         private IEnumerator DeathRoutine()
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
-
             if (animator != null)
             {
                 animator.SetTrigger("4_Death");
                 animator.SetBool("isDeath", true);
             }
 
-            float fadeDuration = 1f;
+            // 시체 유지 시간 가져오기
+            float corpseWaitTime = 1f;
             if (statSo != null && statSo.CorpseTime > 0)
             {
-                fadeDuration = statSo.CorpseTime;
+                corpseWaitTime = statSo.CorpseTime;
             }
 
+            yield return new WaitForSeconds(corpseWaitTime);
+
+           
+            
+            gameObject.layer = LayerMask.NameToLayer("Default");
+
+            float fadeDuration = 0.3f;
             float elapsedTime = 0f;
 
             while (elapsedTime < fadeDuration)
             {
                 elapsedTime += Time.deltaTime;
-                // 서서히 투명해지도록
                 float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
                 SetAlpha(alpha);
-
                 yield return null;
             }
+
+            // 다음 스폰을 위해 알파값 원상 복구
+            SetAlpha(1f);
 
             if (MonsterManager.Instance != null && MonsterManager.Instance.monsterSpawner != null)
             {
