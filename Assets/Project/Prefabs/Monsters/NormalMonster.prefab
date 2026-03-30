@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 483433089806240808}
   - component: {fileID: 9087044979941768671}
   - component: {fileID: 4182281855508142869}
-  - component: {fileID: 9186536638787856979}
   m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
@@ -85,23 +84,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &9186536638787856979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72374327905228552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &2769903770627333047
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2675692412758700219}
   - component: {fileID: 1060859374010459713}
-  - component: {fileID: 1343336463991735366}
+  - component: {fileID: -5261602468095805154}
   - component: {fileID: 1712949204012180837}
   - component: {fileID: 5148632673833359302}
   - component: {fileID: 1161149056653699639}
@@ -282,7 +264,7 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 67674577216460736}
   statSo: {fileID: 11400000, guid: 5cfd9bb01a783754dba7f9d2fca6c490, type: 2}
---- !u!50 &1343336463991735366
+--- !u!50 &-5261602468095805154
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -295,7 +277,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 10
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
