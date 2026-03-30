@@ -105,6 +105,7 @@ namespace Monster
             _stunCoroutine = null;
             _stunEndTime = 0f;
             currentHp = statSo.Hp;
+            hpSlider.value = currentHp;
             gameObject.layer = LayerMask.NameToLayer("Monster");
 
             if (animator != null)
@@ -218,6 +219,8 @@ namespace Monster
                 damage *= MonsterManager.Instance.GetPlayerCritDamage();
                 isCrit = true;
             }
+            damage = Mathf.Max(0f, damage); 
+
             if (statSo.StunDuration > 0) ApplyStun(statSo.StunDuration);
 
             currentHp -= damage;
