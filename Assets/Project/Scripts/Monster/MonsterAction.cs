@@ -21,11 +21,12 @@ namespace Monster
         protected bool isStop = false;
         protected bool hasSuperArmor = false;
         protected Rigidbody2D rb;
-
+        
+        protected Color[] _originalColors;
+        protected Coroutine _hitFlashCoroutine;
 
         private SpriteRenderer[] _spriteRenderers;
         protected NavMeshAgent agent;
-
 
         protected StatusEffect activeEffects;
         public bool IsStunned => StatusPolicy.Has(activeEffects, StatusEffect.Stun);
@@ -34,6 +35,13 @@ namespace Monster
         {
             _spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
 
+            _originalColors = new Color[_spriteRenderers.Length];
+            for (int i = 0; i < _spriteRenderers.Length; i++)
+            {
+                if (_spriteRenderers[i] != null)
+                    _originalColors[i] = _spriteRenderers[i].color;
+            }
+            
             //NavMeshAgent 세팅
             agent = GetComponent<NavMeshAgent>();
 
@@ -105,6 +113,7 @@ namespace Monster
             _stunCoroutine = null;
             _stunEndTime = 0f;
             currentHp = statSo.Hp;
+            hpSlider.value = currentHp;
             gameObject.layer = LayerMask.NameToLayer("Monster");
 
             if (animator != null)
@@ -121,6 +130,7 @@ namespace Monster
             }
 
             SetAlpha(1f);
+            RestoreOriginalColors();
 
             // 풀에서 꺼내질 때 Registry에 등록
             Registry<MonsterAction>.TryAdd(this);
@@ -218,10 +228,18 @@ namespace Monster
                 damage *= MonsterManager.Instance.GetPlayerCritDamage();
                 isCrit = true;
             }
+            damage = Mathf.Max(0f, damage);
+
             if (statSo.StunDuration > 0) ApplyStun(statSo.StunDuration);
 
             currentHp -= damage;
 
+            if (gameObject.activeInHierarchy && !isDead)
+            {
+                if (_hitFlashCoroutine != null) StopCoroutine(_hitFlashCoroutine);
+                _hitFlashCoroutine = StartCoroutine(HitFlashRoutine(0.05f)); 
+            }
+            
             Canvas myCanvas = GetComponentInChildren<Canvas>();
             if (myCanvas != null)
             {
@@ -288,12 +306,20 @@ namespace Monster
         }
         // 향후 다른 상태이상 효과 추가
         #endregion
+
         
         protected virtual void Die()
         {
             isDead = true;
             activeEffects = StatusEffect.None;
 
+            if (_hitFlashCoroutine != null)
+            {
+                StopCoroutine(_hitFlashCoroutine);
+                _hitFlashCoroutine = null;
+            }
+            RestoreOriginalColors();
+            
             // 추격 정지
             if (agent != null)
             {
@@ -387,6 +413,47 @@ namespace Monster
                 color.a = alpha;
                 _spriteRenderers[i].color = color;
             }
+        }
+        
+        protected void SetRenderersColor(Color color)
+        {
+            if (_spriteRenderers == null) return;
+            for (int i = 0; i < _spriteRenderers.Length; i++)
+            {
+                if (_spriteRenderers[i] != null)
+                {
+                    // 기존 투명도는 유지하면서 색상만 덮어씌움
+                    float currentAlpha = _spriteRenderers[i].color.a;
+                    _spriteRenderers[i].color = new Color(color.r, color.g, color.b, currentAlpha);
+                }
+            }
+        }
+        
+        protected void RestoreOriginalColors()
+        {
+            if (_spriteRenderers == null || _originalColors == null) return;
+            for (int i = 0; i < _spriteRenderers.Length; i++)
+            {
+                if (_spriteRenderers[i] != null)
+                {
+                    // 기존 투명도는 유지하면서 원래 색상으로 복구
+                    float currentAlpha = _spriteRenderers[i].color.a;
+                    Color orig = _originalColors[i];
+                    _spriteRenderers[i].color = new Color(orig.r, orig.g, orig.b, currentAlpha);
+                }
+            }
+        }
+
+        private IEnumerator HitFlashRoutine(float duration)
+        {
+            // 피격 시 빨간색으로 변경
+            SetRenderersColor(Color.red); 
+    
+            yield return new WaitForSeconds(duration);
+    
+            // 원래 색상으로 복구
+            RestoreOriginalColors();
+            _hitFlashCoroutine = null;
         }
     }
 }

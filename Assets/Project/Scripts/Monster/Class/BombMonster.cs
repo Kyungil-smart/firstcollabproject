@@ -16,31 +16,24 @@ namespace Monster
         private bool _isSelfDie = false; 
         private bool _isStoppingForExplosion = false;
 
-        private SpriteRenderer[] _renderers;
-        private Color[] _originalColors;
         private LineRenderer _explosionLine;
         private Collider2D _myCollider;
 
         protected override void Awake()
         {
-            base.Awake();
+            // 부모의 Awake에서 _originalColors 저장 등 필요한 초기화를 다 해줍니다.
+            base.Awake(); 
+            
             _myCollider = GetComponent<Collider2D>();
-            _renderers = GetComponentsInChildren<SpriteRenderer>();
-            _originalColors = new Color[_renderers.Length];
-
-            for (int i = 0; i < _renderers.Length; i++)
-            {
-                if (_renderers[i] != null) _originalColors[i] = _renderers[i].color;
-            }
-
             CreateRangeIndicator();
         }
 
         public override void Init()
         {
+            // 부모의 Init에서 RestoreOriginalColors() 등 공통 초기화를 해줍니다.
             base.Init();
 
-            // 변수 초기화
+            // 자폭 변수 초기화
             _isExploded = false;
             _isSelfDie = false;
             _isStoppingForExplosion = false;
@@ -56,7 +49,6 @@ namespace Monster
             
             gameObject.layer = LayerMask.NameToLayer("Monster");
 
-            RestoreOriginalColors();
             if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
         }
 
@@ -147,9 +139,9 @@ namespace Monster
             for (int i = 0; i < blinkCount; i++)
             {
                 if (isDead) yield break;
-                SetRenderersColor(Color.red);
+                SetRenderersColor(Color.red); // 부모 함수 재사용
                 yield return new WaitForSeconds(interval);
-                RestoreOriginalColors();
+                RestoreOriginalColors();      // 부모 함수 재사용
                 yield return new WaitForSeconds(interval);
             }
 
@@ -172,57 +164,26 @@ namespace Monster
 
         protected override void Die()
         {
+            if (isDead) return; // 중복 실행 방지
+            
+            // 시각 효과 제거 및 레이어 복구
             if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
+            gameObject.layer = LayerMask.NameToLayer("Monster");
 
             if (_isSelfDie)
             {
-                isDead = true;
-                activeEffects = StatusEffect.None;
-
-                if (agent != null)
-                {
-                    if (agent.isOnNavMesh) agent.isStopped = true;
-                    agent.enabled = false;
-                }
-
-                if (rb == null) rb = GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    rb.linearVelocity = Vector2.zero; 
-                    rb.bodyType = RigidbodyType2D.Kinematic;
-                }
-
-                if (hpSlider != null) hpSlider.gameObject.SetActive(false);
-
+                // 자폭 시: 킬 카운트를 안 올리고 애니메이션 없이 즉시 풀로 반환
+                isDead = true; 
                 StopAllCoroutines();
-                
-                if (gameObject.activeInHierarchy)
-                {
-                    StartCoroutine(DeathRoutine());
-                }
-                else
-                {
-                    var spawner = FindObjectOfType<MonsterSpawner>();
-                    if (spawner != null) spawner.ReturnMonster(this.gameObject);
-                }
+                var spawner = FindObjectOfType<MonsterSpawner>();
+                if (spawner != null) spawner.ReturnMonster(this.gameObject);
+                else gameObject.SetActive(false);
             }
             else
             {
+                // 플레이어 공격에 의한 처치 시 
                 base.Die();
             }
-        }
-
-        private void SetRenderersColor(Color color)
-        {
-            if (_renderers == null) return;
-            foreach (var r in _renderers) if (r != null) r.color = color;
-        }
-
-        private void RestoreOriginalColors()
-        {
-            if (_renderers == null || _originalColors == null) return;
-            for (int i = 0; i < _renderers.Length; i++)
-                if (_renderers[i] != null) _renderers[i].color = _originalColors[i];
         }
 
         private void CreateRangeIndicator()
