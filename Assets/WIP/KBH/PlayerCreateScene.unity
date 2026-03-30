@@ -375,13 +375,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5230605081855053456, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3183519503921664805, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 635402991}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5796912905840949037, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 975329842}
+    - targetCorrespondingSourceObject: {fileID: 5796912905840949037, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 975329870}
   m_SourcePrefab: {fileID: 100100000, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
 --- !u!1 &201592755
 GameObject:
@@ -1426,12 +1429,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635402990}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.82, y: 0.326, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 975329854}
+  m_Father: {fileID: 1851831890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &722459347
 GameObject:
@@ -1998,11 +2001,20 @@ MonoBehaviour:
   MolotovPrefab: {fileID: 6060455967080115507, guid: d4487ab9eaaccd144b6663874b155d0e, type: 3}
   LandMinePrefab: {fileID: 157880597}
   firePoint: {fileID: 635402991}
---- !u!4 &975329854 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5230605081855053456, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-  m_PrefabInstance: {fileID: 191095385}
+--- !u!114 &975329870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975329841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7a6b32fa6f7c844a11a1ebfebb1ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlugBowLauncher
+  slugArrowPrefab: {fileID: 6213539776784452163, guid: 7862b0b96b3ac6a4385a116dfbab5646, type: 3}
+  firePoint: {fileID: 635402991}
 --- !u!1 &1005223082
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,7 +3294,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.48273405, g: 0.7920327, b: 0.9056604, a: 0}
+  m_BackGroundColor: {r: 0.11525455, g: 0.12755875, b: 0.13207549, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3517,6 +3529,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833361226}
   m_CullTransparentMesh: 1
+--- !u!4 &1851831890 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3183519503921664805, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+  m_PrefabInstance: {fileID: 191095385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1852239942
 GameObject:
   m_ObjectHideFlags: 0
