@@ -5851,6 +5851,7 @@ GameObject:
   - component: {fileID: 2180599241375244892}
   - component: {fileID: 5856682874185130112}
   - component: {fileID: 7837590399723540022}
+  - component: {fileID: 8662636659685679856}
   - component: {fileID: 3216422155268723611}
   - component: {fileID: 5779710587645710517}
   - component: {fileID: 4771612577379655055}
@@ -6061,6 +6062,24 @@ MonoBehaviour:
   step4: 0.65
   tweenDuration: 0.5
   tweenEase: 4
+--- !u!114 &8662636659685679856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796912905840949037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0083cefe3888c34aaefd2e782619be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TorsoPart
+  cycle1: 60
+  cycle2: 55
+  cycle3: 50
+  cycle4: 45
+  countdownSeconds: 3
+  invertDuration: 5
 --- !u!114 &3216422155268723611
 MonoBehaviour:
   m_ObjectHideFlags: 0
