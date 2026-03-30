@@ -158,7 +158,7 @@ public class WeaponController : MonoBehaviour
 
     private void Use()
     {
-        if (_isPointerOverUI) return; // UI 위에서 공격 입력 무시
+        if (_isPointerOverUI) { Debug.Log("어?"); return; } // UI 위에서 공격 입력 무시
         CurrentWeapon?.Use();
     }
     void Charge()

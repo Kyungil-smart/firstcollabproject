@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using TMPro;
 
 /// <summary>
@@ -22,10 +25,38 @@ public class PlayerBodyHUD : MonoBehaviour
     public Image armImage;
     public Image legImage;
 
+    float _flashDuration = 0.13f;
+
+    static readonly Color[] InjuryColors =
+    {
+        Color.green,
+        Color.yellow,
+        new Color(1f, 0.5f, 0f),
+        Color.red,
+        Color.gray,
+    };
+
+    readonly CancellationTokenSource[] _flashCts = new CancellationTokenSource[4];
+
     private void Start()
     {
         _playerBody = FindFirstObjectByType<PlayerBody>();
         if (_playerBody == null) { Debug.LogError("PlayerBody가 게임에 없습니다!"); }
+    }
+
+    private void OnEnable()
+    {
+        PlayerBody.OnDamaged += OnDamaged;
+    }
+
+    private void OnDisable()
+    {
+        PlayerBody.OnDamaged -= OnDamaged;
+        foreach (var cts in _flashCts)
+        {
+            cts?.Cancel();
+            cts?.Dispose();
+        }
     }
 
     private void Update()
@@ -46,25 +77,51 @@ public class PlayerBodyHUD : MonoBehaviour
         int armInjury = _playerBody.GetInjuryLevel(BodyPart.Arm);
         int legInjury = _playerBody.GetInjuryLevel(BodyPart.Leg);
 
-        Color[] injuryColors = new Color[]
-        {
-            Color.green,
-            Color.yellow,
-            new Color(1f, 0.5f, 0f), // 주황색
-            Color.red,
-            Color.gray,
-        };
+        critChanceText.color = InjuryColors[headInjury];
+        recoveryText.color = InjuryColors[bodyInjury];
+        critDamageText.color = InjuryColors[armInjury];
+        moveSpeedText.color = InjuryColors[legInjury];
 
-        critChanceText.color = injuryColors[headInjury];
-        recoveryText.color = injuryColors[bodyInjury];
-        critDamageText.color = injuryColors[armInjury];
-        moveSpeedText.color = injuryColors[legInjury];
-
-        headImage.color = injuryColors[headInjury];
-        bodyImage.color = injuryColors[bodyInjury];
-        armImage.color = injuryColors[armInjury];
-        legImage.color = injuryColors[legInjury];
+        // 번쩍이는 중이 아닐때만 컬러 업데이트
+        if (_flashCts[0] == null) headImage.color = InjuryColors[headInjury];
+        if (_flashCts[1] == null) bodyImage.color = InjuryColors[bodyInjury];
+        if (_flashCts[2] == null) armImage.color = InjuryColors[armInjury];
+        if (_flashCts[3] == null) legImage.color = InjuryColors[legInjury];
 
         // TODO: 재기 불능시 X 표시 하기
     }
+
+    void OnDamaged(BodyPart part)
+    {
+        int idx = (int)part;
+
+        _flashCts[idx]?.Cancel();
+        _flashCts[idx]?.Dispose();
+        _flashCts[idx] = new CancellationTokenSource();
+
+        FlashAsync(GetPartImage(part), idx, _flashCts[idx].Token).Forget();
+    }
+
+    async UniTaskVoid FlashAsync(Image img, int index, CancellationToken ct)
+    {
+        img.color = Color.white;
+
+        bool cancelled = await UniTask
+            .Delay(TimeSpan.FromSeconds(_flashDuration), cancellationToken: ct)
+            .SuppressCancellationThrow();
+
+        if (!cancelled)
+        {
+            _flashCts[index]?.Dispose();
+            _flashCts[index] = null; // UpdateColors가 부상 색으로 복귀
+        }
+    }
+
+    Image GetPartImage(BodyPart part) => part switch
+    {
+        BodyPart.Head => headImage,
+        BodyPart.Body => bodyImage,
+        BodyPart.Arm  => armImage,
+        _             => legImage,
+    };
 }
