@@ -99,6 +99,8 @@ namespace Monster
         {
             if (isDead) return;
 
+            base.Die();
+            
             //자폭한게 아닐때만 
             if (!_isSelfDie)
             {
@@ -106,7 +108,7 @@ namespace Monster
             }
             
             _isSelfDie = false;
-            base.Die();
+            
         }
         
         private void SetRenderersColor(SpriteRenderer[] renderers, Color color)

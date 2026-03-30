@@ -56,9 +56,9 @@ namespace Monster
         {
             if (isDead) return;
             
-            Registry<MonsterAction>.Remove(this);
-            
             base.Die();
+            
+            Registry<MonsterAction>.Remove(this);
         }
 
         private IEnumerator AttackRoutine()

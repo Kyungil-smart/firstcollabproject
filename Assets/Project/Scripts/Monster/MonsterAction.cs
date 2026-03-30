@@ -42,6 +42,7 @@ namespace Monster
                 // 3D처럼 회전하지 않도록 막고, Y축 기준으로 2D 이동
                 agent.updateRotation = false;
                 agent.updateUpAxis = false;
+                agent.updatePosition = false; 
                 agent.enabled = false;
             }
         }
@@ -76,9 +77,19 @@ namespace Monster
             if (isAttacking || agent.isStopped || isStop || IsStunned)
             {
                 rb.linearVelocity = Vector2.zero;
+                
+                if (rb.bodyType != RigidbodyType2D.Kinematic)
+                {
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                }
             }
             else
             {
+                if (rb.bodyType != RigidbodyType2D.Dynamic)
+                {
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                }
+                
                 Vector2 direction = (agent.steeringTarget - transform.position).normalized;
                 rb.linearVelocity = direction * statSo.MoveSpeed;
             }
@@ -113,7 +124,13 @@ namespace Monster
 
             // 풀에서 꺼내질 때 Registry에 등록
             Registry<MonsterAction>.TryAdd(this);
-
+            
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
 
             //세팅 끝나면 NavMeshAgent 활성화
             if (agent != null && statSo != null)
@@ -271,6 +288,7 @@ namespace Monster
         }
         // 향후 다른 상태이상 효과 추가
         #endregion
+        
         protected virtual void Die()
         {
             isDead = true;
@@ -279,8 +297,16 @@ namespace Monster
             // 추격 정지
             if (agent != null)
             {
-                agent.isStopped = true;
+                if (agent.isOnNavMesh) agent.isStopped = true; // 에러 방지
                 agent.enabled = false;
+            }
+
+            // 시체가 미끄러지지 않도록 관성 제거
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero; 
+                rb.bodyType = RigidbodyType2D.Kinematic;
             }
 
             if (hpSlider != null)
@@ -290,14 +316,15 @@ namespace Monster
 
             StopAllCoroutines();
 
-            if (MonsterManager.Instance != null)
-            {
-                MonsterManager.Instance.ReportMonsterKilled();
-            }
-
             if (gameObject.activeInHierarchy)
             {
                 StartCoroutine(DeathRoutine());
+                
+                // 몬스터 카운트
+                if (MonsterManager.Instance != null)
+                {
+                    MonsterManager.Instance.ReportMonsterKilled();
+                }
             }
             else
             {
@@ -311,31 +338,38 @@ namespace Monster
 
         private IEnumerator DeathRoutine()
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
-
             if (animator != null)
             {
                 animator.SetTrigger("4_Death");
                 animator.SetBool("isDeath", true);
             }
 
-            float fadeDuration = 1f;
+            // 시체 유지 시간 가져오기
+            float corpseWaitTime = 1f;
             if (statSo != null && statSo.CorpseTime > 0)
             {
-                fadeDuration = statSo.CorpseTime;
+                corpseWaitTime = statSo.CorpseTime;
             }
 
+            yield return new WaitForSeconds(corpseWaitTime);
+
+           
+            
+            gameObject.layer = LayerMask.NameToLayer("Default");
+
+            float fadeDuration = 0.3f;
             float elapsedTime = 0f;
 
             while (elapsedTime < fadeDuration)
             {
                 elapsedTime += Time.deltaTime;
-                // 서서히 투명해지도록
                 float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
                 SetAlpha(alpha);
-
                 yield return null;
             }
+
+            // 다음 스폰을 위해 알파값 원상 복구
+            SetAlpha(1f);
 
             if (MonsterManager.Instance != null && MonsterManager.Instance.monsterSpawner != null)
             {

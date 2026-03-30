@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 483433089806240808}
   - component: {fileID: 9087044979941768671}
   - component: {fileID: 4182281855508142869}
-  - component: {fileID: 9186536638787856979}
   m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
@@ -85,23 +84,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &9186536638787856979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72374327905228552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &2769903770627333047
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,8 +219,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2675692412758700219}
   - component: {fileID: 7956962003426196663}
-  - component: {fileID: 1712949204012180837}
   - component: {fileID: 8042187097118653553}
+  - component: {fileID: 1712949204012180837}
   - component: {fileID: 7036712516380969824}
   - component: {fileID: 4763929034931746241}
   m_Layer: 6
@@ -284,6 +266,33 @@ MonoBehaviour:
   statSo: {fileID: 11400000, guid: 9b744d759ce270c4b82dd0f39dd7f891, type: 2}
   dashSpeedMultiplier: 3
   dashDuration: 0.5
+--- !u!50 &8042187097118653553
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047037709664641846}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 10
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!195 &1712949204012180837
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -306,33 +315,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!50 &8042187097118653553
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7047037709664641846}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!70 &7036712516380969824
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
