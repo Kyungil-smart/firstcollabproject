@@ -13,6 +13,7 @@ public class GrenadeProjectile : MonoBehaviour
     private Vector2 _direction;
     private Rigidbody2D _rb;
     private bool _hasExploded = false;
+    private IDamageable _directHitDamageable;
 
     private void Awake()
     {
@@ -53,8 +54,10 @@ public class GrenadeProjectile : MonoBehaviour
     {
         if (_hasExploded) return;
 
-        if (other.gameObject.GetComponent<IDamageable>() != null)
+        var damageable = other.gameObject.GetComponent<IDamageable>();
+        if (damageable != null)
         {
+            _directHitDamageable = damageable;
             Explode();
         }
     }
@@ -70,17 +73,8 @@ public class GrenadeProjectile : MonoBehaviour
         if (_hasExploded) return;
         _hasExploded = true;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _splashRadius);
-        foreach (var hit in hits)
-        {
-            if (hit.transform.root == transform.root) continue;
-
-            var damageable = hit.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(_damage);
-            }
-        }
+        ExplodePolicy.Apply(transform.position, _splashRadius, _damage,
+            transform, _directHitDamageable);
 
         // TODO: 폭발 이펙트 및 사운드 발생
 

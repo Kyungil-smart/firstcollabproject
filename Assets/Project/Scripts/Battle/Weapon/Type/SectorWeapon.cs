@@ -4,6 +4,7 @@ public class SectorWeapon : WeaponBase
 {
     [Header("부채꼴 공격 설정")]
     float _sectorAngle; // 부채꼴 공격의 총 각도
+    float _rangeOffset = 0.23f; // 플레이어 위치로 이동해서 감소한 사거리 보정값
 
     public override void Attack(float damage)
     {
@@ -11,7 +12,7 @@ public class SectorWeapon : WeaponBase
 
         // 플레이어 위치를 기준으로 사거리 내의 모든 2D 콜라이더 검색
         Vector3 ownerPos = _owner.transform.position;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range + _rangeOffset);
 
 
         foreach (var hitCollider in hitColliders)

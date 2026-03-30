@@ -171,12 +171,19 @@ public class PlayerBody : MonoBehaviour, IDamageable
     }
 
 
+    [Header("텍스트 연출")]
+    [SerializeField] GameObject _textPrefab;
+    Transform _canvas;
+
     private void Awake()
     {
         _headCurHP = headMaxHP;
         _bodyCurHP = bodyMaxHP;
         _armCurHP = armMaxHP;
         _legCurHP = legMaxHP;
+
+        Canvas c = GetComponentInChildren<Canvas>();
+        _canvas = c.transform;
     }
 
     public void TakeDamage(float damage)
@@ -187,7 +194,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
         if (UnityEngine.Random.value < EvasionPercent)
         {
             OnEvaded?.Invoke();
-            Debug.Log("<color=cyan>공격을 회피했습니다!</color>"); // todo: 공격 회피시 연출
+            DamageText.ShowText(_textPrefab, _canvas, "MISS", Color.gray);
             return;
         }
 

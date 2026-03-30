@@ -6,7 +6,6 @@ public class SplashRangeProjectile : MonoBehaviour
     float _damage;
     float _splashRadius;
     float _maxRange;
-    float splashDamageMultiplier = 0.7f;
 
     Vector2 _direction;
     Vector2 _startPos;
@@ -63,19 +62,8 @@ public class SplashRangeProjectile : MonoBehaviour
 
         _rb.linearVelocity = Vector2.zero;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _splashRadius);
-        foreach (var hit in hits)
-        {
-            if (hit.transform.root == transform.root) continue;
-            if (hit.GetComponent<PlayerBody>() != null) continue; // 플레이어는 폭발 데미지 안받게
-
-            var damageable = hit.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                float dmg = damageable == _directHitDamageable ? _damage : _damage * splashDamageMultiplier;
-                damageable.TakeDamage(dmg);
-            }
-        }
+        ExplodePolicy.Apply(transform.position, _splashRadius, _damage,
+            transform, _directHitDamageable, skipPlayer: true);
 
         // TODO: 폭발 이펙트
 
