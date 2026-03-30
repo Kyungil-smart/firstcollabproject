@@ -12,6 +12,13 @@ public class PlayerController : MonoBehaviour
     private Color[] _playerColors;          // 플레이어를 구성하는 스프라이트들의 기존 색상
     #endregion
 
+    #region 상태이상
+    StatusEffect _activeEffects;
+    public bool IsStunned => StatusPolicy.Has(_activeEffects, StatusEffect.Stun);
+    Coroutine _stunCoroutine;
+    float _stunEndTime;
+    #endregion
+
     #region Public
     public Vector2 inputVector { get; private set; }
     #endregion Public
@@ -57,14 +64,66 @@ public class PlayerController : MonoBehaviour
     {
         // 일시정지 중이면 로직 빠져나감.
         if (Time.timeScale == 0f) return;
-        
+
+        // 기절 중이면 이동 입력 무시
+        if (IsStunned)
+        {
+            inputVector = Vector2.zero;
+        }
+        else
+        {
+            ReadMoveInput();
+        }
+
         Anim();
     }
 
-    private void OnMove(InputValue value)
+    /// <summary>
+    /// BattleInputReader 기반: Keyboard에서 WASD 이동 입력을 직접 읽음
+    /// </summary>
+    private void ReadMoveInput()
     {
-        inputVector = value.Get<Vector2>();
+        var kb = Keyboard.current;
+        if (kb == null) { inputVector = Vector2.zero; return; }
+
+        Vector2 input = Vector2.zero;
+        if (kb.wKey.isPressed) input.y += 1f;
+        if (kb.sKey.isPressed) input.y -= 1f;
+        if (kb.aKey.isPressed) input.x -= 1f;
+        if (kb.dKey.isPressed) input.x += 1f;
+        inputVector = input;
     }
+
+    #region 상태이상 메서드
+    /// <summary>
+    /// 플레이어에게 기절(Stun) 상태이상을 적용합니다 (이동·공격 모두 불가)
+    /// </summary>
+    public void ApplyStun(float duration)
+    {
+        float newEndTime = Time.time + duration;
+
+        // 이미 기절 중인데 새 기절이 더 짧으면 무시
+        if (IsStunned && newEndTime <= _stunEndTime) return;
+
+        // 기존 스턴 코루틴이 돌고 있으면 중지 후 교체
+        if (_stunCoroutine != null)
+            StopCoroutine(_stunCoroutine);
+
+        _stunEndTime = newEndTime;
+        _stunCoroutine = StartCoroutine(StunRoutine(duration));
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        _activeEffects = StatusPolicy.Add(_activeEffects, StatusEffect.Stun);
+        inputVector = Vector2.zero;
+
+        yield return new WaitForSeconds(duration);
+
+        _activeEffects = StatusPolicy.Remove(_activeEffects, StatusEffect.Stun);
+        _stunCoroutine = null;
+    }
+    #endregion
 
     private void HandleAttack()
     {

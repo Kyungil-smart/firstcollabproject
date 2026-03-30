@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class WeaponController : MonoBehaviour
 {
     PlayerBody _owner;
+    PlayerController _playerController;
     [SerializeField] BattleInputReader _input;
 
     public Transform mountPoint; // 장착 위치
@@ -39,6 +40,7 @@ public class WeaponController : MonoBehaviour
     private void Awake()
     {
         _owner = GetComponent<PlayerBody>();
+        _playerController = GetComponent<PlayerController>();
     }
     private void Start()
     {
@@ -79,6 +81,7 @@ public class WeaponController : MonoBehaviour
 
     void SwitchToSlot(int slotIndex, bool ignoreCooldown = false)
     {
+        if (_playerController.IsStunned) return;
         if (!ignoreCooldown && Time.time < _nextEquipTime) return;
         if (_weapons[slotIndex] == null) return;
 
@@ -158,15 +161,18 @@ public class WeaponController : MonoBehaviour
 
     private void Use()
     {
-        if (_isPointerOverUI) { Debug.Log("어?"); return; } // UI 위에서 공격 입력 무시
+        if (_isPointerOverUI) return; // UI 위에서 공격 입력 무시
+        if (_playerController.IsStunned) return;
         CurrentWeapon?.Use();
     }
     void Charge()
     {
+        if (_playerController.IsStunned) return;
         CurrentWeapon?.Charging();
     }
     void ChargeRelease()
     {
+        if (_playerController.IsStunned) return;
         CurrentWeapon?.ChargeRelease();
     }
 

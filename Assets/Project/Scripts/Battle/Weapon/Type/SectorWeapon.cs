@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SectorWeapon : WeaponBase
@@ -14,6 +15,8 @@ public class SectorWeapon : WeaponBase
         Vector3 ownerPos = _owner.transform.position;
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(ownerPos, range + _rangeOffset);
 
+        // 한 오브젝트에 콜라이더가 여러 개일 때 중복 타격 방지
+        HashSet<IDamageable> alreadyHit = new();
 
         foreach (var hitCollider in hitColliders)
         {
@@ -21,7 +24,7 @@ public class SectorWeapon : WeaponBase
                 continue;
 
             var damageable = hitCollider.GetComponent<IDamageable>();
-            if (damageable != null)
+            if (damageable != null && alreadyHit.Add(damageable))
             {
                 // 적이 위치한 방향 벡터 계산
                 Vector3 dirToTarget = (hitCollider.transform.position - ownerPos).normalized;
