@@ -53,13 +53,8 @@ public class GrenadeProjectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (_hasExploded) return;
-
-        var damageable = other.gameObject.GetComponent<IDamageable>();
-        if (damageable != null)
-        {
-            _directHitDamageable = damageable;
-            Explode();
-        }
+        _directHitDamageable = other.gameObject.GetComponent<IDamageable>();
+        Explode();
     }
 
     private IEnumerator ExplosionRoutine()
