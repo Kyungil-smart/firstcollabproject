@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// 플레이어 상태이상 관리 ? MonsterAction과 동일한 StatusEffect 비트플래그 패턴
+/// 플레이어 상태이상 관리 MonsterAction과 동일한 StatusEffect 비트플래그 패턴
 /// 향후 Slow, Burn 등 다른 상태이상도 여기에서 확장합니다
 /// </summary>
 public class PlayerStatusEffect : MonoBehaviour

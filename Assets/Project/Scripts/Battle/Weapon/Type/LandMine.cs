@@ -7,7 +7,7 @@ public class LandMine : MonoBehaviour
     [Header("Setting")] 
     [SerializeField] private float activationDelay = 1f;       // 발동 대기 시간
     [SerializeField] private float detectionRadius = 2f;       // 감지 및 폭발 반경
-    [SerializeField] private int damage = 150;                 // 폭발 데미지
+    //[SerializeField] private int damage = 150;                 // 폭발 데미지
     
     private bool _isActive = false;     // 지뢰 활성화 여부
     private bool _isExploded = false;   // 이미 터졌는가?

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BattleInputReader _input;
 
     public Vector2 inputVector { get; private set; }
+    public bool IsInputInverted { get; set; }
 
 #if UNITY_EDITOR
     private void Reset()
@@ -51,8 +52,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // 기절 중이면 이동 입력 무시, 아니면 이동값 읽기
-        inputVector = _status.IsStunned ? Vector2.zero : _input.MoveInput;
+        if (_status.IsStunned)
+        {
+            inputVector = Vector2.zero;
+        }
+        else
+        {
+            Vector2 move = _input.MoveInput;
+            if (IsInputInverted) move = -move;
+            inputVector = move;
+        }
 
         Anim();
     }

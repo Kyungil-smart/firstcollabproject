@@ -3,10 +3,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Monster;
 
-/// <summary>
-/// [INS] 키 : WeaponUpgrade 팝업 테스트
-/// [DEL] 키 : PlayerPerk 팝업 테스트
-/// </summary>
 public class TEST_Upgrade : MonoBehaviour
 {
     WeaponPerks _weaponPerks;
@@ -21,10 +17,10 @@ public class TEST_Upgrade : MonoBehaviour
     private void Update()
     {
         var kb = Keyboard.current;
-
+        // INS 키 : WeaponUpgrade 팝업 테스트
         if (kb[Key.Insert].wasPressedThisFrame)
             _weaponPerks?.OpenRandomUpgradePopup();
-
+        // DEL 키: PlayerPerk 팝업 테스트
         if (kb[Key.Delete].wasPressedThisFrame)
             _playerPerk?.OpenPlayerUpgradePopup();
 
@@ -41,6 +37,12 @@ public class TEST_Upgrade : MonoBehaviour
             var monster = Registry<MonsterAction>.GetFirst();
             if (monster != null)
                 monster.TakeDamage(1000f);
+        }
+
+        // PageUp 키 누르면 플레이어 requiredExp 겁나 높아져서 레벨업 불가능
+        if (kb[Key.PageUp].wasPressedThisFrame)
+        {
+            _playerPerk.requiredExp = int.MaxValue;
         }
     }
 }
