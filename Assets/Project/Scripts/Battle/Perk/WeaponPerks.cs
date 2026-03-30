@@ -39,31 +39,6 @@ public class WeaponPerks : MonoBehaviour
         return null;
     }
 
-    /// <summary>
-    /// 3개의 무기 강화 후보를 랜덤으로 반환 (중복 없음)
-    /// </summary>
-    public WeaponSO[] GetRandomWeaponPerks(int count = 3)
-    {
-        int stage = GameManager.Instance.currentStage; // 특이사항: 참조없음(스테이지 마다 다른 Perk을 보여줘야 하는데 필요성과 사용법 검증필요)
-        List<WeaponSO> allWeaponPerks = new();
-
-        foreach (WeaponSO weaponSO in _allPerks)
-        {
-            allWeaponPerks.Add(weaponSO);
-        }
-
-        WeaponSO[] selected = new WeaponSO[count];
-
-        for (int i = 0; i < count; i++)
-        {
-            int randomIndex = Random.Range(0, allWeaponPerks.Count);
-            selected[i] = allWeaponPerks[randomIndex];
-            allWeaponPerks.RemoveAt(randomIndex);
-        }
-
-        return selected;
-    }
-
     public void OpenRandomUpgradePopup()
     {
         if (_rewardPopup == null)
@@ -72,14 +47,56 @@ public class WeaponPerks : MonoBehaviour
             return;
         }
 
-        WeaponSO[] selected = GetRandomWeaponPerks();
-        if (selected.Length == 0 || selected[0] == null)
+        var picks = GetRandomWeaponPerks();
+
+        var weapons = new WeaponSO[picks.Length];
+        var perks = new WeaponPerkSO[picks.Length];
+        for (int i = 0; i < picks.Length; i++)
         {
-            Debug.LogWarning("현재 스테이지에 표시할 무기 강화 후보가 없습니다.");
+            weapons[i] = picks[i].weapon;
+            perks[i] = picks[i].perk;
+        }
+
+        if (weapons[0] == null)
+        {
+            Debug.LogWarning("현재 층에 표시할 무기 강화 후보가 없습니다.");
             return;
         }
 
-        _rewardPopup.Open(selected, this);
+        _rewardPopup.Open(weapons, perks, this);
+    }
+
+    /// <summary>
+    /// Melee / Range / 그외(Throwable·Deployable) 1개씩
+    /// 현재 층에 perkSO가 존재하는 무기만 반환 (고정 3슬롯)
+    /// </summary>
+    public (WeaponSO weapon, WeaponPerkSO perk)[] GetRandomWeaponPerks()
+    {
+        int floor = GameManager.Instance.currentFloor;
+
+        List<(WeaponSO w, WeaponPerkSO p)> melees = new();
+        List<(WeaponSO w, WeaponPerkSO p)> ranges = new();
+        List<(WeaponSO w, WeaponPerkSO p)> others = new();
+
+        foreach (var weaponSO in _allPerks)
+        {
+            WeaponPerkSO perk = GetPerkForFloor(weaponSO, floor);
+            if (perk == null) continue;
+
+            switch (weaponSO.attackType)
+            {
+                case AttackType.Melee:   melees.Add((weaponSO, perk)); break;
+                case AttackType.Range:   ranges.Add((weaponSO, perk)); break;
+                default:                 others.Add((weaponSO, perk)); break;
+            }
+        }
+
+        return new[]
+        {
+            melees.Count > 0 ? melees[Random.Range(0, melees.Count)] : default,
+            ranges.Count > 0 ? ranges[Random.Range(0, ranges.Count)] : default,
+            others.Count > 0 ? others[Random.Range(0, others.Count)] : default,
+        };
     }
 
     /// <summary>

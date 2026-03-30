@@ -38,14 +38,11 @@ namespace UI
         }
 
         // -- 무기 강화 모드 --
-        public void SetCardData(WeaponSO weaponData, WeaponPerks weaponPerks)
+        public void SetCardData(WeaponSO weaponData, WeaponPerkSO perk, WeaponPerks weaponPerks)
         {
             ClearRefs();
             _weaponData = weaponData;
             _weaponPerks = weaponPerks;
-
-            int floor = GameManager.Instance.currentFloor;
-            WeaponPerkSO perk = WeaponPerks.GetPerkForFloor(weaponData, floor);
 
             float currentAccum = weaponData.attackType switch
             {
