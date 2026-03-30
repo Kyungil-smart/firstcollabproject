@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Unity.Cinemachine;
 public interface IDamageable { void TakeDamage(float damage); }
 
 public interface IWeapon
@@ -16,6 +17,7 @@ public interface IWeapon
 public abstract class WeaponBase : MonoBehaviour, IWeapon
 {
     protected PlayerBody _owner;
+    protected CinemachineImpulseSource _impulseSource;
     public static event Action OnAttacked;
     protected static void RaiseOnAttacked() => OnAttacked?.Invoke();
     //public int AnimationHash => Animator.StringToHash(data?.animationName);
@@ -40,6 +42,8 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public void Init(WeaponSO config, PlayerBody owner)
     {
         _owner = owner;
+        _impulseSource = owner.GetComponent<CinemachineImpulseSource>();
+
         data = config;
         Name = config.Name;
 
@@ -74,8 +78,9 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
 
         Attack(damageBase);
         OnAttacked?.Invoke();
+        if (screenShakeEnable) GameManager.Instance.CameraShake(_impulseSource); // 카메라 흔들림
     }
-    
+
     public virtual void Charging() { }
     public virtual void ChargeRelease() { }
     public abstract void Attack(float damage);
