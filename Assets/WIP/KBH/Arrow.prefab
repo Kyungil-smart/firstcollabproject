@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: -5.54, y: -1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4824192178314550934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7730683928843328107
@@ -61,7 +62,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: b685cb8be43806a48b4d83e4f1ab3af8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -170,4 +171,128 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBow
   speed: 10
+  lifeTime: 3
+--- !u!1001 &7430704429069572414
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3249697140559005220}
+    m_Modifications:
+    - target: {fileID: 1703244481140373564, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_Name
+      value: Ef_4_blue_p
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952745662875330112, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 1952745662875330112, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_RenderMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.571
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454925206195336488, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: autoRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454925206195336488, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454925206195336488, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454925206195336488, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454925206195336488, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454925206195336488, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454925206195336488, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1703244481140373564, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1102039894884866558}
+  m_SourcePrefab: {fileID: 100100000, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+--- !u!4 &4824192178314550934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2733073056824362920, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+  m_PrefabInstance: {fileID: 7430704429069572414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8123378392911913218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1703244481140373564, guid: 569517f3ac9b367478048f9fa72b1780, type: 3}
+  m_PrefabInstance: {fileID: 7430704429069572414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1102039894884866558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8123378392911913218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e90a156f2f79d4187ee23486ed3787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBow
+  speed: 1
   lifeTime: 3

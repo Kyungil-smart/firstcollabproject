@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -17,17 +18,21 @@ public static class ExplodePolicy
         Action<Collider2D> onHit = null)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius);
+
+        // 한 오브젝트에 콜라이더가 여러 개일 때 중복 타격 방지
+        HashSet<IDamageable> alreadyHit = new();
+
         foreach (var hit in hits)
         {
             if (hit.transform.root == owner.root) continue;
             if (skipPlayer && hit.GetComponent<PlayerBody>() != null) continue;
 
             var damageable = hit.GetComponent<IDamageable>();
-            if (damageable == null) continue;
+            if (damageable == null || !alreadyHit.Add(damageable)) continue;
 
             float dmg = damageable == directHit ? damage : damage * splashMultiplier;
             damageable.TakeDamage(dmg);
-
+            Debug.Log($"ExplodePolicy: {hit.name}에 {(damageable == directHit ? "직격" : "간접")} 피해 {dmg} 적용");
             onHit?.Invoke(hit);
         }
     }
