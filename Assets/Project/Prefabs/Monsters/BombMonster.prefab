@@ -264,8 +264,9 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 3188958947149651557}
   statSo: {fileID: 11400000, guid: 5e97baa7773d3484e84e78474c27765e, type: 2}
-  blinkDuration: 1
-  blinkCount: 4
+  chaseDuration: 1.5
+  stopDuration: 0.5
+  blinkCount: 6
 --- !u!50 &4393796292848850097
 Rigidbody2D:
   serializedVersion: 5

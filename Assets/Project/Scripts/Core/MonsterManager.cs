@@ -176,5 +176,10 @@ namespace Monster
                 currentRoom.ClearRoom();
             }
         }
+        
+        public int GetCurrentKillCount()
+        {
+            return _currentKillCount;
+        }
     }
 }
