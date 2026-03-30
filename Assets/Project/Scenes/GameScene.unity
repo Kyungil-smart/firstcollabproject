@@ -119,6 +119,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &333406608
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.69134
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.62066
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675692412758700219, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_Name
+      value: NormalMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584287105764583173, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584287105764583173, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
 --- !u!1 &373451421
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +509,7 @@ GameObject:
   - component: {fileID: 1183043994}
   - component: {fileID: 1183043993}
   - component: {fileID: 1183043995}
+  - component: {fileID: 1183043996}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -524,6 +594,30 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: -10}
+--- !u!114 &1183043996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183043992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1233020879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,10 +1430,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2018566112003243479, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: _bossPrefab
-      value: 
-      objectReference: {fileID: 7047037709664641846, guid: 6383b4647ecdfbf488369a0e3a8f6619, type: 3}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _rewardPopup
       value: 
@@ -2019,3 +2109,4 @@ SceneRoots:
   - {fileID: 7189677599371830673}
   - {fileID: 1265791049}
   - {fileID: 1841064841}
+  - {fileID: 333406608}
