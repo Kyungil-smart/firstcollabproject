@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private Sprite openDoorSprite;
-    [SerializeField] private Sprite closedSprite; 
-    
     private BoxCollider2D _collider;
-    private SpriteRenderer[] _spriteRenderers;
+
+    [Header("철창 프리팹")]
+    [SerializeField] private GameObject ironBar;
 
     private void Awake()
     {
         _collider = GetComponent<BoxCollider2D>();
-        _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
     public void Close()
@@ -21,11 +19,6 @@ public class Door : MonoBehaviour
         Debug.Log("문 닫김!");
         
         if (_collider != null) _collider.enabled = true;
-
-        foreach (var sprite in _spriteRenderers)
-        {
-            if (_spriteRenderers != null && closedSprite != null) sprite.sprite = closedSprite;
-        }
     }
 
     public void Open()
@@ -33,10 +26,5 @@ public class Door : MonoBehaviour
         Debug.Log("문열림!");
         
         if (_collider != null) _collider.enabled = false;
-
-        foreach (var sprite in _spriteRenderers)
-        {
-            if (_spriteRenderers != null && openDoorSprite != null) sprite.sprite = openDoorSprite;
-        }
     }
 }
