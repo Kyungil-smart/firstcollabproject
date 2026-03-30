@@ -52,12 +52,13 @@ public class BattleInputReader : ScriptableObject, IBattleActions
         if (isCharging) onCharge?.Invoke();
     }
 
-    public Vector2 MoveInput { get; private set; }
+    // Move 액션의 현재 값을 InputAction에서 직접 폴링합니다
+    public Vector2 MoveInput => inputAction?.Battle.Move.ReadValue<Vector2>() ?? Vector2.zero;
+
     public event Action<Vector2> onMove;
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        MoveInput = context.ReadValue<Vector2>();
-        onMove?.Invoke(MoveInput);
+        onMove?.Invoke(context.ReadValue<Vector2>());
     }
 }

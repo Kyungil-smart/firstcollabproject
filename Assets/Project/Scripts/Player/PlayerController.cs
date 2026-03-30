@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour
         _status = GetComponent<PlayerStatusEffect>();
     }
 
+    private void Start()
+    {
+        _input.Enable();
+    }
+
     private void FixedUpdate()
     {
         Vector2 nextVec = inputVector.normalized * _body.MoveSpeed * Time.fixedDeltaTime;
@@ -46,13 +51,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // 일시정지 중이면 로직 빠져나감.
-        if (Time.timeScale == 0f) return;
-
-        // 기절 중이면 이동 입력 무시, 아니면 BattleInputReader에서 이동값 읽기
-        inputVector = (_status != null && _status.IsStunned)
-            ? Vector2.zero
-            : _input.MoveInput;
+        // 기절 중이면 이동 입력 무시, 아니면 이동값 읽기
+        inputVector = _status.IsStunned ? Vector2.zero : _input.MoveInput;
 
         Anim();
     }
