@@ -11,7 +11,7 @@ public static class ExplodePolicy
         Vector3 center,
         float radius,
         float damage,
-        Transform owner,
+        Transform self,
         IDamageable directHit = null,
         float splashMultiplier = 0.7f,
         bool skipPlayer = false,
@@ -24,7 +24,7 @@ public static class ExplodePolicy
 
         foreach (var hit in hits)
         {
-            if (hit.transform.root == owner.root) continue;
+            if (hit.transform.root == self.root) continue;
             if (skipPlayer && hit.GetComponent<PlayerBody>() != null) continue;
 
             var damageable = hit.GetComponent<IDamageable>();
@@ -32,7 +32,7 @@ public static class ExplodePolicy
 
             float dmg = damageable == directHit ? damage : damage * splashMultiplier;
             damageable.TakeDamage(dmg);
-            Debug.Log($"ExplodePolicy: {hit.name}에 {(damageable == directHit ? "직격" : "간접")} 피해 {dmg} 적용");
+
             onHit?.Invoke(hit);
         }
     }

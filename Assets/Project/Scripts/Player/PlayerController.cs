@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// 플레이어 이동 입력 + 물리 이동 + 이동 애니메이션만 담당합니다
@@ -11,7 +10,25 @@ public class PlayerController : MonoBehaviour
     private Animator _anim;
     private PlayerStatusEffect _status;
 
+    [SerializeField] BattleInputReader _input;
+
     public Vector2 inputVector { get; private set; }
+
+#if UNITY_EDITOR
+    private void Reset()
+    {
+        string[] guids = UnityEditor.AssetDatabase.FindAssets("t:BattleInputReader");
+        if (guids.Length > 0)
+        {
+            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[0]);
+            _input = UnityEditor.AssetDatabase.LoadAssetAtPath<BattleInputReader>(path);
+        }
+        else
+        {
+            Debug.LogWarning("BattleInputReader SO를 찾을 수 없습니다");
+        }
+    }
+#endif
 
     private void Awake()
     {
@@ -19,6 +36,11 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponentInChildren<Animator>();
         _status = GetComponent<PlayerStatusEffect>();
+    }
+
+    private void Start()
+    {
+        _input.Enable();
     }
 
     private void FixedUpdate()
@@ -29,36 +51,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // 일시정지 중이면 로직 빠져나감.
-        if (Time.timeScale == 0f) return;
-
-        // 기절 중이면 이동 입력 무시
-        if (_status != null && _status.IsStunned)
-        {
-            inputVector = Vector2.zero;
-        }
-        else
-        {
-            ReadMoveInput();
-        }
+        // 기절 중이면 이동 입력 무시, 아니면 이동값 읽기
+        inputVector = _status.IsStunned ? Vector2.zero : _input.MoveInput;
 
         Anim();
-    }
-
-    /// <summary>
-    /// BattleInputReader 기반: Keyboard에서 WASD 이동 입력을 직접 읽음
-    /// </summary>
-    private void ReadMoveInput()
-    {
-        var kb = Keyboard.current;
-        if (kb == null) { inputVector = Vector2.zero; return; }
-
-        Vector2 input = Vector2.zero;
-        if (kb.wKey.isPressed) input.y += 1f;
-        if (kb.sKey.isPressed) input.y -= 1f;
-        if (kb.aKey.isPressed) input.x -= 1f;
-        if (kb.dKey.isPressed) input.x += 1f;
-        inputVector = input;
     }
 
     private void Anim()
