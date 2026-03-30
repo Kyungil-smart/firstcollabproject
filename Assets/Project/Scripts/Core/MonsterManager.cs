@@ -177,6 +177,9 @@ namespace Monster
             }
         }
         
- 
+        public int GetCurrentKillCount()
+        {
+            return _currentKillCount;
+        }
     }
 }

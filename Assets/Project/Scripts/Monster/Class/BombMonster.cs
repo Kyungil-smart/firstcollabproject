@@ -172,39 +172,44 @@ namespace Monster
 
         protected override void Die()
         {
-            // 중복 사망 방지
-            if (isDead && !_isSelfDie) return; 
-
-            StopAllCoroutines();
-            
-            // 사망 상태 확정
-            isDead = true; 
-
-            var spawner = FindObjectOfType<MonsterSpawner>();
+            if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
 
             if (_isSelfDie)
             {
-                // 자폭 사망
-                if (spawner != null) spawner.NotifyMonsterSuicide();
+                isDead = true;
+                activeEffects = StatusEffect.None;
+
+                if (agent != null)
+                {
+                    if (agent.isOnNavMesh) agent.isStopped = true;
+                    agent.enabled = false;
+                }
+
+                if (rb == null) rb = GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.linearVelocity = Vector2.zero; 
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                }
+
+                if (hpSlider != null) hpSlider.gameObject.SetActive(false);
+
+                StopAllCoroutines();
+                
+                if (gameObject.activeInHierarchy)
+                {
+                    StartCoroutine(DeathRoutine());
+                }
+                else
+                {
+                    var spawner = FindObjectOfType<MonsterSpawner>();
+                    if (spawner != null) spawner.ReturnMonster(this.gameObject);
+                }
             }
             else
             {
-                // 기본 사망 로직 실행
                 base.Die();
             }
-
-            // 공통 정리
-            if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
-            gameObject.layer = LayerMask.NameToLayer("Monster");
-    
-            if (spawner != null)
-            {
-                // 풀 반환 및 비활성화
-                spawner.ReturnMonster(this.gameObject);
-            }
-            
-            // 강제 비활성화
-            gameObject.SetActive(false);
         }
 
         private void SetRenderersColor(Color color)

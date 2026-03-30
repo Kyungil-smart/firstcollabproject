@@ -336,7 +336,7 @@ namespace Monster
             }
         }
 
-        private IEnumerator DeathRoutine()
+        protected IEnumerator DeathRoutine()
         {
             if (animator != null)
             {
