@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        _collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponentInChildren<BoxCollider2D>();
     }
 
     public void Close()
