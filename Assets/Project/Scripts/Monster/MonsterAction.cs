@@ -231,6 +231,7 @@ namespace Monster
         {
             if (isDead) return;
             
+
             bool isCrit = false; // 크리티컬 여부 판단
             if (MonsterManager.Instance.RollPlayerCrit())
             {
@@ -239,17 +240,19 @@ namespace Monster
             }
             damage = Mathf.Max(0f, damage);
 
+            // 피 이펙트
+            if (bloodEffect != null)
+            {
+                Vector3 spawnPosition = transform.position + new Vector3(0f, 0.757f, -1f);
+                GameObject effectClone = Instantiate(bloodEffect, spawnPosition, Quaternion.identity, transform);
+                effectClone.SetActive(true);
+            }
+
+            
             if (statSo.StunDuration > 0) ApplyStun(statSo.StunDuration);
 
             currentHp -= damage;
             
-            // 피 이펙트
-            if (bloodEffect != null)
-            {
-                Vector3 spawnPosition = transform.position + new Vector3(0f, 0.757f, 0f);
-                Instantiate(bloodEffect, spawnPosition, Quaternion.identity);
-            }
-
             if (gameObject.activeInHierarchy && !isDead)
             {
                 if (_hitFlashCoroutine != null) StopCoroutine(_hitFlashCoroutine);
@@ -268,8 +271,6 @@ namespace Monster
                 hpSlider.value = currentHp;
             }
             
-            if(bloodEffect != null) bloodEffect.SetActive(false);
-
             if (currentHp <= 0)
             {
                 Die();
