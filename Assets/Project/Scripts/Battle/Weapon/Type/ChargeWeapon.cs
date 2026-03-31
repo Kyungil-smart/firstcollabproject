@@ -18,7 +18,7 @@ public class ChargeWeapon : WeaponBase
 
     void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (_spriteRenderer != null)
             _defaultColor = _spriteRenderer.color;
     }
