@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class SplashRangeProjectile : MonoBehaviour
 {
+    [SerializeField] ParticleSystem explosionParticle;
+
     static readonly int WallLayer = 9;
     static readonly int ObstacleLayer = 10;
     static readonly int WallMask = (1 << 9) | (1 << 10);
@@ -98,7 +100,11 @@ public class SplashRangeProjectile : MonoBehaviour
         ExplodePolicy.Apply(transform.position, _splashRadius, _damage,
             transform, _directHitDamageable, skipPlayer: true);
 
-        // TODO: Æø¹ß ÀÌÆåÆ®
+        // ÆÄÆ¼Å¬
+        var particle = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        var main = particle.main;
+        main.startSize = _splashRadius * 2.3f;
+        particle.Play();
 
         Destroy(gameObject);
     }

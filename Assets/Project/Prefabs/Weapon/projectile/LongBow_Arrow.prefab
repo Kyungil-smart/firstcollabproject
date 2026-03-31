@@ -179,3 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a967bf7d2c4eef449959aa91855b16f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplashRangeProjectile
+  explosionParticle: {fileID: 3752511408183367671, guid: 762b510f416fe3942b4b795eb989e022, type: 3}

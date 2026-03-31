@@ -19,6 +19,6 @@ MonoBehaviour:
   StartSimultaneous: 6
   MaxSimultaneous: 12
   Normal: 0.5
-  Ranged: 0.3
+  Ranged: 0.2
   Bomb: 0.1
-  Brute: 0.1
+  Brute: 0.2

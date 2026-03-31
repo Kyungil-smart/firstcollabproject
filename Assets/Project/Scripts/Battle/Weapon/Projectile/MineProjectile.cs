@@ -66,7 +66,6 @@ public class MineProjectile : MonoBehaviour
         );
 
         // TODO: 슬로우(Slow) 상태이상 적용 — StatusEffect.Slow 시스템 구현 후 연동
-        // TODO: 폭발 이펙트 및 사운드
         Destroy(gameObject);
     }
 }

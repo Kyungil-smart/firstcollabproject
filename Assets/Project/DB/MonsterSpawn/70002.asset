@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 70002
   row: 7
   SpawnInterval: 5
-  MaxTotalMonster: 30
+  MaxTotalMonster: 22
   StartSimultaneous: 6
   MaxSimultaneous: 12
-  Normal: 1
-  Ranged: 0
+  Normal: 0.8
+  Ranged: 0.2
   Bomb: 0
   Brute: 0

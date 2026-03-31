@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class GrenadeProjectile : MonoBehaviour
 {
+    [SerializeField] ParticleSystem explosionParticle;
+
     private float _damage;
     private float _splashRadius;
     private float _explosionDelay;
@@ -46,7 +48,7 @@ public class GrenadeProjectile : MonoBehaviour
         }
         else
         {
-             _rb.linearVelocity = Vector2.zero;
+            _rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -71,7 +73,11 @@ public class GrenadeProjectile : MonoBehaviour
         ExplodePolicy.Apply(transform.position, _splashRadius, _damage,
             transform, _directHitDamageable);
 
-        // TODO: 폭발 이펙트 및 사운드 발생
+        // 파티클
+        var particle = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        var main = particle.main;
+        main.startSize = _splashRadius * 2.3f;
+        particle.Play();
 
         Destroy(gameObject);
     }
