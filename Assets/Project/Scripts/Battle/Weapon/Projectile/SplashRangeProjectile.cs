@@ -3,12 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class SplashRangeProjectile : MonoBehaviour
 {
+    static readonly int WallLayer = 9;
+    static readonly int ObstacleLayer = 10;
+    static readonly int WallMask = (1 << 9) | (1 << 10);
+
     float _damage;
     float _splashRadius;
     float _maxRange;
 
     Vector2 _direction;
     Vector2 _startPos;
+    Vector2 _prevPos;
     bool _hasExploded;
     Rigidbody2D _rb;
     IDamageable _directHitDamageable;
@@ -25,6 +30,7 @@ public class SplashRangeProjectile : MonoBehaviour
         _splashRadius = splashRadius;
         _maxRange = maxRange;
         _startPos = _rb.position;
+        _prevPos = _startPos;
 
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -35,6 +41,24 @@ public class SplashRangeProjectile : MonoBehaviour
     private void FixedUpdate()
     {
         if (_hasExploded) return;
+
+        Vector2 currentPos = _rb.position;
+        Vector2 delta = currentPos - _prevPos;
+        float dist = delta.magnitude;
+
+        // 이전~현재 위치 사이를 라인캐스트해서 고속 관통 방지
+        if (dist > 0)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(_prevPos, delta.normalized, dist, WallMask);
+            if (hit.collider != null)
+            {
+                _rb.position = hit.point;
+                Explode();
+                return;
+            }
+        }
+
+        _prevPos = currentPos;
 
         if (Vector2.Distance(_startPos, _rb.position) >= _maxRange)
         {
@@ -49,8 +73,8 @@ public class SplashRangeProjectile : MonoBehaviour
 
         int layer = other.gameObject.layer;
 
-        // 벽/장애물에 닿으면 그 자리에서 폭발
-        if (layer == 9 || layer == 10)
+        // 벽/장애물에 닿으면 그 자리에서 폭발 (라인캐스트에서 못 잡은 경우 폴백)
+        if (layer == WallLayer || layer == ObstacleLayer)
         {
             Explode();
             return;

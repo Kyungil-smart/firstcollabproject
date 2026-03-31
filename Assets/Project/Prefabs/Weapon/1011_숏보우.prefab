@@ -115,5 +115,5 @@ MonoBehaviour:
   sectorAngle: 0
   penetrateCount: 0
   screenShakeEnable: 0
-  projectileSpeed: 20
-  penetrateDecay: 0.5
+  projectileSpeed: 15.6
+  penetrateMultiplier: 0.5

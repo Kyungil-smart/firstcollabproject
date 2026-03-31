@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4810548955760061804}
-  - component: {fileID: -741862967815504083}
+  - component: {fileID: -8255454450092713592}
   m_Layer: 0
   m_Name: "1014_\uD569\uC131\uB2E8\uAD81"
   m_TagString: Untagged
@@ -124,7 +124,7 @@ Transform:
   - {fileID: 7951940915829364089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-741862967815504083
+--- !u!114 &-8255454450092713592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +133,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6716311642281167658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09703c0afc2474a4eae8e7f6c6fd97d3, type: 3}
+  m_Script: {fileID: 11500000, guid: cf3c410261a476841a7c6a520dd8a3c6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RangeWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::CompositeWeapon
   data: {fileID: 11400000, guid: ff70d2aadc9267745a23443453b6f0c2, type: 2}
   Name: 
   attackType: 0
@@ -147,3 +147,6 @@ MonoBehaviour:
   sectorAngle: 0
   penetrateCount: 0
   screenShakeEnable: 0
+  projectileSpeed: 23
+  penetrateMultiplier: 0.5
+  spreadAngle: 10

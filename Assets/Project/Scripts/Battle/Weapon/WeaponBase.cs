@@ -81,6 +81,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         if (screenShakeEnable) GameManager.Instance.CameraShake(_impulseSource); // 카메라 흔들림
     }
 
+    public virtual bool AutoFire => true;
     public virtual void Charging() { }
     public virtual void ChargeRelease() { }
     public abstract void Attack(float damage);
