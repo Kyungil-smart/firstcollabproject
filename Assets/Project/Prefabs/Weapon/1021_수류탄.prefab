@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3973772282499239080}
-  - component: {fileID: 3678483887874728117}
   - component: {fileID: 6943805786269574212}
   m_Layer: 0
   m_Name: "1021_\uC218\uB958\uD0C4"
@@ -30,17 +29,76 @@ Transform:
   m_LocalPosition: {x: 0.25031, y: -0.031, z: -0.0011987}
   m_LocalScale: {x: -0.63796264, y: -0.64471465, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8320300488038804491}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 1.364, y: 0, z: 0}
---- !u!212 &3678483887874728117
+--- !u!114 &6943805786269574212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300503684806237442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcad34a8364285e42a22c1064f450038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrenadeWeapon
+  data: {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
+  Name: 
+  attackType: 0
+  damageBase: 0
+  attackInterval: 0
+  ammo: 0
+  range: 0
+  splashRadius: 0
+  sectorAngle: 0
+  penetrateCount: 0
+  screenShakeEnable: 0
+  explosionDelay: 2
+  initialSpeed: 10
+  frictionDeceleration: 5
+--- !u!1 &8162468192734838065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8320300488038804491}
+  - component: {fileID: 8692438597949647526}
+  m_Layer: 0
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8320300488038804491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8162468192734838065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3973772282499239080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!212 &8692438597949647526
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300503684806237442}
+  m_GameObject: {fileID: 8162468192734838065}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,7 +140,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 307
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 162447a025ac24a06b4cc99c9a6a0410, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f19cf1e6ce5f4d4baa8ce82f23c0590, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,30 +150,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &6943805786269574212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300503684806237442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcad34a8364285e42a22c1064f450038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrenadeWeapon
-  data: {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
-  Name: 
-  attackType: 0
-  damageBase: 0
-  attackInterval: 0
-  ammo: 0
-  range: 0
-  splashRadius: 0
-  sectorAngle: 0
-  penetrateCount: 0
-  screenShakeEnable: 0
-  projectilePrefab: {fileID: 0}
-  explosionDelay: 2
-  initialSpeed: 10
-  frictionDeceleration: 5

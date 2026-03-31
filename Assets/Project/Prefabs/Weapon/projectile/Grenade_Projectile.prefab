@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 211
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 162447a025ac24a06b4cc99c9a6a0410, type: 3}
-  m_Color: {r: 0.38875046, g: 0.9056604, b: 0.502108, a: 0.56078434}
+  m_Sprite: {fileID: 21300000, guid: 4f19cf1e6ce5f4d4baa8ce82f23c0590, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.56078434}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -170,3 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6dc80c45075144cad64ce0063113f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrenadeProjectile
+  explosionParticle: {fileID: 3752511408183367671, guid: 762b510f416fe3942b4b795eb989e022, type: 3}

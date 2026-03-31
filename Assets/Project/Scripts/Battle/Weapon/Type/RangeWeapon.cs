@@ -1,14 +1,15 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 
 public class RangeWeapon : WeaponBase
 {
-    float penetrateDecay = 0.5f;
     float attackThickness = 0.03f;
 
     public override void Attack(float damage)
     {
         int remainPenetrateCount = penetrateCount;
+        HashSet<IDamageable> alreadyHit = new();
 
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, attackThickness, transform.right, range);
 
@@ -21,21 +22,8 @@ public class RangeWeapon : WeaponBase
                 continue;
 
             var damageable = hit.collider.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(damage);
-                //Debug.Log($"[Å¸°Ù: {hit.collider.name}]");
-
-                if (remainPenetrateCount > 0)
-                {
-                    remainPenetrateCount--;
-                    damage *= penetrateDecay; // µ¥¹ÌÁö °¨¼è Àû¿ë
-                }
-                else
-                {
-                    break;
-                }
-            }
+            if (!PenetratePolicy.Apply(damageable, alreadyHit, ref damage, ref remainPenetrateCount))
+                break;
         }
     }
 }

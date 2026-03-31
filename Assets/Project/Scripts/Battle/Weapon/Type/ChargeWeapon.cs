@@ -11,6 +11,8 @@ public class ChargeWeapon : WeaponBase
     float _sectorAngle;
     float _rangeOffset = 0.23f; // 플레이어 위치로 이동해서 감소한 사거리 보정값
 
+    public override bool AutoFire => false;
+
     SpriteRenderer _spriteRenderer;
     Color _defaultColor;
     static readonly Color ChargeStartColor = Color.black;

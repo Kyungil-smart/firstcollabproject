@@ -13,6 +13,7 @@ public class WeaponSlotsHUD : MonoBehaviour
         public TextMeshProUGUI indexText;
         public Image coolTimeClock;
         public TextMeshProUGUI ammoText;
+        public Image icon;  // 방금 추가 함 (Image로 수정)
     }
 
     WeaponController _weaponController;
@@ -39,8 +40,22 @@ public class WeaponSlotsHUD : MonoBehaviour
 
             WeaponBase weapon = i < _weaponController._weapons.Length ? _weaponController._weapons[i] : null;
 
-            if (weapon.ammo > 0) slot.ammoText.text = weapon.ammo.ToString();
-            else slot.ammoText.text = "";
+            if (weapon != null)
+            {
+                if (weapon.ammo > 0) slot.ammoText.text = weapon.ammo.ToString();
+                else slot.ammoText.text = "";
+
+                if (slot.icon != null && weapon.data != null)
+                {
+                    slot.icon.sprite = weapon.data.icon;
+                    slot.icon.enabled = true;
+                }
+            }
+            else
+            {
+                slot.ammoText.text = "";
+                if (slot.icon != null) slot.icon.enabled = false;
+            }
 
             slot.indexText.color = (i == activeIndex) ? Color.green : Color.white; // 활성 슬롯의 인덱스 텍스트 색상을 변경
 

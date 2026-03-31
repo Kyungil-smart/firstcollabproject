@@ -16,16 +16,17 @@ MonoBehaviour:
   row: 9
   Name: "\uC7A5\uAC80"
   attackType: 0
-  damageBase: 120
+  damageBase: 80
   attackInterval: 1
   maxAmmo: 0
-  range: 2
+  range: 1.7
   splashRadius: 0
-  sectorAngle: 30
+  sectorAngle: 50
   penetrateCount: 0
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}
   prefab: {fileID: 7447025797547786004, guid: cd0475f192fd21949aa9e62fdb6da778, type: 3}
   projectilePrefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: 35d0182f5ff859f4cb643202732b9628, type: 3}
   statusEffect: 0

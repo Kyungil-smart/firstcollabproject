@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347248796717742210}
   - component: {fileID: 8402519179080434593}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8815658187283226946}
   - component: {fileID: 4096520776208854069}
-  m_Layer: 0
+  - component: {fileID: -8561444135803164944}
+  m_Layer: 2
   m_Name: "1012_\uC2AC\uB7EC\uADF8 \uBCF4\uC6B0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,3 +148,16 @@ MonoBehaviour:
   sectorAngle: 0
   penetrateCount: 0
   screenShakeEnable: 0
+--- !u!114 &-8561444135803164944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6750218193983612526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7a6b32fa6f7c844a11a1ebfebb1ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlugBowLauncher
+  slugArrowPrefab: {fileID: 6213539776784452163, guid: 7862b0b96b3ac6a4385a116dfbab5646, type: 3}

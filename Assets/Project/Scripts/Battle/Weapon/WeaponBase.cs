@@ -38,6 +38,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public bool screenShakeEnable;
 
     protected GameObject projectilePrefab;
+    protected Sprite icon;
 
     public void Init(WeaponSO config, PlayerBody owner)
     {
@@ -59,6 +60,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         screenShakeEnable = config.screenShakeEnable;
 
         projectilePrefab = config.projectilePrefab;
+        icon = config.icon;
     }
 
     public virtual void Equip() { }
@@ -81,6 +83,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         if (screenShakeEnable) GameManager.Instance.CameraShake(_impulseSource); // 카메라 흔들림
     }
 
+    public virtual bool AutoFire => true;
     public virtual void Charging() { }
     public virtual void ChargeRelease() { }
     public abstract void Attack(float damage);

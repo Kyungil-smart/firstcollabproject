@@ -34,6 +34,7 @@ public class WeaponSO : SheetDataSOBase
 
     [Header("연출")]
     public GameObject projectilePrefab;
+    public Sprite icon;
 
     [Header("추가 정보")]
     public StatusEffect statusEffect;

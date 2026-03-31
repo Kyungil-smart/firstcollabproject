@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6348513812181569279}
   - component: {fileID: 3779235569377910629}
   - component: {fileID: -2636321742083078211}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mine_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 59
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.17768781, g: 0.31132078, b: 0.21063203, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d00513521ed21d44db10ab5c666a11a7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -141,6 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79dc9f9cc61d764c8c6f4da758b9266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineProjectile
-  detectionSize: {x: 2, y: 2}
-  explosionSize: {x: 3, y: 3}
-  _rangeIndicator: {fileID: 0}
+  explosionParticle: {fileID: 3752511408183367671, guid: 762b510f416fe3942b4b795eb989e022, type: 3}
