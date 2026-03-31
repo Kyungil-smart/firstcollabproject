@@ -251,6 +251,18 @@ MonoBehaviour:
     m_Key: UI_GAMEOVER_TO_LOBBY
     m_Metadata:
       m_Items: []
+  - m_Id: 39485565272064
+    m_Key: UI_GAMEOVER_LOBBY_POP_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39520805814272
+    m_Key: UI_GAMEOVER_LOBBY_YES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39556855857152
+    m_Key: UI_GAMEOVER_LOBBY_NO
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

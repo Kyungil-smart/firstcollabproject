@@ -254,6 +254,18 @@ MonoBehaviour:
     m_Localized: TO LOBBY
     m_Metadata:
       m_Items: []
+  - m_Id: 39485565272064
+    m_Localized: Return to Lobby?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39556855857152
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39520805814272
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
