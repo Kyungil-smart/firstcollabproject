@@ -16,10 +16,10 @@ MonoBehaviour:
   row: 11
   Name: "\uC2AC\uB7EC\uADF8 \uBCF4\uC6B0"
   attackType: 1
-  damageBase: 80
-  attackInterval: 1
+  damageBase: 50
+  attackInterval: 1.3
   maxAmmo: 5
-  range: 3
+  range: 1.5
   splashRadius: 0
   sectorAngle: 90
   penetrateCount: 0

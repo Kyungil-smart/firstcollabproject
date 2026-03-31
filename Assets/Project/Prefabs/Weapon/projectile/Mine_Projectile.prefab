@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6348513812181569279}
   - component: {fileID: 3779235569377910629}
   - component: {fileID: -2636321742083078211}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mine_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,6 +141,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79dc9f9cc61d764c8c6f4da758b9266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineProjectile
-  detectionSize: {x: 2, y: 2}
-  explosionSize: {x: 3, y: 3}
-  _rangeIndicator: {fileID: 0}

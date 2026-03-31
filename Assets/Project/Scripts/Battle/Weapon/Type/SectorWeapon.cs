@@ -7,6 +7,12 @@ public class SectorWeapon : WeaponBase
     float _sectorAngle; // 부채꼴 공격의 총 각도
     float _rangeOffset = 0.12f; // 플레이어 위치로 이동해서 감소한 사거리 보정값
 
+    SlugBowLauncher _slugBowLauncher;
+    private void Awake()
+    {
+        _slugBowLauncher = GetComponent<SlugBowLauncher>();
+    }
+
     public override void Attack(float damage)
     {
         _sectorAngle = sectorAngle;
@@ -39,5 +45,9 @@ public class SectorWeapon : WeaponBase
                 }
             }
         }
+
+        // 샷건 탄환 이펙트 발사
+        if (_slugBowLauncher != null)
+            _slugBowLauncher.Fire();
     }
 }

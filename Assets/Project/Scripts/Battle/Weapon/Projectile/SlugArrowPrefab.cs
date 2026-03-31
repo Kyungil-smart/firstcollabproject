@@ -6,21 +6,23 @@ public class SlugArrowPrefab : MonoBehaviour
     [SerializeField] private float speed = 15f;    // 화살 날아가는 속도
     [SerializeField] private float lifeTime = 2f;  // 파괴되는 시간
 
-    private Vector2 _direction;
+    private Rigidbody2D _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     // 화살이 생성될 때 런처 스크립트가 호출
     public void Setup(Vector2 dir)
     {
-        _direction = dir.normalized;
-        
-        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        
-        Destroy(gameObject, lifeTime);
-    }
+        Vector2 direction = dir.normalized;
 
-    void Update()
-    {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        _rb.linearVelocity = direction * speed;
+
+        Destroy(gameObject, lifeTime);
     }
 }

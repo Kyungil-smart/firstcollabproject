@@ -16,11 +16,11 @@ MonoBehaviour:
   row: 15
   Name: "\uC218\uB958\uD0C4"
   attackType: 2
-  damageBase: 100
+  damageBase: 50
   attackInterval: 1
   maxAmmo: 1
   range: 5
-  splashRadius: 2
+  splashRadius: 1.8
   sectorAngle: 0
   penetrateCount: 0
   screenShakeEnable: 1

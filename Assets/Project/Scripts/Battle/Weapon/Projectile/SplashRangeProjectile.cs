@@ -47,6 +47,15 @@ public class SplashRangeProjectile : MonoBehaviour
         if (_hasExploded) return;
         if (other.transform.root == transform.root) return;
 
+        int layer = other.gameObject.layer;
+
+        // 벽/장애물에 닿으면 그 자리에서 폭발
+        if (layer == 9 || layer == 10)
+        {
+            Explode();
+            return;
+        }
+
         var damageable = other.GetComponent<IDamageable>();
         if (damageable != null)
         {

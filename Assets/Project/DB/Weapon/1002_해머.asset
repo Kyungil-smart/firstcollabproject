@@ -16,12 +16,12 @@ MonoBehaviour:
   row: 7
   Name: "\uD574\uBA38"
   attackType: 0
-  damageBase: 60
+  damageBase: 50
   attackInterval: 2
   maxAmmo: 0
-  range: 2
+  range: 1.1
   splashRadius: 0
-  sectorAngle: 90
+  sectorAngle: 45
   penetrateCount: 0
   screenShakeEnable: 1
   perkSO:

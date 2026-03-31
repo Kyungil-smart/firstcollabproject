@@ -17,11 +17,11 @@ MonoBehaviour:
   Name: "\uB9E8\uC8FC\uBA39"
   attackType: 0
   damageBase: 20
-  attackInterval: 0.5
+  attackInterval: 0.6
   maxAmmo: 0
   range: 1
   splashRadius: 0
-  sectorAngle: 45
+  sectorAngle: 30
   penetrateCount: 0
   screenShakeEnable: 1
   perkSO:

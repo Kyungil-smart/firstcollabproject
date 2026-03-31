@@ -16,12 +16,12 @@ MonoBehaviour:
   row: 8
   Name: "\uB2E8\uAC80"
   attackType: 0
-  damageBase: 15
-  attackInterval: 0.2
+  damageBase: 25
+  attackInterval: 0.4
   maxAmmo: 0
-  range: 2
+  range: 1.3
   splashRadius: 0
-  sectorAngle: 60
+  sectorAngle: 30
   penetrateCount: 0
   screenShakeEnable: 1
   perkSO:
