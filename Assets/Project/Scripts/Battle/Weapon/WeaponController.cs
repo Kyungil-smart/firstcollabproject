@@ -75,6 +75,7 @@ public class WeaponController : MonoBehaviour
         obj.transform.SetParent(mountPoint);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
         obj.SetActive(false);
         return obj.GetComponent<WeaponBase>();
     }
@@ -120,12 +121,14 @@ public class WeaponController : MonoBehaviour
     /// </summary>
     public void EquipWeaponToSlot(WeaponSO weaponSO, int slotIndex)
     {
-        
-
         if (_weapons[slotIndex] != null) Destroy(_weapons[slotIndex].gameObject);
 
         _weapons[slotIndex] = CreateAndInit(weaponSO);
-        //SwitchToSlot(slotIndex, true);
+
+        if (slotIndex == CurrentWeaponIndex)
+        {
+            SwitchToSlot(slotIndex, true);
+        }
     }
 
     public AttackType CurrentAttackType => CurrentWeapon.attackType;

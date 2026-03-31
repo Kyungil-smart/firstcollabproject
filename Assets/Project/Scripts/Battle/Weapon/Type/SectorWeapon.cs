@@ -5,7 +5,7 @@ public class SectorWeapon : WeaponBase
 {
     [Header("부채꼴 공격 설정")]
     float _sectorAngle; // 부채꼴 공격의 총 각도
-    float _rangeOffset = 0.23f; // 플레이어 위치로 이동해서 감소한 사거리 보정값
+    float _rangeOffset = 0.12f; // 플레이어 위치로 이동해서 감소한 사거리 보정값
 
     public override void Attack(float damage)
     {
