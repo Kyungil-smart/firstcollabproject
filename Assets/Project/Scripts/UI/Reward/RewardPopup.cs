@@ -10,6 +10,9 @@ namespace UI
         
         private readonly List<RewardCardSlot> _cardSlotList = new List<RewardCardSlot>();
 
+        static int _openCount;
+        bool _isOpen;
+
         private void Awake()
         {
             for (int i = 0; i < 3; i++)
@@ -36,6 +39,7 @@ namespace UI
         public void Open(WeaponSO[] weaponDatas, WeaponPerkSO[] perkDatas, WeaponPerks playerPerk)
         {
             gameObject.SetActive(true);
+            if (!_isOpen) { _openCount++; _isOpen = true; }
             Time.timeScale = 0f;
             SetData(weaponDatas, perkDatas, playerPerk);
         }
@@ -61,6 +65,7 @@ namespace UI
         public void Open(PlayerPerkSO[] perkDatas, BodyPart[] bodyParts, PlayerPerk playerPerk)
         {
             gameObject.SetActive(true);
+            if (!_isOpen) { _openCount++; _isOpen = true; }
             Time.timeScale = 0f;
             SetData(perkDatas, bodyParts, playerPerk);
         }
@@ -103,8 +108,19 @@ namespace UI
                 _cardSlotList[i].gameObject.SetActive(false);
             }
 
-            Time.timeScale = 1f;
+            if (_isOpen) { _openCount--; _isOpen = false; }
+            if (_openCount <= 0)
+            {
+                _openCount = 0;
+                Time.timeScale = 1f;
+            }
             gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            _openCount = 0;
+            _isOpen = false;
         }
     }
 }

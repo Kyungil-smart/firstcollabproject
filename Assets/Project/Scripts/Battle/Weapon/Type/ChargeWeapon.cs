@@ -68,6 +68,7 @@ public class ChargeWeapon : WeaponBase
 
             Attack(damageBase);
             RaiseOnAttacked();
+            if (screenShakeEnable) GameManager.Instance.CameraShake(_impulseSource);
         }
         else
         {
