@@ -295,6 +295,7 @@ MonoBehaviour:
   hpSlider: {fileID: 5039766714776829497}
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 6271991823754040064}
+  bloodEffect: {fileID: 4732097407848198378, guid: 80bfc93a3264a9e45837224dd8a67b62, type: 3}
   statSo: {fileID: 11400000, guid: 5ec7fd95d547d60469263dd704d25ca0, type: 2}
   projectilePrefab: {fileID: 5295285690855142305, guid: f7d527613d0e39f44be26bb5c26a3197, type: 3}
   firePoint: {fileID: 8733117192257678904}
