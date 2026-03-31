@@ -116,16 +116,16 @@ public class WeaponController : MonoBehaviour
     }
 
     /// <summary>
-    /// 특정 슬롯에 무기를 교체 장착한다 (Melee=0, Range=1, Consume=2)
+    /// 특정 슬롯에 무기를 교체 한다 (Melee=0, Range=1, Consume=2)
     /// </summary>
     public void EquipWeaponToSlot(WeaponSO weaponSO, int slotIndex)
     {
-        if (weaponSO == null || slotIndex < 0 || slotIndex >= _weapons.Length) return;
+        
 
         if (_weapons[slotIndex] != null) Destroy(_weapons[slotIndex].gameObject);
 
         _weapons[slotIndex] = CreateAndInit(weaponSO);
-        SwitchToSlot(slotIndex, true);
+        //SwitchToSlot(slotIndex, true);
     }
 
     public AttackType CurrentAttackType => CurrentWeapon.attackType;
