@@ -8,14 +8,14 @@ public enum BodyPart { Head, Body, Arm, Leg }
 /// </summary>
 public class PlayerBody : MonoBehaviour, IDamageable
 {
-    public float headMaxHP = 100f;
-    public float bodyMaxHP = 100f;
-    public float armMaxHP = 100f;
-    public float legMaxHP = 100f;
-    float _headCurHP = 100f;
-    float _bodyCurHP = 100f;
-    float _armCurHP = 100f;
-    float _legCurHP = 100f;
+    [HideInInspector] public float headMaxHP = 100f;
+    [HideInInspector] public float bodyMaxHP = 100f;
+    [HideInInspector] public float armMaxHP = 100f;
+    [HideInInspector] public float legMaxHP = 100f;
+    [SerializeField] float _headCurHP = 100f;
+    [SerializeField] float _bodyCurHP = 100f;
+    [SerializeField] float _armCurHP = 100f;
+    [SerializeField] float _legCurHP = 100f;
 
     public static event Action<int> OnHeadInjuryChanged;
     public static event Action<int> OnBodyInjuryChanged;
@@ -26,7 +26,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public static event Action OnEvaded;
     public static event Action OnPlayerDeath;
 
-    bool _isAlive = true;
+    public bool isAlive = true;
     public bool IsInvincible { get; set; }
 
     //부상 레벨  0: 정상, 1~3: 부상 단계, 4: 재기불능
@@ -193,7 +193,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (!_isAlive || IsInvincible) return;
+        if (!isAlive || IsInvincible) return;
 
         // 회피 판정
         if (UnityEngine.Random.value < EvasionPercent)
@@ -218,7 +218,7 @@ public class PlayerBody : MonoBehaviour, IDamageable
 
         if (TotalCurHP <= 0f)
         {
-            _isAlive = false;
+            isAlive = false;
             OnPlayerDeath?.Invoke();
         }
     }

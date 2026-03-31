@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6543019526219266919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6852506139951071447}
+  - component: {fileID: 380349795923619987}
+  m_Layer: 0
+  m_Name: MapVisualizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6852506139951071447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6543019526219266919}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &380349795923619987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6543019526219266919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30216a3efd277534fbd6b1531bbab234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomManager
+  startStageId: 70001
+  startRoomPrefab: {fileID: 7327272114858952020, guid: e1b48ce436848de44b65e1350beed070, type: 3}
+  bossRoomPrefab: {fileID: 5383451980108417636, guid: 11abacc16c8b0ca4db6adaf60cb80ddc, type: 3}
+  normalRoomPrefabs:
+  - {fileID: 1791085752541393532, guid: b43e428f2f5b96a409b72a2b35c2005f, type: 3}
+  - {fileID: 5746397223361016884, guid: 98c01e7eadca990429f9162613730f95, type: 3}
+  - {fileID: 5286378086378541013, guid: 7ffb50be990b92e42887d0f4b0775d0b, type: 3}
+  - {fileID: 7502784314291603108, guid: 9e7f49ecd8b5adb49a703f2d85db2d1e, type: 3}
+  - {fileID: 4370217988101124012, guid: 98fd2bb4071e40e4a8d5eae93cfe5086, type: 3}
+  - {fileID: 5299329299955031055, guid: 10ed023888628c74b9e3b23d19d73bb9, type: 3}
+  - {fileID: 8452811725617681310, guid: a0d3cffdc7646244d8657f52c8638bca, type: 3}
+  - {fileID: 7482493490220413934, guid: 09328459f3726c4499ada39ed8fb6714, type: 3}
+  - {fileID: 3088905916260291499, guid: 4bc6ed3dae0168949a82704a5ace4fef, type: 3}
+  - {fileID: 6616264956349451028, guid: 0d523c010cfa8b34fa94d4a5aaf72506, type: 3}
+  - {fileID: 1197637510868660334, guid: e4f66937e6f191940a5970cc460dcdff, type: 3}
+  - {fileID: 2044638902502929459, guid: 8f7a813e61139884cbf533ce4585141a, type: 3}
+  navMeshSurfaces: {fileID: 0}
+  roomOffset: 36

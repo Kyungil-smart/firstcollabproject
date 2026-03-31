@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!_body.isAlive) return;
         if (_status.IsStunned)
         {
             inputVector = Vector2.zero;
