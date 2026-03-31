@@ -7,11 +7,13 @@ public class TEST_Upgrade : MonoBehaviour
 {
     WeaponPerks _weaponPerks;
     PlayerPerk _playerPerk;
+    PlayerBody _playerBody;
 
     private void Awake()
     {
         _weaponPerks = GetComponent<WeaponPerks>();
         _playerPerk = GetComponent<PlayerPerk>();
+        _playerBody = GetComponent<PlayerBody>();
     }
 
     private void Update()
@@ -43,6 +45,15 @@ public class TEST_Upgrade : MonoBehaviour
         if (kb[Key.PageUp].wasPressedThisFrame)
         {
             _playerPerk.requiredExp = int.MaxValue;
+        }
+
+        // PageDown 키 누르면 플레이어 모든 부위에 데미지 20씩
+        if (kb[Key.PageDown].wasPressedThisFrame && _playerBody != null)
+        {
+            _playerBody.HeadCurHP -= 20f;
+            _playerBody.BodyCurHP -= 20f;
+            _playerBody.ArmCurHP  -= 20f;
+            _playerBody.LegCurHP  -= 20f;
         }
     }
 }
