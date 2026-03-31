@@ -6037,6 +6037,11 @@ MonoBehaviour:
   bodyMaxHP: 100
   armMaxHP: 100
   legMaxHP: 100
+  _headCurHP: 100
+  _bodyCurHP: 100
+  _armCurHP: 100
+  _legCurHP: 100
+  isAlive: 1
   _critPercent: 0.05
   _recoveryPercent: 0.1
   _critDamage: 1.5
@@ -6746,7 +6751,7 @@ Animator:
   m_GameObject: {fileID: 6351114650973748506}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9358c226bb09e24da9c5f7064768810, type: 2}
+  m_Controller: {fileID: 9100000, guid: 27e2e123c08368348a9afeef1941a7c7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

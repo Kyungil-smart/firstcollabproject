@@ -263,6 +263,7 @@ MonoBehaviour:
   hpSlider: {fileID: 5039766714776829497}
   damageTextPrefab: {fileID: 6866140660396433193, guid: df73266ddc93ba8499e25f4fae8242f2, type: 3}
   bodyPrefab: {fileID: 67674577216460736}
+  bloodEffect: {fileID: 4732097407848198378, guid: 80bfc93a3264a9e45837224dd8a67b62, type: 3}
   statSo: {fileID: 11400000, guid: 5cfd9bb01a783754dba7f9d2fca6c490, type: 2}
 --- !u!50 &-5261602468095805154
 Rigidbody2D:
