@@ -19,6 +19,7 @@ public class SectorSpriteRenderer : MonoBehaviour
     {
         _weaponController = GetComponentInParent<WeaponController>();
         _sr = GetComponent<SpriteRenderer>();
+        _sr.enabled = true;
 
         // 스프라이트 원본 크기(월드 유닛)를 자동 계산
         Sprite sprite = _sr.sprite;

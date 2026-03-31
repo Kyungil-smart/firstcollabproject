@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// �÷��̾� ���� ���� ? ����/�ǰ�/��� �ִϸ��̼�, �ǰ� ���� ������
+/// 플레이어의 시각적 효과를 관리합니다.
 /// </summary>
 public class PlayerVisualEffect : MonoBehaviour
 {
@@ -53,8 +53,14 @@ public class PlayerVisualEffect : MonoBehaviour
     private void HandleDeath()
     {
         _anim.SetTrigger("4_Death");
-        GetComponent<Collider2D>().enabled = false;     // ��� �� ���� �޴°� ����
-        GetComponent<PlayerController>().enabled = false; // ��� �� ���� ����
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<PlayerController>().enabled = false;
+        StartCoroutine(ShowGameOverRoutine());
+    }
+
+    IEnumerator ShowGameOverRoutine()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
         gameOverPopup.SetActive(true);
     }
 
