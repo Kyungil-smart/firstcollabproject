@@ -21860,6 +21860,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1896719461397047545}
     m_Modifications:
+    - target: {fileID: 3130881960721181256, guid: 465d7782006cbd342ac8191f995a9a8f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4013459539964049472, guid: 465d7782006cbd342ac8191f995a9a8f, type: 3}
       propertyPath: m_Name
       value: Down_Door
@@ -21927,6 +21931,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1896719461397047545}
     m_Modifications:
+    - target: {fileID: 5741028990800394777, guid: 6d5738686c6b3314d9cd0c67e5e75184, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5822114336765768963, guid: 6d5738686c6b3314d9cd0c67e5e75184, type: 3}
       propertyPath: m_Name
       value: Left_Door
@@ -21997,6 +22005,10 @@ PrefabInstance:
     - target: {fileID: 3028741583500329425, guid: 41a54c6e089ca3b4eb5fdcaf91919907, type: 3}
       propertyPath: m_Name
       value: Up_Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425553313802959194, guid: 41a54c6e089ca3b4eb5fdcaf91919907, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8740103097321908007, guid: 41a54c6e089ca3b4eb5fdcaf91919907, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22104,6 +22116,10 @@ PrefabInstance:
     - target: {fileID: 1687602249988737669, guid: ab19027ea1f37d9459d7a4a45b15f395, type: 3}
       propertyPath: m_Name
       value: Right_Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145998850741907122, guid: ab19027ea1f37d9459d7a4a45b15f395, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
