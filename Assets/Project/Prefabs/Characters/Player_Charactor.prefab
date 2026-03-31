@@ -6191,6 +6191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4131219af13905e4ca8b72cd972ae282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVisualEffect
+  gameOverPopup: {fileID: 0}
 --- !u!114 &-6931260449682252595
 MonoBehaviour:
   m_ObjectHideFlags: 0
