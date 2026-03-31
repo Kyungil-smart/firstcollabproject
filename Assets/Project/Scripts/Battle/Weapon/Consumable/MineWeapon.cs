@@ -6,8 +6,8 @@ public class MineWeapon : WeaponBase
     [Header("지뢰 전용 설정")]
     [SerializeField] float deployTime = 1f;       // 설치 소요 시간 (설치 중 무방비)
     [SerializeField] float activationDelay = 2f;  // 설치 후 활성화 대기 시간
-    [SerializeField] Vector2 detectionSize = new Vector2(2f, 2f);
-    [SerializeField] Vector2 explosionSize = new Vector2(3f, 3f);
+    [SerializeField] float detectionRadius = 2f;
+    [SerializeField] float explosionRadius = 3f;
 
     private bool _isDeploying;
 
@@ -35,7 +35,7 @@ public class MineWeapon : WeaponBase
         var mineProjectile = mine.GetComponent<MineProjectile>();
         if (mineProjectile != null)
         {
-            mineProjectile.Init(damage, activationDelay, detectionSize, explosionSize);
+            mineProjectile.Init(damage, activationDelay, detectionRadius, explosionRadius);
         }
 
         _isDeploying = false;

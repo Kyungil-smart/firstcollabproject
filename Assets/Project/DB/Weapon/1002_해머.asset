@@ -28,4 +28,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 091d53d085cf3384a96059379cd8a8be, type: 2}
   prefab: {fileID: 6914405558847928829, guid: 741f6a3fe36250645bf04ac87890b6f6, type: 3}
   projectilePrefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: ad1234c7c6c91844fa8596fab718dbbe, type: 3}
   statusEffect: 0
