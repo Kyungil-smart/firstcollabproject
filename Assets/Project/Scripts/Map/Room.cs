@@ -18,11 +18,19 @@ public class Room : MonoBehaviour
     private Camera _mainCam;
     private List<Vector2Int> _offScreenPoint = new List<Vector2Int>();
     
-    [Header("Door Prefabs")] 
+    private bool _isCleared = false;
+
+    [Header("문 프리팹")] 
     [SerializeField] private GameObject upDoor;
     [SerializeField] private GameObject downDoor;
     [SerializeField] private GameObject leftDoor;
     [SerializeField] private GameObject rightDoor;
+
+    [Header("예비벽 프리팹")] 
+    [SerializeField] private GameObject upReserveWall;
+    [SerializeField] private GameObject downReserveWall;
+    [SerializeField] private GameObject leftReserveWall;
+    [SerializeField] private GameObject rightReserveWall;
     
     /*
     private void Start()
@@ -75,6 +83,7 @@ public class Room : MonoBehaviour
         }
     }
 
+    /*
     /// <summary>
     /// 현재 방과 이웃 방에 문 배치해주는 메서드
     /// </summary>
@@ -86,8 +95,31 @@ public class Room : MonoBehaviour
         else if (direction == Vector2Int.left) leftDoor.SetActive(true);
         else if (direction == Vector2Int.right) rightDoor.SetActive(true);
     }
+    */
 
-    private bool _isCleared = false;
+    /// <summary>
+    /// 비트마스킹을 이용해 문과 벽 배치
+    /// </summary>
+    /// <param name="roomDic"></param>
+    public void SetRoomConnection(RoomDirection roomDic)
+    {
+        bool upFlag = roomDic.HasFlag(RoomDirection.Up);
+        bool downFlag = roomDic.HasFlag(RoomDirection.Down);
+        bool leftFlag = roomDic.HasFlag(RoomDirection.Left);
+        bool rightFlag = roomDic.HasFlag(RoomDirection.Right);
+        
+        upDoor.SetActive(upFlag);
+        upReserveWall.SetActive(!upFlag);
+        
+        downDoor.SetActive(downFlag);
+        downReserveWall.SetActive(!downFlag);
+        
+        leftDoor.SetActive(leftFlag);
+        leftReserveWall.SetActive(!leftFlag);
+            
+        rightDoor.SetActive(rightFlag);
+        rightReserveWall.SetActive(!rightFlag);
+    }
     
     public void ClearRoom()
     {

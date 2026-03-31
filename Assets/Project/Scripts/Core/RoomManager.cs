@@ -14,9 +14,6 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject startRoomPrefab;
     [SerializeField] private GameObject bossRoomPrefab;
     [SerializeField] private List<GameObject> normalRoomPrefabs;
-    
-    // [Header("플레이어 프리팹 참조")]
-    // [SerializeField] private GameObject playerPrefab;
 
     [Header("NavMesh Surface")]
     [SerializeField]
@@ -129,27 +126,21 @@ public class RoomManager : MonoBehaviour
         {
             Vector2Int currentPosition = roomKey.Key;
             Room currentRoom = roomKey.Value;
+            RoomDirection roomDir = RoomDirection.None;
 
-            Vector2Int[] checkDirections = { Vector2Int.up, Vector2Int.right };
-
-            foreach (var direction in checkDirections)
-            {
-                Vector2Int targetPosition = currentPosition + direction;
-
-                if (_roomDic.TryGetValue(targetPosition, out Room neighborRoom))
-                {
-                    if (direction == Vector2Int.up)
-                    {
-                        currentRoom.PlaceDoor(Vector2Int.up);
-                        neighborRoom.PlaceDoor(Vector2Int.down);
-                    }
-                    else
-                    {
-                        currentRoom.PlaceDoor(Vector2Int.right);
-                        neighborRoom.PlaceDoor(Vector2Int.left);
-                    }
-                }
-            }
+            if (_roomDic.ContainsKey(currentPosition + Vector2Int.up))
+                roomDir |= RoomDirection.Up;
+                
+            if (_roomDic.ContainsKey(currentPosition + Vector2Int.down))
+                roomDir |= RoomDirection.Down;
+            
+            if (_roomDic.ContainsKey(currentPosition + Vector2Int.left))
+                roomDir |= RoomDirection.Left;
+            
+            if (_roomDic.ContainsKey(currentPosition + Vector2Int.right))
+                roomDir |= RoomDirection.Right;
+            
+            currentRoom.SetRoomConnection(roomDir);
         }
     }
 
