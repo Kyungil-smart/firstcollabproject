@@ -1,0 +1,252 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Localization UI Table Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Localization UI Table
+  m_TableCollectionNameGuidString: 6c63fb1415d5a3d4d9dd721f2c295f0f
+  m_Entries:
+  - m_Id: 89398935552
+    m_Key: UI_MAIN_GAME_START
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89445072896
+    m_Key: UI_MAIN_SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89445072897
+    m_Key: UI_MAIN_GAME_QUIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89445072898
+    m_Key: UI_LOADING_LOADING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267200
+    m_Key: UI_BODY_CRIT_RATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267201
+    m_Key: UI_BODY_CRIT_DAM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267202
+    m_Key: UI_BODY_RECOVERY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267203
+    m_Key: UI_BODY_MOVE_SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267204
+    m_Key: UI_BODY_EVADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267205
+    m_Key: UI_INGAME_ROOM_CLEARING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267206
+    m_Key: UI_INGAME_MENU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267207
+    m_Key: UI_MENU_PASUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267208
+    m_Key: UI_MENU_RESUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267209
+    m_Key: UI_MENU_SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267210
+    m_Key: UI_MENU_TO_LOBBY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267211
+    m_Key: UI_SETTING_CONTROL_SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267212
+    m_Key: UI_SETTING_CONTROL_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267213
+    m_Key: UI_SETTING_DEFAULT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267214
+    m_Key: UI_SETTING_APPLY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267215
+    m_Key: UI_SETTING_CLOSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267216
+    m_Key: UI_LVUP_LEVLE_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267217
+    m_Key: UI_LVUP_SELECT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267218
+    m_Key: UI_LVUP_CRIT_RATE_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267219
+    m_Key: UI_LVUP_CRIT_RATE_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267220
+    m_Key: UI_LVUP_CRIT_DAM_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267221
+    m_Key: UI_LVUP_CRIT_DAM_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267222
+    m_Key: UI_LVUP_RECOVERY_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267223
+    m_Key: UI_LVUP_RECOVERY_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267224
+    m_Key: UI_LVUP_MOVE_SPEED_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267225
+    m_Key: UI_LVUP_MOVE_SPEED_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267226
+    m_Key: UI_LVUP_HEAD_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267227
+    m_Key: UI_LVUP_HEAD_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267228
+    m_Key: UI_LVUP_ARM_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267229
+    m_Key: UI_LVUP_ARM_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267230
+    m_Key: UI_LVUP_TORSO_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267231
+    m_Key: UI_LVUP_TORSO_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267232
+    m_Key: UI_LVUP_LEG_UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267233
+    m_Key: UI_LVUP_LEG_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267234
+    m_Key: UI_CLEAR_DUNGEON_CLEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267235
+    m_Key: UI_CLEAR_SELECT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267236
+    m_Key: UI_CLEAR_SKIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267237
+    m_Key: UI_CLEAR_FIST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267238
+    m_Key: UI_CLEAR_HAMMER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267239
+    m_Key: UI_CLEAR_DAGGER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267240
+    m_Key: UI_CLEAR_LONGSWORD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267241
+    m_Key: UI_CLEAR_GRENADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267242
+    m_Key: UI_CLEAR_FLASHBANG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267243
+    m_Key: UI_CLEAR_MINE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267244
+    m_Key: UI_CLEAR_SHORTBOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267245
+    m_Key: UI_CLEAR_SLUGBOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267246
+    m_Key: UI_CLEAR_LONGBOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267247
+    m_Key: UI_CLEAR_COMPOSITE_SHORTBOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267248
+    m_Key: UI_CLEAR_WARBOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267249
+    m_Key: UI_CLEAR_ATT_POWER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267250
+    m_Key: UI_CLEAR_ARROW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267251
+    m_Key: UI_CLEAR_NUMBER
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4396218730764566528
+  references:
+    version: 2
+    RefIds:
+    - rid: 4396218730764566528
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1774935689597
