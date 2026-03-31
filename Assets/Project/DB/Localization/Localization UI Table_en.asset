@@ -35,27 +35,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 89449267200
-    m_Localized: CRIT_RATE
+    m_Localized: 'CRIT_RATE:'
     m_Metadata:
       m_Items: []
   - m_Id: 89449267201
-    m_Localized: CRIT_DAM
+    m_Localized: 'CRIT_DAM:'
     m_Metadata:
       m_Items: []
   - m_Id: 89449267202
-    m_Localized: RECOVERY
+    m_Localized: 'RECOVERY:'
     m_Metadata:
       m_Items: []
   - m_Id: 89449267203
-    m_Localized: MOVE_SPEED
+    m_Localized: 'MOVE_SPEED:'
     m_Metadata:
       m_Items: []
   - m_Id: 89449267204
-    m_Localized: EVADE
+    m_Localized: 'EVADE:'
     m_Metadata:
       m_Items: []
   - m_Id: 89449267205
-    m_Localized: ROOM CLEARING
+    m_Localized: 'ROOM CLEARING:'
     m_Metadata:
       m_Items: []
   - m_Id: 89449267206
@@ -240,6 +240,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 89449267251
     m_Localized: NUMBER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798897233920
+    m_Localized: GAME OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798934982656
+    m_Localized: RETRY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798934982657
+    m_Localized: TO LOBBY
     m_Metadata:
       m_Items: []
   references:

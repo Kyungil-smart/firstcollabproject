@@ -144,7 +144,7 @@ namespace Monster
             float progressRatio = (float)_currentKillCount / targetClearCount;
             if (progressBar != null) progressBar.value = progressRatio;
             int percentage = Mathf.RoundToInt(progressRatio * 100f);
-            if (progressText != null) progressText.text = $"ROOM CLEARING: {percentage}%";
+            if (progressText != null) progressText.text = $"{percentage}%";
         }
 
         private void ClearStage()

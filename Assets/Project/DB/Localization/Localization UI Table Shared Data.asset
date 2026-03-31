@@ -239,6 +239,18 @@ MonoBehaviour:
     m_Key: UI_CLEAR_NUMBER
     m_Metadata:
       m_Items: []
+  - m_Id: 18798897233920
+    m_Key: UI_GAMEOVER_GAMEOVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798934982656
+    m_Key: UI_GAMEOVER_RETRY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798934982657
+    m_Key: UI_GAMEOVER_TO_LOBBY
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
