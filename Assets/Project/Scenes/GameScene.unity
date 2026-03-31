@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 3840
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -1012,7 +1012,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.1538463
+  orthographic size: 6.5384617
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1188,17 +1188,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
   startStageId: 70001
-  startRoomPrefab: {fileID: 8972901531356261557, guid: 8537cd96eb187a64980fa1d6fc6fc6a2, type: 3}
-  bossRoomPrefab: {fileID: 4346302431610844793, guid: 3670ed7c0a9852f4d8a4084c610f6ea3, type: 3}
+  startRoomPrefab: {fileID: 7327272114858952020, guid: 0f82ce27e2ddd1a44baeea3415b2c2c7, type: 3}
+  bossRoomPrefab: {fileID: 5383451980108417636, guid: fe6a31126274f864f9673930574ea80a, type: 3}
   normalRoomPrefabs:
-  - {fileID: 5475187613254417535, guid: 450ed0ba64ea09040955febff29e13d7, type: 3}
-  - {fileID: 4236943696069161790, guid: c7e31853b8084e44c998cb6c3c735ef1, type: 3}
-  - {fileID: 4236943696069161790, guid: a10422ff9486bed48b8648baca246903, type: 3}
-  - {fileID: 4236943696069161790, guid: c8260ffa8b7be4143bc66dfda936bd70, type: 3}
-  - {fileID: 5475187613254417535, guid: 6f7c186be881ea94fb3d77ec28bbc859, type: 3}
-  - {fileID: 4236943696069161790, guid: f5497282e0870274e90a7dd3262e3837, type: 3}
+  - {fileID: 1791085752541393532, guid: 824dd2e6e5d162e4ca79e285f366c499, type: 3}
+  - {fileID: 5746397223361016884, guid: 9af150bb15da33f43bbd99167ad86ee5, type: 3}
+  - {fileID: 5286378086378541013, guid: e24dd623a35578b42b7e4988403bc498, type: 3}
+  - {fileID: 7502784314291603108, guid: 6b905fbcb612dd444ae0b41c97c520f1, type: 3}
+  - {fileID: 4370217988101124012, guid: 6e02c6c4c4b09c74abb37f96581328ff, type: 3}
+  - {fileID: 5299329299955031055, guid: 8e7e7848e82b6f446a2b7ac48f7d3f27, type: 3}
+  - {fileID: 8452811725617681310, guid: 682a3dc9bec35f5449a465e6b22df333, type: 3}
+  - {fileID: 7482493490220413934, guid: bbb18922fa78a0546a725f14e6a0c7ae, type: 3}
+  - {fileID: 3088905916260291499, guid: 6893c2054b4adc54494c49794e3d2661, type: 3}
+  - {fileID: 6616264956349451028, guid: 98917d8762614c4439f21e3ed25764b5, type: 3}
+  - {fileID: 1197637510868660334, guid: 26bd59721e5231e4ca5b5519fa70e893, type: 3}
+  - {fileID: 2044638902502929459, guid: dcc8700ab4665f843bd20bc0d83c5c31, type: 3}
   navMeshSurfaces: {fileID: 1377531568}
-  roomOffset: 16
+  roomOffset: 36
 --- !u!114 &1988162980 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6767256151925692086, guid: caada59ec3e4b6b4dba99cb8f1dccac0, type: 3}
