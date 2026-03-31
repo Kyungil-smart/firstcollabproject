@@ -54,6 +54,7 @@ public class TEST_Upgrade : MonoBehaviour
             _playerBody.BodyCurHP -= 20f;
             _playerBody.ArmCurHP  -= 20f;
             _playerBody.LegCurHP  -= 20f;
+            _playerBody.TakeDamage(0f);
         }
     }
 }
