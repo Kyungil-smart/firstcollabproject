@@ -11,7 +11,8 @@ namespace Monster
         [SerializeField] protected Slider hpSlider;
         [SerializeField] protected GameObject damageTextPrefab;
         [SerializeField] protected GameObject bodyPrefab;
-
+        [SerializeField] protected GameObject bloodEffect;
+        
         public MonsterStatSO statSo;
 
         protected float currentHp;
@@ -31,6 +32,9 @@ namespace Monster
         protected StatusEffect activeEffects;
         public bool IsStunned => StatusPolicy.Has(activeEffects, StatusEffect.Stun);
 
+        private float _lastFlipTime = 0f;
+        private const float FlipCooldown = 0.15f;
+        
         protected virtual void Awake()
         {
             _spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
@@ -198,21 +202,26 @@ namespace Monster
             // 이동 중일 때
             else
             {
-                //내가 이동하는 방향으로 시선
-                directionX = agent.velocity.x;
+                if (playerTransform != null)
+                {
+                    directionX = playerTransform.position.x - transform.position.x;
+                }
             }
 
-            Vector3 currentScale = transform.localScale;
+            Vector3 currentScale = bodyPrefab.transform.localScale;
 
-            if (directionX > 0.01f)
+            if (Time.time - _lastFlipTime >= FlipCooldown)
             {
-                // 오른쪽 볼 때
-                currentScale.x = -Mathf.Abs(currentScale.x);
-            }
-            else if (directionX < -0.01f)
-            {
-                // 왼쪽 볼 때
-                currentScale.x = Mathf.Abs(currentScale.x);
+                if (directionX > 0.1f && currentScale.x > 0)
+                {
+                    currentScale.x = -Mathf.Abs(currentScale.x);
+                    _lastFlipTime = Time.time;
+                }
+                else if (directionX < -0.1f && currentScale.x < 0)
+                {
+                    currentScale.x = Mathf.Abs(currentScale.x);
+                    _lastFlipTime = Time.time;
+                }
             }
 
             bodyPrefab.transform.localScale = currentScale;
@@ -221,7 +230,7 @@ namespace Monster
         public virtual void TakeDamage(float damage)
         {
             if (isDead) return;
-
+            
             bool isCrit = false; // 크리티컬 여부 판단
             if (MonsterManager.Instance.RollPlayerCrit())
             {
@@ -233,6 +242,13 @@ namespace Monster
             if (statSo.StunDuration > 0) ApplyStun(statSo.StunDuration);
 
             currentHp -= damage;
+            
+            // 피 이펙트
+            if (bloodEffect != null)
+            {
+                Vector3 spawnPosition = transform.position + new Vector3(0f, 0.757f, 0f);
+                Instantiate(bloodEffect, spawnPosition, Quaternion.identity);
+            }
 
             if (gameObject.activeInHierarchy && !isDead)
             {
@@ -251,6 +267,8 @@ namespace Monster
             {
                 hpSlider.value = currentHp;
             }
+            
+            if(bloodEffect != null) bloodEffect.SetActive(false);
 
             if (currentHp <= 0)
             {
