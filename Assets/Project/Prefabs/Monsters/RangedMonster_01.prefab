@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 7380493224014413077}
   - component: {fileID: 2984314480009048320}
   m_Layer: 6
-  m_Name: RangedMonster
+  m_Name: RangedMonster_01
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
