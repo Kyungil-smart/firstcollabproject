@@ -138,14 +138,14 @@ public class PlayerBody : MonoBehaviour, IDamageable
     [SerializeField] float _critDamageMin = 1.05f;
     public float CritDamage
     {
-        get => Mathf.Max(_critDamage * GetStatMultiplier(BodyPart.Arm), _critDamageMin);
+        get => Mathf.Lerp(_critDamageMin, _critDamage, GetStatMultiplier(BodyPart.Arm));
         set => _critDamage = Mathf.Max(value, _critDamageMin);
     }
     [SerializeField] float _moveSpeed = 4f;
     [SerializeField] float _moveSpeedMin = 2f;
     public float MoveSpeed
     {
-        get => Mathf.Max(_moveSpeed * GetStatMultiplier(BodyPart.Leg), _moveSpeedMin);
+        get => Mathf.Lerp(_moveSpeedMin, _moveSpeed, GetStatMultiplier(BodyPart.Leg));
         set => _moveSpeed = Mathf.Max(value, _moveSpeedMin);
     }
     public void AddBaseCritPercent(float value) { _critPercent += value; }
