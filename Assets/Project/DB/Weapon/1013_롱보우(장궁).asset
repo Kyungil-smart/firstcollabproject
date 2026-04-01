@@ -29,4 +29,4 @@ MonoBehaviour:
   prefab: {fileID: 7766016580520033078, guid: 5f3f2a0691ad0fe40920b38c77e0219f, type: 3}
   projectilePrefab: {fileID: 6213539776784452163, guid: 98689517bb7e39d47969b85dd21a33e5, type: 3}
   icon: {fileID: 21300000, guid: 2d10021bcd338f246b9d8f6c1614d71e, type: 3}
-  statusEffect: 0
+  localizationKey: UI_CLEAR_LONGBOW

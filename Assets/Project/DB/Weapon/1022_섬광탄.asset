@@ -29,4 +29,4 @@ MonoBehaviour:
   prefab: {fileID: 2300503684806237442, guid: f60c05c5000a72445812655edb70a10c, type: 3}
   projectilePrefab: {fileID: 6060455967080115507, guid: c62c7befa1210d2439b03935c734738f, type: 3}
   icon: {fileID: 21300000, guid: 0912fd44c96bccf4089ec4b89bb2bdb5, type: 3}
-  statusEffect: 1
+  localizationKey: UI_CLEAR_FLASHBANG
