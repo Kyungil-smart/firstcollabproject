@@ -6417,7 +6417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b50b4d71113b94ea8c6fb5805a3bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageEvent
-  _bossPrefab: {fileID: 7047037709664641846, guid: 6383b4647ecdfbf488369a0e3a8f6619, type: 3}
+  _bossPrefab: {fileID: 7047037709664641846, guid: fed36f9d809b5ef42ab908e81273ef9e, type: 3}
 --- !u!1 &5822979517044335130
 GameObject:
   m_ObjectHideFlags: 0

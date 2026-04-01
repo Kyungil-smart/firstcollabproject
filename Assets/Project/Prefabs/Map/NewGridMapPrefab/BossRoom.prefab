@@ -4467,7 +4467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Room
   roomType: 2
   spawnPoints: []
-  _bossPrefab: {fileID: 7047037709664641846, guid: 6383b4647ecdfbf488369a0e3a8f6619, type: 3}
+  _bossPrefab: {fileID: 7047037709664641846, guid: fed36f9d809b5ef42ab908e81273ef9e, type: 3}
   isVisited: 0
   upDoor: {fileID: 8283998564332380538}
   downDoor: {fileID: 7292146214879680244}
