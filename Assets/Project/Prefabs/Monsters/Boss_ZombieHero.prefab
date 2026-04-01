@@ -388,12 +388,13 @@ MonoBehaviour:
   bodyPrefab: {fileID: 5111035402046257352}
   bloodEffect: {fileID: 4732097407848198378, guid: 80bfc93a3264a9e45837224dd8a67b62, type: 3}
   statSo: {fileID: 11400000, guid: 5e66c388143c7cd4da6d1249a4971ad9, type: 2}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 4149770982358524280, guid: 104a12a80ff8018428b56f10db1e32b9, type: 3}
   normalZombiePrefab: {fileID: 7047037709664641846, guid: 95ea1dd6aeb2c7b41994c30859080ff6, type: 3}
   rangedZombiePrefab: {fileID: 7047037709664641846, guid: 126929f5616e60e488010735f20fd0c4, type: 3}
   dashDamage: 80
   projectileDamage: 80
   contactDamage: 50
+  playerTransform: {fileID: 0}
 --- !u!1 &8502126232935694248
 GameObject:
   m_ObjectHideFlags: 0

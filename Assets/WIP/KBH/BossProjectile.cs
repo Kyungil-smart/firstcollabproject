@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class BossProjectile : MonoBehaviour
 {
@@ -21,11 +22,16 @@ public class BossProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         // 플레이어에게 닿으면 
         if (collision.CompareTag("Player"))
         {
+            PlayerBody player = collision.GetComponent<PlayerBody>();
             // 플레이어에게 데미지를 주고
-            
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            }
             // 파괴
             Destroy(gameObject);
         }
