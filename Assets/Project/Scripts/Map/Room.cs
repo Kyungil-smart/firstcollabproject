@@ -4,12 +4,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.AI;
 
 public class Room : MonoBehaviour
 {  
     [Header("Room Info")]
     public RoomType roomType;
     public List<Transform> spawnPoints;
+    
+    [Header("보스 프리팹")]
+    [SerializeField] GameObject _bossPrefab;
 
     // 방문 확인용
     [SerializeField]private bool isVisited = false;
@@ -83,6 +87,24 @@ public class Room : MonoBehaviour
         }
     }
 
+    private void SpawnBoss()
+    {
+        MonsterManager.Instance.isStageCleared = false;
+
+        Vector3 center = this.transform.position;
+
+        if (NavMesh.SamplePosition(center, out NavMeshHit hit, 10f, NavMesh.AllAreas))
+            center = hit.position;
+
+        GameObject bossObj = Instantiate(_bossPrefab, center, Quaternion.identity);
+
+        var boss = bossObj.GetComponent<MonsterAction>();
+        if (boss != null)
+        {
+            boss.Init();
+        }
+    }
+
     /*
     /// <summary>
     /// 현재 방과 이웃 방에 문 배치해주는 메서드
@@ -148,12 +170,11 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            isVisited = true;
+            CloseDoors();
+            
             if (roomType == RoomType.NormalRoom && !isVisited)
-            {
-                isVisited = true;
-                
-                CloseDoors();
-                
+            {   
                 StartCoroutine(SpawnPointRoutine());
                 
                 int currentStageId = RoomManager.Instance.GetNextStageId();
@@ -167,10 +188,11 @@ public class Room : MonoBehaviour
             }
             else if (roomType == RoomType.BossRoom && !isVisited)
             {
-                isVisited = true;
                 OnRoomEntered?.Invoke(this);
+                SpawnBoss();
             }
+            
+            
         }
     }
-    
 }
