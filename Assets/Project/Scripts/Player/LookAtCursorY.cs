@@ -9,7 +9,7 @@ public class LookAtCursorY : MonoBehaviour
     private void Update()
     {
         // 마우스의 위치를 구하는 로직
-        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + ArmPart.AimOffset;
 
         // 마우스의 위치에 따라서 Flip을 호출하는 로직
         if (_mousePos.x > transform.position.x && _lookLeft)
