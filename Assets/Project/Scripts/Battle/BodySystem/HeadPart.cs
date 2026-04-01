@@ -4,6 +4,7 @@ using UnityEngine.Rendering.Universal;
 using PrimeTween;
 
 /// <summary>
+/// 머리 부상 효과: 시야 손상
 /// 글로벌볼륨의 Vignette를 연동하여 부상 레벨에 따라 화면을 연출합니다
 /// </summary>
 public class HeadPart : MonoBehaviour
