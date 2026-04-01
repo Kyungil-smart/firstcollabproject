@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 namespace Monster
@@ -6,9 +7,9 @@ namespace Monster
     public class ZombieHeroBoss : MonsterAction
     {
         [Header("Zombie Hero Boss Settings")]
-        private GameObject projectilePrefab; 
-        private GameObject normalZombiePrefab; 
-        private GameObject rangedZombiePrefab; 
+        [SerializeField] private GameObject projectilePrefab; 
+        [SerializeField] private GameObject normalZombiePrefab; 
+        [SerializeField] private GameObject rangedZombiePrefab; 
 
         [Header("Damages")]
         [SerializeField] private float dashDamage = 80f; // 돌진 패턴 데미지
@@ -29,10 +30,12 @@ namespace Monster
         // 보스는 기절 및 패턴 캔슬 면역
         public override void TakeDamage(float damage)
         {
-            // 부모의 TakeDamage에서 스턴을 걸지 못하도록
-            // 임시로 스턴 지속시간을 0으로 만듦
+            // 스턴을 걸지 못하도록 임시로 스턴 지속시간을 0으로 고정
             float originalStun = statSo != null ? statSo.StunDuration : 0;
-            if (statSo != null) statSo.StunDuration = 0f; 
+            if (statSo != null)
+            {
+                statSo.StunDuration = 0f; 
+            }
             
             base.TakeDamage(damage);
             
@@ -51,8 +54,8 @@ namespace Monster
             // 패턴을 실행 중이 아닐 때만 판단
             if (!isAttacking)
             {
-                // 3타일 이내 진입 시 패턴 실행
-                if (distanceToPlayer <= 3f)
+                // 패턴 실행
+                if (distanceToPlayer <= statSo.AtkTrigger)
                 {
                     // 이동 완전 정지
                     agent.isStopped = true;
@@ -66,7 +69,7 @@ namespace Monster
                 }
                 else
                 {
-                    // 3타일 밖이면 플레이어 추격
+                    // 플레이어 추격
                     agent.isStopped = false;
                     agent.SetDestination(playerTransform.position);
 
@@ -129,7 +132,7 @@ namespace Monster
         }
 
         #region 개별 패턴 로직
-        // 7타일 돌진 패턴
+        // 돌진 패턴
         private IEnumerator PatternA_Dash()
         {
             float dashDist = 7f; 
@@ -174,33 +177,16 @@ namespace Monster
             if (rb != null) rb.bodyType = RigidbodyType2D.Dynamic;
         }
 
-        // 180도 부채꼴 투사체 패턴
+        // 부채꼴 투사체 패턴
         private void PatternB_ConeProjectiles()
         {
-            Vector3 targetDir = (MonsterManager.Instance.player.transform.position - transform.position).normalized;
-            float baseAngle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
-
-            int projectileCount = 8;
-            float angleStep = 180f / (projectileCount - 1);
-            float startAngle = baseAngle - 90f;
-
-            for (int i = 0; i < projectileCount; i++)
-            {
-                float currentAngle = startAngle + (angleStep * i);
-                FireProjectile(currentAngle, 3f);
-            }
+           // TODO: 부채꼴 투사체 패턴 추가
         }
 
         // 360도 전방향 투사체 패턴
         private void PatternC_OmniProjectiles()
         {
-            int projectileCount = 16;
-            float angleStep = 360f / projectileCount;
-
-            for (int i = 0; i < projectileCount; i++)
-            {
-                FireProjectile(angleStep * i, 3f);
-            }
+            // TODO: 360도 투사체 패턴 추가
         }
 
         // 일반 좀비 2, 원거리 좀비 1 소환 패턴
@@ -208,29 +194,11 @@ namespace Monster
         {
             if (normalZombiePrefab == null || rangedZombiePrefab == null) return;
 
-            // 기획서 도안 기준 스폰 오프셋
             Vector3[] spawnOffsets = { new Vector3(1, 0, 0), new Vector3(-1, 0, 0), new Vector3(0, 1.5f, 0) };
 
             SpawnMonster(rangedZombiePrefab, transform.position + spawnOffsets[0]);
             SpawnMonster(normalZombiePrefab, transform.position + spawnOffsets[1]);
             SpawnMonster(normalZombiePrefab, transform.position + spawnOffsets[2]);
-        }
-        
-        // 투사체 생성 공통 함수
-        private void FireProjectile(float angle, float speed)
-        {
-            if (projectilePrefab == null) return;
-
-            Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
-            GameObject projObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            
-            MonsterProjectile proj = projObj.GetComponent<MonsterProjectile>();
-            if (proj != null)
-            {
-                proj.speed = speed;
-                // 벽/플레이어에 닿을 때까지
-                proj.Init(dir, projectileDamage, 50f); 
-            }
         }
 
         // 소환 공통 함수
