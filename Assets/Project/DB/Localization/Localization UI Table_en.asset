@@ -231,15 +231,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 89449267249
-    m_Localized: ATTACK POWER
+    m_Localized: Attack Power
     m_Metadata:
       m_Items: []
   - m_Id: 89449267250
-    m_Localized: ARROW
+    m_Localized: Arrows
     m_Metadata:
       m_Items: []
   - m_Id: 89449267251
-    m_Localized: NUMBER
+    m_Localized: Number
     m_Metadata:
       m_Items: []
   - m_Id: 18798897233920
@@ -264,6 +264,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 39520805814272
     m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328187839447040
+    m_Localized: Melee Growth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328192474152960
+    m_Localized: Range Growth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328194609053696
+    m_Localized: Consumable Growth
     m_Metadata:
       m_Items: []
   references:

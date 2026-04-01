@@ -37,7 +37,10 @@ public class WeaponSO : SheetDataSOBase
     public Sprite icon;
 
     [Header("추가 정보")]
-    public StatusEffect statusEffect;
+    public string localizationKey;
+    public string LocalizedName =>
+        string.IsNullOrEmpty(localizationKey) ? Name : L10n.Get(localizationKey);
+    //public StatusEffect statusEffect;
 
     //public string animationName;
 

@@ -263,6 +263,18 @@ MonoBehaviour:
     m_Key: UI_GAMEOVER_LOBBY_NO
     m_Metadata:
       m_Items: []
+  - m_Id: 328187839447040
+    m_Key: UI_PERK_MELEE_GROWTH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328192474152960
+    m_Key: UI_PERK_RANGE_GROWTH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328194609053696
+    m_Key: UI_PERK_CONS_GROWTH
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
