@@ -170,4 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6dc80c45075144cad64ce0063113f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrenadeProjectile
-  explosionParticle: {fileID: 3752511408183367671, guid: 762b510f416fe3942b4b795eb989e022, type: 3}
+  explosionParticle: {fileID: 3752511408183367671, guid: 9e0c3fc895f81ff4e90b3af2ebccd735, type: 3}
