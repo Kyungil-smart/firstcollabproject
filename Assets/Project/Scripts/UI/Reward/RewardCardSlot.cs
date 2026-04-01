@@ -58,7 +58,7 @@ namespace UI
                 ? Random.Range(1, 4)
                 : 0;
 
-            nameText.text = weaponData.Name;
+            nameText.text = weaponData.LocalizedName;
             descriptionText.text = BuildWeaponDescription(weaponData, perk, weaponPerks);
         }
 
@@ -66,33 +66,35 @@ namespace UI
         {
             if (perk == null) return weapon.Name;
 
+            string atkLabel = L10n.Get("UI_CLEAR_ATT_POWER");
+
             switch (weapon.attackType)
             {
                 case AttackType.Melee:
                     {
                         float plusDmg = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.weaponDmgBonus, perk);
-                        return $"공격력: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
-                               $"근접 성장 수치: +{perk.maxJump:F0}";
+                        return $"{atkLabel}: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
+                               $"{L10n.Get("UI_PERK_MELEE_GROWTH")}: +{perk.maxJump:F0}";
                     }
                 case AttackType.Range:
                     {
                         float cappedTotal = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.rangeBonusPoint, perk);
                         var (plusDmg, plusAmmo) = WeaponPerkPolicy.CalculateRangeTotalBonus(cappedTotal, perk.rangeBounusType);
 
-                        return $"공격력: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
-                               $"탄창: {weapon.maxAmmo} + <color=green>{plusAmmo}</color>\n" +
-                               $"원거리 성장 수치: +{perk.maxJump:F0}";
+                        return $"{atkLabel}: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
+                               $"{L10n.Get("UI_CLEAR_ARROW")}: {weapon.maxAmmo} + <color=green>{plusAmmo}</color>\n" +
+                               $"{L10n.Get("UI_PERK_RANGE_GROWTH")}: +{perk.maxJump:F0}";
                     }
                 case AttackType.Throwable:
                 case AttackType.Deployable:
                     {
                         float plusDmg = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.consDmgBonus, perk);
-                        return $"공격력 {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
-                               $"보유 개수: {weapon.maxAmmo} + <color=green>{_rolledStackBonus}</color>\n" +
-                               $"소모품 성장 수치: +{perk.maxJump:F0}";
+                        return $"{atkLabel}: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
+                               $"{L10n.Get("UI_CLEAR_NUMBER")}: {weapon.maxAmmo} + <color=green>{_rolledStackBonus}</color>\n" +
+                               $"{L10n.Get("UI_PERK_CONS_GROWTH")}: +{perk.maxJump:F0}";
                     }
                 default:
-                    return "버걱스";
+                    return "";
             }
         }
 
@@ -114,16 +116,16 @@ namespace UI
         {
             Target_List.HP => part switch
             {
-                BodyPart.Head => "머리 체력 강화",
-                BodyPart.Body => "몸통 체력 강화",
-                BodyPart.Arm => "팔 체력 강화",
-                _ => "다리 체력 강화"
+                BodyPart.Head => L10n.Get("UI_LVUP_HEAD_UP"),
+                BodyPart.Body => L10n.Get("UI_LVUP_TORSO_UP"),
+                BodyPart.Arm  => L10n.Get("UI_LVUP_ARM_UP"),
+                _             => L10n.Get("UI_LVUP_LEG_UP")
             },
-            Target_List.Crit_Percent => "치명타 확률 강화",
-            Target_List.Recovery_Percent => "회복력 강화",
-            Target_List.Crit_Damage => "치명타 데미지 강화",
-            Target_List.Move_Speed => "이동속도 강화",
-            _ => "강화"
+            Target_List.Crit_Percent    => L10n.Get("UI_LVUP_CRIT_RATE_UP"),
+            Target_List.Recovery_Percent => L10n.Get("UI_LVUP_RECOVERY_UP"),
+            Target_List.Crit_Damage     => L10n.Get("UI_LVUP_CRIT_DAM_UP"),
+            Target_List.Move_Speed      => L10n.Get("UI_LVUP_MOVE_SPEED_UP"),
+            _ => ""
         };
 
         private string BuildPlayerDescription(PlayerPerkSO perk, BodyPart part, PlayerPerk player)
@@ -134,25 +136,23 @@ namespace UI
             {
                 case Target_List.HP:
                     {
-                        (string name, float maxHp) = part switch
+                        (string key, float maxHp) = part switch
                         {
-                            BodyPart.Head => ("머리", body.headMaxHP),
-                            BodyPart.Body => ("몸통", body.bodyMaxHP),
-                            BodyPart.Arm => ("팔", body.armMaxHP),
-                            _ => ("다리", body.legMaxHP)
+                            BodyPart.Head => ("UI_LVUP_HEAD_DES", body.headMaxHP),
+                            BodyPart.Body => ("UI_LVUP_TORSO_DES", body.bodyMaxHP),
+                            BodyPart.Arm  => ("UI_LVUP_ARM_DES", body.armMaxHP),
+                            _             => ("UI_LVUP_LEG_DES", body.legMaxHP)
                         };
-                        return $"{name} 체력: {maxHp:F0} + <color=green>{_rolledBonus:F1}</color>";
-                        //$"누적 보너스: {bonus:F1}";
+                        return $"{L10n.Get(key)}: {maxHp:F0} + <color=green>{_rolledBonus:F1}</color>";
                     }
                 case Target_List.Crit_Percent:
-                    return $"치명타 확률: +<color=green>{_rolledBonus * 100f:F1}%</color>";
+                    return $"{L10n.Get("UI_LVUP_CRIT_RATE_DES")}: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 case Target_List.Recovery_Percent:
-                    return $"회복력: +<color=green>{_rolledBonus * 100f:F1}%</color>";
+                    return $"{L10n.Get("UI_LVUP_RECOVERY_DES")}: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 case Target_List.Crit_Damage:
-                    return $"치명타 데미지: +<color=green>{_rolledBonus * 100f:F1}%</color>";
+                    return $"{L10n.Get("UI_LVUP_CRIT_DAM_DES")}: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 case Target_List.Move_Speed:
-                    return $"이동속도: +<color=green>{_rolledBonus * 100f:F1}%</color>";
-                //$"누적 보너스: {player.moveSpeedBonus:F2}";
+                    return $"{L10n.Get("UI_LVUP_MOVE_SPEED_DES")}: +<color=green>{_rolledBonus * 100f:F1}%</color>";
                 default:
                     return "";
             }
