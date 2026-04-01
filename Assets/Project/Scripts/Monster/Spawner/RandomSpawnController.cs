@@ -12,46 +12,56 @@ namespace Monster
         
         public GameObject GetMonsterPrefab()
         {
+            int selectedMonsterId = GetRandomMonsterId();
             
-            MonsterType monsterType = GetRandomMonsterType();
+            if (selectedMonsterId == 0) return null;
+
+            SpawnData data = monsterPrefab.FirstOrDefault(item => item.monsterId == selectedMonsterId);
             
-            SpawnData data = monsterPrefab.FirstOrDefault(item => item.monsterType == monsterType);
-            
-            Debug.LogWarning($"cumulative: {data.monsterType}");
             if (data != null) return data.monsterPrefab;
+            
+            Debug.LogWarning($"ID가 {selectedMonsterId}인 몬스터 프리팹이 인스펙터에 등록되지 않았습니다!");
             return null;
         }
         
-        private MonsterType GetRandomMonsterType()
+        private int GetRandomMonsterId()
         {
             SpawnDataSO spawnData = MonsterManager.Instance.monsterSpawner.currentSpawnData;
             
             if (spawnData == null) 
             {
                 Debug.LogError("spawnData is Null");
-                return MonsterType.Normal;
+                return 0;
             }
             
-            // 전체 가중치의 합 계산
-            float totalWeight = spawnData.Normal + spawnData.Ranged + spawnData.Bomb + spawnData.Brute;
+            // 4개 슬롯의 확률 총합 계산
+            float totalWeight = spawnData.MonsterPercent1 + spawnData.MonsterPercent2 + 
+                                spawnData.MonsterPercent3 + spawnData.MonsterPercent4;
+
+            if (totalWeight <= 0f) return 0; // 스폰 확률이 아예 없는 경우 방어
 
             // 전체 가중치 사이의 랜덤값 추출
             float randomValue = Random.Range(0f, totalWeight);
             float cumulative = 0f;
             
-            cumulative += spawnData.Brute;
-            if (randomValue <= cumulative) return MonsterType.Brute;
+            // 슬롯 1번 체크
+            cumulative += spawnData.MonsterPercent1;
+            if (randomValue <= cumulative) return spawnData.MonsterType1; // (타입을 int로 바꿨다면 형변환 불필요)
             
-            cumulative += spawnData.Bomb;
-            if (randomValue <= cumulative) return MonsterType.Bomb;
+            // 슬롯 2번 체크
+            cumulative += spawnData.MonsterPercent2;
+            if (randomValue <= cumulative) return spawnData.MonsterType2;
             
-            cumulative += spawnData.Ranged;
-            if (randomValue <= cumulative) return MonsterType.Ranged;
+            // 슬롯 3번 체크
+            cumulative += spawnData.MonsterPercent3;
+            if (randomValue <= cumulative) return spawnData.MonsterType3;
             
-            cumulative += spawnData.Normal;
-            if (randomValue <= cumulative) return MonsterType.Normal;
+            // 슬롯 4번 체크
+            cumulative += spawnData.MonsterPercent4;
+            if (randomValue <= cumulative) return spawnData.MonsterType4;
 
-            return MonsterType.Brute;
+            // 기본 반환 (안전 장치)
+            return spawnData.MonsterType1; 
         }
     }
 }
