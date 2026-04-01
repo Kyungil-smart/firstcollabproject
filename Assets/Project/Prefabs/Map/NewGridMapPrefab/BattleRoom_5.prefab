@@ -8573,7 +8573,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
   roomType: 1
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 6751312189854024151}
+  - {fileID: 5918424406083717385}
+  - {fileID: 8154287964930048414}
+  - {fileID: 1222277700736347750}
+  - {fileID: 5653619077011329390}
+  - {fileID: 3188154299229542201}
+  - {fileID: 4963840082828247611}
+  - {fileID: 5753652840181978140}
+  - {fileID: 821089505743629258}
   isVisited: 0
   upDoor: {fileID: 3961111453836429148}
   downDoor: {fileID: 5807073306517493925}
