@@ -8,12 +8,17 @@ public class TEST_Upgrade : MonoBehaviour
     WeaponPerks _weaponPerks;
     PlayerPerk _playerPerk;
     PlayerBody _playerBody;
+    PlayerController _playerController;
+
+    float _originalSpeed;
+    bool _superSpeed;
 
     private void Awake()
     {
         _weaponPerks = GetComponent<WeaponPerks>();
         _playerPerk = GetComponent<PlayerPerk>();
         _playerBody = GetComponent<PlayerBody>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -36,9 +41,12 @@ public class TEST_Upgrade : MonoBehaviour
         // End 키 누르면 몬스터 데미지
         if (kb[Key.End].wasPressedThisFrame)
         {
-            var monster = Registry<MonsterAction>.GetFirst();
-            if (monster != null)
-                monster.TakeDamage(1000f);
+            for (int i = 0; i < 10; i++)
+            {
+                var monster = Registry<MonsterAction>.GetFirst();
+                if (monster != null)
+                    monster.TakeDamage(1000f);
+            }
         }
 
         // PageUp 키 누르면 플레이어 requiredExp 겁나 높아져서 레벨업 불가능
@@ -47,13 +55,28 @@ public class TEST_Upgrade : MonoBehaviour
             _playerPerk.requiredExp = int.MaxValue;
         }
 
+        // Shift 키 누르면 이동속도 치트 토글
+        if (kb[Key.LeftShift].wasPressedThisFrame)
+        {
+            _superSpeed = !_superSpeed;
+            if (_superSpeed)
+            {
+                _originalSpeed = _playerBody.MoveSpeed;
+                _playerBody.MoveSpeed = 14f;
+            }
+            else
+            {
+                _playerBody.MoveSpeed = _originalSpeed;
+            }
+        }
+
         // PageDown 키 누르면 플레이어 모든 부위에 데미지 20씩
         if (kb[Key.PageDown].wasPressedThisFrame && _playerBody != null)
         {
             _playerBody.HeadCurHP -= 20f;
             _playerBody.BodyCurHP -= 20f;
-            _playerBody.ArmCurHP  -= 20f;
-            _playerBody.LegCurHP  -= 20f;
+            _playerBody.ArmCurHP -= 20f;
+            _playerBody.LegCurHP -= 20f;
             _playerBody.TakeDamage(1f);
         }
     }

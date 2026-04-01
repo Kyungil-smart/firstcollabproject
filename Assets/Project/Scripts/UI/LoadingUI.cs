@@ -1,56 +1,31 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 namespace UI
 {
     public class LoadingUI : MonoBehaviour
     {
         [SerializeField] private Slider progressBar;
-        [SerializeField] private string gameSceneName = "GameScene";
-        
-        void Start()
+
+        async UniTaskVoid Start()
         {
-            // 시작 시 슬라이더 값을 0으로 초기화
             if (progressBar != null)
-            {
                 progressBar.value = 0f;
-            }
 
-            // 로딩 코루틴 실행
-            StartCoroutine(LoadSceneProcess());
-        }
-        
-        IEnumerator LoadSceneProcess()
-        {
-            yield return StartCoroutine(FetchGameData());
+            SceneLoader.LoadScene(2).Cancel();
 
-            // TODO: 임시로직임. 후에 삭제 필요.
-            float timer = 0f;
-            float loadingTime = 2.0f;
-
-            while (timer < loadingTime)
+            var token = this.GetCancellationTokenOnDestroy();
+            while (SceneLoader.Progress < 0.9f)
             {
-                timer += Time.deltaTime;
-
                 if (progressBar != null)
-                {
-                    progressBar.value = timer / loadingTime;
-                }
+                    progressBar.value = SceneLoader.Progress / 0.9f;
 
-                yield return null;
+                await UniTask.Yield(token);
             }
-            
-            timer = 0f;
-            
-            SceneManager.LoadScene(gameSceneName);
-        }
-        
-        IEnumerator FetchGameData()
-        {
-            // TODO: 데이터 불러오는 로직 추가
-            yield return null;
+
+            if (progressBar != null)
+                progressBar.value = 1f;
         }
     }
 }
