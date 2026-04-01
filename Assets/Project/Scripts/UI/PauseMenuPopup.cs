@@ -1,19 +1,11 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace UI
 {
     public class PauseMenuPopup : MonoBehaviour
     {
-        [SerializeField] private GameObject  settingsPopup;
+        [SerializeField] private GameObject settingsPopup;
         [SerializeField] private GameObject confirmPopup;
-        public string titleSceneName = "TitleScene";
-
-        public void Update()
-        {
-            if  (Input.GetKeyDown(KeyCode.Escape)) Open();
-        }
 
         public void Open()
         {
@@ -29,7 +21,14 @@ namespace UI
             if (confirmPopup != null) confirmPopup.SetActive(false);
             
             gameObject.SetActive(false);
-            // SceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex).Cancel();
+        }
+
+        public void CloseOnly()  // Time.timeScale를 건드리지 않고 UI만 닫습니다.
+        {
+            if (settingsPopup != null) settingsPopup.SetActive(false);
+            if (confirmPopup != null) confirmPopup.SetActive(false);
+
+            gameObject.SetActive(false);
         }
         
         public void OpenSettings()
@@ -50,7 +49,7 @@ namespace UI
         public void ToLobby()
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene(titleSceneName);
+            SceneLoader.LoadScene(0).Cancel();
         }
         
         public void Close()

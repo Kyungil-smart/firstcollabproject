@@ -1,13 +1,16 @@
 using UnityEngine;
-using UI; // PauseMenuPopup이 UI 네임스페이스 안에 있으니까요!
+using UnityEngine.InputSystem;
+using UI;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] private PauseMenuPopup pauseMenuPopup;
+    [SerializeField] PauseMenuPopup pauseMenuPopup;
+    [SerializeField] RewardPopup rewardPopup;
+    [SerializeField] ClearRewardPopup clearRewardPopup;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             TogglePause();
         }
@@ -24,8 +27,14 @@ public class PauseManager : MonoBehaviour
         }
         else
         {
-            // PauseMenuPopup 스크립트에 있는 Resume호출
-            pauseMenuPopup.Resume(); 
+            // RewardPopup이 열려있으면 timeScale을 복원하지 않고 UI만 닫기
+            if (rewardPopup.gameObject.activeSelf || clearRewardPopup.gameObject.activeSelf)
+            {
+                pauseMenuPopup.CloseOnly();
+                Debug.LogWarning("발동");
+            }
+            else
+                pauseMenuPopup.Resume();
         }
     }
 }
