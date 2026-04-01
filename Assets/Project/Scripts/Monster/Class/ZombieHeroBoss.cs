@@ -120,8 +120,8 @@ namespace Monster
             switch (nextPattern)
             {
                 case 0: yield return StartCoroutine(PatternA_Dash()); break;
-                case 1: PatternB_ConeProjectiles(); break;
-                case 2: PatternC_OmniProjectiles(); break;
+                case 1: yield return StartCoroutine(PatternB_ConeProjectiles()); break;
+                case 2: yield return StartCoroutine(PatternC_OmniProjectiles()); break;
                 case 3: PatternD_Summon(); break;
             }
 
@@ -136,7 +136,7 @@ namespace Monster
         private IEnumerator PatternA_Dash()
         {
             float dashDist = 7f; 
-            float dashSpeed = 5f; 
+            float dashSpeed = 6f; // 5->6로 바꿧습니다!
             float duration = dashDist / dashSpeed;
             float elapsed = 0f;
 
@@ -178,17 +178,45 @@ namespace Monster
         }
 
         // 부채꼴 투사체 패턴
-        private void PatternB_ConeProjectiles()
+        private IEnumerator PatternB_ConeProjectiles()
         {
            // TODO: 부채꼴 투사체 패턴 추가
+           if (MonsterManager.Instance.player == null) yield break;
+           
+           Vector3 targetPos = MonsterManager.Instance.player.transform.position;
+           Vector2 baseDir = (targetPos - transform.position).normalized;
+           float baseAngle = Mathf.Atan2(baseDir.y, baseDir.x) * Mathf.Rad2Deg;
+
+           for (int i = 0; i < 8; i++)
+           {
+               float angle = baseAngle - 90f + (180f / 7f * i);
+               FireProjectile(angle);
+           }
+
+           yield return null;
         }
 
         // 360도 전방향 투사체 패턴
-        private void PatternC_OmniProjectiles()
+        private IEnumerator PatternC_OmniProjectiles()
         {
             // TODO: 360도 투사체 패턴 추가
+            for (int i = 0; i < 16; i++)
+            {
+                float angle = i * (360f / 16f);
+                FireProjectile(angle);
+
+            }
+            
+            yield return null;
         }
 
+        // 투사체 발사
+        private void FireProjectile(float angle)
+        {
+            Quaternion rot = Quaternion.Euler(0, 0, angle);
+            GameObject proj = Instantiate(projectilePrefab, transform.position, rot);
+        }
+        
         // 일반 좀비 2, 원거리 좀비 1 소환 패턴
         private void PatternD_Summon()
         {
