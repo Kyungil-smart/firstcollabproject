@@ -8205,7 +8205,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0000009536743, y: -0.020961285}
+  m_Offset: {x: 0.0000009536743, y: 0.058065414}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8215,7 +8215,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 29.824953, y: 25.872108}
+  m_Size: {x: 28.244413, y: 24.13351}
   m_EdgeRadius: 0
 --- !u!114 &4065698538167949382
 MonoBehaviour:
@@ -8239,6 +8239,7 @@ MonoBehaviour:
   - {fileID: 3841263955772845254}
   - {fileID: 4372871533304164531}
   - {fileID: 5985134738365959215}
+  _bossPrefab: {fileID: 0}
   isVisited: 0
   upDoor: {fileID: 4368334908585440348}
   downDoor: {fileID: 3449111759892780296}
