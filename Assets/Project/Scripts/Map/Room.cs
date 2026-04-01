@@ -170,11 +170,11 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isVisited = true;
             CloseDoors();
             
             if (roomType == RoomType.NormalRoom && !isVisited)
             {   
+                isVisited = true;
                 StartCoroutine(SpawnPointRoutine());
                 
                 int currentStageId = RoomManager.Instance.GetNextStageId();
@@ -188,6 +188,7 @@ public class Room : MonoBehaviour
             }
             else if (roomType == RoomType.BossRoom && !isVisited)
             {
+                isVisited = true;
                 OnRoomEntered?.Invoke(this);
                 SpawnBoss();
             }
