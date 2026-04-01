@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public static class SceneLoader
 {
-    //public static float Progress => _operation == null ? 0f : _operation.progress;
+    public static float Progress => _operation == null ? 0f : _operation.progress;
 
     static bool _isLoading;
     static AsyncOperation _operation;
