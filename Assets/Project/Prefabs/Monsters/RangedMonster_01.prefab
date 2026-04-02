@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1712949204012180837}
   - component: {fileID: 7380493224014413077}
   - component: {fileID: 2984314480009048320}
+  - component: {fileID: -4334829635837365388}
   m_Layer: 6
   m_Name: RangedMonster_01
   m_TagString: Monster
@@ -422,6 +423,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.010142952, y: 0.39748964}
   m_Size: {x: 0.7110671, y: 0.9378222}
   m_Direction: 0
+--- !u!114 &-4334829635837365388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047037709664641846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457b6e7956a0ab9489cfa711effbe69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSFX
+  sfxData: {fileID: 11400000, guid: 86854693e5d127b4eb1d8f97e524d9dd, type: 2}
 --- !u!1 &8502126232935694248
 GameObject:
   m_ObjectHideFlags: 0

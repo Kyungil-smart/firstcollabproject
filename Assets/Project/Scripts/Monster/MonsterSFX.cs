@@ -8,7 +8,7 @@ namespace Monster
     /// </summary>
     public class MonsterSFX : MonoBehaviour
     {
-        [SerializeField] MonsterSfxS sfxData;
+        [SerializeField] MonsterSfxSO sfxData;
 
         private bool _aggroPlayed;
 
@@ -26,7 +26,7 @@ namespace Monster
         {
             if (_aggroPlayed) return;
             if (sfxData.aggroSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.aggroSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.aggroSFX);
             _aggroPlayed = true;
         }
 
@@ -36,7 +36,7 @@ namespace Monster
         public void PlayAttack()
         {
             if (sfxData.attackSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.attackSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.attackSFX);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Monster
         public void PlayHurt()
         {
             if (sfxData.hurtSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.hurtSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.hurtSFX);
         }
 
         /// <summary>
@@ -54,19 +54,10 @@ namespace Monster
         public void PlayDead()
         {
             if (sfxData.deadSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.deadSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.deadSFX);
         }
 
         // ─── 특수 ───
-
-        /// <summary>
-        /// 원거리 좀비 — 활을 쏠 때
-        /// </summary>
-        public void PlayBow()
-        {
-            if (sfxData.bowSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.bowSFX);
-        }
 
         /// <summary>
         /// 자살 폭탄 좀비 — 폭발 시
@@ -74,7 +65,7 @@ namespace Monster
         public void PlayExplosion()
         {
             if (sfxData.explosionSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.explosionSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.explosionSFX);
         }
     }
 }
