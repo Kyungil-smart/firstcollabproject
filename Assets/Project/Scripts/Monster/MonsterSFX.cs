@@ -67,5 +67,40 @@ namespace Monster
             if (sfxData.explosionSFX == null) return;
             AudioManager.Instance.PlayMonsterSfx(sfxData.explosionSFX);
         }
+
+        // ─── 보스 전용 ───
+
+        /// <summary>
+        /// 영웅 좀비 보스 — 패턴 A 시전시 기합
+        /// </summary>
+        public void PlayPatternA()
+        {
+            if (sfxData.patternASFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternASFX);
+        }
+        public void PlayPatternB()
+        {
+            if (sfxData.patternBSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternBSFX);
+        }
+        public void PlayPatternC()
+        {
+            if (sfxData.patternCSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternCSFX);
+        }
+        public void PlayPatternD()
+        {
+            if (sfxData.patternDSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternDSFX);
+        }
+
+        /// <summary>
+        /// 영웅 좀비 보스 — 투사체 시전시 효과음
+        /// </summary>
+        public void PlayProjectile()
+        {
+            if (sfxData.projectileSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.projectileSFX);
+        }
     }
 }
