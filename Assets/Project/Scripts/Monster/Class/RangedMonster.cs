@@ -63,6 +63,8 @@ namespace Monster
                 }
                 
                 agent.SetDestination(playerTransform.position); 
+
+                if (monsterSFX != null) monsterSFX.PlayAggro();
             
                 if (animator != null) 
                 {
@@ -95,8 +97,12 @@ namespace Monster
                 animator.SetTrigger("2_Attack");
             }
 
+            if (monsterSFX != null) monsterSFX.PlayAttack();
+
             // 투사체 맵에 생성해서 날림
             FireProjectile();
+
+            if (monsterSFX != null) monsterSFX.PlayBow();
 
 
             // 쿨타임 및 상태 리셋

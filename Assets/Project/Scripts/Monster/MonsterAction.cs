@@ -28,6 +28,7 @@ namespace Monster
 
         private SpriteRenderer[] _spriteRenderers;
         protected NavMeshAgent agent;
+        protected MonsterSFX monsterSFX; // 사운드
 
         protected StatusEffect activeEffects;
         public bool IsStunned => StatusPolicy.Has(activeEffects, StatusEffect.Stun);
@@ -46,6 +47,8 @@ namespace Monster
                     _originalColors[i] = _spriteRenderers[i].color;
             }
             
+            monsterSFX = GetComponent<MonsterSFX>();
+
             //NavMeshAgent 세팅
             agent = GetComponent<NavMeshAgent>();
 
@@ -116,6 +119,8 @@ namespace Monster
             activeEffects = StatusEffect.None;
             _stunCoroutine = null;
             _stunEndTime = 0f;
+
+            if (monsterSFX != null) monsterSFX.Init();
             currentHp = statSo.Hp;
             hpSlider.value = currentHp;
             gameObject.layer = LayerMask.NameToLayer("Monster");
@@ -252,6 +257,10 @@ namespace Monster
             if (statSo.StunDuration > 0) ApplyStun(statSo.StunDuration);
 
             currentHp -= damage;
+
+            // 사운드: 사망이 아닌 피격
+            if (currentHp > 0 && monsterSFX != null)
+                monsterSFX.PlayHurt();
             
             if (gameObject.activeInHierarchy && !isDead)
             {
@@ -331,6 +340,8 @@ namespace Monster
         {
             isDead = true;
             activeEffects = StatusEffect.None;
+
+            if (monsterSFX != null) monsterSFX.PlayDead();
 
             if (_hitFlashCoroutine != null)
             {

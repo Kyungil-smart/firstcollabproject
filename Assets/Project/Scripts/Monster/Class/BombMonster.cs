@@ -84,6 +84,8 @@ namespace Monster
             agent.isStopped = false;
             agent.SetDestination(playerTransform.position);
 
+            if (monsterSFX != null) monsterSFX.PlayAggro();
+
             if (animator != null)
             {
                 bool isMoving = agent.velocity.sqrMagnitude > 0.1f;
@@ -95,6 +97,8 @@ namespace Monster
         {
             if (_isExploded || isDead) return;
             _isExploded = true;
+
+            if (monsterSFX != null) monsterSFX.PlayAttack();
 
             UpdateRangeIndicatorPositions();
             if (_explosionLine != null) _explosionLine.gameObject.SetActive(true);
@@ -148,6 +152,8 @@ namespace Monster
             if (isDead) yield break;
 
             // 폭발 데미지
+            if (monsterSFX != null) monsterSFX.PlayExplosion();
+
             if (MonsterManager.Instance.player != null)
             {
                 float finalDistance = Vector2.Distance(transform.position, MonsterManager.Instance.player.transform.position);
