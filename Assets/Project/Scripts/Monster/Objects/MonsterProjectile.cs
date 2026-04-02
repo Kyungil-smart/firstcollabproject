@@ -5,6 +5,9 @@ namespace Monster
     public class MonsterProjectile : MonoBehaviour
     {
         public float speed = 8f;
+
+        static readonly int WallLayer = 9;
+        static readonly int ObstacleLayer = 10;
         
         private float _damage;
         private Vector2 _direction;
@@ -58,8 +61,9 @@ namespace Monster
                     
                 Destroy(gameObject); 
             }
-            // TODO: 가구나 벽에 막혔을 때
-            else if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
+            // 벽/장애물에 닿으면 소멸
+            int layer = other.gameObject.layer;
+            if (layer == WallLayer || layer == ObstacleLayer)
             {
                 Destroy(gameObject);
             }

@@ -13,7 +13,6 @@ public class ArrowRangeProjectile : MonoBehaviour
 
     float _damage;
     int _remainPenetrate;
-    float _penetrateMultiplier;
     float _maxRange;
     HashSet<IDamageable> _alreadyHit = new();
 
@@ -77,7 +76,7 @@ public class ArrowRangeProjectile : MonoBehaviour
     {
         if (_isDead) return;
 
-        // 벽/장애물에 꽂힘 (라인캐스트에서 못 잡은 경우 폴백)
+        // 벽/장애물에 꽂힘
         int layer = other.gameObject.layer;
         if (layer == WallLayer || layer == ObstacleLayer)
         {
