@@ -109,15 +109,7 @@ namespace Monster
             
             isAttacking = false;
         }
-        
-        protected override void Die()
-        {
-            if (isDead) return;
-            
-            base.Die();
-            
-            Registry<MonsterAction>.Remove(this);
-        }
+
         
         private void FireProjectile()
         {
