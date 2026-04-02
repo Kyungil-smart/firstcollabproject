@@ -683,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2464215222479022739, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 9.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2464215222479022739, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -935,7 +935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651380118514932998, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 38.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8651380118514932998, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2287,7 +2287,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.11666667
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
@@ -2459,7 +2459,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.1538463
+  orthographic size: 7.714286
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.PixelPerfectCamera
   m_ComponentVersion: 1
-  m_AssetsPPU: 26
+  m_AssetsPPU: 14
   m_RefResolutionX: 250
   m_RefResolutionY: 200
   m_CropFrame: 0
