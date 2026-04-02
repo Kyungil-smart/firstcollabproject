@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 7036712516380969824}
   - component: {fileID: 4763929034931746241}
   - component: {fileID: 3008291087926387486}
+  - component: {fileID: -2820879606652283690}
   m_Layer: 6
   m_Name: Boss_ZombieHero
   m_TagString: Monster
@@ -395,6 +396,19 @@ MonoBehaviour:
   dashDamage: 80
   projectileDamage: 80
   contactDamage: 50
+--- !u!114 &-2820879606652283690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047037709664641846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457b6e7956a0ab9489cfa711effbe69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSFX
+  sfxData: {fileID: 11400000, guid: 1f6b621089badc548abc7ef9934ca9fc, type: 2}
 --- !u!1 &8502126232935694248
 GameObject:
   m_ObjectHideFlags: 0

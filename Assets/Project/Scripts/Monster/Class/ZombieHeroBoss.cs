@@ -73,6 +73,8 @@ namespace Monster
                     agent.isStopped = false;
                     agent.SetDestination(playerTransform.position);
 
+                    if (monsterSFX != null) monsterSFX.PlayAggro();
+
                     if (animator != null)
                     {
                         bool isMoving = agent.velocity.sqrMagnitude > 0.01f;
@@ -96,6 +98,18 @@ namespace Monster
             // 선딜레이
             // 1초 동안 푸르게 빛남
             SetRenderersColor(Color.blue);
+
+            // 패턴별 기합 사운드
+            if (monsterSFX != null)
+            {
+                switch (nextPattern)
+                {
+                    case 0: monsterSFX.PlayPatternA(); break;
+                    case 1: monsterSFX.PlayPatternB(); break;
+                    case 2: monsterSFX.PlayPatternC(); break;
+                    case 3: monsterSFX.PlayPatternD(); break;
+                }
+            }
             
             // 선딜 시작 시점에 플레이어의 위치를 바라봄
             if (MonsterManager.Instance.player != null)
@@ -225,6 +239,8 @@ namespace Monster
         {
             Quaternion rot = Quaternion.Euler(0, 0, angle);
             GameObject proj = Instantiate(projectilePrefab, transform.position, rot);
+
+            if (monsterSFX != null) monsterSFX.PlayProjectile();
         }
         
         // 일반 좀비 2, 원거리 좀비 1 소환 패턴
