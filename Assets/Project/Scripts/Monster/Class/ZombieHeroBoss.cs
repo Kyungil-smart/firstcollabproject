@@ -123,6 +123,7 @@ namespace Monster
                 case 1: yield return StartCoroutine(PatternB_ConeProjectiles()); break;
                 case 2: yield return StartCoroutine(PatternC_OmniProjectiles()); break;
                 case 3: PatternD_Summon(); break;
+                default: yield return StartCoroutine(PatternA_Dash()); break;
             }
 
             // 후딜레이
@@ -136,7 +137,7 @@ namespace Monster
         private IEnumerator PatternA_Dash()
         {
             float dashDist = 7f; 
-            float dashSpeed = 6f; // 5->6로 바꿧습니다!
+            float dashSpeed = 6f;
             float duration = dashDist / dashSpeed;
             float elapsed = 0f;
 
@@ -144,8 +145,6 @@ namespace Monster
 
             if (rb != null) rb.bodyType = RigidbodyType2D.Kinematic;
 
-            int obstacleLayer = LayerMask.GetMask("Default"); // 지형 레이어 (장애물)
-            
             while (elapsed < duration)
             {
                 if (isDead) break;
@@ -153,10 +152,21 @@ namespace Monster
                 float moveStep = dashSpeed * Time.deltaTime;
 
                 // 벽 충돌 체크
-                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 1.5f, dashDir, moveStep, obstacleLayer);
-                if (hit.collider != null && !hit.collider.isTrigger)
+                RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.8f, dashDir, moveStep);
+                bool hitWall = false;
+
+                foreach (var hit in hits)
                 {
-                    break; 
+                    if (hit.collider != null && hit.collider.CompareTag("Wall") && !hit.collider.isTrigger)
+                    {
+                        hitWall = true;
+                        break; 
+                    }
+                }
+
+                if (hitWall)
+                {
+                    break;
                 }
 
                 // 3x3 범위 내 플레이어 데미지 체크
