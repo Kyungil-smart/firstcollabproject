@@ -19227,6 +19227,7 @@ MonoBehaviour:
   - {fileID: 4124800376466361091}
   - {fileID: 3492563405937717814}
   - {fileID: 1185125129928972988}
+  _bossPrefab: {fileID: 0}
   isVisited: 0
   upDoor: {fileID: 7617472851346825796}
   downDoor: {fileID: 9153348865248194958}
@@ -19270,7 +19271,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.07552719, y: -0.05082512}
+  m_Offset: {x: -0.05487919, y: 0.07958031}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19280,7 +19281,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 29.816994, y: 26.006458}
+  m_Size: {x: 27.991308, y: 24.050365}
   m_EdgeRadius: 0
 --- !u!1 &7597068144715352604
 GameObject:
