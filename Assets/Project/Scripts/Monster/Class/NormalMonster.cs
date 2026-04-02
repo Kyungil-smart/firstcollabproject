@@ -53,15 +53,6 @@ namespace Monster
             }
         }
 
-        protected override void Die()
-        {
-            if (isDead) return;
-            
-            base.Die();
-            
-            Registry<MonsterAction>.Remove(this);
-        }
-
         private IEnumerator AttackRoutine()
         {
             isAttacking = true;
