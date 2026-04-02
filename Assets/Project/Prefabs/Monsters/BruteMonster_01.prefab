@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.177}
+  m_AnchoredPosition: {x: 0, y: 1.091}
   m_SizeDelta: {x: 2.0307, y: 0.6113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9087044979941768671
@@ -271,7 +271,10 @@ MonoBehaviour:
   bodyPrefab: {fileID: 2888551026089071993}
   bloodEffect: {fileID: 4732097407848198378, guid: 80bfc93a3264a9e45837224dd8a67b62, type: 3}
   statSo: {fileID: 11400000, guid: 9b744d759ce270c4b82dd0f39dd7f891, type: 2}
-  statusEffectType: 0
+  isDead: 0
+  isAttacking: 0
+  agent: {fileID: 0}
+  activeEffects: 0
   dashSpeedMultiplier: 3
   dashDuration: 0.5
 --- !u!50 &8042187097118653553
@@ -768,7 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702981894718865960, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 702981894718865963, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
       propertyPath: m_LocalPosition.x
@@ -810,6 +813,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 702981896508291940, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 702981896508291943, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.72
@@ -824,7 +831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702981896508291943, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.368
+      value: 0.341
       objectReference: {fileID: 0}
     - target: {fileID: 702981896508291943, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
       propertyPath: m_ConstrainProportionsScale

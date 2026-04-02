@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.976}
+  m_AnchoredPosition: {x: 0, y: 1.133}
   m_SizeDelta: {x: 2.0307, y: 0.6113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9087044979941768671
@@ -271,7 +271,10 @@ MonoBehaviour:
   bodyPrefab: {fileID: 67674577216460736}
   bloodEffect: {fileID: 4732097407848198378, guid: 80bfc93a3264a9e45837224dd8a67b62, type: 3}
   statSo: {fileID: 11400000, guid: 3ea18a0100f16034cb221b9c7f87292f, type: 2}
-  statusEffectType: 0
+  isDead: 0
+  isAttacking: 0
+  agent: {fileID: 0}
+  activeEffects: 0
 --- !u!50 &-5261602468095805154
 Rigidbody2D:
   serializedVersion: 5
@@ -831,7 +834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702981896508291943, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.242
+      value: 0.328
       objectReference: {fileID: 0}
     - target: {fileID: 702981896508291943, guid: f2c45c8ee47dc9148a3b2c1e104f0d43, type: 3}
       propertyPath: m_ConstrainProportionsScale

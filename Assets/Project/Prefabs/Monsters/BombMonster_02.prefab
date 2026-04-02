@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.002}
+  m_AnchoredPosition: {x: 0, y: 1.081}
   m_SizeDelta: {x: 2.0307, y: 0.6113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9087044979941768671
@@ -271,7 +271,10 @@ MonoBehaviour:
   bodyPrefab: {fileID: 3188958947149651557}
   bloodEffect: {fileID: 4732097407848198378, guid: 80bfc93a3264a9e45837224dd8a67b62, type: 3}
   statSo: {fileID: 11400000, guid: 251e91b1f36a0d94dbdcb2152a99b4d7, type: 2}
-  statusEffectType: 0
+  isDead: 0
+  isAttacking: 0
+  agent: {fileID: 0}
+  activeEffects: 0
   chaseDuration: 1.5
   stopDuration: 0.5
   blinkCount: 6
