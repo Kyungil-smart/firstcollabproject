@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     }
     
     // TODO: 게임 클리어 (스프리이트 변경)
-    private void GameClear()
+    public void GameClear()
     {
         PlayerPrefs.SetInt("IsGameClear", 1);
 

@@ -4406,6 +4406,7 @@ GameObject:
   - component: {fileID: 4876882372951875260}
   - component: {fileID: 8617052691129840210}
   - component: {fileID: 415826038322063809}
+  - component: {fileID: 4678446465201328495}
   m_Layer: 10
   m_Name: BattleRoom_6_Obstacle1
   m_TagString: Untagged
@@ -6464,6 +6465,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 2606605535375120913}
+--- !u!208 &4678446465201328495
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2606605535375120913}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 16, y: 12.500001, z: 0.00001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3113338615542870457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6654,6 +6671,7 @@ MonoBehaviour:
   - {fileID: 5741835071832079175}
   _bossPrefab: {fileID: 0}
   isVisited: 0
+  _isCleared: 0
   upDoor: {fileID: 2622534372198513545}
   downDoor: {fileID: 7475160329638339952}
   leftDoor: {fileID: 8686758447881441093}
@@ -10974,6 +10992,7 @@ GameObject:
   - component: {fileID: 4145705155540356133}
   - component: {fileID: 9086132232268860460}
   - component: {fileID: 6452115119239473941}
+  - component: {fileID: 6353114555937879176}
   m_Layer: 10
   m_Name: BattleRoom_6_Obstacle2
   m_TagString: Untagged
@@ -13514,6 +13533,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 6511784903692278038}
+--- !u!208 &6353114555937879176
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511784903692278038}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 6.0000005, y: 9, z: 0.00001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6787377832899274120
 GameObject:
   m_ObjectHideFlags: 0

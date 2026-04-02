@@ -265,5 +265,10 @@ namespace Monster
             }
         }
         #endregion
+
+        public void Die()
+        {
+            GameManager.Instance.GameClear();
+        }
     }
 }
