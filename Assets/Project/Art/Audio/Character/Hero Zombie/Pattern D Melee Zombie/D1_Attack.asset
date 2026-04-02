@@ -6,8 +6,8 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Monster_Hero Zombie_Pattern_B_{-337131575112740728}
-  m_AudioClip: {fileID: 8300000, guid: 2c55b14cafc35c24aaefa74ce56616ff, type: 3}
+  m_Name: Pattern D Melee Zombie_Attack2_{-337131575112740728}
+  m_AudioClip: {fileID: 8300000, guid: 92f13589c9f26fb4e97b937221cf8e59, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
@@ -16,13 +16,13 @@ AudioRandomContainer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hero_B
-  m_Volume: -2.1
+  m_Name: D1_Attack
+  m_Volume: -4.2
   m_Pitch: 0
   m_AutomaticTriggerTime: 0
   m_LoopCount: 1
-  m_VolumeRandomizationRange: {x: -2.300002, y: 0}
-  m_PitchRandomizationRange: {x: -29.447815, y: 191.4112}
+  m_VolumeRandomizationRange: {x: -6.226384, y: 0}
+  m_PitchRandomizationRange: {x: -147.23927, y: 294.47867}
   m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:

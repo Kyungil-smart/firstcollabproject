@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1712949204012180837}
   - component: {fileID: 7380493224014413077}
   - component: {fileID: 2984314480009048320}
+  - component: {fileID: -3137947545160675147}
   m_Layer: 6
   m_Name: Boss_RangedMonster
   m_TagString: Monster
@@ -297,6 +298,7 @@ MonoBehaviour:
   bodyPrefab: {fileID: 5429551165900301821}
   bloodEffect: {fileID: 4732097407848198378, guid: 80bfc93a3264a9e45837224dd8a67b62, type: 3}
   statSo: {fileID: 11400000, guid: 5ec7fd95d547d60469263dd704d25ca0, type: 2}
+  statusEffectType: 0
   projectilePrefab: {fileID: 5295285690855142305, guid: f7d527613d0e39f44be26bb5c26a3197, type: 3}
   firePoint: {fileID: 8733117192257678904}
 --- !u!50 &2320464749574180000
@@ -422,6 +424,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.010142952, y: 0.39748964}
   m_Size: {x: 0.7110671, y: 0.9378222}
   m_Direction: 0
+--- !u!114 &-3137947545160675147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047037709664641846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457b6e7956a0ab9489cfa711effbe69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSFX
+  sfxData: {fileID: 11400000, guid: 9f18638311ca33e4eba1e9493928cff8, type: 2}
 --- !u!1 &8502126232935694248
 GameObject:
   m_ObjectHideFlags: 0

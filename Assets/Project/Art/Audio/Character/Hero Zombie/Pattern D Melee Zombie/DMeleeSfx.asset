@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea7f84f7d60af94a925a5d0d89baf4f, type: 3}
+  m_Name: DMeleeSfx
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSfxS
+  aggroSFX: {fileID: 6418180475301049370, guid: 04e4ef626e98b5c43ace179b70b2f547, type: 2}
+  attackSFX: {fileID: 6418180475301049370, guid: 3cb937071ccf91c45b69dd11d04c0084, type: 2}
+  hurtSFX: {fileID: 6418180475301049370, guid: 3bb03a581283b564fbc4a2574fae77c0, type: 2}
+  deadSFX: {fileID: 6418180475301049370, guid: a73d1a70ffc34964aae4fecb704d8ba3, type: 2}
+  explosionSFX: {fileID: 0}
+  patternASFX: {fileID: 0}
+  patternBSFX: {fileID: 0}
+  patternCSFX: {fileID: 0}
+  patternDSFX: {fileID: 0}
+  projectileSFX: {fileID: 0}
