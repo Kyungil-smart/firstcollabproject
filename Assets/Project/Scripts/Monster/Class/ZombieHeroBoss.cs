@@ -30,6 +30,8 @@ namespace Monster
         // 보스는 기절 및 패턴 캔슬 면역
         public override void TakeDamage(float damage)
         {
+            if (isDead) return;
+            
             // 스턴을 걸지 못하도록 임시로 스턴 지속시간을 0으로 고정
             float originalStun = statSo != null ? statSo.StunDuration : 0;
             if (statSo != null)
@@ -38,6 +40,13 @@ namespace Monster
             }
             
             base.TakeDamage(damage);
+
+            if (isDead)
+            {
+                Debug.Log("보스 사망");
+                
+                GameManager.Instance.GameClear();
+            }
             
             if (statSo != null) statSo.StunDuration = originalStun;
         }
@@ -266,7 +275,7 @@ namespace Monster
         }
         #endregion
 
-        public void Die()
+        public void Dead()
         {
             GameManager.Instance.GameClear();
         }

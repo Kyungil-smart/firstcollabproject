@@ -39,7 +39,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
         
     }
-    
+
+    public void Cheat_GameClear()
+    {
+        Debug.Log("테스트용 게임 클리어");
+        GameClear();
+    }
 
     private void OnDestroy()
     {

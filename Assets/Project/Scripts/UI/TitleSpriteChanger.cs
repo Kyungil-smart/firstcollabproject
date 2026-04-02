@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleSpriteChanger : MonoBehaviour
 {
-    public SpriteRenderer noneClearSpriteRenderer;
+    public Image noneClearSpriteRenderer;
     public Sprite ClearSprite;
 
     private void Start()
