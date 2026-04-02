@@ -4652,6 +4652,7 @@ GameObject:
   - component: {fileID: 2500358047186480499}
   - component: {fileID: 7364784093856581521}
   - component: {fileID: 5326987937408289963}
+  - component: {fileID: 54067430928101432}
   m_Layer: 10
   m_Name: BossRoom_Obstacle
   m_TagString: Untagged
@@ -5260,6 +5261,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 8227365094460359036}
+--- !u!208 &54067430928101432
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227365094460359036}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7.0000005, y: 10.500001, z: 0.00001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8430886949626162464
 GameObject:
   m_ObjectHideFlags: 0
