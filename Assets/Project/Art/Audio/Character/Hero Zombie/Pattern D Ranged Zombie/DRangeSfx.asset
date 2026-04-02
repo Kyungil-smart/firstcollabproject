@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea7f84f7d60af94a925a5d0d89baf4f, type: 3}
+  m_Name: DRangeSfx
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSfxS
+  aggroSFX: {fileID: 6418180475301049370, guid: 07398a9057cedfb4694bac93c674cd72, type: 2}
+  attackSFX: {fileID: 6418180475301049370, guid: 46c0f4b8579064849b35eb2d5c20b44b, type: 2}
+  hurtSFX: {fileID: 6418180475301049370, guid: 676a9c253e356bc4a96f22f230d5f565, type: 2}
+  deadSFX: {fileID: 6418180475301049370, guid: a5695ebae54c32a45ba45476f8ff0a03, type: 2}
+  explosionSFX: {fileID: 0}
+  patternASFX: {fileID: 0}
+  patternBSFX: {fileID: 0}
+  patternCSFX: {fileID: 0}
+  patternDSFX: {fileID: 0}
+  projectileSFX: {fileID: 0}
