@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 /// <summary>
-/// 플레이어의 시각적 효과를 관리합니다.
+/// 플레이어의 애니와 오디오를 관리
 /// </summary>
 public class PlayerVisualEffect : MonoBehaviour
 {
@@ -70,6 +70,8 @@ public class PlayerVisualEffect : MonoBehaviour
         AudioManager.Instance.PlaySFX(deathSFX);
         GetComponent<Collider2D>().enabled = false;
         GetComponent<PlayerController>().enabled = false;
+        GetComponent<WeaponController>().enabled = false;
+        GetComponentInChildren<LookAtCursor>().enabled = false;
         StartCoroutine(ShowGameOverRoutine());
     }
 
