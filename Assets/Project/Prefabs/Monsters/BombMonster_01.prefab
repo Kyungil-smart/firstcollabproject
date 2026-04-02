@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 1712949204012180837}
   - component: {fileID: -5239907428962690404}
   - component: {fileID: 1567108514707758107}
+  - component: {fileID: -835020697328798313}
   m_Layer: 6
   m_Name: BombMonster_01
   m_TagString: Monster
@@ -391,6 +392,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0035631955, y: 0.344533}
   m_Size: {x: 0.58727694, y: 0.78922325}
   m_Direction: 0
+--- !u!114 &-835020697328798313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047037709664641846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457b6e7956a0ab9489cfa711effbe69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSFX
+  sfxData: {fileID: 11400000, guid: da850c8e079269f49a452ff5457babc1, type: 2}
 --- !u!1 &8502126232935694248
 GameObject:
   m_ObjectHideFlags: 0

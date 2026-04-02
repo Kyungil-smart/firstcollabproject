@@ -1313,9 +1313,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   bgmSource: {fileID: 1054425794}
   sfxSource: {fileID: 1054425793}
-  sources:
+  monsterPool:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponPool:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

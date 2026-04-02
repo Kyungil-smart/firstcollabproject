@@ -11,18 +11,24 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource; // 풀링 없는 경우: 무조건 나와야하는 '플레이어 전용'
 
     // ---------------- 풀링전용 SFX ------------------
-    public AudioSource[] sources = new AudioSource[6];
-    int sourceIndex;
+    public AudioSource[] monsterPool = new AudioSource[6]; int monsterIndex;
+    public AudioSource[] weaponPool = new AudioSource[4]; int weaponIndex;
+
     // 오디오 소스 순환 로직
     // 사용법 : 인스펙터에서 audioSources 배열 크기 지정 (기본값:6)
     //          함수 호출 하면 자연스럽게 배열개수 만큼 동시 재생 (풀링)
     //          볼륨과 피치 조절은 '오디오 랜덤 컨테이너'에서 활용가능
-    public void PlaySFXPool(AudioResource clip)
+    public void PlayMonsterSfx(AudioResource clip)
     {
-        sources[sourceIndex].resource = clip;
-        sources[sourceIndex].Play();
-
-        sourceIndex = (sourceIndex + 1) % sources.Length;
+        monsterPool[monsterIndex].resource = clip;
+        monsterPool[monsterIndex].Play();
+        monsterIndex = (monsterIndex + 1) % monsterPool.Length;
+    }
+    public void PlayWeaponSfx(AudioResource clip)
+    {
+        weaponPool[weaponIndex].resource = clip;
+        weaponPool[weaponIndex].Play();
+        weaponIndex = (weaponIndex + 1) % weaponPool.Length;
     }
     // ----------------------------------------------
 
@@ -42,7 +48,8 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        for (int i = 0; i < sources.Length; i++) sources[i] = gameObject.AddComponent<AudioSource>();
+        for (int i = 0; i < monsterPool.Length; i++) monsterPool[i] = gameObject.AddComponent<AudioSource>();
+        for (int i = 0; i < weaponPool.Length; i++) weaponPool[i] = gameObject.AddComponent<AudioSource>();
     }
 
     /// <summary>
@@ -85,7 +92,8 @@ public class AudioManager : MonoBehaviour
     {
         volume = Mathf.Clamp(volume, 0f, 1f);
         sfxSource.volume = volume;
-        for (int i = 0; i < sources.Length; i++) sources[i].volume = volume;
+        for (int i = 0; i < monsterPool.Length; i++) monsterPool[i].volume = volume;
+        for (int i = 0; i < weaponPool.Length; i++) weaponPool[i].volume = volume;
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, volume);
     }
 
