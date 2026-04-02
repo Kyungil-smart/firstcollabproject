@@ -1,5 +1,7 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// 씬에 직접 배치하지 말고 자동으로 생성! 게임 전체에 필요한 데이터를 관리하는 용도로 사용합니다
@@ -34,21 +36,27 @@ public class GameManager : MonoBehaviour
     // TODO: 게임 클리어 (스프리이트 변경)
     public void GameClear()
     {
-        PlayerPrefs.SetInt("IsGameClear", 1);
+        PlayerPrefs.SetInt("IsCleared", 1);
 
         PlayerPrefs.Save();
         
-    }
-
-    public void Cheat_GameClear()
-    {
-        Debug.Log("테스트용 게임 클리어");
-        GameClear();
     }
 
     private void OnDestroy()
     {
         if (Instance == this)
             Instance = null;
+    }
+
+    // 테스트용
+    private void Update()
+    {
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            Debug.Log("클리어 체크");
+            GameClear();
+        }
+        #endif
     }
 }
