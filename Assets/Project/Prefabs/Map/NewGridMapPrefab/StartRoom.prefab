@@ -19752,7 +19752,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Room
   roomType: 0
   spawnPoints: []
+  _bossPrefab: {fileID: 0}
   isVisited: 0
+  _isCleared: 0
   upDoor: {fileID: 4874050955412437289}
   downDoor: {fileID: 8010757490454274562}
   leftDoor: {fileID: 1777272550331471790}

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int roomClearCount; // 클리어한 방 갯수
     public int currentRoom; // 방 단위: 1, 2, 3, ...
     public int currentFloor; // 층 단위: 1, 2, 3, ...
+    public bool isBossRoom = false;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)] // 게임 시작 전에 GameManager를 만듭니다
     private static void CreateInstance()
@@ -29,8 +30,16 @@ public class GameManager : MonoBehaviour
     {
         impulseSource.GenerateImpulseWithForce(force);
     }
+    
+    // TODO: 게임 클리어 (스프리이트 변경)
+    private void GameClear()
+    {
+        PlayerPrefs.SetInt("IsGameClear", 1);
 
-
+        PlayerPrefs.Save();
+        
+    }
+    
 
     private void OnDestroy()
     {
