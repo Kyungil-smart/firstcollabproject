@@ -108,9 +108,9 @@ namespace Monster
                 
                 Vector2 direction = (agent.steeringTarget - transform.position).normalized;
                 rb.linearVelocity = direction * statSo.MoveSpeed;
-            }
 
-            agent.nextPosition = rb.position;
+                agent.nextPosition = rb.position;
+            }
         }
 
         public virtual void Init()
@@ -284,6 +284,8 @@ namespace Monster
         
         protected virtual void Die()
         {
+            if (isDead) return;
+            
             isDead = true;
             activeEffects = StatusEffect.None;
 
@@ -335,6 +337,11 @@ namespace Monster
                 {
                     MonsterManager.Instance.monsterSpawner.ReturnMonster(gameObject);
                 }
+            }
+
+            if (!GameManager.Instance.isBossRoom)
+            {
+                Registry<MonsterAction>.Remove(this);
             }
         }
 
