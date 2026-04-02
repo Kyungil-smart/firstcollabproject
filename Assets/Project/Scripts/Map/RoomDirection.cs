@@ -1,6 +1,9 @@
 using UnityEngine;
 using System;
 
+/// <summary>
+/// 비트마스킹
+/// </summary>
 [Flags]
 public enum RoomDirection
 {
