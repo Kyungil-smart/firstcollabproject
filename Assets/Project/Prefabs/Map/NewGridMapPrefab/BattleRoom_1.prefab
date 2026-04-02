@@ -18322,6 +18322,7 @@ GameObject:
   - component: {fileID: 6815126646776878269}
   - component: {fileID: 4675852014663541649}
   - component: {fileID: 5589503316683733167}
+  - component: {fileID: 7361323600524473993}
   m_Layer: 10
   m_Name: BattleRoom1_Obstacle
   m_TagString: Untagged
@@ -21861,6 +21862,22 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!208 &7361323600524473993
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8543249022197708841}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 14.000001, y: 14.500001, z: 0.00001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5000001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &270610204408433170
 PrefabInstance:
   m_ObjectHideFlags: 0

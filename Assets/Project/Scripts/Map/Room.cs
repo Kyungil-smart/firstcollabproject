@@ -204,7 +204,7 @@ public class Room : MonoBehaviour
                 else if (roomType == RoomType.BossRoom)
                 {
                     GameManager.Instance.isBossRoom = true;
-                    
+                    MonsterManager.Instance.currentRoom = this;
                     Debug.Log("보스 방 진입!!");
                     OnRoomEntered?.Invoke(this);
                     SpawnBoss();
