@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea7f84f7d60af94a925a5d0d89baf4f, type: 3}
+  m_Name: BruteSfx
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSfxS
+  aggroSFX: {fileID: 6418180475301049370, guid: de464490d86b41f40b1f075f22eec4b8, type: 2}
+  attackSFX: {fileID: 6418180475301049370, guid: 36308f7f44ab16b448ed2a77fe4e6c63, type: 2}
+  hurtSFX: {fileID: 6418180475301049370, guid: 7cefdb5a699344f419435e757d1dd5b2, type: 2}
+  deadSFX: {fileID: 6418180475301049370, guid: e739c2c00ebaf6c49907503cb227a45b, type: 2}
+  explosionSFX: {fileID: 0}

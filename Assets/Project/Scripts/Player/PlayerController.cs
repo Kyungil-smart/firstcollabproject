@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
     {
         while (!token.IsCancellationRequested)
         {
-            AudioManager.Instance.PlaySFXPool(footstepSFX);
+            AudioManager.Instance.PlayWeaponSfx(footstepSFX);
             bool cancelled = await UniTask
                 .Delay(System.TimeSpan.FromSeconds(_footstepInterval), cancellationToken: token)
                 .SuppressCancellationThrow();

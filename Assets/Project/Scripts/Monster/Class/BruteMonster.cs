@@ -49,6 +49,8 @@ namespace Monster
                     agent.isStopped = false;
                     agent.SetDestination(playerTransform.position);
 
+                    if (monsterSFX != null) monsterSFX.PlayAggro();
+
                     if (animator != null)
                     {
                         bool isMoving = agent.velocity.sqrMagnitude > 0.01f;
@@ -57,16 +59,6 @@ namespace Monster
                 }
             }
         }
-        
-        protected override void Die()
-        {
-            if (isDead) return;
-            
-            base.Die();
-            
-            Registry<MonsterAction>.Remove(this);
-        }
-
 
         private IEnumerator AttackRoutine()
         {
@@ -107,6 +99,8 @@ namespace Monster
             }
 
             if (animator != null) animator.SetTrigger("2_Attack");
+
+            if (monsterSFX != null) monsterSFX.PlayAttack();
 
             float elapsed = 0f;
             float actualDashSpeed = statSo.MoveSpeed * dashSpeedMultiplier;

@@ -97,13 +97,9 @@ namespace Monster
                 animator.SetTrigger("2_Attack");
             }
 
-            if (monsterSFX != null) monsterSFX.PlayAttack();
-
             // 투사체 맵에 생성해서 날림
             FireProjectile();
-
-            if (monsterSFX != null) monsterSFX.PlayBow();
-
+            if (monsterSFX != null) monsterSFX.PlayAttack();
 
             // 쿨타임 및 상태 리셋
             lastAttackTime = Time.time;
@@ -113,15 +109,7 @@ namespace Monster
             
             isAttacking = false;
         }
-        
-        protected override void Die()
-        {
-            if (isDead) return;
-            
-            base.Die();
-            
-            Registry<MonsterAction>.Remove(this);
-        }
+
         
         private void FireProjectile()
         {

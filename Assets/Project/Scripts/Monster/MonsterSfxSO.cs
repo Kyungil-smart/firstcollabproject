@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 namespace Monster
 {
     [CreateAssetMenu(fileName = "MonsterSfx", menuName = "Scriptable Objects/Monster/SFX")]
-    public class MonsterSfxS : ScriptableObject
+    public class MonsterSfxSO : ScriptableObject
     {
         [Header("공통")]
         public AudioResource aggroSFX;
@@ -13,7 +13,13 @@ namespace Monster
         public AudioResource deadSFX;
 
         [Header("특수")]
-        public AudioResource bowSFX;        // 원거리 좀비 전용
         public AudioResource explosionSFX;  // 자살 폭탄 좀비 전용
+
+        [Header("보스 전용")]
+        public AudioResource patternASFX;
+        public AudioResource patternBSFX;
+        public AudioResource patternCSFX;
+        public AudioResource patternDSFX;
+        public AudioResource projectileSFX;
     }
 }

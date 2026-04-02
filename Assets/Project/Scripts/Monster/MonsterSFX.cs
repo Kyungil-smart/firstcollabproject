@@ -8,7 +8,7 @@ namespace Monster
     /// </summary>
     public class MonsterSFX : MonoBehaviour
     {
-        [SerializeField] MonsterSfxS sfxData;
+        [SerializeField] MonsterSfxSO sfxData;
 
         private bool _aggroPlayed;
 
@@ -26,7 +26,7 @@ namespace Monster
         {
             if (_aggroPlayed) return;
             if (sfxData.aggroSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.aggroSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.aggroSFX);
             _aggroPlayed = true;
         }
 
@@ -36,7 +36,7 @@ namespace Monster
         public void PlayAttack()
         {
             if (sfxData.attackSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.attackSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.attackSFX);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Monster
         public void PlayHurt()
         {
             if (sfxData.hurtSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.hurtSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.hurtSFX);
         }
 
         /// <summary>
@@ -54,19 +54,10 @@ namespace Monster
         public void PlayDead()
         {
             if (sfxData.deadSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.deadSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.deadSFX);
         }
 
         // ─── 특수 ───
-
-        /// <summary>
-        /// 원거리 좀비 — 활을 쏠 때
-        /// </summary>
-        public void PlayBow()
-        {
-            if (sfxData.bowSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.bowSFX);
-        }
 
         /// <summary>
         /// 자살 폭탄 좀비 — 폭발 시
@@ -74,7 +65,42 @@ namespace Monster
         public void PlayExplosion()
         {
             if (sfxData.explosionSFX == null) return;
-            AudioManager.Instance.PlaySFXPool(sfxData.explosionSFX);
+            AudioManager.Instance.PlayMonsterSfx(sfxData.explosionSFX);
+        }
+
+        // ─── 보스 전용 ───
+
+        /// <summary>
+        /// 영웅 좀비 보스 — 패턴 A 시전시 기합
+        /// </summary>
+        public void PlayPatternA()
+        {
+            if (sfxData.patternASFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternASFX);
+        }
+        public void PlayPatternB()
+        {
+            if (sfxData.patternBSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternBSFX);
+        }
+        public void PlayPatternC()
+        {
+            if (sfxData.patternCSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternCSFX);
+        }
+        public void PlayPatternD()
+        {
+            if (sfxData.patternDSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.patternDSFX);
+        }
+
+        /// <summary>
+        /// 영웅 좀비 보스 — 투사체 시전시 효과음
+        /// </summary>
+        public void PlayProjectile()
+        {
+            if (sfxData.projectileSFX == null) return;
+            AudioManager.Instance.PlayMonsterSfx(sfxData.projectileSFX);
         }
     }
 }

@@ -170,8 +170,6 @@ namespace Monster
 
         protected override void Die()
         {
-            if (isDead) return; // 중복 실행 방지
-            
             // 시각 효과 제거 및 레이어 복구
             if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
             gameObject.layer = LayerMask.NameToLayer("Monster");

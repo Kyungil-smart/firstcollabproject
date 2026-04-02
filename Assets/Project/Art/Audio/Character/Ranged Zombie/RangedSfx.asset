@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea7f84f7d60af94a925a5d0d89baf4f, type: 3}
+  m_Name: RangedSfx
+  m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterSfxSO
+  aggroSFX: {fileID: 6418180475301049370, guid: 9d7cf2d8db688d149860003f5371c5cc, type: 2}
+  attackSFX: {fileID: 6418180475301049370, guid: 3d745083f15c1db49a81dae221b09aad, type: 2}
+  hurtSFX: {fileID: 6418180475301049370, guid: 206bda45a85786b46965c34562b822c9, type: 2}
+  deadSFX: {fileID: 6418180475301049370, guid: 9121369b13153a846a7343149c313135, type: 2}
+  bowSFX: {fileID: 0}
+  explosionSFX: {fileID: 0}
