@@ -84,6 +84,8 @@ namespace Monster
             agent.isStopped = false;
             agent.SetDestination(playerTransform.position);
 
+            if (monsterSFX != null) monsterSFX.PlayAggro();
+
             if (animator != null)
             {
                 bool isMoving = agent.velocity.sqrMagnitude > 0.1f;
@@ -95,6 +97,8 @@ namespace Monster
         {
             if (_isExploded || isDead) return;
             _isExploded = true;
+
+            if (monsterSFX != null) monsterSFX.PlayAttack();
 
             UpdateRangeIndicatorPositions();
             if (_explosionLine != null) _explosionLine.gameObject.SetActive(true);
@@ -148,6 +152,8 @@ namespace Monster
             if (isDead) yield break;
 
             // 폭발 데미지
+            if (monsterSFX != null) monsterSFX.PlayExplosion();
+
             if (MonsterManager.Instance.player != null)
             {
                 float finalDistance = Vector2.Distance(transform.position, MonsterManager.Instance.player.transform.position);
@@ -169,21 +175,10 @@ namespace Monster
             // 시각 효과 제거 및 레이어 복구
             if (_explosionLine != null) _explosionLine.gameObject.SetActive(false);
             gameObject.layer = LayerMask.NameToLayer("Monster");
-
-            if (_isSelfDie)
-            {
-                // 자폭 시: 킬 카운트를 안 올리고 애니메이션 없이 즉시 풀로 반환
-                isDead = true; 
-                StopAllCoroutines();
-                var spawner = FindObjectOfType<MonsterSpawner>();
-                if (spawner != null) spawner.ReturnMonster(this.gameObject);
-                else gameObject.SetActive(false);
-            }
-            else
-            {
-                // 플레이어 공격에 의한 처치 시 
-                base.Die();
-            }
+            
+            // 플레이어 공격에 의한 처치 시 
+            base.Die();
+            
         }
 
         private void CreateRangeIndicator()

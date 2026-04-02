@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private BoxCollider2D _collider;
-
     [Header("철창 프리팹")]
     [SerializeField] private GameObject ironBar;
 
-    private void Awake()
-    {
-        _collider = GetComponentInChildren<BoxCollider2D>();
-    }
-
+    /// <summary>
+    /// 방에 들어오면 철창 잠김
+    /// </summary>
     public void Close()
     {
+        ironBar.SetActive(true);
         Debug.Log("문 닫김!");
-        
-        if (_collider != null) _collider.enabled = true;
     }
 
+    /// <summary>
+    /// 방 클리어하면 철창 열림
+    /// </summary>
     public void Open()
     {
-        Debug.Log("문열림!");
-        
-        if (_collider != null) _collider.enabled = false;
+        if (ironBar != null)
+        {
+            ironBar.SetActive(false);
+            Debug.Log("문열림!");
+        }
     }
 }

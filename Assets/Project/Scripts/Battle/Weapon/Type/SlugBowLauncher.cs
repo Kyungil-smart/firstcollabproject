@@ -3,18 +3,15 @@ using UnityEngine;
 public class SlugBowLauncher : MonoBehaviour
 {
     [SerializeField] private GameObject slugArrowPrefab; // 위에서 만든 프리팹 연결
-    [SerializeField] private Transform firePoint;
+    Transform firePoint;
 
-    void Update()
+    private void Awake()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ShootTriple();
-        }
+        firePoint = transform;
     }
 
-    // 샷건처럼 쏘는 로직
-    private void ShootTriple()
+    // 샷건처럼 쏘는 로직 (SectorWeapon.Attack 에서 호출)
+    public void Fire()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;

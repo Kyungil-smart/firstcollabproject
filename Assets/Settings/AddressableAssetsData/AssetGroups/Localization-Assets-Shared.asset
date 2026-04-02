@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 29d23c44e43a6c2488ff86d4cc1cb9a7
   m_SerializeEntries:
+  - m_GUID: 6c63fb1415d5a3d4d9dd721f2c295f0f
+    m_Address: Assets/Project/DB/Localization/Localization UI Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3738cc32fb0f2543bdea2492cb5d646
     m_Address: Assets/Settings/Localization/TEST Shared Data.asset
     m_ReadOnly: 1

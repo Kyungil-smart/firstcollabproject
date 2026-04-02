@@ -1,0 +1,128 @@
+using UnityEngine;
+
+/// <summary>
+/// 팔 부상 효과: 조준 드리프트
+/// 조준점에 Perlin noise 기반 오프셋이 적용되어 마우스 불안정 효과 연출
+/// </summary>
+public class ArmPart : MonoBehaviour
+{
+    public static Vector2 AimOffset { get; private set; }
+
+    [Header("드리프트 크기")]
+    [SerializeField] float magnitude1 = 0.3f;
+    [SerializeField] float magnitude2 = 0.7f;
+    [SerializeField] float magnitude3 = 1.2f;
+    [SerializeField] float magnitude4 = 2.0f;
+
+    [Header("드리프트 속도")]
+    [SerializeField] float speed1 = 0.4f;
+    [SerializeField] float speed2 = 0.6f;
+    [SerializeField] float speed3 = 0.8f;
+    [SerializeField] float speed4 = 1.2f;
+
+    [Header("드리프트 주기")]
+    [SerializeField] float period1 = 50f;
+    [SerializeField] float period2 = 45f;
+    [SerializeField] float period3 = 40f;
+    [SerializeField] float period4 = 35f;
+
+    [Header("드리프트 지속 시간")]
+    [SerializeField] float duration1 = 4f;
+    [SerializeField] float duration2 = 5f;
+    [SerializeField] float duration3 = 6f;
+    [SerializeField] float duration4 = 7f;
+
+    float _magnitude;
+    float _speed;
+    float _period;
+    float _duration;
+    float _cycleTimer;
+    float _noiseTimeX;
+    float _noiseTimeY;
+
+    private void Start()
+    {
+        _noiseTimeX = Random.Range(0f, 100f);
+        _noiseTimeY = Random.Range(100f, 200f);
+
+        PlayerBody.OnArmInjuryChanged += OnInjuryChanged;
+    }
+
+    private void OnDisable()
+    {
+        PlayerBody.OnArmInjuryChanged -= OnInjuryChanged;
+        AimOffset = Vector2.zero; // 스테틱 초기화
+    }
+
+    void OnInjuryChanged(int level)
+    {
+        _magnitude = level switch
+        {
+            0 => 0f,
+            1 => magnitude1,
+            2 => magnitude2,
+            3 => magnitude3,
+            _ => magnitude4
+        };
+
+        _speed = level switch
+        {
+            0 => 0f,
+            1 => speed1,
+            2 => speed2,
+            3 => speed3,
+            _ => speed4
+        };
+
+        _period = level switch
+        {
+            0 => 0f,
+            1 => period1,
+            2 => period2,
+            3 => period3,
+            _ => period4
+        };
+
+        _duration = level switch
+        {
+            0 => 0f,
+            1 => duration1,
+            2 => duration2,
+            3 => duration3,
+            _ => duration4
+        };
+
+        _cycleTimer = 0f;
+    }
+
+    private void Update()
+    {
+        if (_magnitude <= 0f)
+        {
+            AimOffset = Vector2.zero;
+            return;
+        }
+
+        _cycleTimer += Time.deltaTime;
+
+        // 주기 완료 시 사이클 리셋
+        if (_cycleTimer >= _period)
+            _cycleTimer = 0f;
+
+        // 지속 시간이 끝난 구간에서는 드리프트 없음
+        if (_cycleTimer >= _duration)
+        {
+            AimOffset = Vector2.zero;
+            return;
+        }
+
+        _noiseTimeX += Time.deltaTime * _speed;
+        _noiseTimeY += Time.deltaTime * _speed;
+
+        // Perlin noise (0~1) → (-1~1) 범위로 변환 후 크기 적용
+        float x = (Mathf.PerlinNoise(_noiseTimeX, 0f) - 0.5f) * 2f * _magnitude;
+        float y = (Mathf.PerlinNoise(0f, _noiseTimeY) - 0.5f) * 2f * _magnitude;
+
+        AimOffset = new Vector2(x, y);
+    }
+}

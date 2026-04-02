@@ -18,7 +18,11 @@ MonoBehaviour:
   MaxTotalMonster: 30
   StartSimultaneous: 6
   MaxSimultaneous: 12
-  Normal: 0.7
-  Ranged: 0.2
-  Bomb: 0.1
-  Brute: 0
+  MonsterType1: 2005
+  MonsterPercent1: 0.5
+  MonsterType2: 2006
+  MonsterPercent2: 0.2
+  MonsterType3: 2007
+  MonsterPercent3: 0.2
+  MonsterType4: 2004
+  MonsterPercent4: 0.1

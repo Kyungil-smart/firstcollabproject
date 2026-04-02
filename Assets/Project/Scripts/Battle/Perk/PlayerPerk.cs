@@ -60,7 +60,7 @@ public class PlayerPerk : MonoBehaviour
             _pendingUpgrades++;
         }
 
-        if (_pendingUpgrades > 0 && !_rewardPopup.gameObject.activeSelf)
+        if (_pendingUpgrades > 0 && _rewardPopup != null && !_rewardPopup.gameObject.activeSelf)
         {
             ConsumeNextUpgrade();
         }

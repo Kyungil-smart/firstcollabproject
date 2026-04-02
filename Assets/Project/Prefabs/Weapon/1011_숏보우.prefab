@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3880404974243255364}
   - component: {fileID: 5258763471693950592}
-  - component: {fileID: 3661196103734835148}
+  - component: {fileID: 4285852729536201914}
   m_Layer: 0
   m_Name: "1011_\uC20F\uBCF4\uC6B0"
   m_TagString: Untagged
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 533268885, guid: cc7a32b693c282541821cb358eefd54a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3661196103734835148
+--- !u!114 &4285852729536201914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,28 +101,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 8187088320716388886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09703c0afc2474a4eae8e7f6c6fd97d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b661df267f0a99499ecb6368afb2ce9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RangeWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowRangeWeapon
   data: {fileID: 11400000, guid: 9a4d17ea3a6560f40bb0c67199805c87, type: 2}
   Name: 
   attackType: 0
   damageBase: 0
   attackInterval: 0
-  maxAmmo: 0
-  rangeValue: 0
-  sectorEnable: 0
-  sectorAngle: 0
-  splashEnable: 0
+  ammo: 0
+  range: 0
   splashRadius: 0
-  splashDecay: 0
-  stunEnable: 0
-  stunTime: 0
+  sectorAngle: 0
   penetrateCount: 0
-  penetrateDecay: 0
-  chargeEnable: 0
-  chargeTime: 0
-  failCooldown: 0
-  spreadEnable: 0
-  spreadAngle: 0
   screenShakeEnable: 0
+  projectileSpeed: 15.6
+  penetrateMultiplier: 0.5

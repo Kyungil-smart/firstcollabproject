@@ -22,6 +22,6 @@ MonoBehaviour:
   AttackInterval: 2
   AtkTrigger: 5
   AtkPreDelay: 0.5
-  ExpReward: 100
+  ExpReward: 20
   CorpseTime: 1
   StunDuration: 0.1

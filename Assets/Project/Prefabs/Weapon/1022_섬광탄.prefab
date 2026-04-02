@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 13336d35dc6fd1a40927b14b4e8c0725, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0912fd44c96bccf4089ec4b89bb2bdb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,19 +110,8 @@ MonoBehaviour:
   damageBase: 0
   attackInterval: 0
   ammo: 0
-  rangeValue: 0
-  sectorEnable: 0
-  sectorAngle: 0
-  splashEnable: 0
+  range: 0
   splashRadius: 0
-  splashDecay: 0
-  stunEnable: 0
-  stunTime: 0
+  sectorAngle: 0
   penetrateCount: 0
-  penetrateDecay: 0
-  chargeEnable: 0
-  chargeTime: 0
-  failCooldown: 0
-  spreadEnable: 0
-  spreadAngle: 0
   screenShakeEnable: 0

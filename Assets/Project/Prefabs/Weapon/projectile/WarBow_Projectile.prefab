@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7730683928843328107}
   - component: {fileID: 7856651121106266994}
   - component: {fileID: 5878003075116417212}
-  - component: {fileID: -7131728457498895661}
+  - component: {fileID: 8607053261718136693}
   m_Layer: 14
   m_Name: WarBow_Projectile
   m_TagString: Untagged
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1067148392, guid: cc7a32b693c282541821cb358eefd54a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e2d42d66812ff24ab88cd165ab97633, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,7 +157,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.0030069351, y: 0.022551864}
   m_Radius: 0.16472879
---- !u!114 &-7131728457498895661
+--- !u!114 &8607053261718136693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6213539776784452163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a967bf7d2c4eef449959aa91855b16f1, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ab5f50e00dc7e4ea4ec600414a9b23, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SplashRangeProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowRangeProjectile
+  stickDespawnTime: 3

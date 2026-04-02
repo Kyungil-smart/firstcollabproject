@@ -42,6 +42,8 @@ namespace Monster
             {
                 agent.isStopped = false;
                 agent.SetDestination(playerTransform.position);
+
+                if (monsterSFX != null) monsterSFX.PlayAggro();
                 
                 if (animator != null) 
                 {
@@ -78,6 +80,8 @@ namespace Monster
             {
                 animator.SetTrigger("2_Attack");
             }
+
+            if (monsterSFX != null) monsterSFX.PlayAttack();
 
             // 선딜레이 동안 범위를 벗어났으면 공격 취소
             float distanceToPlayer = Vector2.Distance(transform.position, MonsterManager.Instance.player.transform.position);

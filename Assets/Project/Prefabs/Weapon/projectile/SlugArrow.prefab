@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3249697140559005220}
   - component: {fileID: 7730683928843328107}
   - component: {fileID: 7856651121106266994}
-  - component: {fileID: 5878003075116417212}
   - component: {fileID: 4538556302846559110}
   m_Layer: 0
   m_Name: SlugArrow
@@ -61,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b685cb8be43806a48b4d83e4f1ab3af8, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,12 +83,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1067148392, guid: cc7a32b693c282541821cb358eefd54a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1422734e222f68843877de48c5d5d358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0434783, y: 1.0434783}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -121,42 +120,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &5878003075116417212
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6213539776784452163}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
 --- !u!114 &4538556302846559110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,5 +132,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b02091ea0f69a41aa510fcdb2aaab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlugArrowPrefab
-  speed: 12
-  lifeTime: 0.2
+  speed: 15.9
+  lifeTime: 0.1

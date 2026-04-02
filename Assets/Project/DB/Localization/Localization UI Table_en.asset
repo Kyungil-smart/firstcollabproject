@@ -1,0 +1,283 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Localization UI Table_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 6c63fb1415d5a3d4d9dd721f2c295f0f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 89398935552
+    m_Localized: GAME START
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89445072896
+    m_Localized: SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89445072897
+    m_Localized: QUIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89445072898
+    m_Localized: LOADING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267200
+    m_Localized: 'CRIT_RATE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267201
+    m_Localized: 'CRIT_DAM:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267202
+    m_Localized: 'RECOVERY:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267203
+    m_Localized: 'MOVE_SPEED:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267204
+    m_Localized: 'EVADE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267205
+    m_Localized: 'ROOM CLEARING:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267206
+    m_Localized: MENU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267207
+    m_Localized: PAUSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267208
+    m_Localized: RESUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267209
+    m_Localized: SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267210
+    m_Localized: TO LOBBY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267211
+    m_Localized: CONTROL SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267212
+    m_Localized: Click on an action and press a new key to bind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267213
+    m_Localized: DEFAULT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267214
+    m_Localized: APPLY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267215
+    m_Localized: CLOSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267216
+    m_Localized: LEVEL UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267217
+    m_Localized: SELECT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267218
+    m_Localized: CRITICAL RATE INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267219
+    m_Localized: CRITICAL RATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267220
+    m_Localized: CRITICAL DAMAGE INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267221
+    m_Localized: CRITICAL DAMAG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267222
+    m_Localized: RECOVERY INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267223
+    m_Localized: RECOVERY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267224
+    m_Localized: MOVE SPEED INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267225
+    m_Localized: MOVE SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267226
+    m_Localized: HEAD HP INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267227
+    m_Localized: HEAD HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267228
+    m_Localized: ARM HP INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267229
+    m_Localized: ARM HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267230
+    m_Localized: TORSO HP INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267231
+    m_Localized: TORSO HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267232
+    m_Localized: LEG HP INCREASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267233
+    m_Localized: LEG HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267234
+    m_Localized: DUNGEON CLEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267235
+    m_Localized: SELECT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267236
+    m_Localized: SKIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267237
+    m_Localized: FIST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267238
+    m_Localized: HAMMER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267239
+    m_Localized: DAGGER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267240
+    m_Localized: LONGSWORD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267241
+    m_Localized: GRENADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267242
+    m_Localized: FLASHBANG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267243
+    m_Localized: MINE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267244
+    m_Localized: SHORT BOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267245
+    m_Localized: SLUG BOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267246
+    m_Localized: LONG BOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267247
+    m_Localized: COMPOSITE SHORT BOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267248
+    m_Localized: WAR BOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267249
+    m_Localized: Attack Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267250
+    m_Localized: Arrows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89449267251
+    m_Localized: Number
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798897233920
+    m_Localized: GAME OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798934982656
+    m_Localized: RETRY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18798934982657
+    m_Localized: TO LOBBY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39485565272064
+    m_Localized: Return to Lobby?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39556855857152
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39520805814272
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328187839447040
+    m_Localized: Melee Growth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328192474152960
+    m_Localized: Range Growth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 328194609053696
+    m_Localized: Consumable Growth
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

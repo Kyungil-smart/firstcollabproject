@@ -17,15 +17,16 @@ MonoBehaviour:
   Name: "\uC20F\uBCF4\uC6B0"
   attackType: 1
   damageBase: 30
-  attackInterval: 2
-  maxAmmo: 10
+  attackInterval: 1
+  maxAmmo: 15
   range: 4
   splashRadius: 0
   sectorAngle: 0
-  penetrateCount: 0
+  penetrateCount: 3
   screenShakeEnable: 0
   perkSO:
   - {fileID: 11400000, guid: 6c2ebeddd5b629d4cb01b19efae88d66, type: 2}
   prefab: {fileID: 8187088320716388886, guid: 003fa0dde840d58498700409bf5a5497, type: 3}
-  projectilePrefab: {fileID: 0}
-  statusEffect: 0
+  projectilePrefab: {fileID: 6213539776784452163, guid: 8dd9e6140d4bc404cb97c4fd434afa58, type: 3}
+  icon: {fileID: 21300000, guid: 8726d58b4a5da4b47994f0527199cd2a, type: 2}
+  localizationKey: UI_CLEAR_SHORTBOW

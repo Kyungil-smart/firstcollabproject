@@ -6,7 +6,7 @@ namespace Monster
     [Serializable]
     public class SpawnData
     {
-        public  MonsterType monsterType;
+        public  int monsterId;
          public GameObject monsterPrefab;
     }
 }

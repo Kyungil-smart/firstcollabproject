@@ -38,10 +38,12 @@ namespace Monster
             // 사거리 이내면 공격
             if (!isAttacking && distanceToPlayer <= statSo.AtkTrigger)
             {
-                // 빙글빙글 도는 현상 방지용 완벽 정지
-                agent.isStopped = true;
-                agent.ResetPath();
-                agent.velocity = Vector3.zero;
+                if (!agent.isStopped)
+                {
+                    agent.isStopped = true;
+                    agent.ResetPath();
+                    agent.velocity = Vector3.zero;
+                }
             
                 if (animator != null) animator.SetBool("1_Move", false);
 
@@ -54,8 +56,15 @@ namespace Monster
             // 공격 중이 아니면 플레이어 추격
             else if (!isAttacking && distanceToPlayer > statSo.AtkTrigger + 0.1f)
             {
-                agent.isStopped = false;
+                
+                if (agent.isStopped)
+                {
+                    agent.isStopped = false;
+                }
+                
                 agent.SetDestination(playerTransform.position); 
+
+                if (monsterSFX != null) monsterSFX.PlayAggro();
             
                 if (animator != null) 
                 {
@@ -88,8 +97,12 @@ namespace Monster
                 animator.SetTrigger("2_Attack");
             }
 
+            if (monsterSFX != null) monsterSFX.PlayAttack();
+
             // 투사체 맵에 생성해서 날림
             FireProjectile();
+
+            if (monsterSFX != null) monsterSFX.PlayBow();
 
 
             // 쿨타임 및 상태 리셋

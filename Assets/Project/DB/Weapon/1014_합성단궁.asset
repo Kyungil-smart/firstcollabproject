@@ -16,16 +16,17 @@ MonoBehaviour:
   row: 13
   Name: "\uD569\uC131\uB2E8\uAD81"
   attackType: 1
-  damageBase: 25
+  damageBase: 35
   attackInterval: 0.25
-  maxAmmo: 15
+  maxAmmo: 20
   range: 6
   splashRadius: 0
   sectorAngle: 0
-  penetrateCount: 0
+  penetrateCount: 3
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: a6f0bb44252d0ff40a68e1e8d9616dcb, type: 2}
   prefab: {fileID: 6716311642281167658, guid: 208ec56537de0ad49965273749c72c72, type: 3}
-  projectilePrefab: {fileID: 0}
-  statusEffect: 0
+  projectilePrefab: {fileID: 6213539776784452163, guid: 59db4d41751f4994091764a9f79421d7, type: 3}
+  icon: {fileID: 21300000, guid: 40b6ec3b062c09a4bbf155649c615911, type: 3}
+  localizationKey: UI_CLEAR_COMPOSITE_SHORTBOW

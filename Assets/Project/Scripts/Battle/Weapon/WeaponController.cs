@@ -48,9 +48,9 @@ public class WeaponController : MonoBehaviour
         _input.on1 += EquipMeleeWeapon;
         _input.on2 += EquipRangeWeapon;
         _input.on3 += EquipConsumeWeapon;
-        _input.onAttack += Use;
+        _input.onAttack += OnAttackStarted;
         _input.onCharge += Charge;
-        _input.onChargeRelease += ChargeRelease;
+        _input.onChargeRelease += OnAttackReleased;
 
         _weapons[0] = CreateAndInit(_meleeWeapon);
         _weapons[1] = CreateAndInit(_rangeWeapon);
@@ -63,9 +63,9 @@ public class WeaponController : MonoBehaviour
         _input.on1 -= EquipMeleeWeapon;
         _input.on2 -= EquipRangeWeapon;
         _input.on3 -= EquipConsumeWeapon;
-        _input.onAttack -= Use;
+        _input.onAttack -= OnAttackStarted;
         _input.onCharge -= Charge;
-        _input.onChargeRelease -= ChargeRelease;
+        _input.onChargeRelease -= OnAttackReleased;
     }
 
     WeaponBase CreateAndInit(WeaponSO weaponSO)
@@ -75,6 +75,7 @@ public class WeaponController : MonoBehaviour
         obj.transform.SetParent(mountPoint);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
         obj.SetActive(false);
         return obj.GetComponent<WeaponBase>();
     }
@@ -120,12 +121,14 @@ public class WeaponController : MonoBehaviour
     /// </summary>
     public void EquipWeaponToSlot(WeaponSO weaponSO, int slotIndex)
     {
-        
-
         if (_weapons[slotIndex] != null) Destroy(_weapons[slotIndex].gameObject);
 
         _weapons[slotIndex] = CreateAndInit(weaponSO);
-        //SwitchToSlot(slotIndex, true);
+
+        if (slotIndex == CurrentWeaponIndex)
+        {
+            SwitchToSlot(slotIndex, true);
+        }
     }
 
     public AttackType CurrentAttackType => CurrentWeapon.attackType;
@@ -159,6 +162,20 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    bool _isHolding;
+
+    void OnAttackStarted()
+    {
+        _isHolding = true;
+        Use();
+    }
+
+    void OnAttackReleased()
+    {
+        _isHolding = false;
+        ChargeRelease();
+    }
+
     private void Use()
     {
         if (_isPointerOverUI) return; // UI 위에서 공격 입력 무시
@@ -180,5 +197,9 @@ public class WeaponController : MonoBehaviour
     {
         _isPointerOverUI = EventSystem.current.IsPointerOverGameObject();
         _input.Tick();
+
+        // 홀드 중 자동 연사 (쿨타임은 WeaponBase.Use()에서 처리)
+        if (_isHolding && CurrentWeapon.AutoFire)
+            Use();
     }
 }
