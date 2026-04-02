@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// 플레이어의 시각적 효과를 관리합니다.
@@ -11,6 +13,11 @@ public class PlayerVisualEffect : MonoBehaviour
     private Animator _anim;
     private SpriteRenderer[] _sr;
     private Color[] _playerColors;
+
+    [SerializeField] AudioResource atkSFX;
+    [SerializeField] AudioResource hurtSFX;
+    [SerializeField] AudioResource tiredSFX;
+    [SerializeField] AudioResource deathSFX;
 
     private void Awake()
     {
@@ -42,17 +49,25 @@ public class PlayerVisualEffect : MonoBehaviour
     private void HandleAttack()
     {
         _anim.SetTrigger("2_Attack");
+        AudioManager.Instance.PlaySFX(atkSFX);
     }
 
+    private readonly HashSet<BodyPart> _tiredSFXPlayed = new HashSet<BodyPart>();
     private void HandleDamaged(BodyPart part)
     {
         _anim.SetTrigger("3_Damaged");
         StartCoroutine(OnHurtRoutine());
+
+        if (_body.GetInjuryLevel(part) >= 4 && _tiredSFXPlayed.Add(part))
+            AudioManager.Instance.PlaySFX(tiredSFX);
+        else
+            AudioManager.Instance.PlaySFX(hurtSFX);
     }
 
     private void HandleDeath()
     {
         _anim.SetTrigger("4_Death");
+        AudioManager.Instance.PlaySFX(deathSFX);
         GetComponent<Collider2D>().enabled = false;
         GetComponent<PlayerController>().enabled = false;
         StartCoroutine(ShowGameOverRoutine());

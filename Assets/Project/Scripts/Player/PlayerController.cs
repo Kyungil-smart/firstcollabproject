@@ -1,4 +1,7 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// 플레이어 이동 입력 + 물리 이동 + 이동 애니메이션만 담당합니다
@@ -11,9 +14,14 @@ public class PlayerController : MonoBehaviour
     private PlayerStatusEffect _status;
 
     [SerializeField] BattleInputReader _input;
+    [SerializeField] AudioResource footstepSFX;
+    [SerializeField] float _footstepInterval = 0.4f;
 
     public Vector2 inputVector { get; private set; }
     public bool IsInputInverted { get; set; }
+
+    bool _wasMoving;
+    CancellationTokenSource _footstepCts;
 
 #if UNITY_EDITOR
     private void Reset()
@@ -44,6 +52,14 @@ public class PlayerController : MonoBehaviour
         _input.Enable();
     }
 
+    private void OnDisable()
+    {
+        _footstepCts?.Cancel();
+        _footstepCts?.Dispose();
+        _footstepCts = null;
+        _wasMoving = false;
+    }
+
     private void FixedUpdate()
     {
         Vector2 nextVec = inputVector.normalized * _body.MoveSpeed * Time.fixedDeltaTime;
@@ -69,6 +85,33 @@ public class PlayerController : MonoBehaviour
 
     private void Anim()
     {
-        _anim.SetBool("1_Move", inputVector != Vector2.zero);
+        bool isMoving = inputVector != Vector2.zero;
+        _anim.SetBool("1_Move", isMoving);
+
+        if (isMoving && !_wasMoving)
+        {
+            _footstepCts = new CancellationTokenSource();
+            FootstepLoopAsync(_footstepCts.Token).Forget();
+        }
+        else if (!isMoving && _wasMoving)
+        {
+            _footstepCts?.Cancel();
+            _footstepCts?.Dispose();
+            _footstepCts = null;
+        }
+
+        _wasMoving = isMoving;
+    }
+
+    async UniTaskVoid FootstepLoopAsync(CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            AudioManager.Instance.PlaySFXPool(footstepSFX);
+            bool cancelled = await UniTask
+                .Delay(System.TimeSpan.FromSeconds(_footstepInterval), cancellationToken: token)
+                .SuppressCancellationThrow();
+            if (cancelled) break;
+        }
     }
 }

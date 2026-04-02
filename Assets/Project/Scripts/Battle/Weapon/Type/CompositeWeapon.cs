@@ -4,7 +4,6 @@ public class CompositeWeapon : WeaponBase
 {
     [Header("투사체 설정")]
     [SerializeField] float projectileSpeed = 20f;
-    [SerializeField] float penetrateMultiplier = 0.5f;
 
     [Header("연사 퍼짐")]
     [SerializeField] float spreadAngle = 10f;
@@ -31,7 +30,7 @@ public class CompositeWeapon : WeaponBase
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
         var arrow = projectile.GetComponent<ArrowRangeProjectile>();
-        arrow.Init(direction, damage, penetrateCount, penetrateMultiplier, range, projectileSpeed);
+        arrow.Init(direction, damage, penetrateCount, range, projectileSpeed);
     }
 
     public override void ChargeRelease()

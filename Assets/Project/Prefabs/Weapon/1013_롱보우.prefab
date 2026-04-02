@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6616316610262551908}
-  - component: {fileID: -7106469267180796950}
+  - component: {fileID: 4529272264075591159}
   m_Layer: 0
   m_Name: "1013_\uB871\uBCF4\uC6B0"
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2964512525653874309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7106469267180796950
+--- !u!114 &4529272264075591159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7766016580520033078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74dfa4fe570fbbe47adda033df66aa18, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b661df267f0a99499ecb6368afb2ce9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SplashRangeWeapon
-  data: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowRangeWeapon
+  data: {fileID: 11400000, guid: a07d49e1de7efa44d841bf52573abd4c, type: 2}
   Name: 
   attackType: 0
   damageBase: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   sectorAngle: 0
   penetrateCount: 0
   screenShakeEnable: 0
-  projectileSpeed: 24.6
+  projectileSpeed: 20
 --- !u!1 &9124562653723746339
 GameObject:
   m_ObjectHideFlags: 0
