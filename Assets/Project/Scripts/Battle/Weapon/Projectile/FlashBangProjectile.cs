@@ -74,8 +74,8 @@ public class FlashBangProjectile : MonoBehaviour
             transform, _directHitDamageable,
             onHit: hit =>
             {
-                var monster = hit.GetComponent<MonsterAction>();
-                if (monster != null) monster.ApplyStun(1f);
+                var monster = hit.GetComponent<MonsterStatusEffect>();
+                if (monster != null) monster.ApplyStatusEffect(StatusEffect.Stun,1f);
             });
 
         if (_bloom != null) FlashBloom();

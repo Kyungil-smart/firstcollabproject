@@ -7,7 +7,7 @@ namespace Monster
 {
     public abstract class MonsterAction : MonoBehaviour, IDamageable
     {
-        [SerializeField] protected Animator animator;
+        public Animator animator;
         [SerializeField] protected Slider hpSlider;
         [SerializeField] protected GameObject damageTextPrefab;
         [SerializeField] protected GameObject bodyPrefab;
@@ -16,8 +16,8 @@ namespace Monster
         public MonsterStatSO statSo;
 
         protected float currentHp;
-        protected bool isDead = false;
-        protected bool isAttacking = false;
+        public bool isDead = false;
+        public bool isAttacking = false;
         protected float lastAttackTime = 0f;
         protected bool isStop = false;
         protected bool hasSuperArmor = false;
@@ -27,17 +27,15 @@ namespace Monster
         protected Coroutine _hitFlashCoroutine;
 
         private SpriteRenderer[] _spriteRenderers;
-        protected NavMeshAgent agent;
+        public NavMeshAgent agent;
         protected MonsterSFX monsterSFX; // 사운드
-
-        protected StatusEffect activeEffects;
-        public bool IsStunned => StatusPolicy.Has(activeEffects, StatusEffect.Stun);
 
         private float _lastFlipTime = 0f;
         private const float FlipCooldown = 0.15f;
         
-        //TODO: 테스트 용도, 추후 삭제
-        [SerializeField] private StatusEffectType statusEffectType;
+        public StatusEffect activeEffects;
+        
+        public bool IsStunned => StatusPolicy.Has(activeEffects, StatusEffect.Stun);
         
         protected virtual void Awake()
         {
@@ -120,8 +118,6 @@ namespace Monster
             isDead = false;
             isAttacking = false;
             activeEffects = StatusEffect.None;
-            _stunCoroutine = null;
-            _stunEndTime = 0f;
 
             if (monsterSFX != null) monsterSFX.Init();
             currentHp = statSo.Hp;
@@ -256,9 +252,6 @@ namespace Monster
                 effectClone.SetActive(true);
             }
 
-            
-            if (statSo.StunDuration > 0) ApplyStun(statSo.StunDuration);
-
             currentHp -= damage;
 
             // 사운드: 사망이 아닌 피격
@@ -288,56 +281,6 @@ namespace Monster
                 Die();
             }
         }
-        
-        #region 상태이상 메서드
-        Coroutine _stunCoroutine;
-        float _stunEndTime;
-        public void ApplyStun(float time)
-        {
-            if (isDead) return;
-
-            float newEndTime = Time.time + time;
-
-            // 이미 기절 중인데 새 기절이 더 짧으면 무시
-            if (IsStunned && newEndTime <= _stunEndTime) return;
-
-            // 기존 스턴 코루틴이 돌고 있으면 중지 후 교체
-            if (_stunCoroutine != null)
-                StopCoroutine(_stunCoroutine);
-
-            _stunEndTime = newEndTime;
-            _stunCoroutine = StartCoroutine(StunRoutine(time));
-        }
-        private IEnumerator StunRoutine(float duration)
-        {
-            // 1) 기절 플래그 ON
-            activeEffects = StatusPolicy.Add(activeEffects, StatusEffect.Stun);
-
-            // 2) 진행 중이던 공격을 즉시 중단 처리
-            isAttacking = false;
-
-            // 3) NavMesh 이동 정지
-            if (agent != null && agent.isOnNavMesh)
-                agent.isStopped = true;
-
-            // 4) 이동 애니메이션 중지
-            if (animator != null)
-                animator.SetBool("1_Move", false);
-
-            // 5) StunDuration 만큼 대기
-            yield return new WaitForSeconds(duration);
-
-            // 6) 기절 플래그 OFF
-            activeEffects = StatusPolicy.Remove(activeEffects, StatusEffect.Stun);
-            _stunCoroutine = null;
-
-            // 7) 스턴 해제 후 이동 재개
-            if (!isDead && agent != null && agent.isOnNavMesh)
-                agent.isStopped = false;
-        }
-        // 향후 다른 상태이상 효과 추가
-        #endregion
-
         
         protected virtual void Die()
         {
