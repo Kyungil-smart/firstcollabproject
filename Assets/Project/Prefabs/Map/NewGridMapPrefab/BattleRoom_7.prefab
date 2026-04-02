@@ -4395,6 +4395,7 @@ GameObject:
   - component: {fileID: 2065024292947748156}
   - component: {fileID: 441987994527341165}
   - component: {fileID: 4743198849757194897}
+  - component: {fileID: 6879481856099452083}
   m_Layer: 10
   m_Name: BattleRoom_7_Obstacle
   m_TagString: Untagged
@@ -7013,6 +7014,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 3577326873591950876}
+--- !u!208 &6879481856099452083
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577326873591950876}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 14.500001, y: 12.500001, z: 0.00001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.5000001, y: -1.5000001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3931647106263157861
 GameObject:
   m_ObjectHideFlags: 0
@@ -7059,6 +7076,7 @@ GameObject:
   - component: {fileID: 1902724812986990668}
   - component: {fileID: 4497453218563052813}
   - component: {fileID: 8519033728504891774}
+  - component: {fileID: 2878072370772220250}
   m_Layer: 10
   m_Name: BattleRoom_7_Obstacle1
   m_TagString: Untagged
@@ -8260,6 +8278,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 5029479745635878004}
+--- !u!208 &2878072370772220250
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029479745635878004}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 11.000001, y: 10, z: 0.00001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 3.0000002, y: -2, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5271301498701210638
 GameObject:
   m_ObjectHideFlags: 0
@@ -22046,6 +22080,7 @@ MonoBehaviour:
   - {fileID: 3954348569503804457}
   _bossPrefab: {fileID: 0}
   isVisited: 0
+  _isCleared: 0
   upDoor: {fileID: 5981761843436820035}
   downDoor: {fileID: 2850785385744810872}
   leftDoor: {fileID: 4385701361299430870}
