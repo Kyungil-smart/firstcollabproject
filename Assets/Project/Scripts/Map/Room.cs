@@ -16,13 +16,14 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject _bossPrefab;
 
     // 방문 확인용
-    [SerializeField]private bool isVisited = false;
+    [SerializeField] private bool isVisited = false;
     public static event Action<Room> OnRoomEntered;
     // whlie문에서 new List, Camera.main 호출 방지 변수
     private Camera _mainCam;
     private List<Vector2Int> _offScreenPoint = new List<Vector2Int>();
     
-    private bool _isCleared = false;
+    // 클리어 확인 용
+    [SerializeField] private bool _isCleared = false;
 
     [Header("문 프리팹")] 
     [SerializeField] private GameObject upDoor;
@@ -92,7 +93,7 @@ public class Room : MonoBehaviour
     /// </summary>
     private void SpawnBoss()
     {
-        MonsterManager.Instance.isStageCleared = false;
+        // MonsterManager.Instance.isStageCleared = false;
 
         Vector3 center = this.transform.position;
 
@@ -182,6 +183,7 @@ public class Room : MonoBehaviour
 
                 if (roomType == RoomType.NormalRoom)
                 {
+                    Debug.Log("일반 방 진입!!");
                     StartCoroutine(SpawnPointRoutine());
                     
                     int currentStageId = RoomManager.Instance.GetNextStageId();
@@ -193,13 +195,13 @@ public class Room : MonoBehaviour
                     MonsterManager.Instance.StartStage();
                     OnRoomEntered?.Invoke(this);
                 }
-                else if (roomType == RoomType.BossRoom && !isVisited)
+                else if (roomType == RoomType.BossRoom)
                 {
+                    Debug.Log("보스 방 진입!!");
                     OnRoomEntered?.Invoke(this);
                     SpawnBoss();
                 }
             }
-            
         }
     }
 }
