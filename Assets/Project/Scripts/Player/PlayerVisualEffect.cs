@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -13,7 +14,6 @@ public class PlayerVisualEffect : MonoBehaviour
     private SpriteRenderer[] _sr;
     private Color[] _playerColors;
 
-    [SerializeField] AudioResource footstepSFX;
     [SerializeField] AudioResource atkSFX;
     [SerializeField] AudioResource hurtSFX;
     [SerializeField] AudioResource tiredSFX;
@@ -52,11 +52,16 @@ public class PlayerVisualEffect : MonoBehaviour
         AudioManager.Instance.PlaySFX(atkSFX);
     }
 
+    private readonly HashSet<BodyPart> _tiredSFXPlayed = new HashSet<BodyPart>();
     private void HandleDamaged(BodyPart part)
     {
         _anim.SetTrigger("3_Damaged");
         StartCoroutine(OnHurtRoutine());
-        AudioManager.Instance.PlaySFX(hurtSFX);
+
+        if (_body.GetInjuryLevel(part) >= 4 && _tiredSFXPlayed.Add(part))
+            AudioManager.Instance.PlaySFX(tiredSFX);
+        else
+            AudioManager.Instance.PlaySFX(hurtSFX);
     }
 
     private void HandleDeath()

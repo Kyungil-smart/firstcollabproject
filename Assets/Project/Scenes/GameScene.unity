@@ -2900,18 +2900,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3170251282390323655, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: atkSFX
-      value: 
-      objectReference: {fileID: 6418180475301049370, guid: 6b6b1eab56ee52d4c8ba90168dbb0f8c, type: 2}
-    - target: {fileID: -3170251282390323655, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: hurtSFX
-      value: 
-      objectReference: {fileID: 6418180475301049370, guid: e514a69e60bb07e47bd7af9a862ff65b, type: 2}
-    - target: {fileID: -3170251282390323655, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
-      propertyPath: deathSFX
-      value: 
-      objectReference: {fileID: 6418180475301049370, guid: ce721e517cc53944ea2d096b86f7aefe, type: 2}
-    - target: {fileID: -3170251282390323655, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: gameOverPopup
       value: 
       objectReference: {fileID: 1170214767817562742}

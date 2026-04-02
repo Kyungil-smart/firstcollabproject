@@ -20,8 +20,23 @@ public class ArmPart : MonoBehaviour
     [SerializeField] float speed3 = 0.8f;
     [SerializeField] float speed4 = 1.2f;
 
+    [Header("드리프트 주기")]
+    [SerializeField] float period1 = 50f;
+    [SerializeField] float period2 = 45f;
+    [SerializeField] float period3 = 40f;
+    [SerializeField] float period4 = 35f;
+
+    [Header("드리프트 지속 시간")]
+    [SerializeField] float duration1 = 4f;
+    [SerializeField] float duration2 = 5f;
+    [SerializeField] float duration3 = 6f;
+    [SerializeField] float duration4 = 7f;
+
     float _magnitude;
     float _speed;
+    float _period;
+    float _duration;
+    float _cycleTimer;
     float _noiseTimeX;
     float _noiseTimeY;
 
@@ -58,11 +73,44 @@ public class ArmPart : MonoBehaviour
             3 => speed3,
             _ => speed4
         };
+
+        _period = level switch
+        {
+            0 => 0f,
+            1 => period1,
+            2 => period2,
+            3 => period3,
+            _ => period4
+        };
+
+        _duration = level switch
+        {
+            0 => 0f,
+            1 => duration1,
+            2 => duration2,
+            3 => duration3,
+            _ => duration4
+        };
+
+        _cycleTimer = 0f;
     }
 
     private void Update()
     {
         if (_magnitude <= 0f)
+        {
+            AimOffset = Vector2.zero;
+            return;
+        }
+
+        _cycleTimer += Time.deltaTime;
+
+        // 주기 완료 시 사이클 리셋
+        if (_cycleTimer >= _period)
+            _cycleTimer = 0f;
+
+        // 지속 시간이 끝난 구간에서는 드리프트 없음
+        if (_cycleTimer >= _duration)
         {
             AimOffset = Vector2.zero;
             return;

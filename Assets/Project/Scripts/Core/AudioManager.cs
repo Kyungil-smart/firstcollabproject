@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     [Header("AudioSource")]
     public AudioSource bgmSource;
-    public AudioSource sfxSource; // 풀링 없는 경우: 플레이어 같이 무조건 나와야하는 사운드에 사용 
+    public AudioSource sfxSource; // 풀링 없는 경우: 무조건 나와야하는 '플레이어 전용'
 
     // ---------------- 풀링전용 SFX ------------------
     public AudioSource[] sources = new AudioSource[6];
@@ -85,6 +85,7 @@ public class AudioManager : MonoBehaviour
     {
         volume = Mathf.Clamp(volume, 0f, 1f);
         sfxSource.volume = volume;
+        for (int i = 0; i < sources.Length; i++) sources[i].volume = volume;
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, volume);
     }
 
