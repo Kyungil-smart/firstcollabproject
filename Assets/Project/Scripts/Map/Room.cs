@@ -87,6 +87,9 @@ public class Room : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 보스 스폰해주는 메서드
+    /// </summary>
     private void SpawnBoss()
     {
         MonsterManager.Instance.isStageCleared = false;
@@ -170,29 +173,32 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CloseDoors();
-            
-            if (roomType == RoomType.NormalRoom && !isVisited)
-            {   
-                isVisited = true;
-                StartCoroutine(SpawnPointRoutine());
-                
-                int currentStageId = RoomManager.Instance.GetNextStageId();
-                Debug.Log($"roomID: {currentStageId}");
-                
-                GameManager.Instance.currentStage = currentStageId;
+            if (_isCleared) return;
 
-                MonsterManager.Instance.currentRoom = this;
-                MonsterManager.Instance.StartStage();
-                OnRoomEntered?.Invoke(this);
-            }
-            else if (roomType == RoomType.BossRoom && !isVisited)
+            if (!isVisited)
             {
                 isVisited = true;
-                OnRoomEntered?.Invoke(this);
-                SpawnBoss();
+                CloseDoors();
+
+                if (roomType == RoomType.NormalRoom)
+                {
+                    StartCoroutine(SpawnPointRoutine());
+                    
+                    int currentStageId = RoomManager.Instance.GetNextStageId();
+                    Debug.Log($"roomID: {currentStageId}");
+                
+                    GameManager.Instance.currentStage = currentStageId;
+
+                    MonsterManager.Instance.currentRoom = this;
+                    MonsterManager.Instance.StartStage();
+                    OnRoomEntered?.Invoke(this);
+                }
+                else if (roomType == RoomType.BossRoom && !isVisited)
+                {
+                    OnRoomEntered?.Invoke(this);
+                    SpawnBoss();
+                }
             }
-            
             
         }
     }
