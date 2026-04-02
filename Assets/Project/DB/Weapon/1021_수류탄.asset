@@ -16,7 +16,7 @@ MonoBehaviour:
   row: 15
   Name: "\uC218\uB958\uD0C4"
   attackType: 2
-  damageBase: 50
+  damageBase: 80
   attackInterval: 1
   maxAmmo: 1
   range: 5

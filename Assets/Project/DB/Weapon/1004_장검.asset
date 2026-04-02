@@ -16,7 +16,7 @@ MonoBehaviour:
   row: 9
   Name: "\uC7A5\uAC80"
   attackType: 0
-  damageBase: 80
+  damageBase: 90
   attackInterval: 1
   maxAmmo: 0
   range: 1.7

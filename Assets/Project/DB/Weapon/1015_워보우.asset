@@ -20,7 +20,7 @@ MonoBehaviour:
   attackInterval: 3
   maxAmmo: 3
   range: 8
-  splashRadius: 3
+  splashRadius: 0
   sectorAngle: 0
   penetrateCount: 4
   screenShakeEnable: 1

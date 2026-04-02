@@ -22,7 +22,7 @@ MonoBehaviour:
   MonsterPercent1: 0.8
   MonsterType2: 2002
   MonsterPercent2: 0.1
-  MonsterType3: 0
+  MonsterType3: 2003
   MonsterPercent3: 0.1
   MonsterType4: 0
   MonsterPercent4: 0

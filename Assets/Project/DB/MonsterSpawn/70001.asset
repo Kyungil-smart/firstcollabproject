@@ -20,7 +20,7 @@ MonoBehaviour:
   MaxSimultaneous: 12
   MonsterType1: 2001
   MonsterPercent1: 1
-  MonsterType2: 2002
+  MonsterType2: 0
   MonsterPercent2: 0
   MonsterType3: 0
   MonsterPercent3: 0
