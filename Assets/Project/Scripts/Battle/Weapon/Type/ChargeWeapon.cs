@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using PrimeTween;
+using UnityEngine.Audio;
 
 public class ChargeWeapon : WeaponBase
 {
     [SerializeField] int chargeTime = 3;
     [SerializeField] float failCooldown = 0.5f;
+    Ease chargeEase = Ease.InQuart;
     bool _isCharging;
     float _chargeTimer;
+    Tween _chargeTween;
 
     float _sectorAngle;
-    float _rangeOffset = 0.23f; // 플레이어 위치로 이동해서 감소한 사거리 보정값
+    float _rangeOffset = 0.23f; // 플레이어 위치로 이동해서 감소한 사거리 보정값'
 
     public override bool AutoFire => false;
 
@@ -27,6 +31,7 @@ public class ChargeWeapon : WeaponBase
 
     void ResetColor()
     {
+        _chargeTween.Stop();
         _spriteRenderer.color = _defaultColor;
     }
 
@@ -40,7 +45,8 @@ public class ChargeWeapon : WeaponBase
         _isCharging = true;
         _chargeTimer = 0f;
 
-        _spriteRenderer.color = ChargeStartColor;
+        _chargeTween.Stop();
+        _chargeTween = Tween.Color(_spriteRenderer, startValue: ChargeStartColor, endValue: ChargeCompleteColor, duration: chargeTime, ease: chargeEase);
     }
 
     /// <summary>
@@ -50,9 +56,6 @@ public class ChargeWeapon : WeaponBase
     {
         if (!_isCharging) return;
         _chargeTimer += Time.deltaTime;
-
-        float t = Mathf.Clamp01(_chargeTimer / chargeTime);
-        _spriteRenderer.color = Color.Lerp(ChargeStartColor, ChargeCompleteColor, t);
     }
 
     /// <summary>
@@ -69,6 +72,7 @@ public class ChargeWeapon : WeaponBase
             _nextAttackTime = Time.time + attackInterval;
 
             Attack(damageBase);
+            if (data?.attackSound != null) AudioManager.Instance.PlayWeaponSfx(data.attackSound);
             RaiseOnAttacked();
             if (screenShakeEnable) GameManager.Instance.CameraShake(_impulseSource);
         }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum AttackType
 {
@@ -35,6 +36,7 @@ public class WeaponSO : SheetDataSOBase
     [Header("연출")]
     public GameObject projectilePrefab;
     public Sprite icon;
+    public AudioResource attackSound;
 
     [Header("추가 정보")]
     public string localizationKey;

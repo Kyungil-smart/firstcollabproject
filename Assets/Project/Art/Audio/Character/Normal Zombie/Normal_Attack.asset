@@ -17,11 +17,11 @@ AudioRandomContainer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Normal_Attack
-  m_Volume: -5.8
+  m_Volume: -7.9
   m_Pitch: 0
   m_AutomaticTriggerTime: 0
   m_LoopCount: 1
-  m_VolumeRandomizationRange: {x: -8.189575, y: 0}
+  m_VolumeRandomizationRange: {x: -8.3, y: 0}
   m_PitchRandomizationRange: {x: -147.23927, y: 294.47867}
   m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
   m_LoopCountRandomizationRange: {x: 0, y: 0}

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using Unity.Cinemachine;
+using UnityEngine.Audio;
+
 public interface IDamageable { void TakeDamage(float damage); }
 
 public interface IWeapon
@@ -79,6 +81,7 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
         _nextAttackTime = Time.time + attackInterval;
 
         Attack(damageBase);
+        if (data?.attackSound != null) AudioManager.Instance.PlayWeaponSfx(data.attackSound);
         OnAttacked?.Invoke();
         if (screenShakeEnable) GameManager.Instance.CameraShake(_impulseSource); // 카메라 흔들림
     }

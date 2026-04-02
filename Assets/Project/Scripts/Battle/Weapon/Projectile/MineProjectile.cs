@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MineProjectile : MonoBehaviour
 {
     [SerializeField] ParticleSystem explosionParticle;
-
+    [SerializeField] AudioResource warningSfx;
+    [SerializeField] AudioResource explodeSfx;
+    
     float detectionRadius = 1.5f;   // 인식 반경
     float explosionRadius = 3f;     // 폭발 반경
 
@@ -35,6 +38,7 @@ public class MineProjectile : MonoBehaviour
 
         var sr = GetComponent<SpriteRenderer>();
         if (sr != null) sr.color = Color.red;
+        AudioManager.Instance.PlayWeaponSfx(warningSfx);
     }
 
     private void Update()
@@ -67,6 +71,8 @@ public class MineProjectile : MonoBehaviour
             directHit:  _directHitDamageable
         );
 
+        AudioManager.Instance.PlayWeaponSfx(explodeSfx);
+
         // TODO: 슬로우(Slow) 상태이상 적용 — StatusEffect.Slow 시스템 구현 후 연동
         if (explosionParticle != null)
         {
@@ -76,6 +82,7 @@ public class MineProjectile : MonoBehaviour
             main.stopAction = ParticleSystemStopAction.Destroy;
             particle.Play();
         }
+
         Destroy(gameObject);
     }
 }

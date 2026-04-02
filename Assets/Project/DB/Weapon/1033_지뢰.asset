@@ -29,4 +29,5 @@ MonoBehaviour:
   prefab: {fileID: 5649027400342380729, guid: 24ec0989ac24c284eb34591a69365289, type: 3}
   projectilePrefab: {fileID: 5649027400342380729, guid: 34693be1a0c15f64b845518a7ee8ef2b, type: 3}
   icon: {fileID: 21300000, guid: d00513521ed21d44db10ab5c666a11a7, type: 3}
+  attackSound: {fileID: 6418180475301049370, guid: fd2294d900ec7f7459af80ed0d3a9391, type: 2}
   localizationKey: UI_CLEAR_MINE

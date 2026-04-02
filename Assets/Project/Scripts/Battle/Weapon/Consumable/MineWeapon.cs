@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MineWeapon : WeaponBase
 {
-    [Header("지뢰 전용 설정")]
     [SerializeField] float deployTime = 1f;       // 설치 소요 시간 (설치 중 무방비)
     [SerializeField] float activationDelay = 2f;  // 설치 후 활성화 대기 시간
     [SerializeField] float detectionRadius = 2f;

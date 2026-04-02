@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using PrimeTween;
@@ -11,8 +12,9 @@ public class FlashBangProjectile : MonoBehaviour
     [SerializeField] float speed = 5f;
 
     [Header("폭발 연출")]
-    [SerializeField] private float bloomPeakIntensity = 5f;
-    [SerializeField] private float bloomFlashDuration = 0.3f;
+    [SerializeField] float bloomPeakIntensity = 5f;
+    [SerializeField] float bloomFlashDuration = 0.3f;
+    [SerializeField] AudioResource explodeSfx;
 
     [Header("무기 데이터 (런타임 주입)")]
     [SerializeField, Tooltip("WeaponBase.Attack 에서 전달")] private float _damage;
@@ -77,6 +79,8 @@ public class FlashBangProjectile : MonoBehaviour
                 var monster = hit.GetComponent<MonsterAction>();
                 if (monster != null) monster.ApplyStun(1f);
             });
+
+        AudioManager.Instance.PlayWeaponSfx(explodeSfx);
 
         if (_bloom != null) FlashBloom();
         Destroy(gameObject);

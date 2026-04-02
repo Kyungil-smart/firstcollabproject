@@ -173,6 +173,7 @@ MonoBehaviour:
   speed: 5
   bloomPeakIntensity: 32.4
   bloomFlashDuration: 0.53
+  explodeSfx: {fileID: 6418180475301049370, guid: eb2abb5d9b9d7054cab1cbcfa1b22b75, type: 2}
   _damage: 0
   _splashRadius: 0
   _maxRange: 0

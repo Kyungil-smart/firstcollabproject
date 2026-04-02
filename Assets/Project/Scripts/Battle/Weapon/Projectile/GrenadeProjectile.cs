@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class GrenadeProjectile : MonoBehaviour
 {
     [SerializeField] ParticleSystem explosionParticle;
+    [SerializeField] AudioResource explodeSfx;
 
     private float _damage;
     private float _splashRadius;
@@ -72,6 +74,8 @@ public class GrenadeProjectile : MonoBehaviour
 
         ExplodePolicy.Apply(transform.position, _splashRadius, _damage,
             transform, _directHitDamageable);
+
+        AudioManager.Instance.PlayWeaponSfx(explodeSfx);
 
         // ÆÄÆ¼Å¬
         var particle = Instantiate(explosionParticle, transform.position, Quaternion.identity);
