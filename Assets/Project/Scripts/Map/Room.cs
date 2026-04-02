@@ -147,6 +147,9 @@ public class Room : MonoBehaviour
         rightReserveWall.SetActive(!rightFlag);
     }
     
+    /// <summary>
+    /// 클리어 됐을 때 문 열기
+    /// </summary>
     public void ClearRoom()
     {
         if (_isCleared) return;
@@ -158,6 +161,9 @@ public class Room : MonoBehaviour
         if (rightDoor.activeSelf && rightDoor.TryGetComponent(out Door right)) right.Open();
     }
 
+    /// <summary>
+    /// 방에 들어왔을 때 문 닫기
+    /// </summary>
     private void CloseDoors()
     {
         if (upDoor.activeSelf && upDoor.TryGetComponent(out Door up)) up.Close();
@@ -168,7 +174,7 @@ public class Room : MonoBehaviour
 
     
     /// <summary>
-    /// 방에 들어왔을 때, 스포너를 모두 받아오는 메서드
+    /// Normal Room & Boss Room 체크 해주는 메서드
     /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
