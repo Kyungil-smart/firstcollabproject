@@ -35,6 +35,9 @@ namespace Monster
         private float _lastFlipTime = 0f;
         private const float FlipCooldown = 0.15f;
         
+        //TODO: 테스트 용도, 추후 삭제
+        [SerializeField] private StatusEffectType statusEffectType;
+        
         protected virtual void Awake()
         {
             _spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
