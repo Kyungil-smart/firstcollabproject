@@ -6091,6 +6091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _input: {fileID: 11400000, guid: f3dea7d9139022049872a40ab03fa674, type: 2}
+  footstepSFX: {fileID: 6418180475301049370, guid: 54cb47bcb12bc5f45a8b6244d9066311, type: 2}
+  _footstepInterval: 0.4
 --- !u!114 &-3170251282390323655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6104,6 +6106,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVisualEffect
   gameOverPopup: {fileID: 0}
+  atkSFX: {fileID: 6418180475301049370, guid: 6b6b1eab56ee52d4c8ba90168dbb0f8c, type: 2}
+  hurtSFX: {fileID: 6418180475301049370, guid: e514a69e60bb07e47bd7af9a862ff65b, type: 2}
+  tiredSFX: {fileID: 6418180475301049370, guid: 0884896f8f8db97478b1410e99988f86, type: 2}
+  deathSFX: {fileID: 6418180475301049370, guid: ce721e517cc53944ea2d096b86f7aefe, type: 2}
 --- !u!114 &-6931260449682252595
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7730683928843328107}
   - component: {fileID: 7856651121106266994}
   - component: {fileID: 5878003075116417212}
-  - component: {fileID: -7131728457498895661}
+  - component: {fileID: 8607053261718136693}
   m_Layer: 14
   m_Name: WarBow_Projectile
   m_TagString: Untagged
@@ -157,7 +157,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.0030069351, y: 0.022551864}
   m_Radius: 0.16472879
---- !u!114 &-7131728457498895661
+--- !u!114 &8607053261718136693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6213539776784452163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a967bf7d2c4eef449959aa91855b16f1, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ab5f50e00dc7e4ea4ec600414a9b23, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SplashRangeProjectile
-  explosionParticle: {fileID: 3752511408183367671, guid: 9e0c3fc895f81ff4e90b3af2ebccd735, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowRangeProjectile
+  stickDespawnTime: 3

@@ -30,12 +30,11 @@ public class ArrowRangeProjectile : MonoBehaviour
         _collider = GetComponent<Collider2D>();
     }
 
-    public void Init(Vector2 direction, float damage, int penetrateCount, float penetrateMultiplier, float maxRange, float speed)
+    public void Init(Vector2 direction, float damage, int penetrateCount, float maxRange, float speed)
     {
         _direction = direction.normalized;
         _damage = damage;
         _remainPenetrate = penetrateCount;
-        _penetrateMultiplier = penetrateMultiplier;
         _maxRange = maxRange;
         _startPos = transform.position;
         _prevPos = _startPos;
@@ -89,7 +88,7 @@ public class ArrowRangeProjectile : MonoBehaviour
         var damageable = other.GetComponent<IDamageable>();
         if (damageable == null) return;
 
-        if (!PenetratePolicy.Apply(damageable, _alreadyHit, ref _damage, ref _remainPenetrate, _penetrateMultiplier))
+        if (!PenetratePolicy.Apply(damageable, _alreadyHit, ref _damage, ref _remainPenetrate))
         {
             _isDead = true;
             Destroy(gameObject);
