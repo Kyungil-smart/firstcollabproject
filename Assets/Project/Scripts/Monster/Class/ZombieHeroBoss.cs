@@ -22,6 +22,7 @@ namespace Monster
         public override void Init()
         {
             base.Init();
+            isImmuneToStatus = true;
             _lastPatternId = -1;
             isAttacking = false;
             gameObject.SetActive(true);

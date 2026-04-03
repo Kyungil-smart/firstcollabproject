@@ -8,6 +8,14 @@ namespace Monster
         [SerializeField] private float dashSpeedMultiplier = 3f;
         [SerializeField] private float dashDuration = 0.5f;
 
+        
+        public override void Init()
+        {
+            base.Init();
+            // 상태이상 면역
+            isImmuneToStatus = true;
+        }
+        
         public override void TakeDamage(float damage)
         {
             hasSuperArmor = true;

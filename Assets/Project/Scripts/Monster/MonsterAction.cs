@@ -34,6 +34,7 @@ namespace Monster
         private const float FlipCooldown = 0.15f;
         
         public StatusEffect activeEffects;
+        public bool isImmuneToStatus = false;
         
         public bool IsStunned => StatusPolicy.Has(activeEffects, StatusEffect.Stun);
         
