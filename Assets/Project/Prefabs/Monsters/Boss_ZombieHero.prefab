@@ -398,12 +398,14 @@ MonoBehaviour:
   isAttacking: 0
   agent: {fileID: 0}
   activeEffects: 0
+  isImmuneToStatus: 0
   projectilePrefab: {fileID: 4149770982358524280, guid: 104a12a80ff8018428b56f10db1e32b9, type: 3}
   normalZombiePrefab: {fileID: 7047037709664641846, guid: 95ea1dd6aeb2c7b41994c30859080ff6, type: 3}
   rangedZombiePrefab: {fileID: 7047037709664641846, guid: 126929f5616e60e488010735f20fd0c4, type: 3}
   dashDamage: 80
   projectileDamage: 80
   contactDamage: 50
+  gameClearUI: {fileID: 7017829513166379496, guid: 7078f023e54aa9b4184da6c5696fe2d9, type: 3}
 --- !u!114 &-2820879606652283690
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ namespace Monster
         private float _lastContactTime;
         private const float ContactInterval = 0.5f; // 접촉 데미지 주기
 
+        public GameObject gameClearUI;
+
         public override void Init()
         {
             base.Init();
@@ -46,7 +48,8 @@ namespace Monster
             {
                 Debug.Log("보스 사망");
                 
-                GameManager.Instance.GameClear();
+                Dead();
+                
                 MonsterManager.Instance.ReportBossKilled();
             }
             
@@ -296,6 +299,17 @@ namespace Monster
         public void Dead()
         {
             GameManager.Instance.GameClear();
+            
+            StartCoroutine(ShowClearUI()); // 클리어 UI 띄우기
+        }
+        
+        private IEnumerator ShowClearUI()
+        {
+            yield return new WaitForSeconds(1.0f); // 클리어 하고 2초뒤
+            if (gameClearUI != null)
+            {
+                gameClearUI.SetActive(true);
+            }
         }
     }
 }
