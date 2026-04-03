@@ -181,5 +181,25 @@ namespace Monster
         {
             return _currentKillCount;
         }
+        
+        public void StartBossRoom()
+        {
+            targetClearCount = 100; // 잡몹때문에 클리어되면 안되니까 100으로 일단..
+            _currentKillCount = 0;
+            isStageCleared = false;
+            
+            ShowProgressStage();
+            Debug.Log("보스방 초기화 성공");
+        }
+
+        public void ReportBossKilled()
+        {
+            if (isStageCleared) return;
+
+            _currentKillCount = targetClearCount;
+            ShowProgressStage();
+            
+            ClearStage();
+        }
     }
 }
