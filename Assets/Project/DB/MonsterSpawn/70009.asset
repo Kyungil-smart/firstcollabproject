@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: 70009
   m_EditorClassIdentifier: Assembly-CSharp::SpawnDataSO
   id: 70009
-  row: 14
+  row: 13
   SpawnInterval: 5
-  MaxTotalMonster: 30
-  StartSimultaneous: 6
-  MaxSimultaneous: 12
+  MaxTotalMonster: 54
+  StartSimultaneous: 15
+  MaxSimultaneous: 18
   MonsterType1: 2005
-  MonsterPercent1: 0.4
+  MonsterPercent1: 0.1
   MonsterType2: 2006
-  MonsterPercent2: 0.2
+  MonsterPercent2: 0.1
   MonsterType3: 2007
   MonsterPercent3: 0.1
   MonsterType4: 2008
-  MonsterPercent4: 0.3
+  MonsterPercent4: 0.7

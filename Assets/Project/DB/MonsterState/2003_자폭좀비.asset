@@ -16,12 +16,12 @@ MonoBehaviour:
   row: 8
   Name: "\uC790\uD3ED \uC880\uBE44"
   Grade: 0
-  Hp: 40
-  MoveSpeed: 3.5
-  Atk: 30
+  Hp: 50
+  MoveSpeed: 4
+  Atk: 20
   AttackInterval: 1.5
   AtkTrigger: 1
   AtkPreDelay: 0
-  ExpReward: 25
+  ExpReward: 55
   CorpseTime: 0.2
-  StunDuration: 0.1
+  StunDuration: 0.2
