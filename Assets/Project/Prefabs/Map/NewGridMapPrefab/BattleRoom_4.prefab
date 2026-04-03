@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8988758245389395848}
   - component: {fileID: 6238866925813009757}
   - component: {fileID: 897848080260745675}
-  - component: {fileID: 8318253651819716010}
   m_Layer: 10
   m_Name: BattleRoom_4_Obstacle2
   m_TagString: Untagged
@@ -2418,22 +2417,6 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 682743207905961915}
---- !u!208 &8318253651819716010
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682743207905961915}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 13.500001, y: 8, z: 0.00001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.5, y: 5, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1196442414762725559
 GameObject:
   m_ObjectHideFlags: 0
@@ -16051,7 +16034,6 @@ GameObject:
   - component: {fileID: 7981171652248402321}
   - component: {fileID: 4304974472463135366}
   - component: {fileID: 111200538372838405}
-  - component: {fileID: 1078567315605220559}
   m_Layer: 10
   m_Name: BattleRoom_4_Obstacle
   m_TagString: Untagged
@@ -17581,22 +17563,6 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 3423446853118522167}
---- !u!208 &1078567315605220559
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3423446853118522167}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 10.500001, y: 5.5000005, z: 0.00001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.5, y: -4.5, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &3985109560616714463
 GameObject:
   m_ObjectHideFlags: 0
@@ -22088,7 +22054,6 @@ GameObject:
   - component: {fileID: 2388521123287290459}
   - component: {fileID: 2722165882835884878}
   - component: {fileID: 8921268236848541425}
-  - component: {fileID: 8783407184589217147}
   m_Layer: 10
   m_Name: BattleRoom_4_Obstacle1
   m_TagString: Untagged
@@ -22780,22 +22745,6 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 7472549820023131072}
---- !u!208 &8783407184589217147
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7472549820023131072}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 11.500001, y: 9, z: 0.00001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -1.5000001, y: -1, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &7502784314291603108
 GameObject:
   m_ObjectHideFlags: 0
