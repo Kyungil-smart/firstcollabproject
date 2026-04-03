@@ -47,6 +47,7 @@ namespace Monster
                 Debug.Log("보스 사망");
                 
                 GameManager.Instance.GameClear();
+                MonsterManager.Instance.ReportBossKilled();
             }
             
             if (statSo != null) statSo.StunDuration = originalStun;
