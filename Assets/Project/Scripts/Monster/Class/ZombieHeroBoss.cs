@@ -48,7 +48,8 @@ namespace Monster
             {
                 Debug.Log("보스 사망");
                 
-                GameManager.Instance.GameClear();
+                Dead();
+                
                 MonsterManager.Instance.ReportBossKilled();
             }
             
@@ -304,7 +305,7 @@ namespace Monster
         
         private IEnumerator ShowClearUI()
         {
-            yield return new WaitForSeconds(2.0f); // 클리어 하고 2초뒤
+            yield return new WaitForSeconds(1.0f); // 클리어 하고 2초뒤
             if (gameClearUI != null)
             {
                 gameClearUI.SetActive(true);
