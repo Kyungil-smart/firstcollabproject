@@ -275,7 +275,8 @@ MonoBehaviour:
   isAttacking: 0
   agent: {fileID: 0}
   activeEffects: 0
-  dashSpeedMultiplier: 3
+  isImmuneToStatus: 0
+  dashSpeedMultiplier: 2.1
   dashDuration: 0.5
 --- !u!50 &8042187097118653553
 Rigidbody2D:

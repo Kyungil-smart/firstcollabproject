@@ -18,10 +18,10 @@ MonoBehaviour:
   Grade: 0
   Hp: 100
   MoveSpeed: 2.5
-  Atk: 10
+  Atk: 5
   AttackInterval: 1
   AtkTrigger: 1
   AtkPreDelay: 0.5
-  ExpReward: 20
+  ExpReward: 50
   CorpseTime: 1
-  StunDuration: 0.1
+  StunDuration: 0.2

@@ -275,8 +275,9 @@ MonoBehaviour:
   isAttacking: 0
   agent: {fileID: 0}
   activeEffects: 0
-  chaseDuration: 1.5
-  stopDuration: 0.5
+  isImmuneToStatus: 0
+  chaseDuration: 0.5
+  stopDuration: 0.1
   blinkCount: 6
 --- !u!50 &4393796292848850097
 Rigidbody2D:
