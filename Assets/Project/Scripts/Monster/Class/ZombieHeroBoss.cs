@@ -24,6 +24,7 @@ namespace Monster
             base.Init();
             _lastPatternId = -1;
             isAttacking = false;
+            gameObject.SetActive(true);
         }
 
         // 보스는 기절 및 패턴 캔슬 면역

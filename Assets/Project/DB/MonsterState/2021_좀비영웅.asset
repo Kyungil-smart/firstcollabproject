@@ -16,8 +16,8 @@ MonoBehaviour:
   row: 14
   Name: "\uC880\uBE44 \uC601\uC6C5"
   Grade: 1
-  Hp: 1000
-  MoveSpeed: 4.5
+  Hp: 2000
+  MoveSpeed: 5
   Atk: 50
   AttackInterval: 2
   AtkTrigger: 3
