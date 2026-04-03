@@ -16,13 +16,13 @@ MonoBehaviour:
   row: 14
   Name: "\uC6CC\uBCF4\uC6B0"
   attackType: 1
-  damageBase: 150
+  damageBase: 200
   attackInterval: 3
   maxAmmo: 3
   range: 8
   splashRadius: 0
   sectorAngle: 0
-  penetrateCount: 4
+  penetrateCount: 8
   screenShakeEnable: 1
   perkSO:
   - {fileID: 11400000, guid: cbcbf8530779c6441853bb1572e66cf2, type: 2}

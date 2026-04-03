@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71239c046e704dc5a55363b276e3216e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.MonsterProjectile
-  speed: 8
+  speed: 6
 --- !u!61 &6359735727071243162
 BoxCollider2D:
   m_ObjectHideFlags: 0
