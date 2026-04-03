@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4499989073974302472}
   m_Layer: 9
   m_Name: StartRoom(1)_Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8559,7 +8559,7 @@ GameObject:
   - component: {fileID: 5932471426555213436}
   m_Layer: 10
   m_Name: StartRoom(1)_Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14527,7 +14527,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Room
   roomType: 0
   spawnPoints: []
+  _bossPrefab: {fileID: 0}
   isVisited: 0
+  _isCleared: 0
   upDoor: {fileID: 7420991473853371092}
   downDoor: {fileID: 316450628349809182}
   leftDoor: {fileID: 3989029364832035769}

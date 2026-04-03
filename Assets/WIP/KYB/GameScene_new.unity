@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 0}
+    TrackingTarget: {fileID: 1879814301668405201}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -2292,7 +2292,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.13333334
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
@@ -2973,6 +2973,11 @@ GameObject:
 --- !u!1 &1879814301668405180 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5796912905840949037, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+  m_PrefabInstance: {fileID: 1011788253143174397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1879814301668405201 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5230605081855053456, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
   m_PrefabInstance: {fileID: 1011788253143174397}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
