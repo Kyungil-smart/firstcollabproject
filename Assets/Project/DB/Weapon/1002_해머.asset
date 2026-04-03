@@ -16,8 +16,8 @@ MonoBehaviour:
   row: 7
   Name: "\uD574\uBA38"
   attackType: 0
-  damageBase: 50
-  attackInterval: 2
+  damageBase: 75
+  attackInterval: 1.5
   maxAmmo: 0
   range: 1.1
   splashRadius: 0
