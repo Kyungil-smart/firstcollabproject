@@ -774,8 +774,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LOADING
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f3516401795636439eb34b9b51586df, type: 2}
-  m_sharedMaterial: {fileID: -1504583711434087663, guid: 4f3516401795636439eb34b9b51586df, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e8a911e5d7f5e454684bf718af93af01, type: 2}
+  m_sharedMaterial: {fileID: 6702121156989046001, guid: e8a911e5d7f5e454684bf718af93af01, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 13.49
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -922,7 +922,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.LoadingUI
   progressBar: {fileID: 1194511527}
-  gameSceneName: GameScene
 --- !u!4 &1598171221
 Transform:
   m_ObjectHideFlags: 0
