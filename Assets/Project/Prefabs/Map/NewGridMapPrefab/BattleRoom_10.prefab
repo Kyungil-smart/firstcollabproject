@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3744141400978691065}
   m_Layer: 10
   m_Name: BattleRoom_10_Obstacle2
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1128,7 +1128,7 @@ GameObject:
   - component: {fileID: 6172255991307684270}
   m_Layer: 9
   m_Name: BattleRoom_10_Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5363,7 +5363,7 @@ GameObject:
   - component: {fileID: 7337754980057395947}
   m_Layer: 10
   m_Name: BattleRoom_10_Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12515,7 +12515,7 @@ GameObject:
   - component: {fileID: 678809999451807285}
   m_Layer: 10
   m_Name: BattleRoom_10_Obstacle1
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
