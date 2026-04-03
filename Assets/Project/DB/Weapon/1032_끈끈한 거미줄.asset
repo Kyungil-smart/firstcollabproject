@@ -25,9 +25,9 @@ MonoBehaviour:
   penetrateCount: 0
   screenShakeEnable: 0
   perkSO:
-  - {fileID: 11400000, guid: cbcbf8530779c6441853bb1572e66cf2, type: 2}
-  prefab: {fileID: 158880901037047594, guid: 07b604af97d2aa144a74b2ba5f5aa2ac, type: 3}
-  projectilePrefab: {fileID: 0}
-  icon: {fileID: 0}
+  - {fileID: 11400000, guid: 24c2ddef4ee38ce4383d15280a72d47e, type: 2}
+  prefab: {fileID: 5649027400342380729, guid: a3b1050c835af1b49aee3abf5cf80c99, type: 3}
+  projectilePrefab: {fileID: 5649027400342380729, guid: fd755769243351c4f8746b11fea80142, type: 3}
+  icon: {fileID: 21300000, guid: b1f1b96911cf7484bab6162dd1f55180, type: 3}
   attackSound: {fileID: 0}
   localizationKey: 

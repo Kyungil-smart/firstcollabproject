@@ -2886,6 +2886,10 @@ PrefabInstance:
       propertyPath: gameOverPopup
       value: 
       objectReference: {fileID: 1170214767817562742}
+    - target: {fileID: 3335707535554405679, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      propertyPath: _consumeWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: fdb1f53a0533c3e4a9c8ec6752721cd3, type: 2}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _rewardPopup
       value: 

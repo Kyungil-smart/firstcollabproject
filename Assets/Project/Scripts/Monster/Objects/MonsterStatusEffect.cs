@@ -57,7 +57,7 @@ namespace Monster
                     ApplySleep(duration);
                     break;
                 case StatusEffect.Slow:
-                    StartCoroutine(SlowRoutine(duration));
+                    ApplySlow(0.2f);
                     break;
                 case StatusEffect.Taunted:
                     StartCoroutine(CharmRoutine(duration));
@@ -159,23 +159,27 @@ namespace Monster
 
         #region 슬로우
 
-        private IEnumerator SlowRoutine(float duration)
+        // 지속형 슬로우
+        public void ApplySlow(float slowAmount)
         {
-            // 이미 슬로우 상태면 무시
-            if (StatusPolicy.Has(_monsterAction.activeEffects, StatusEffect.Slow)) yield break;
-            
+            if (_monsterAction.isDead) return;
+            if (_monsterAction.isImmuneToStatus) return;
+            if (StatusPolicy.Has(_monsterAction.activeEffects, StatusEffect.Slow)) return;
+
             _monsterAction.activeEffects = StatusPolicy.Add(_monsterAction.activeEffects, StatusEffect.Slow);
+            IsSlowed = true;
             if (slowEffect != null) slowEffect.SetActive(true);
-            
-            // 속도 낮추기
-            if (_agent != null) _agent.speed = _originalSpeed * 0.5f;
-            
-            yield return new WaitForSeconds(duration);
-            
-            // 원상복구
-            if (slowEffect != null) slowEffect.SetActive(false);
-            if (_agent != null) _agent.speed = _originalSpeed; 
+            if (_agent != null) _agent.speed = _originalSpeed * slowAmount; // tODO: 작동안하는 버그 해결
+        }
+
+        public void RemoveSlow()
+        {
+            if (!StatusPolicy.Has(_monsterAction.activeEffects, StatusEffect.Slow)) return;
+
             _monsterAction.activeEffects = StatusPolicy.Remove(_monsterAction.activeEffects, StatusEffect.Slow);
+            IsSlowed = false;
+            if (slowEffect != null) slowEffect.SetActive(false);
+            if (_agent != null) _agent.speed = _originalSpeed;
         }
         #endregion
 
