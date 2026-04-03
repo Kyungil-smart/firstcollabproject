@@ -182,6 +182,9 @@ namespace Monster
             return _currentKillCount;
         }
         
+        /// <summary>
+        /// 보스 룸 입장하면 소탕률 0%로 초기화
+        /// </summary>
         public void StartBossRoom()
         {
             targetClearCount = 100; // 잡몹때문에 클리어되면 안되니까 100으로 일단..
@@ -192,6 +195,9 @@ namespace Monster
             Debug.Log("보스방 초기화 성공");
         }
 
+        /// <summary>
+        /// 보스 죽으면 바로 클리어되게 하는 메서드
+        /// </summary>
         public void ReportBossKilled()
         {
             if (isStageCleared) return;
