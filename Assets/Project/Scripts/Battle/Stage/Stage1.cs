@@ -7,6 +7,7 @@ public class Stage1 : MonoBehaviour
     //const int STAGE_ID = 10001;
     const int FLOOR = 1;
     [SerializeField] AudioResource bgm;
+    [SerializeField] AudioResource bossBgm;
 
     private void Awake()
     {
@@ -16,6 +17,19 @@ public class Stage1 : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.PlayBGM(bgm, 0.45f);
+        Room.OnRoomEntered += PlayBossBgm;
+        AudioManager.Instance.PlayBGM(bgm, 0.36f);
+    }
+    private void OnDisable()
+    {
+        Room.OnRoomEntered -= PlayBossBgm;
+    }
+
+    private void PlayBossBgm(Room room)
+    {
+        if (room.roomType == RoomType.BossRoom)
+        {
+            AudioManager.Instance.PlayBGM(bossBgm, 0.45f);
+        }
     }
 }
