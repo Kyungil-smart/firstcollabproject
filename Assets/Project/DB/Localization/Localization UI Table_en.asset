@@ -278,6 +278,10 @@ MonoBehaviour:
     m_Localized: Consumable Growth
     m_Metadata:
       m_Items: []
+  - m_Id: 1023417328828416
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

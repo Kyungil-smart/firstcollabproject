@@ -275,6 +275,10 @@ MonoBehaviour:
     m_Key: UI_PERK_CONS_GROWTH
     m_Metadata:
       m_Items: []
+  - m_Id: 1023417328828416
+    m_Key: UI_LANGUAGE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
