@@ -531,6 +531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuPopup: {fileID: 2051288385}
+  rewardPopup: {fileID: 0}
+  clearRewardPopup: {fileID: 0}
 --- !u!1 &1183043992
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,13 +713,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster.RandomSpawnController
   monsterPrefab:
-  - monsterType: 0
+  - monsterId: 0
     monsterPrefab: {fileID: 7047037709664641846, guid: 3e3c9c37e8ca0ba4fb504afc1637fa30, type: 3}
-  - monsterType: 1
+  - monsterId: 0
     monsterPrefab: {fileID: 7047037709664641846, guid: 4897626df33f1f147b4a132ef31ebfa9, type: 3}
-  - monsterType: 2
+  - monsterId: 0
     monsterPrefab: {fileID: 7047037709664641846, guid: 0f5774ae8a6a2354dbb5979c7386871c, type: 3}
-  - monsterType: 3
+  - monsterId: 0
     monsterPrefab: {fileID: 7047037709664641846, guid: 1c0febafb8688cd46baf9c28e18350f0, type: 3}
 --- !u!1 &1265791047
 GameObject:
@@ -931,7 +933,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.11666667
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
@@ -1114,7 +1116,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.1538463
+  orthographic size: 7.714286
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1202,7 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.PixelPerfectCamera
   m_ComponentVersion: 1
-  m_AssetsPPU: 26
+  m_AssetsPPU: 14
   m_RefResolutionX: 250
   m_RefResolutionY: 200
   m_CropFrame: 0
@@ -1651,6 +1653,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2041983269679821583, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041983269679821583, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1679,6 +1685,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2784079332994344046, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784079332994344046, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1691,6 +1701,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3813980570774127985, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813980570774127985, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1700,6 +1714,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4172901830744301626, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172901830744301626, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4172901830744301626, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
@@ -1712,6 +1730,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218956037243202748, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218956037243202748, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5218956037243202748, guid: c42b59f5ea57929418080f5a90cf10b5, type: 3}
@@ -2424,7 +2446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6167991928738585916, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 43.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167991928738585916, guid: 19585b6c6beff0044a73294cb24405fc, type: 3}
       propertyPath: m_AnchoredPosition.x
