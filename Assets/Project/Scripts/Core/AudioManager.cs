@@ -53,11 +53,12 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// BGM 재생
     /// </summary>
-    public void PlayBGM(AudioResource bgmClip)
+    public void PlayBGM(AudioResource bgmClip, float volume = 1f)
     {
         if (bgmSource.clip == bgmClip) return;
 
         bgmSource.resource = bgmClip;
+        bgmSource.volume = volume;
         bgmSource.loop = true;
         bgmSource.Play();
     }
