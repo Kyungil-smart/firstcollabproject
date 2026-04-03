@@ -21,8 +21,6 @@ namespace Monster
             if (MonsterManager.Instance.player == null) return;
 
             Transform playerTransform = MonsterManager.Instance.player.transform;
-            if (playerTransform == null) return;
-
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
             if (!isAttacking)
@@ -31,9 +29,12 @@ namespace Monster
                 if (distanceToPlayer <= statSo.AtkTrigger)
                 {
                     // 멈춰서 대기
-                    agent.isStopped = true;
-                    agent.ResetPath();
-                    agent.velocity = Vector3.zero;
+                    if (!agent.isStopped)
+                    {
+                        agent.isStopped = true;
+                        agent.ResetPath();
+                        agent.velocity = Vector3.zero;
+                    }
             
                     if (animator != null) animator.SetBool("1_Move", false);
                     
@@ -46,7 +47,8 @@ namespace Monster
                 // 공격 중이 아니면 플레이어 추격
                 else if (distanceToPlayer > statSo.AtkTrigger + 0.1f)
                 {
-                    agent.isStopped = false;
+                    if (agent.isStopped) agent.isStopped = false;
+                    
                     agent.SetDestination(playerTransform.position);
 
                     if (monsterSFX != null) monsterSFX.PlayAggro();
@@ -63,7 +65,8 @@ namespace Monster
         private IEnumerator AttackRoutine()
         {
             isAttacking = true;
-            agent.isStopped = true;
+            
+            if (agent != null && agent.isOnNavMesh) agent.isStopped = true;
             if (animator != null) animator.SetBool("1_Move", false);
 
             if (rb != null) 
@@ -75,68 +78,74 @@ namespace Monster
             // 플레이어 위치 미리 저장
             Vector3 targetPos = MonsterManager.Instance.player.transform.position;
             Vector3 dashDir = (targetPos - transform.position).normalized;
-
-            // 붉은색 점멸 차지 이펙트
-            SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
-            foreach (var sr in renderers)
-            {
-                if (sr != null) sr.color = new Color(1f, 0.5f, 0.5f);
-            }
+            
+            SetRenderersColor(new Color(1f, 0.5f, 0.5f));
 
             // 차지 대기
             yield return new WaitForSeconds(statSo.AtkPreDelay);
 
             // 원래 색상 복구
-            foreach (var sr in renderers)
-            {
-                if (sr != null) sr.color = Color.white;
-            }
+            RestoreOriginalColors();
 
+            // 선딜 중에 죽거나 기절했을 때 상태 초기화
             if (isDead || IsStunned) 
             {
                 if (rb != null) rb.bodyType = RigidbodyType2D.Dynamic;
+                isAttacking = false; 
                 yield break;
             }
 
             if (animator != null) animator.SetTrigger("2_Attack");
-
             if (monsterSFX != null) monsterSFX.PlayAttack();
 
             float elapsed = 0f;
             float actualDashSpeed = statSo.MoveSpeed * dashSpeedMultiplier;
-            int monsterLayer = LayerMask.NameToLayer("Monster");
+            
+            bool hasHitPlayer = false;
 
             while (elapsed < dashDuration)
             {
-                if (IsStunned) break;
+                if (IsStunned || isDead) break;
 
                 float moveDist = actualDashSpeed * Time.deltaTime;
 
+                // 진짜 벽이나 장애물만 감지하도록 수정
                 RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.5f, dashDir, moveDist);
-                bool shouldStop = false;
+                bool hitWall = false;
+
+                
 
                 foreach (var hit in hits)
                 {
-                    if (hit.collider == null) continue;
-                    if (hit.collider.transform.root == transform.root) continue;
-
-                    if (hit.collider.CompareTag("Player"))
+                    bool isWall = hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Obstacle");
+                    
+                    if (hit.collider != null && isWall && !hit.collider.isTrigger)
                     {
-                        hit.collider.GetComponent<PlayerBody>()?.TakeDamage(statSo.Atk);
-                        shouldStop = true;
-                        break;
-                    }
-                    else if (!hit.collider.isTrigger && hit.collider.gameObject.layer != monsterLayer)
-                    {
-                        shouldStop = true;
+                        hitWall = true;
                         break;
                     }
                 }
 
-                if (shouldStop) break;
+                // 진짜 벽에 부딪혔을 때만 돌진 종료
+                if (hitWall) break; 
+
+                // 플레이어 충돌 판정 분리
+                if (!hasHitPlayer)
+                {
+                    Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 0.6f);
+                    foreach (var col in cols)
+                    {
+                        if (col.CompareTag("Player"))
+                        {
+                            col.GetComponent<PlayerBody>()?.TakeDamage(statSo.Atk);
+                            hasHitPlayer = true; 
+                            
+                            hitWall = true; break; 
+                        }
+                    }
+                }
 
                 transform.position += dashDir * moveDist;
-
                 elapsed += Time.deltaTime;
                 yield return null;
             }

@@ -17,7 +17,7 @@ MonoBehaviour:
   Name: "\uC6D0\uAC70\uB9AC \uC880\uBE442"
   Grade: 0
   Hp: 90
-  MoveSpeed: 5
+  MoveSpeed: 2.5
   Atk: 20
   AttackInterval: 2
   AtkTrigger: 5
