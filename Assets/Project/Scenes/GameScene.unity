@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &183594066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 525824691272244539, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
+  m_PrefabInstance: {fileID: 639422209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &315021858
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +804,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3631012479507219039, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631012479507219039, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4099348520201572078, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -909,6 +922,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7311170125699150146, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7624592989264096147, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7624592989264096147, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7994576601366583889, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
@@ -3390,6 +3411,10 @@ PrefabInstance:
       propertyPath: gameOverPopup
       value: 
       objectReference: {fileID: 1170214767817562742}
+    - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      propertyPath: gameClearUI
+      value: 
+      objectReference: {fileID: 183594066}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: _rewardPopup
       value: 
