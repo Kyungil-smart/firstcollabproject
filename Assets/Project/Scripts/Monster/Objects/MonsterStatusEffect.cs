@@ -43,7 +43,10 @@ namespace Monster
         /// <param name="duration"></param>
         public void ApplyStatusEffect(StatusEffect type, float duration)
         {
-            // TODO: 상태이상 면역 처리가 필요하다면 여기서 return
+            if (_monsterAction.isDead) return;
+    
+            // 면역 상태인 몬스터는 모든 상태이상 무시
+            if (_monsterAction.isImmuneToStatus) return;
 
             switch (type)
             {
