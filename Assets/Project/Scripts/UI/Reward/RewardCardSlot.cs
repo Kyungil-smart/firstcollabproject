@@ -89,7 +89,10 @@ namespace UI
                 case AttackType.Deployable:
                     {
                         float plusDmg = WeaponPerkPolicy.GetTotalBonus(_rolledBonus, player.consDmgBonus, perk);
-                        return $"{atkLabel}: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n" +
+                        string dmgLine = weapon.damageBase > 0f
+                            ? $"{atkLabel}: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n"
+                            : "";
+                        return $"{dmgLine}" +
                                $"{L10n.Get("UI_CLEAR_NUMBER")}: {weapon.maxAmmo} + <color=green>{_rolledStackBonus}</color>\n" +
                                $"{L10n.Get("UI_PERK_CONS_GROWTH")}: +{perk.maxJump:F0}";
                     }

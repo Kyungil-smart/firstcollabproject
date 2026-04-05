@@ -22,6 +22,7 @@ namespace Monster
         protected bool isStop = false;
         protected bool hasSuperArmor = false;
         protected Rigidbody2D rb;
+        public float speedMultiplier = 1f;
         
         protected Color[] _originalColors;
         protected Coroutine _hitFlashCoroutine;
@@ -40,6 +41,7 @@ namespace Monster
         
         protected virtual void Awake()
         {
+            rb = GetComponent<Rigidbody2D>();
             _spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
 
             _originalColors = new Color[_spriteRenderers.Length];
@@ -87,9 +89,7 @@ namespace Monster
 
         private void SyncPhysicsMovement()
         {
-            rb = GetComponent<Rigidbody2D>();
-
-            if (rb == null || agent == null || !agent.isOnNavMesh) return;
+            //if (!agent.isOnNavMesh) return;
 
             if (isAttacking || agent.isStopped || isStop || IsStunned)
             {
@@ -108,7 +108,7 @@ namespace Monster
                 }
                 
                 Vector2 direction = (agent.steeringTarget - transform.position).normalized;
-                rb.linearVelocity = direction * statSo.MoveSpeed;
+                rb.linearVelocity = direction * statSo.MoveSpeed * speedMultiplier;
 
                 agent.nextPosition = rb.position;
             }
@@ -119,6 +119,7 @@ namespace Monster
             isDead = false;
             isAttacking = false;
             activeEffects = StatusEffect.None;
+            speedMultiplier = 1f;
 
             if (monsterSFX != null) monsterSFX.Init();
             currentHp = statSo.Hp;
@@ -163,7 +164,7 @@ namespace Monster
                 agent.enabled = true;
                 agent.Warp(transform.position);
 
-                agent.speed = statSo.MoveSpeed;
+            agent.speed = statSo.MoveSpeed;
                 agent.stoppingDistance = statSo.AtkTrigger;
 
                 if (agent.isOnNavMesh)
