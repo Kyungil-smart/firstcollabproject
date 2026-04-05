@@ -1,66 +1,240 @@
-using System;
+using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
-using System.Collections;
+using UnityEngine.Audio;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class MolotovProjectile : MonoBehaviour
 {
-    private Vector3 _targetPos;
-    [SerializeField] private float speed = 12f;         // 날아가는 속도
-    [SerializeField] private float fireRadius = 2f;     // 장판 반경
-    [SerializeField] private float duration = 2f;       // 장판 유지시간
-    private bool _isArrived = false;
+    [SerializeField] ParticleSystem explosionParticle;
+    [SerializeField] AudioResource explodeSfx;
 
-    public void SetTargetPos(Vector3 target)
+    CircleCollider2D _fieldCollider; // 틱뎀 장판 콜라이더 (트리거)
+
+    [Header("범위 시각화")]
+    [SerializeField] Color rangeColor = new Color(1f, 0.4f, 0f, 0.6f);
+    [SerializeField] float lineWidth = 0.05f;
+    [SerializeField] int lineSegments = 48;
+
+    float _damage;
+    float _speed;
+    float _maxRange;
+    float _fieldDuration;
+    float _tickDamage;
+    float _tickInterval;
+    float _burnDuration;
+
+    Vector2 _direction;
+    Vector2 _startPos;
+    Rigidbody2D _rb;
+    SpriteRenderer _sr;
+    LineRenderer _rangeIndicator;
+
+    private bool _hasExploded;
+    IDamageable _directHitDamageable;
+
+    readonly HashSet<IDamageable> _inField = new();
+    readonly Dictionary<IDamageable, CancellationTokenSource> _burnCts = new();
+
+    private void Awake()
     {
-        _targetPos = target;
-        _targetPos.z = 0f;
+        _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponentInChildren<SpriteRenderer>();
+        _fieldCollider = GetComponent<CircleCollider2D>();
+        _fieldCollider.enabled = false;
+
+        _rangeIndicator = GetComponent<LineRenderer>();
+        _rangeIndicator.enabled = false;
     }
 
-    private void Update()
+    public void Init(Vector2 direction, float damage, float speed, float maxRange,
+        float fieldDuration, float tickDamage, float tickInterval, float burnDuration)
     {
-        float distance = Vector2.Distance(transform.position, _targetPos);
-        
-        if (!_isArrived) return;
-        
-        if (distance > 0.1f)
+        _direction = direction.normalized;
+        _damage = damage;
+        _speed = speed;
+        _maxRange = maxRange;
+        _fieldDuration = fieldDuration;
+        _tickDamage = tickDamage;
+        _tickInterval = tickInterval;
+        _burnDuration = burnDuration;
+
+        _startPos = _rb.position;
+
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        _rb.linearVelocity = _direction * _speed;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_hasExploded) return;
+
+        if (_maxRange > 0 && Vector2.Distance(_startPos, _rb.position) >= _maxRange)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
-            transform.Rotate(0, 0, speed * 100f * Time.deltaTime);
-        }
-        else
-        {
-            _isArrived = true;
-            StartCoroutine(CreateFireField());
+            Explode();
         }
     }
 
-    private IEnumerator CreateFireField()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("화염병 투척! 장판 생성!");
-        float elapsed = 0f;
-        
-        // 2초간 반복해서 데미지 (틱 데미지)
-        while (elapsed < duration)
-        {
-            Collider2D[] monsters = Physics2D.OverlapCircleAll(transform.position, fireRadius);
-            foreach (Collider2D monster in monsters)
-            {
-                if (monster.CompareTag("Monster"))
-                {
-                    Debug.Log($"{monster.name}에게 화염 틱 데미지 10!");
-                }
-            }
-            
-            elapsed += 0.5f;    // 0.5초마다 데미지
-            yield return new WaitForSeconds(0.5f);
-        }
-        Debug.Log("불이 꺼졌습니다.");
-        Destroy(gameObject);
+        if (_hasExploded) return;
+        _directHitDamageable = other.gameObject.GetComponent<IDamageable>();
+        Explode();
     }
 
-    private void OnDrawGizmos()
+    private void Explode()
     {
-        Gizmos.color = Color.orange;
-        Gizmos.DrawWireSphere(transform.position, fireRadius);
+        if (_hasExploded) return;
+        _hasExploded = true;
+
+        _rb.linearVelocity = Vector2.zero;
+        _rb.bodyType = RigidbodyType2D.Kinematic;
+        transform.rotation = Quaternion.identity;
+
+        float radius = _fieldCollider.radius;
+
+        ExplodePolicy.Apply(transform.position, radius, _damage, transform,
+            _directHitDamageable);
+
+        AudioManager.Instance.PlayWeaponSfx(explodeSfx);
+
+        if (explosionParticle != null)
+        {
+            var particle = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            particle.Play();
+        }
+
+        // 투사체 스프라이트 숨기기
+        _sr.enabled = false;
+
+        // 투사체 충돌 콜라이더 비활성화
+        var col = GetComponent<CapsuleCollider2D>();
+        col.enabled = false;
+
+        // 불 장판 활성화
+        FieldAsync().Forget();
+    }
+
+    #region 불 장판
+
+    private async UniTaskVoid FieldAsync()
+    {
+        var destroyToken = this.GetCancellationTokenOnDestroy();
+
+        _fieldCollider.enabled = true;
+        CreateRangeIndicator(_fieldCollider.radius);
+
+        bool cancelled = await UniTask
+            .Delay(System.TimeSpan.FromSeconds(_fieldDuration), cancellationToken: destroyToken)
+            .SuppressCancellationThrow();
+
+        if (cancelled) return;
+
+        _fieldCollider.enabled = false;
+        _rangeIndicator.enabled = false;
+        _inField.Clear();
+
+        // 남은 화상 효과가 모두 끝날 때까지 대기
+        cancelled = await UniTask
+            .WaitUntil(() => _burnCts.Count == 0, cancellationToken: destroyToken)
+            .SuppressCancellationThrow();
+
+        if (!cancelled)
+            Destroy(gameObject);
+    }
+
+    private void CreateRangeIndicator(float radius)
+    {
+        if (_rangeIndicator == null) return;
+
+        _rangeIndicator.enabled = true;
+        _rangeIndicator.positionCount = lineSegments;
+        _rangeIndicator.startWidth = lineWidth;
+        _rangeIndicator.endWidth = lineWidth;
+        _rangeIndicator.startColor = rangeColor;
+        _rangeIndicator.endColor = rangeColor;
+
+        for (int i = 0; i < lineSegments; i++)
+        {
+            float angle = i * (360f / lineSegments) * Mathf.Deg2Rad;
+            _rangeIndicator.SetPosition(i, new Vector3(
+                Mathf.Cos(angle) * radius,
+                Mathf.Sin(angle) * radius, 0f));
+        }
+    }
+
+    #endregion
+
+    #region 화상 (틱 데미지)
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var damageable = other.GetComponent<IDamageable>();
+        if (damageable == null) return;
+
+        _inField.Add(damageable);
+        ApplyBurn(damageable);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        var damageable = other.GetComponent<IDamageable>();
+        if (damageable == null) return;
+
+        _inField.Remove(damageable);
+    }
+
+    private void ApplyBurn(IDamageable target)
+    {
+        // 기존 화상 취소 (dispose는 BurnAsync 완료 시 처리)
+        if (_burnCts.TryGetValue(target, out var prev))
+            prev.Cancel();
+
+        var cts = CancellationTokenSource.CreateLinkedTokenSource(
+            this.GetCancellationTokenOnDestroy());
+        _burnCts[target] = cts;
+
+        BurnAsync(target, cts).Forget();
+    }
+
+    private async UniTaskVoid BurnAsync(IDamageable target, CancellationTokenSource cts)
+    {
+        float remainingTime = _burnDuration;
+
+        while (remainingTime > 0f)
+        {
+            bool cancelled = await UniTask
+                .Delay(System.TimeSpan.FromSeconds(_tickInterval), cancellationToken: cts.Token)
+                .SuppressCancellationThrow();
+
+            if (cancelled) break;
+
+            if (target is MonoBehaviour mb && mb == null) break;
+
+            target.TakeDamage(_tickDamage);
+
+            remainingTime = _inField.Contains(target) ? _burnDuration : remainingTime - _tickInterval;
+        }
+
+        if (_burnCts.TryGetValue(target, out var current) && ReferenceEquals(current, cts))
+            _burnCts.Remove(target);
+
+        cts.Dispose();
+    }
+
+    #endregion
+
+    private void OnDestroy()
+    {
+        foreach (var cts in _burnCts.Values)
+        {
+            cts.Cancel();
+            cts.Dispose();
+        }
+        _burnCts.Clear();
+        _inField.Clear();
     }
 }

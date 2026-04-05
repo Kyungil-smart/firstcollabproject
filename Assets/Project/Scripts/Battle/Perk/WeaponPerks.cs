@@ -22,6 +22,8 @@ public class WeaponPerks : MonoBehaviour
     public float consDmgBonus;
     public int consStackBonus;
 
+    [Header("게임 클리어 UI")]
+    [SerializeField] GameObject gameClearUI;
     private void Awake()
     {
         _controller = GetComponent<WeaponController>();
@@ -63,7 +65,20 @@ public class WeaponPerks : MonoBehaviour
             return;
         }
 
-        _rewardPopup.Open(weapons, perks, this);
+        if (GameManager.Instance.isBossRoom)
+        {
+            StartCoroutine(ShowGameClearDelayed());
+        }
+        else
+        {
+            _rewardPopup.Open(weapons, perks, this);
+        }
+    }
+
+    private System.Collections.IEnumerator ShowGameClearDelayed()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        gameClearUI.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -85,9 +100,9 @@ public class WeaponPerks : MonoBehaviour
 
             switch (weaponSO.attackType)
             {
-                case AttackType.Melee:   melees.Add((weaponSO, perk)); break;
-                case AttackType.Range:   ranges.Add((weaponSO, perk)); break;
-                default:                 others.Add((weaponSO, perk)); break;
+                case AttackType.Melee: melees.Add((weaponSO, perk)); break;
+                case AttackType.Range: ranges.Add((weaponSO, perk)); break;
+                default: others.Add((weaponSO, perk)); break;
             }
         }
 
@@ -134,10 +149,10 @@ public class WeaponPerks : MonoBehaviour
                 {
                     float cappedTotal = WeaponPerkPolicy.GetTotalBonus(rolledBonus, rangeBonusPoint, perkSO);
                     var (plusDmg, plusAmmo) = WeaponPerkPolicy.CalculateRangeTotalBonus(cappedTotal, perkSO.rangeBounusType);
-                    
+
                     weapon.damageBase += plusDmg;
                     weapon.ammo += plusAmmo;
-                    
+
                     rangeBonusPoint += perkSO.maxJump;
                     rangeDmgBonus = plusDmg;
                     rangeAmmoBonus = plusAmmo;

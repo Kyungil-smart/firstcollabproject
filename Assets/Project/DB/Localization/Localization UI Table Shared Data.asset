@@ -279,6 +279,14 @@ MonoBehaviour:
     m_Key: UI_LANGUAGE
     m_Metadata:
       m_Items: []
+  - m_Id: 1907333929566208
+    m_Key: UI_CLEAR_WEB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1952673445642240
+    m_Key: UI_CLEAR_MOLOTOV
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

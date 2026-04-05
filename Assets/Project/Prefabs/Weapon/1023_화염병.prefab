@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3973772282499239080}
-  - component: {fileID: 6943805786269574212}
+  - component: {fileID: -4445049033121865763}
   m_Layer: 0
-  m_Name: "1021_\uC218\uB958\uD0C4"
+  m_Name: "1023_\uD654\uC5FC\uBCD1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8320300488038804491}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 1.364, y: 0, z: 0}
---- !u!114 &6943805786269574212
+--- !u!114 &-4445049033121865763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2300503684806237442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcad34a8364285e42a22c1064f450038, type: 3}
+  m_Script: {fileID: 11500000, guid: 69227408260821d439864f295ef67eb6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrenadeWeapon
-  data: {fileID: 11400000, guid: e12ebcd2da9e3f246b4f63b4cdf71702, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::MolotovWeapon
+  data: {fileID: 11400000, guid: c0f66c451bc69c647b360d10c33ada36, type: 2}
   Name: 
   attackType: 0
   damageBase: 0
@@ -56,9 +56,11 @@ MonoBehaviour:
   sectorAngle: 0
   penetrateCount: 0
   screenShakeEnable: 0
-  explosionDelay: 2
   initialSpeed: 10
-  frictionDeceleration: 5
+  fieldDuration: 5
+  tickDamage: 10
+  tickInterval: 1
+  burnDuration: 5
 --- !u!1 &8162468192734838065
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +88,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_LocalScale: {x: 0.63, y: 0.63, z: 0.63}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3973772282499239080}
@@ -140,7 +142,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 307
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 4f19cf1e6ce5f4d4baa8ce82f23c0590, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0e0fbec306a54f2ab94843eac621f48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

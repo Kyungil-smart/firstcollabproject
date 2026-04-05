@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,25 +18,25 @@ namespace Monster
         private float _stunEndTime;
         private Coroutine _stunCoroutine;
         private Coroutine _sleepCoroutine;
-        
+
         // 현재 걸려있는 상태이상 확인용
         public bool IsConfused { get; private set; }
         public bool IsSleeping { get; private set; }
         public bool IsCharmed { get; private set; }
         public bool IsSlowed { get; private set; }
-        
+
         private void Awake()
         {
             _monsterAction = GetComponent<MonsterAction>();
             _agent = GetComponent<NavMeshAgent>();
         }
-        
+
         private void Start()
         {
             if (_agent != null)
                 _originalSpeed = _agent.speed;
         }
-        
+
         /// <summary>
         /// 이 함수를 호출해서 상태이상 걸기
         /// </summary>
@@ -44,29 +45,27 @@ namespace Monster
         public void ApplyStatusEffect(StatusEffect type, float duration)
         {
             if (_monsterAction.isDead) return;
-    
-            // 면역 상태인 몬스터는 모든 상태이상 무시
-            if (_monsterAction.isImmuneToStatus) return;
 
             switch (type)
             {
                 case StatusEffect.Stun:
+                    if (_monsterAction.isImmuneToStatus) return; // 면역 상태인 몬스터는 스턴 무시
                     ApplyStun(duration);
                     break;
                 case StatusEffect.Sleep:
                     ApplySleep(duration);
                     break;
                 case StatusEffect.Slow:
-                    StartCoroutine(SlowRoutine(duration));
+                    ApplySlow(this, 0.2f);
                     break;
                 case StatusEffect.Taunted:
                     StartCoroutine(CharmRoutine(duration));
                     break;
             }
         }
-        
+
         #region 기절
-        
+
         public void ApplyStun(float time)
         {
             float newEndTime = Time.time + time;
@@ -77,17 +76,17 @@ namespace Monster
             // 기존 스턴 코루틴이 돌고 있으면 중지 후 교체
             if (_stunCoroutine != null)
                 StopCoroutine(_stunCoroutine);
-            
+
             _stunEndTime = newEndTime;
             _stunCoroutine = StartCoroutine(StunRoutine(time));
         }
-        
+
         private IEnumerator StunRoutine(float duration)
         {
             // 1) 기절 플래그 ON
             _monsterAction.activeEffects = StatusPolicy.Add(_monsterAction.activeEffects, StatusEffect.Stun);
             if (confusionEffect != null) confusionEffect.SetActive(true);
-            
+
             // 2) 진행 중이던 공격을 즉시 중단 처리
             _monsterAction.isAttacking = false;
 
@@ -104,7 +103,7 @@ namespace Monster
 
             // 6) 기절 플래그 OFF
             _monsterAction.activeEffects = StatusPolicy.Remove(_monsterAction.activeEffects, StatusEffect.Stun);
-            
+
             if (confusionEffect != null) confusionEffect.SetActive(false);
             _stunCoroutine = null;
 
@@ -113,20 +112,20 @@ namespace Monster
                 _monsterAction.agent.isStopped = false;
         }
         #endregion
-        
+
         #region 수면
         public void ApplySleep(float duration)
         {
             if (_sleepCoroutine != null) StopCoroutine(_sleepCoroutine);
             _sleepCoroutine = StartCoroutine(SleepRoutine(duration));
         }
-        
+
         private IEnumerator SleepRoutine(float duration)
         {
             // 플래그 ON 및 이펙트
             _monsterAction.activeEffects = StatusPolicy.Add(_monsterAction.activeEffects, StatusEffect.Sleep);
             if (sleepEffect != null) sleepEffect.SetActive(true);
-            
+
             _monsterAction.isAttacking = false;
 
             if (_monsterAction.agent != null && _monsterAction.agent.isOnNavMesh)
@@ -138,44 +137,81 @@ namespace Monster
             yield return new WaitForSeconds(duration);
 
             // 시간 경과 시 자동 해제
-            RemoveSleep(); 
+            RemoveSleep();
         }
-        
+
         private void RemoveSleep()
         {
             if (StatusPolicy.Has(_monsterAction.activeEffects, StatusEffect.Sleep))
             {
                 _monsterAction.activeEffects = StatusPolicy.Remove(_monsterAction.activeEffects, StatusEffect.Sleep);
                 if (sleepEffect != null) sleepEffect.SetActive(false);
-                
+
                 if (_sleepCoroutine != null) StopCoroutine(_sleepCoroutine);
 
                 if (!_monsterAction.isDead && _monsterAction.agent != null && _monsterAction.agent.isOnNavMesh)
                     _monsterAction.agent.isStopped = false;
             }
         }
-        
+
         #endregion
 
         #region 슬로우
 
-        private IEnumerator SlowRoutine(float duration)
+        private readonly Dictionary<object, float> _slowSources = new();
+
+        /// <summary>
+        /// 슬로우 등록 (소스 키 + 감속 비율)
+        /// </summary>
+        public void ApplySlow(object source, float slowAmount)
         {
-            // 이미 슬로우 상태면 무시
-            if (StatusPolicy.Has(_monsterAction.activeEffects, StatusEffect.Slow)) yield break;
-            
-            _monsterAction.activeEffects = StatusPolicy.Add(_monsterAction.activeEffects, StatusEffect.Slow);
-            if (slowEffect != null) slowEffect.SetActive(true);
-            
-            // 속도 낮추기
-            if (_agent != null) _agent.speed = _originalSpeed * 0.5f;
-            
-            yield return new WaitForSeconds(duration);
-            
-            // 원상복구
-            if (slowEffect != null) slowEffect.SetActive(false);
-            if (_agent != null) _agent.speed = _originalSpeed; 
-            _monsterAction.activeEffects = StatusPolicy.Remove(_monsterAction.activeEffects, StatusEffect.Slow);
+            if (_monsterAction.isDead) return;
+
+            _slowSources[source] = slowAmount;
+            RefreshSlow();
+        }
+
+        /// <summary>
+        /// 슬로우 해제 (해당 소스만 제거, 다른 소스가 남아있으면 슬로우 유지)
+        /// </summary>
+        public void RemoveSlow(object source)
+        {
+            if (!_slowSources.Remove(source)) return;
+            RefreshSlow();
+        }
+
+        /// <summary>
+        /// 모든 슬로우 소스를 기반으로 최종 감속 계산
+        /// </summary>
+        private void RefreshSlow()
+        {
+            if (_slowSources.Count == 0)
+            {
+                _monsterAction.activeEffects = StatusPolicy.Remove(_monsterAction.activeEffects, StatusEffect.Slow);
+                IsSlowed = false;
+                if (slowEffect != null) slowEffect.SetActive(false);
+                _monsterAction.speedMultiplier = 1f;
+            }
+            else
+            {
+                float strongest = 1f;
+                foreach (var pair in _slowSources)
+                    if (pair.Value < strongest) strongest = pair.Value;
+
+                _monsterAction.activeEffects = StatusPolicy.Add(_monsterAction.activeEffects, StatusEffect.Slow);
+                IsSlowed = true;
+                if (slowEffect != null) slowEffect.SetActive(true);
+                _monsterAction.speedMultiplier = strongest;
+            }
+        }
+
+        /// <summary>
+        /// 풀 반환 시 잔여 슬로우 전부 제거
+        /// </summary>
+        public void ClearAllSlow()
+        {
+            _slowSources.Clear();
+            RefreshSlow();
         }
         #endregion
 
@@ -184,13 +220,13 @@ namespace Monster
         {
             _monsterAction.activeEffects = StatusPolicy.Add(_monsterAction.activeEffects, StatusEffect.Taunted);
             if (charmEffect != null) charmEffect.SetActive(true);
-            
+
             yield return new WaitForSeconds(duration);
-            
+
             if (charmEffect != null) charmEffect.SetActive(false);
             _monsterAction.activeEffects = StatusPolicy.Remove(_monsterAction.activeEffects, StatusEffect.Taunted);
         }
         #endregion
-        
+
     }
 }

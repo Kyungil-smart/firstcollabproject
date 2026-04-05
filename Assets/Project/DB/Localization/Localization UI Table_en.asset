@@ -282,6 +282,14 @@ MonoBehaviour:
     m_Localized: Language
     m_Metadata:
       m_Items: []
+  - m_Id: 1907333929566208
+    m_Localized: SPIDER WEB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1952673445642240
+    m_Localized: MOLOTOV
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
