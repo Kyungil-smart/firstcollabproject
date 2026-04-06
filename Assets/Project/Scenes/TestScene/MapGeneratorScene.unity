@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c017e665ad0f14e9cc3ae471bd0fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomWalk
-  visualizer: {fileID: 1841064842}
+  roomManager: {fileID: 1841064842}
   startPosition: {x: 0, y: 0}
   targetRoomCount: 10
 --- !u!4 &1265791049
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.11666667
+  m_VoxelSize: 0.13333334
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
@@ -507,21 +507,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
   startStageId: 10001
-  startRoomPrefab: {fileID: 7327272114858952020, guid: 0f82ce27e2ddd1a44baeea3415b2c2c7, type: 3}
-  bossRoomPrefab: {fileID: 5383451980108417636, guid: fe6a31126274f864f9673930574ea80a, type: 3}
+  startRoomPrefab: {fileID: 7327272114858952020, guid: e1b48ce436848de44b65e1350beed070, type: 3}
+  bossRoomPrefab: {fileID: 5383451980108417636, guid: 11abacc16c8b0ca4db6adaf60cb80ddc, type: 3}
   normalRoomPrefabs:
-  - {fileID: 2044638902502929459, guid: dcc8700ab4665f843bd20bc0d83c5c31, type: 3}
-  - {fileID: 1791085752541393532, guid: 824dd2e6e5d162e4ca79e285f366c499, type: 3}
-  - {fileID: 5746397223361016884, guid: 9af150bb15da33f43bbd99167ad86ee5, type: 3}
-  - {fileID: 5286378086378541013, guid: e24dd623a35578b42b7e4988403bc498, type: 3}
-  - {fileID: 7502784314291603108, guid: 6b905fbcb612dd444ae0b41c97c520f1, type: 3}
-  - {fileID: 4370217988101124012, guid: 6e02c6c4c4b09c74abb37f96581328ff, type: 3}
-  - {fileID: 5299329299955031055, guid: 8e7e7848e82b6f446a2b7ac48f7d3f27, type: 3}
-  - {fileID: 8452811725617681310, guid: 682a3dc9bec35f5449a465e6b22df333, type: 3}
-  - {fileID: 7482493490220413934, guid: bbb18922fa78a0546a725f14e6a0c7ae, type: 3}
-  - {fileID: 3088905916260291499, guid: 6893c2054b4adc54494c49794e3d2661, type: 3}
-  - {fileID: 6616264956349451028, guid: 98917d8762614c4439f21e3ed25764b5, type: 3}
-  - {fileID: 1197637510868660334, guid: 26bd59721e5231e4ca5b5519fa70e893, type: 3}
+  - {fileID: 1791085752541393532, guid: b43e428f2f5b96a409b72a2b35c2005f, type: 3}
+  - {fileID: 5746397223361016884, guid: 98c01e7eadca990429f9162613730f95, type: 3}
+  - {fileID: 5286378086378541013, guid: 7ffb50be990b92e42887d0f4b0775d0b, type: 3}
+  - {fileID: 7502784314291603108, guid: 9e7f49ecd8b5adb49a703f2d85db2d1e, type: 3}
+  - {fileID: 4370217988101124012, guid: 98fd2bb4071e40e4a8d5eae93cfe5086, type: 3}
+  - {fileID: 5299329299955031055, guid: 10ed023888628c74b9e3b23d19d73bb9, type: 3}
+  - {fileID: 8452811725617681310, guid: a0d3cffdc7646244d8657f52c8638bca, type: 3}
+  - {fileID: 7482493490220413934, guid: 09328459f3726c4499ada39ed8fb6714, type: 3}
+  - {fileID: 3088905916260291499, guid: 4bc6ed3dae0168949a82704a5ace4fef, type: 3}
+  - {fileID: 6616264956349451028, guid: 0d523c010cfa8b34fa94d4a5aaf72506, type: 3}
+  - {fileID: 1197637510868660334, guid: e4f66937e6f191940a5970cc460dcdff, type: 3}
+  - {fileID: 2044638902502929459, guid: 8f7a813e61139884cbf533ce4585141a, type: 3}
   navMeshSurfaces: {fileID: 1287773246}
   roomOffset: 36
 --- !u!1 &1942223913
