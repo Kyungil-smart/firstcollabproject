@@ -58,7 +58,7 @@ MonoBehaviour:
   screenShakeEnable: 0
   initialSpeed: 10
   fieldDuration: 5
-  tickDamage: 10
+  tickDamage: 5
   tickInterval: 1
   burnDuration: 5
 --- !u!1 &8162468192734838065

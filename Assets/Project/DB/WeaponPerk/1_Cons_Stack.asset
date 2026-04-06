@@ -16,6 +16,6 @@ MonoBehaviour:
   upgradeType: 3
   rangeBounusType: 0
   bonusMin: 1
-  bonusMax: 3
-  levelBonusMax: 3
-  maxJump: 0
+  bonusMax: 2
+  levelBonusMax: 8
+  maxJump: 2
