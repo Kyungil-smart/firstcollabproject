@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour
 {
+    // 싱글톤
     public static RoomManager Instance { get; private set; }
 
     [Header("방 데이터 세팅")] public int startStageId = 70001;
@@ -16,8 +17,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private List<GameObject> normalRoomPrefabs;
 
     [Header("NavMesh Surface")]
-    [SerializeField]
-    private NavMeshSurface navMeshSurfaces;
+    [SerializeField] private NavMeshSurface navMeshSurfaces;
     
     [Header("방 크기에 맞춘 오프셋")]
     [SerializeField] private float roomOffset;
@@ -25,13 +25,17 @@ public class RoomManager : MonoBehaviour
     private Dictionary<Vector2Int, Room> _roomDic =  new Dictionary<Vector2Int, Room>();
     private Queue<int> _roomIdQueue = new Queue<int>();
 
+    // 싱글톤
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
-
-
+    
+    /// <summary>
+    /// 실제 맵을 찍어주는 메서드
+    /// </summary>
+    /// <param name="floorPositions"></param>
     public void VisualizeMap(HashSet<Vector2Int> floorPositions)
     {
         ClearGrid(); 
@@ -44,23 +48,26 @@ public class RoomManager : MonoBehaviour
         
         foreach (var position in floorPositions)
         { 
+            // 오프셋에 맞게 방 배치
             Vector2 worldPosition = new Vector2(position.x *  roomOffset, position.y * roomOffset);
             GameObject spawnedRoom;
 
-            // 1. startRoom 배치
+            // x= 0, y= 0이면 startRoom 배치
             if (position == Vector2Int.zero)
             {
                 spawnedRoom = Instantiate(startRoomPrefab, worldPosition, Quaternion.identity);
             }
             else
             {
+                // 인덱스 순환
                 int index = roomIndex % normalRoomPrefabs.Count;
                 spawnedRoom = Instantiate(normalRoomPrefabs[index], worldPosition, Quaternion.identity);
                 roomIndex++;
                 normalRoomCount++;
 
                 float distance = Vector2.Distance(Vector2Int.zero, position);
-
+                
+                // 최댓값 구하는 알고리즘
                 if (distance > maxDistance)
                 {
                     maxDistance = distance;
@@ -72,6 +79,7 @@ public class RoomManager : MonoBehaviour
             _roomDic.Add(position,room);
         }
 
+        // 가장 먼 곳에 있는 방을 "파괴"하고 보스방을 생성
         if (farthestPosition != Vector2.zero)
         {
             DestroyImmediate(_roomDic[farthestPosition].gameObject);
@@ -84,8 +92,6 @@ public class RoomManager : MonoBehaviour
         
         TrySpawnDoors();
         InitStageQueue(normalRoomCount);
-        
-        //TODO: NavMesh로 맵 굽기
         
         // 방들의 Collider 좌표를 모두 동기화
         Physics2D.SyncTransforms();
@@ -101,15 +107,12 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log("NavMeshSurface 연결 되지 않았음");
         }
-
-        /*
-        if (playerPrefab != null)
-        {
-            Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        }
-        */
     }
 
+    /// <summary>
+    /// Normal Room에만 Id가 들어가게 for문 돌려주는 메서드
+    /// </summary>
+    /// <param name="roomQueue">normalRoomCount</param>
     private void InitStageQueue(int roomQueue)
     {
         _roomIdQueue.Clear();
@@ -120,6 +123,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 현재 위치 + 방향벡터 이용해서 넘겨주는 메서드
+    /// </summary>
     private void TrySpawnDoors()
     {
         foreach (var roomKey in _roomDic)
@@ -144,18 +150,23 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 전에 깔려 있던 그리드맵 없애주는 메서드
+    /// </summary>
     private void ClearGrid()
     {
         foreach (var room in _roomDic.Values)
         {
-            DestroyImmediate(room.gameObject);
+            DestroyImmediate(room.gameObject); 
         }
         
         _roomDic.Clear();
     }
     
     
-    
+    /// <summary>
+    /// 피셔-예이츠 셔플 알고리즘
+    /// </summary>
     private void ShuffleRoom<T>(List<T> roomList)
     {
         for (int i = 0; i < roomList.Count - 1; i++)
@@ -165,13 +176,24 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 피셔-예이츠 셔플에 필요한 스왑 메서드
+    /// </summary>
     private void Swap<T>(List<T> roomList, int i, int randomRoomIndex)
     {
-        var temp = roomList[i]; 
+        // 튜플 처리
+        // (n, m) = (m, n);
+        // (roomList[i], roomList[randomRoomIndex]) = (roomList[randomRoomIndex], roomList[i]);
+        
+        var temp = roomList[i];
         roomList[i] = roomList[randomRoomIndex];
         roomList[randomRoomIndex] = temp;
     }
 
+    /// <summary>
+    /// SO 데이터에 맞게 Queue로 방 ID 관리해주는 메서드
+    /// </summary>
+    /// <returns></returns>
     public int GetNextStageId()
     {
         if (_roomIdQueue.Count > 0)
