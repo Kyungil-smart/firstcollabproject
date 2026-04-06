@@ -25,8 +25,8 @@ public class MineWeapon : WeaponBase
         var statusEffect = _owner.GetComponent<PlayerStatusEffect>();
         statusEffect.ApplyStun(deployTime);
 
-        // '지뢰설치중' 텍스트 표시
-        _owner.ShowStatusText("지뢰설치중", Color.yellow);
+        // 설치 중 텍스트 표시
+        _owner.ShowStatusText(L10n.Get("PLAYER_MINE"), Color.yellow);
 
         yield return new WaitForSeconds(deployTime);
 

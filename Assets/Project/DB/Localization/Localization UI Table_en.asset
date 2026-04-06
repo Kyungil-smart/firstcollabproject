@@ -290,6 +290,18 @@ MonoBehaviour:
     m_Localized: MOLOTOV
     m_Metadata:
       m_Items: []
+  - m_Id: 2208255268290560
+    m_Localized: Stumbled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2208259076718592
+    m_Localized: Deploying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2208261001904128
+    m_Localized: Deploying
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
