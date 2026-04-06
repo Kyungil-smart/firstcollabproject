@@ -32,6 +32,8 @@ public class ArmPart : MonoBehaviour
     [SerializeField] float duration3 = 6f;
     [SerializeField] float duration4 = 7f;
 
+    PlayerBody _body;
+
     float _magnitude;
     float _speed;
     float _period;
@@ -42,6 +44,7 @@ public class ArmPart : MonoBehaviour
 
     private void Start()
     {
+        _body = GetComponent<PlayerBody>();
         _noiseTimeX = Random.Range(0f, 100f);
         _noiseTimeY = Random.Range(100f, 200f);
 
@@ -97,7 +100,7 @@ public class ArmPart : MonoBehaviour
 
     private void Update()
     {
-        if (_magnitude <= 0f)
+        if (_magnitude <= 0f || _body.isCleared)
         {
             AimOffset = Vector2.zero;
             return;
