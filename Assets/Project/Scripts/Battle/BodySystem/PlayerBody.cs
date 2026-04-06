@@ -143,10 +143,11 @@ public class PlayerBody : MonoBehaviour, IDamageable
         set => _critPercent = value;
     }
     [SerializeField] float _recoveryPercent = 0.1f;
+    [SerializeField] float _recoveryPercentMin = 0.05f;
     public float RecoveryPercent
     {
-        get => _recoveryPercent * GetStatMultiplier(BodyPart.Body);
-        set => _recoveryPercent = value;
+        get => Mathf.Lerp(_recoveryPercentMin, _recoveryPercent, GetStatMultiplier(BodyPart.Body));
+        set => _recoveryPercent = Mathf.Max(value, _recoveryPercentMin);
     }
     [SerializeField] float _critDamage = 1.5f;
     [SerializeField] float _critDamageMin = 1.05f;
