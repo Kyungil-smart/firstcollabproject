@@ -287,6 +287,18 @@ MonoBehaviour:
     m_Key: UI_CLEAR_MOLOTOV
     m_Metadata:
       m_Items: []
+  - m_Id: 2208255268290560
+    m_Key: PLAYER_STUN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2208259076718592
+    m_Key: PLAYER_MINE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2208261001904128
+    m_Key: PLAYER_WEB
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
