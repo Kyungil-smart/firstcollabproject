@@ -323,11 +323,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2208259076718592
-    m_Localized: Deploying
+    m_Localized: 'Deploying '
     m_Metadata:
       m_Items: []
   - m_Id: 2208261001904128
-    m_Localized: Deploying
+    m_Localized: 'Deploying '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602752
+    m_Localized: Display & Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602753
+    m_Localized: DISPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602754
+    m_Localized: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602755
+    m_Localized: Window Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602756
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602757
+    m_Localized: BGM
     m_Metadata:
       m_Items: []
   references:

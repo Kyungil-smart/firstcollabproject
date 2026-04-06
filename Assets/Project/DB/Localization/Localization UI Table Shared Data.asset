@@ -275,18 +275,6 @@ MonoBehaviour:
     m_Key: UI_PERK_CONS_GROWTH
     m_Metadata:
       m_Items: []
-  - m_Id: 1023417328828416
-    m_Key: UI_LANGUAGE
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1907333929566208
-    m_Key: UI_CLEAR_WEB
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1952673445642240
-    m_Key: UI_CLEAR_MOLOTOV
-    m_Metadata:
-      m_Items: []
   - m_Id: 2208255268290560
     m_Key: PLAYER_STUN
     m_Metadata:
@@ -297,6 +285,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2208261001904128
     m_Key: PLAYER_WEB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602752
+    m_Key: UI_SETTING_DIS_SOUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602753
+    m_Key: UI_SETTING_DIS_SOUND_DISPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602754
+    m_Key: UI_SETTING_DIS_SOUND_DISPLAY_FULL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602755
+    m_Key: UI_SETTING_DIS_SOUND_DISPLAY_WINDOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602756
+    m_Key: UI_SETTING_DIS_SOUND_SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602757
+    m_Key: UI_SETTING_DIS_SOUND_BGM
     m_Metadata:
       m_Items: []
   m_Metadata:
