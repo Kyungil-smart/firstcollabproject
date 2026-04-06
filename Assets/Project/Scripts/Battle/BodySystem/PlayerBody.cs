@@ -25,9 +25,23 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public static event Action<BodyPart> OnDamaged;
     public static event Action OnEvaded;
     public static event Action OnPlayerDeath;
+    public static event Action<bool> OnClearedChanged;
 
     public bool isAlive = true;
     public bool IsInvincible { get; set; }
+
+    bool _isCleared;
+    public bool isCleared
+    {
+        get => _isCleared;
+        set
+        {
+            if (_isCleared == value) return;
+            _isCleared = value;
+            OnClearedChanged?.Invoke(_isCleared);
+        }
+    }
+
 
     //부상 레벨  0: 정상, 1~3: 부상 단계, 4: 재기불능
     int _headInjuryLevel;

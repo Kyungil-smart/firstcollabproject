@@ -21,19 +21,36 @@ public class HeadPart : MonoBehaviour
     Volume _globalVolume;
     Vignette _vignette;
     Tween _vignetteTween;
+    PlayerBody _body;
+    int _currentLevel;
 
     private void Start()
     {
+        _body = GetComponent<PlayerBody>();
         _globalVolume = GetComponentInChildren<Volume>();
         _globalVolume.profile.TryGet(out _vignette);
-        PlayerBody.OnHeadInjuryChanged += UpdateVignette;
+        PlayerBody.OnHeadInjuryChanged += OnInjuryChanged;
+        PlayerBody.OnClearedChanged += OnClearedChanged;
     }
     private void OnDisable()
     {
-        PlayerBody.OnHeadInjuryChanged -= UpdateVignette;
+        PlayerBody.OnHeadInjuryChanged -= OnInjuryChanged;
+        PlayerBody.OnClearedChanged -= OnClearedChanged;
     }
 
-    void UpdateVignette(int level)
+    void OnInjuryChanged(int level)
+    {
+        _currentLevel = level;
+        if (_body.isCleared) return;
+        ApplyVignette(level);
+    }
+
+    void OnClearedChanged(bool cleared)
+    {
+        ApplyVignette(cleared ? 0 : _currentLevel);
+    }
+
+    void ApplyVignette(int level)
     {
         if (_vignette == null) return;
 
