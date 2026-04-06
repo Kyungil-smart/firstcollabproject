@@ -705,6 +705,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2464215222479022739, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464215222479022739, guid: b1833be8cd7dbe941b1e1d45f3897ae5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2096,7 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c017e665ad0f14e9cc3ae471bd0fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomWalk
-  visualizer: {fileID: 1841064842}
+  roomManager: {fileID: 1841064842}
   startPosition: {x: 0, y: 0}
   targetRoomCount: 10
 --- !u!4 &1265791049
@@ -3478,6 +3482,10 @@ PrefabInstance:
       propertyPath: gameOverPopup
       value: 
       objectReference: {fileID: 1170214767817562742}
+    - target: {fileID: 3335707535554405679, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
+      propertyPath: _consumeWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: bfc273ba7abe7ce4da2eda3ad09ba27b, type: 2}
     - target: {fileID: 4771612577379655055, guid: ec42fbfe09c417d40be8962b14d235e7, type: 3}
       propertyPath: gameClearUI
       value: 

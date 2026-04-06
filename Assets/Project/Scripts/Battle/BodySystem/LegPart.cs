@@ -106,7 +106,7 @@ public class LegPart : MonoBehaviour
             if (Random.value < _stumbleChance)
             {
                 _statusEffect.ApplyStun(stumbleDuration);
-                _body.ShowStatusText("넘어짐", Color.red);
+                _body.ShowStatusText(L10n.Get("PLAYER_STUN"), Color.red);
             }
         }
     }
