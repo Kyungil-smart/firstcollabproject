@@ -35,27 +35,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 89449267200
-    m_Localized: 'CRIT_RATE:'
+    m_Localized: CRIT_RATE
     m_Metadata:
       m_Items: []
   - m_Id: 89449267201
-    m_Localized: 'CRIT_DAM:'
+    m_Localized: CRIT_DAM
     m_Metadata:
       m_Items: []
   - m_Id: 89449267202
-    m_Localized: 'RECOVERY:'
+    m_Localized: RECOVERY
     m_Metadata:
       m_Items: []
   - m_Id: 89449267203
-    m_Localized: 'MOVE_SPEED:'
+    m_Localized: MOVE_SPEED
     m_Metadata:
       m_Items: []
   - m_Id: 89449267204
-    m_Localized: 'EVADE:'
+    m_Localized: EVADE
     m_Metadata:
       m_Items: []
   - m_Id: 89449267205
-    m_Localized: 'ROOM CLEARING:'
+    m_Localized: ROOM CLEARING
     m_Metadata:
       m_Items: []
   - m_Id: 89449267206
@@ -278,16 +278,44 @@ MonoBehaviour:
     m_Localized: Consumable Growth
     m_Metadata:
       m_Items: []
-  - m_Id: 1023417328828416
-    m_Localized: Language
+  - m_Id: 2220528317726720
+    m_Localized: Stumbled
     m_Metadata:
       m_Items: []
-  - m_Id: 1907333929566208
-    m_Localized: SPIDER WEB
+  - m_Id: 2220528355475456
+    m_Localized: 'Deploying '
     m_Metadata:
       m_Items: []
-  - m_Id: 1952673445642240
-    m_Localized: MOLOTOV
+  - m_Id: 2220528355475457
+    m_Localized: 'Deploying '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475458
+    m_Localized: Display & Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475459
+    m_Localized: DISPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475460
+    m_Localized: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475461
+    m_Localized: Window Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528359669760
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528359669761
+    m_Localized: BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2225692818767872
+    m_Localized: LANGUAGE
     m_Metadata:
       m_Items: []
   - m_Id: 2208255268290560
@@ -295,11 +323,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2208259076718592
-    m_Localized: Deploying
+    m_Localized: 'Deploying '
     m_Metadata:
       m_Items: []
   - m_Id: 2208261001904128
-    m_Localized: Deploying
+    m_Localized: 'Deploying '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602752
+    m_Localized: Display & Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602753
+    m_Localized: DISPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602754
+    m_Localized: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602755
+    m_Localized: Window Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602756
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229547782602757
+    m_Localized: BGM
     m_Metadata:
       m_Items: []
   references:
