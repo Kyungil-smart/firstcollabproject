@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c017e665ad0f14e9cc3ae471bd0fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomWalk
-  visualizer: {fileID: 1841064842}
+  roomManager: {fileID: 1841064842}
   startPosition: {x: 0, y: 0}
   targetRoomCount: 10
 --- !u!4 &1265791049
