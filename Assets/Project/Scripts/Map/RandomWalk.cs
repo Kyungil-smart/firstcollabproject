@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RandomWalk : MonoBehaviour
 {
-    [SerializeField] private RoomManager visualizer;
+    [SerializeField] private RoomManager roomManager;
     [SerializeField] protected Vector2Int startPosition = Vector2Int.zero;
     
     // 만들어져야 할 방의 개수
@@ -22,7 +22,7 @@ public class RandomWalk : MonoBehaviour
     private void RunProceduralGeneration()
     {
         HashSet<Vector2Int> floorPositions = RunRandomWalk();
-        visualizer.VisualizeMap(floorPositions);
+        roomManager.VisualizeMap(floorPositions);
     }
 
     private HashSet<Vector2Int> RunRandomWalk()
