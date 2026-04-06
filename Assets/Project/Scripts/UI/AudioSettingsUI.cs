@@ -74,13 +74,21 @@ namespace UI
         
         private void UpdateVolumeUI(bool isBGM, float value)
         {
+            bool isOn = value > 0.001f;
+            
             if (isBGM)
             {
                 if (bgmText != null) bgmText.text = $"{(value * 100):0}%";
+                
+                if (bgmOnBtn != null) bgmOnBtn.gameObject.SetActive(!isOn);
+                if (bgmOffBtn != null) bgmOffBtn.gameObject.SetActive(isOn);
             }
             else
             {
                 if (sfxText != null) sfxText.text = $"{(value * 100):0}%";
+                
+                if (sfxOnBtn != null) sfxOnBtn.gameObject.SetActive(!isOn);
+                if (sfxOffBtn != null) sfxOffBtn.gameObject.SetActive(isOn);
             }
         }
 

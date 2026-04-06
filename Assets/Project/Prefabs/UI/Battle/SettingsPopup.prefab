@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255.16, y: -148.00002}
+  m_AnchoredPosition: {x: 183, y: -198}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2838640280625647071
@@ -233,7 +233,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -257,7 +257,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1066869854685792583}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &191555884998518953
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,8 +532,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: -200}
-  m_SizeDelta: {x: 415.481, y: 51.9351}
+  m_AnchoredPosition: {x: -93.58746, y: -200}
+  m_SizeDelta: {x: 368.3061, y: 51.9351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1358293344991219588
 MonoBehaviour:
@@ -1032,9 +1044,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:6c63fb1415d5a3d4d9dd721f2c295f0f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2220528359669760
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1698,6 +1710,7 @@ GameObject:
   - component: {fileID: 4194126888962651861}
   - component: {fileID: 6641947257268870943}
   - component: {fileID: 1733773759039240454}
+  - component: {fileID: 5088051370249854239}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -1752,7 +1765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option A
+  m_text: Full Screen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e8a911e5d7f5e454684bf718af93af01, type: 2}
   m_sharedMaterial: {fileID: 6702121156989046001, guid: e8a911e5d7f5e454684bf718af93af01, type: 2}
@@ -1824,6 +1837,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5088051370249854239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984694967081093540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1733773759039240454}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1997000680419741103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,6 +2106,7 @@ GameObject:
   - component: {fileID: 3643450782886873072}
   - component: {fileID: 8195012147158937215}
   - component: {fileID: 5391278449810070850}
+  - component: {fileID: 5567207102213518576}
   m_Layer: 5
   m_Name: Item Label
   m_TagString: Untagged
@@ -2179,6 +2233,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5567207102213518576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2175574431493487065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5391278449810070850}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2595098609038639715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,9 +2425,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:6c63fb1415d5a3d4d9dd721f2c295f0f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2220528359669761
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -3534,9 +3628,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:6c63fb1415d5a3d4d9dd721f2c295f0f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2220528355475459
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -3672,8 +3766,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: -56}
-  m_SizeDelta: {x: 415.481, y: 51.9351}
+  m_AnchoredPosition: {x: -93.58746, y: -56}
+  m_SizeDelta: {x: 368.3061, y: 51.9351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7090171593019605785
 MonoBehaviour:
@@ -4849,7 +4943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255.16, y: -0.000012398}
+  m_AnchoredPosition: {x: 183, y: -55.032}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8085866115250995417
@@ -4909,7 +5003,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4933,7 +5027,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9112745250007208321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4617856452086065061
 GameObject:
   m_ObjectHideFlags: 0
@@ -5530,13 +5636,10 @@ MonoBehaviour:
   m_MultiSelect: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: Full Screen
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-      m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Option C
+    - m_Text: Window Screen
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
@@ -6042,7 +6145,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:6c63fb1415d5a3d4d9dd721f2c295f0f
     m_TableEntryReference:
-      m_KeyId: 89449267211
+      m_KeyId: 2220528355475458
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -8455,7 +8558,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 28}
+  m_SizeDelta: {x: 0, y: 104.6549}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &7270648871326068282
 GameObject:
@@ -9621,7 +9724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255.16, y: -148}
+  m_AnchoredPosition: {x: 182.99997, y: -198}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2645872568260581122
@@ -9928,7 +10031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255.16, y: -0.000012398}
+  m_AnchoredPosition: {x: 183, y: -56.968}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5572110949691897248
@@ -10302,7 +10405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -18.246582}
+  m_AnchoredPosition: {x: 0, y: 24.081}
   m_SizeDelta: {x: 0, y: 56.4932}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376717062928303016

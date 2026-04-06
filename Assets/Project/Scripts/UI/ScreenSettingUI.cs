@@ -1,51 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Localization.Settings;
 
 namespace UI
 {
     public class ScreenSettingsUI : MonoBehaviour
     {
-        [SerializeField] private TMP_Dropdown dropdown;
+        [SerializeField] private TMP_Dropdown windowModeDropdown;
 
-        void Start()
+        void Awake()
         {
-            if (dropdown == null)
+            if (windowModeDropdown != null)
             {
-                Debug.LogError($"{gameObject.name}의 ScreenSettingsUI: Window Mode Dropdown이 연결되지 않았습니다!");
-                return;
+                windowModeDropdown.ClearOptions();
             }
-            
-            int initialIndex = (Screen.fullScreenMode == FullScreenMode.Windowed) ? 1 : 0;
-            dropdown.SetValueWithoutNotify(initialIndex);
-            dropdown.RefreshShownValue();
+        }
 
-            dropdown.onValueChanged.AddListener(OnWindowModeChanged);
+        IEnumerator Start()
+        {
+            if (windowModeDropdown == null)
+            {
+                yield break;
+            }
+
+            // 로컬라이제이션 시스템이 준비될 때까지 대기
+            yield return LocalizationSettings.InitializationOperation;
+
+            SetupDropdownOptions();
+
+            // 초기 값 설정
+            int initialIndex = (Screen.fullScreenMode == FullScreenMode.Windowed) ? 1 : 0;
+            windowModeDropdown.SetValueWithoutNotify(initialIndex);
+            
+            // 리스너 등록
+            windowModeDropdown.onValueChanged.RemoveAllListeners();
+            windowModeDropdown.onValueChanged.AddListener(OnWindowModeChanged);
+            
+            LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
+            LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
+        }
+
+        private void SetupDropdownOptions()
+        {
+            windowModeDropdown.ClearOptions();
+
+            string fullScreen = L10n.Get("UI_SETTING_DIS_SOUND_DISPLAY_FULL");
+            string windowed = L10n.Get("UI_SETTING_DIS_SOUND_DISPLAY_WINDOW");
+
+            List<string> options = new List<string> { fullScreen, windowed };
+            windowModeDropdown.AddOptions(options);
+            
+            windowModeDropdown.RefreshShownValue();
+        }
+
+        private void OnLanguageChanged(UnityEngine.Localization.Locale locale)
+        {
+            SetupDropdownOptions();
         }
 
         private void OnWindowModeChanged(int index)
         {
-            if (index == 0)
-            {
-                // 전체화면 모드
-                Resolution maxRes = Screen.resolutions[Screen.resolutions.Length - 1];
-                Screen.SetResolution(maxRes.width, maxRes.height, FullScreenMode.FullScreenWindow);
-                Debug.Log("전체화면으로 전환");
-            }
-            else
-            {
-                // 창모드
-                Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
-                Debug.Log("창모드(1280x720)로 전환");
-            }
+            if (index == 0) Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            else Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
         }
 
         private void OnDestroy()
         {
-            if (dropdown != null)
-            {
-                dropdown.onValueChanged.RemoveAllListeners();
-            }
+            LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
         }
     }
 }

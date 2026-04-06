@@ -275,16 +275,44 @@ MonoBehaviour:
     m_Key: UI_PERK_CONS_GROWTH
     m_Metadata:
       m_Items: []
-  - m_Id: 1023417328828416
+  - m_Id: 2220528317726720
+    m_Key: PLAYER_STUN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475456
+    m_Key: PLAYER_MINE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475457
+    m_Key: PLAYER_WEB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475458
+    m_Key: UI_SETTING_DIS_SOUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475459
+    m_Key: UI_SETTING_DIS_SOUND_DISPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475460
+    m_Key: UI_SETTING_DIS_SOUND_DISPLAY_FULL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528355475461
+    m_Key: UI_SETTING_DIS_SOUND_DISPLAY_WINDOW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528359669760
+    m_Key: UI_SETTING_DIS_SOUND_SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220528359669761
+    m_Key: UI_SETTING_DIS_SOUND_BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2225692818767872
     m_Key: UI_LANGUAGE
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1907333929566208
-    m_Key: UI_CLEAR_WEB
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1952673445642240
-    m_Key: UI_CLEAR_MOLOTOV
     m_Metadata:
       m_Items: []
   m_Metadata:
