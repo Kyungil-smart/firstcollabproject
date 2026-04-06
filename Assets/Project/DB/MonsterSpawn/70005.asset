@@ -17,7 +17,7 @@ MonoBehaviour:
   SpawnInterval: 5
   MaxTotalMonster: 46
   StartSimultaneous: 12
-  MaxSimultaneous: 18
+  MaxSimultaneous: 15
   MonsterType1: 2005
   MonsterPercent1: 0.7
   MonsterType2: 2006
