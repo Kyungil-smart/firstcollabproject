@@ -1,4 +1,4 @@
-# 그라운드 룰 (작성중)
+# 그라운드 룰
 
 1. 브랜치를 기능 및 인원 단위로 나누기
 - 네이밍규칙: 접두사/기능_작성자 (예: feat/player-move_PEY)
@@ -88,6 +88,9 @@ Assets/
 - TextMeshPro
 
 ## 설치된 확장 패키지 (링크 첨부)
+이번 프로젝트에서 확장 패키지는 메인으로 사용하지 않고 서브/리펙토링 등
+체험해보는 용도로 사용하기로 함
+
 [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - JSON 사용시 높은 확장성을 제공 (Json 배울때 사용했던 라이브러리)
 - 각종 저장/로드에 유용
@@ -102,6 +105,6 @@ Assets/
 - 기본적인 사용법은 코루틴처럼 간단하지만 반환형이 가능하고 여러 고급 기능 보유
 ---
 [PrimeTween](https://github.com/KyryloKuzyk/PrimeTween)
-- 성능(개쩌는) struct 기반 트윈 애니메이션 라이브러리
+- 성능 좋은 struct 기반 트윈 애니메이션 라이브러리
 - DOTween 대체용으로 만들어서 매우 유사하지만 약간의 차이 숙지 필요
 ---

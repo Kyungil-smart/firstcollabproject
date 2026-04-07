@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void TogglePause()
+    public void TogglePause()
     {
         if (pauseMenuPopup == null) return;
 
@@ -31,10 +31,11 @@ public class PauseManager : MonoBehaviour
             if (rewardPopup.gameObject.activeSelf || clearRewardPopup.gameObject.activeSelf)
             {
                 pauseMenuPopup.CloseOnly();
-                Debug.LogWarning("발동");
             }
             else
+            {
                 pauseMenuPopup.Resume();
+            }
         }
     }
 }

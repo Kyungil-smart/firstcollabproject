@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.91, y: 0.91, z: 0.91}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7639129881664237928}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: d0e0fbec306a54f2ab94843eac621f48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b2aedf53b67f8074fa89e18dbbfd9be2, type: 3}
   m_Color: {r: 1, g: 0.8778579, b: 0.6650944, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -242,7 +242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MolotovProjectile
   explosionParticle: {fileID: 3752511408183367671, guid: 9e0c3fc895f81ff4e90b3af2ebccd735, type: 3}
   explodeSfx: {fileID: 8300000, guid: 7b3140e3aa3bd4448872939acd5e37f9, type: 3}
-  fieldCollider: {fileID: 3192254417401954339}
   rangeColor: {r: 1, g: 0.43300706, b: 0, a: 0.6}
   lineWidth: 0.05
   lineSegments: 48

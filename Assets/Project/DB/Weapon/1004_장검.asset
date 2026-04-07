@@ -19,9 +19,9 @@ MonoBehaviour:
   damageBase: 90
   attackInterval: 1
   maxAmmo: 0
-  range: 1.7
+  range: 1.8
   splashRadius: 0
-  sectorAngle: 50
+  sectorAngle: 55
   penetrateCount: 0
   screenShakeEnable: 1
   perkSO:

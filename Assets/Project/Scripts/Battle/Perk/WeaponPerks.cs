@@ -68,6 +68,7 @@ public class WeaponPerks : MonoBehaviour
         if (GameManager.Instance.isBossRoom)
         {
             StartCoroutine(ShowGameClearDelayed());
+            GameManager.Instance.isBossRoom = false;
         }
         else
         {

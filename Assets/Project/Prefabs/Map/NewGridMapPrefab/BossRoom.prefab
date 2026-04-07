@@ -4502,7 +4502,7 @@ MonoBehaviour:
   spawnPoints: []
   _bossPrefab: {fileID: 7047037709664641846, guid: fed36f9d809b5ef42ab908e81273ef9e, type: 3}
   isVisited: 0
-  _isCleared: 0
+  isCleared: 0
   upDoor: {fileID: 8283998564332380538}
   downDoor: {fileID: 7292146214879680244}
   leftDoor: {fileID: 4984250345339601303}

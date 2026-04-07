@@ -1635,6 +1635,18 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383636758121347477, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6059021537165810098}
+    - target: {fileID: 1383636758121347477, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePause
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383636758121347477, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3217150621061777780, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
       propertyPath: m_fontSize
       value: 32
@@ -1731,9 +1743,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4224549829964752104, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224549829964752104, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224549829964752104, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224549829964752104, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4779274133812011699, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
       propertyPath: m_Name
       value: PauseMenuPopup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459263722175014081, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459263722175014081, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459263722175014081, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459263722175014081, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140299950200200011, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140299950200200011, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140299950200200011, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140299950200200011, guid: 03e980b11a8d6554984a9a689b4d3f57, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 70003
   row: 7
   SpawnInterval: 5
-  MaxTotalMonster: 38
+  MaxTotalMonster: 36
   StartSimultaneous: 9
   MaxSimultaneous: 15
   MonsterType1: 2001

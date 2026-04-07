@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -22,7 +23,7 @@ public class TorsoPart : MonoBehaviour
     PlayerController _controller;
 
     float _cyclePeriod;
-    Coroutine _cycleCoroutine;
+    CancellationTokenSource _cycleCts;
 
     private void Start()
     {
@@ -30,14 +31,31 @@ public class TorsoPart : MonoBehaviour
         _controller = GetComponent<PlayerController>();
 
         PlayerBody.OnBodyInjuryChanged += OnInjuryChanged;
+        PlayerBody.OnClearedChanged += OnClearedChanged;
     }
 
     private void OnDisable()
     {
         PlayerBody.OnBodyInjuryChanged -= OnInjuryChanged;
-
-        // 비활성화 시 반전 상태 해제
+        PlayerBody.OnClearedChanged -= OnClearedChanged;
+        StopCycle();
         _controller.IsInputInverted = false;
+    }
+
+    void OnClearedChanged(bool cleared)
+    {
+        if (cleared)
+        {
+            StopCycle();
+            _controller.IsInputInverted = false;
+        }
+        else
+        {
+            if (_cyclePeriod > 0f && _cycleCts == null)
+            {
+                StartCycle();
+            }
+        }
     }
 
     void OnInjuryChanged(int level)
@@ -54,41 +72,62 @@ public class TorsoPart : MonoBehaviour
         if (_cyclePeriod > 0f)
         {
             // 이미 돌고 있으면 건드리지 않음 — 다음 주기에 새 _cyclePeriod 자동 반영
-            if (_cycleCoroutine == null)
-                _cycleCoroutine = StartCoroutine(InvertCycleRoutine());
+            if (_cycleCts == null)
+                StartCycle();
         }
         else
         {
-            // 부상 회복: 코루틴 중지 + 반전 해제
-            if (_cycleCoroutine != null)
-            {
-                StopCoroutine(_cycleCoroutine);
-                _cycleCoroutine = null;
-            }
+            StopCycle();
             _controller.IsInputInverted = false;
         }
     }
 
-    IEnumerator InvertCycleRoutine()
+    void StartCycle()
     {
-        while (true)
+        _cycleCts = new CancellationTokenSource();
+        InvertCycleAsync(_cycleCts.Token).Forget();
+    }
+
+    void StopCycle()
+    {
+        _cycleCts?.Cancel();
+        _cycleCts?.Dispose();
+        _cycleCts = null;
+    }
+
+    async UniTaskVoid InvertCycleAsync(CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
         {
+            bool cancelled = false;
+
             float waitTime = _cyclePeriod - countdownSeconds;
             if (waitTime > 0f)
-                yield return new WaitForSeconds(waitTime);
+            {
+                cancelled = await UniTask
+                    .Delay(System.TimeSpan.FromSeconds(waitTime), cancellationToken: token)
+                    .SuppressCancellationThrow();
+                if (cancelled) return;
+            }
 
             for (int i = countdownSeconds; i > 0; i--)
             {
                 _body.ShowStatusText(i.ToString(), Color.cyan);
-                yield return new WaitForSeconds(1f);
+                cancelled = await UniTask
+                    .Delay(System.TimeSpan.FromSeconds(1f), cancellationToken: token)
+                    .SuppressCancellationThrow();
+                if (cancelled) return;
             }
 
             _controller.IsInputInverted = true;
             // TODO: 머리 위 헤롱헤롱 애니메이션 재생
 
-            yield return new WaitForSeconds(invertDuration);
+            cancelled = await UniTask
+                .Delay(System.TimeSpan.FromSeconds(invertDuration), cancellationToken: token)
+                .SuppressCancellationThrow();
 
             _controller.IsInputInverted = false;
+            if (cancelled) return;
         }
     }
 }
