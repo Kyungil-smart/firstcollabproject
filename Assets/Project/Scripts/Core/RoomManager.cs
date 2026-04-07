@@ -183,11 +183,13 @@ public class RoomManager : MonoBehaviour
     {
         // 튜플 처리
         // (n, m) = (m, n);
-        // (roomList[i], roomList[randomRoomIndex]) = (roomList[randomRoomIndex], roomList[i]);
+        (roomList[i], roomList[randomRoomIndex]) = (roomList[randomRoomIndex], roomList[i]);
         
+        /*
         var temp = roomList[i];
         roomList[i] = roomList[randomRoomIndex];
         roomList[randomRoomIndex] = temp;
+        */
     }
 
     /// <summary>
