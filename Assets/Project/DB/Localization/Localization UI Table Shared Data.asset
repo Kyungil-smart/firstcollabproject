@@ -311,6 +311,12 @@ MonoBehaviour:
     m_Key: UI_SETTING_DIS_SOUND_BGM
     m_Metadata:
       m_Items: []
+  - m_Id: 2481105732567040
+    m_Key: UI_CLEAR_MOLOTOV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2481109276753920
+    m_Key: UI_CLEAR_WEB
   - m_Id: 2229556557086720
     m_Key: UI_LANGUAGE
     m_Metadata:
