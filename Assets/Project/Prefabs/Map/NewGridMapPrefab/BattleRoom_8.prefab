@@ -19229,7 +19229,7 @@ MonoBehaviour:
   - {fileID: 1185125129928972988}
   _bossPrefab: {fileID: 0}
   isVisited: 0
-  _isCleared: 0
+  isCleared: 0
   upDoor: {fileID: 7617472851346825796}
   downDoor: {fileID: 9153348865248194958}
   leftDoor: {fileID: 10374238550798237}
