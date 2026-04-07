@@ -169,12 +169,12 @@ public class WeaponPerks : MonoBehaviour
                 {
                     float total = WeaponPerkPolicy.GetTotalBonus(rolledBonus, consDmgBonus, perkSO);
                     weapon.damageBase += total;
-                    weapon.ammo += rolledStackBonus;
                     if (perkSO != null)
                     {
                         consDmgBonus += perkSO.maxJump;
-                        consStackBonus = rolledStackBonus; // 소모품 스택보너스는 누적이 아닌 대입
+                        consStackBonus = Mathf.Min(consStackBonus + 1, 6); // 누적 +1, 최대 6
                     }
+                    weapon.ammo += consStackBonus + rolledStackBonus; // 성장분(최대 6) + 랜덤(0~1) = 최대 7
                     break;
                 }
         }
