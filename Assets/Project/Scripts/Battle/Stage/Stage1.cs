@@ -19,6 +19,7 @@ public class Stage1 : MonoBehaviour
     {
         Room.OnRoomEntered += PlayBossBgm;
         AudioManager.Instance.PlayBGM(bgm, 0.36f);
+        GameManager.Instance.isBossRoom = false;
     }
     private void OnDisable()
     {

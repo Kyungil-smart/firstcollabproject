@@ -23,7 +23,7 @@ public class Room : MonoBehaviour
     private List<Vector2Int> _offScreenPoint = new List<Vector2Int>();
     
     // 클리어 확인 용
-    [SerializeField] private bool _isCleared = false;
+    public bool isCleared = false;
 
     [Header("문 프리팹")] 
     [SerializeField] private GameObject upDoor;
@@ -63,7 +63,7 @@ public class Room : MonoBehaviour
             yield break;
         }
         
-        while (!_isCleared)
+        while (!isCleared)
         {
             _offScreenPoint.Clear();
 
@@ -152,8 +152,8 @@ public class Room : MonoBehaviour
     /// </summary>
     public void ClearRoom()
     {
-        if (_isCleared) return;
-        _isCleared = true;
+        if (isCleared) return;
+        isCleared = true;
 
         if (upDoor.activeSelf && upDoor.TryGetComponent(out Door up)) up.Open();
         if (downDoor.activeSelf && downDoor.TryGetComponent(out Door down)) down.Open();
@@ -180,7 +180,7 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (_isCleared) return;
+            if (isCleared) return;
 
             if (!isVisited)
             {

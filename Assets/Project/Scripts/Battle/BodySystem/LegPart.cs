@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
 /// 다리 부상 효과: 물리적 기동 불능
 /// 부상 단계에 따라 이동 시 1초 간격으로 일정 확률로 넘어짐
-/// 넘어지면 1초간 기절(Stun) 상태 — 이동·공격 불가
 /// </summary>
 public class LegPart : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class LegPart : MonoBehaviour
     PlayerController _controller;
 
     float _stumbleChance;
-    Coroutine _stumbleCheckCoroutine;
+    CancellationTokenSource _stumbleCts;
 
     private void Start()
     {
@@ -32,11 +32,29 @@ public class LegPart : MonoBehaviour
         _controller = GetComponent<PlayerController>();
 
         PlayerBody.OnLegInjuryChanged += OnInjuryChanged;
+        PlayerBody.OnClearedChanged += OnClearedChanged;
     }
 
     private void OnDisable()
     {
         PlayerBody.OnLegInjuryChanged -= OnInjuryChanged;
+        PlayerBody.OnClearedChanged -= OnClearedChanged;
+        StopCheck();
+    }
+
+    void OnClearedChanged(bool cleared)
+    {
+        if (cleared)
+        {
+            StopCheck();
+        }
+        else
+        {
+            if (_stumbleChance > 0f && _stumbleCts == null)
+            {
+                StartCheck();
+            }
+        }
     }
 
     void OnInjuryChanged(int level)
@@ -50,32 +68,45 @@ public class LegPart : MonoBehaviour
             _ => stumbleChance4
         };
 
-        // 부상 단계 1 이상이면 판정 코루틴 시작, 아니면 중지
-        if (_stumbleChance > 0f && _stumbleCheckCoroutine == null)
+        if (_stumbleChance > 0f && _stumbleCts == null)
         {
-            _stumbleCheckCoroutine = StartCoroutine(StumbleCheckRoutine());
+            StartCheck();
         }
-        else if (_stumbleChance <= 0f && _stumbleCheckCoroutine != null)
+        else if (_stumbleChance <= 0f)
         {
-            StopCoroutine(_stumbleCheckCoroutine);
-            _stumbleCheckCoroutine = null;
+            StopCheck();
         }
     }
 
-    IEnumerator StumbleCheckRoutine()
+    void StartCheck()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(checkInterval);
+        _stumbleCts = new CancellationTokenSource();
+        StumbleCheckAsync(_stumbleCts.Token).Forget();
+    }
 
-            // 이동 중이고, 기절 상태가 아닐 때만 판정
-            if (_controller.inputVector == Vector2.zero) continue;
+    void StopCheck()
+    {
+        _stumbleCts?.Cancel();
+        _stumbleCts?.Dispose();
+        _stumbleCts = null;
+    }
+
+    async UniTaskVoid StumbleCheckAsync(CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            bool cancelled = await UniTask
+                .Delay(System.TimeSpan.FromSeconds(checkInterval), cancellationToken: token)
+                .SuppressCancellationThrow();
+
+            if (cancelled) return;
+
             if (_statusEffect.IsStunned) continue;
 
             if (Random.value < _stumbleChance)
             {
                 _statusEffect.ApplyStun(stumbleDuration);
-                _body.ShowStatusText("넘어짐", Color.red);
+                _body.ShowStatusText(L10n.Get("PLAYER_STUN"), Color.red);
             }
         }
     }

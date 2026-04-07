@@ -20,7 +20,7 @@ public class SpiderWeapon : WeaponBase
         var statusEffect = _owner.GetComponent<PlayerStatusEffect>();
         statusEffect.ApplyStun(deployTime);
 
-        _owner.ShowStatusText("거미줄설치", Color.white);
+        _owner.ShowStatusText(L10n.Get("PLAYER_WEB"), Color.white);
 
         yield return new WaitForSeconds(deployTime);
 

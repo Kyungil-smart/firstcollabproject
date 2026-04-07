@@ -15,6 +15,10 @@ namespace Monster
         [SerializeField] private float projectileDamage = 80f; // 투사체 패턴 데미지
         [SerializeField] private float contactDamage = 50f; // 접촉 데미지
         
+        [Header("PatternA_Dash")]
+        [SerializeField] private float dashDist = 7f; 
+        [SerializeField] private float dashSpeed = 6f;
+        
         private int _lastPatternId = -1; // 이전 패턴 중복 방지용
         private float _lastContactTime;
         private const float ContactInterval = 0.5f; // 접촉 데미지 주기
@@ -164,8 +168,7 @@ namespace Monster
         // 돌진 패턴
         private IEnumerator PatternA_Dash()
         {
-            float dashDist = 7f; 
-            float dashSpeed = 6f;
+
             float duration = dashDist / dashSpeed;
             float elapsed = 0f;
 
