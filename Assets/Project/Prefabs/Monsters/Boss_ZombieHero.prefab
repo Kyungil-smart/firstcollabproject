@@ -396,6 +396,7 @@ MonoBehaviour:
   statSo: {fileID: 11400000, guid: 5e66c388143c7cd4da6d1249a4971ad9, type: 2}
   isDead: 0
   isAttacking: 0
+  speedMultiplier: 1
   agent: {fileID: 0}
   activeEffects: 0
   isImmuneToStatus: 0
@@ -405,6 +406,8 @@ MonoBehaviour:
   dashDamage: 80
   projectileDamage: 80
   contactDamage: 50
+  dashDist: 9
+  dashSpeed: 9
   gameClearUI: {fileID: 7017829513166379496, guid: 7078f023e54aa9b4184da6c5696fe2d9, type: 3}
 --- !u!114 &-2820879606652283690
 MonoBehaviour:

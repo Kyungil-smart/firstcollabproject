@@ -15,7 +15,7 @@ MonoBehaviour:
   floor: 1
   upgradeType: 1
   rangeBounusType: 2
-  bonusMin: 15
-  bonusMax: 20
-  levelBonusMax: 100
-  maxJump: 15
+  bonusMin: 1
+  bonusMax: 5
+  levelBonusMax: 20
+  maxJump: 5
