@@ -55,7 +55,7 @@ namespace UI
             _rolledBonus = WeaponPerkPolicy.RollBonus(perk, currentAccum);
 
             _rolledStackBonus = (weaponData.attackType is AttackType.Throwable or AttackType.Deployable)
-                ? Random.Range(1, 4)
+                ? Random.Range(0, 2)
                 : 0;
 
             nameText.text = weaponData.LocalizedName;
@@ -92,8 +92,9 @@ namespace UI
                         string dmgLine = weapon.damageBase > 0f
                             ? $"{atkLabel}: {weapon.damageBase:F0} + <color=green>{plusDmg:F1}</color>\n"
                             : "";
+                        int nextConsStackBonus = Mathf.Min(player.consStackBonus + 1, 6);
                         return $"{dmgLine}" +
-                               $"{L10n.Get("UI_CLEAR_NUMBER")}: {weapon.maxAmmo} + <color=green>{_rolledStackBonus}</color>\n" +
+                               $"{L10n.Get("UI_CLEAR_NUMBER")}: {weapon.maxAmmo} + <color=green>{nextConsStackBonus + _rolledStackBonus}</color>\n" +
                                $"{L10n.Get("UI_PERK_CONS_GROWTH")}: +{perk.maxJump:F0}";
                     }
                 default:
