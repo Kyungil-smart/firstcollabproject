@@ -62,8 +62,12 @@ namespace UI
 
         private void OnWindowModeChanged(int index)
         {
-            if (index == 0) Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-            else Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
+            if (index == 0)
+            {
+                Resolution native = Screen.currentResolution;
+                Screen.SetResolution(native.width, native.height, FullScreenMode.FullScreenWindow);
+            }
+            else Screen.SetResolution(1920, 1080, false);
         }
 
         private void OnDestroy()
