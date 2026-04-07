@@ -18,7 +18,7 @@ public class Stage1 : MonoBehaviour
     private void Start()
     {
         Room.OnRoomEntered += PlayBossBgm;
-        AudioManager.Instance.PlayBGM(bgm, 0.36f);
+        AudioManager.Instance.PlayBGM(bgm);
         GameManager.Instance.isBossRoom = false;
     }
     private void OnDisable()
@@ -30,7 +30,7 @@ public class Stage1 : MonoBehaviour
     {
         if (room.roomType == RoomType.BossRoom)
         {
-            AudioManager.Instance.PlayBGM(bossBgm, 0.45f);
+            AudioManager.Instance.PlayBGM(bossBgm);
         }
     }
 }

@@ -18,6 +18,6 @@ public class TitleSpriteChanger : MonoBehaviour
             noneClearSpriteRenderer.sprite = ClearSprite;
         }
 
-        AudioManager.Instance.PlayBGM(titleBgm, 0.4f);
+        AudioManager.Instance.PlayBGM(titleBgm);
     }
 }
