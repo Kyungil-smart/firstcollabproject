@@ -7,7 +7,6 @@ namespace Monster
     {
         [SerializeField] private float dashSpeedMultiplier = 3f;
         [SerializeField] private float dashDuration = 0.5f;
-
         
         public override void Init()
         {
@@ -121,22 +120,18 @@ namespace Monster
                 RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.5f, dashDir, moveDist);
                 bool hitWall = false;
 
-                
-
                 foreach (var hit in hits)
                 {
                     bool isWall = hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Obstacle");
                     
                     if (hit.collider != null && isWall && !hit.collider.isTrigger)
                     {
-                        hitWall = true;
+                        // 진짜 벽에 부딪혔을 때만 돌진 종료
+                        transform.position += dashDir * (hit.distance - 0.05f);
                         break;
                     }
                 }
-
-                // 진짜 벽에 부딪혔을 때만 돌진 종료
-                if (hitWall) break; 
-
+                
                 // 플레이어 충돌 판정 분리
                 if (!hasHitPlayer)
                 {
