@@ -354,6 +354,10 @@ MonoBehaviour:
     m_Localized: BGM
     m_Metadata:
       m_Items: []
+  - m_Id: 2229556557086720
+    m_Localized: LANGUAGE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
