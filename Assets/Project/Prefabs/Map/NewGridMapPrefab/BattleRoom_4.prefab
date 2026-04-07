@@ -320,7 +320,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 20
-      m_TileSpriteIndex: 34
+      m_TileSpriteIndex: 35
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -510,7 +510,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 10
-      m_TileSpriteIndex: 10
+      m_TileSpriteIndex: 34
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -871,8 +871,8 @@ Tilemap:
     m_Data: {fileID: 517278371, guid: 4195b3d93cc324246ba6cd3b61fabfb0, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 727238642, guid: 4195b3d93cc324246ba6cd3b61fabfb0, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1875633683, guid: 4195b3d93cc324246ba6cd3b61fabfb0, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
@@ -920,9 +920,9 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
+    m_Data: {fileID: 1875633683, guid: 4195b3d93cc324246ba6cd3b61fabfb0, type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: 658595544, guid: 4195b3d93cc324246ba6cd3b61fabfb0, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 73
     m_Data:
@@ -21685,7 +21685,7 @@ MonoBehaviour:
   - {fileID: 3510158107548400092}
   _bossPrefab: {fileID: 0}
   isVisited: 0
-  _isCleared: 0
+  isCleared: 0
   upDoor: {fileID: 1793896033440050816}
   downDoor: {fileID: 4188605227878789800}
   leftDoor: {fileID: 1145044206567506663}

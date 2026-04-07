@@ -354,6 +354,14 @@ MonoBehaviour:
     m_Localized: BGM
     m_Metadata:
       m_Items: []
+  - m_Id: 2481109276753920
+    m_Localized: SPIDER WEB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2481105732567040
+    m_Localized: MOLOTOV
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
