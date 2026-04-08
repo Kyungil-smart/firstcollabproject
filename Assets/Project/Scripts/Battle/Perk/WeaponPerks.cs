@@ -78,8 +78,8 @@ public class WeaponPerks : MonoBehaviour
 
     private System.Collections.IEnumerator ShowGameClearDelayed()
     {
-        yield return new WaitForSecondsRealtime(2f);
-        gameClearUI.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(4f);
+        SceneLoader.LoadScene(3).Cancel();
     }
 
     /// <summary>

@@ -18,7 +18,7 @@ MonoBehaviour:
   attackType: 0
   damageBase: 90
   attackInterval: 1
-  maxAmmo: 0
+  maxAmmo: -1
   range: 1.8
   splashRadius: 0
   sectorAngle: 55

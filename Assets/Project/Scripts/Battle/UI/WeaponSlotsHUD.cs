@@ -42,7 +42,7 @@ public class WeaponSlotsHUD : MonoBehaviour
 
             if (weapon != null)
             {
-                if (weapon.ammo > 0) slot.ammoText.text = weapon.ammo.ToString();
+                if (weapon.ammo > -1) slot.ammoText.text = weapon.ammo.ToString();
                 else slot.ammoText.text = "";
 
                 if (slot.icon != null && weapon.data != null)
