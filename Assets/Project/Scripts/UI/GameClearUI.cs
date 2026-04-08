@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class GameClearUI : MonoBehaviour
 {
     [SerializeField] private Button toLobbyButton;
-    public string titleSceneName = "titleScene";
+    //public string titleSceneName = "titleScene";
     
     public void ToLobby()
     {
-        SceneManager.LoadScene(titleSceneName);
+        SceneLoader.LoadScene(3).Cancel();
     }
 }
