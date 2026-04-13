@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 범위 폭발 데미지 공통 정책: 직격 대상은 풀 데미지, 나머지는 감소 배수 적용
+/// 범위 폭발 데미지 정책: 직격 대상은 풀 데미지, 나머지는 감소 배수 적용
 /// </summary>
 public static class ExplodePolicy
 {

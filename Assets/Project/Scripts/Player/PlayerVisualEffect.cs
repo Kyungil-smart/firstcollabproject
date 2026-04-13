@@ -46,14 +46,14 @@ public class PlayerVisualEffect : MonoBehaviour
         WeaponBase.OnAttacked -= HandleAttack;
     }
 
-    private void HandleAttack()
+    void HandleAttack()
     {
         _anim.SetTrigger("2_Attack");
         AudioManager.Instance.PlaySFX(atkSFX);
     }
 
     private readonly HashSet<BodyPart> _tiredSFXPlayed = new HashSet<BodyPart>();
-    private void HandleDamaged(BodyPart part)
+    void HandleDamaged(BodyPart part)
     {
         _anim.SetTrigger("3_Damaged");
         StartCoroutine(OnHurtRoutine());
@@ -64,7 +64,7 @@ public class PlayerVisualEffect : MonoBehaviour
             AudioManager.Instance.PlaySFX(hurtSFX);
     }
 
-    private void HandleDeath()
+    void HandleDeath()
     {
         _anim.SetTrigger("4_Death");
         AudioManager.Instance.PlaySFX(deathSFX);
@@ -83,7 +83,7 @@ public class PlayerVisualEffect : MonoBehaviour
 
     IEnumerator OnHurtRoutine()
     {
-        _body.IsInvincible = true;
+        _body.isInvincible = true;
 
         for (int i = 0; i < 5; i++)
         {
@@ -99,6 +99,6 @@ public class PlayerVisualEffect : MonoBehaviour
             }
             yield return new WaitForSeconds(0.05f);
         }
-        _body.IsInvincible = false;
+        _body.isInvincible = false;
     }
 }

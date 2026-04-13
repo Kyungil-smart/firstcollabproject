@@ -8,10 +8,10 @@ public enum BodyPart { Head, Body, Arm, Leg }
 /// </summary>
 public class PlayerBody : MonoBehaviour, IDamageable
 {
-    [HideInInspector] public float headMaxHP = 100f;
-    [HideInInspector] public float bodyMaxHP = 100f;
-    [HideInInspector] public float armMaxHP = 100f;
-    [HideInInspector] public float legMaxHP = 100f;
+    public float headMaxHP = 100f;
+    public float bodyMaxHP = 100f;
+    public float armMaxHP = 100f;
+    public float legMaxHP = 100f;
     [SerializeField] float _headCurHP = 100f;
     [SerializeField] float _bodyCurHP = 100f;
     [SerializeField] float _armCurHP = 100f;
@@ -23,12 +23,11 @@ public class PlayerBody : MonoBehaviour, IDamageable
     public static event Action<int> OnLegInjuryChanged;
 
     public static event Action<BodyPart> OnDamaged;
-    public static event Action OnEvaded;
-    public static event Action OnPlayerDeath;
     public static event Action<bool> OnClearedChanged;
+    public static event Action OnPlayerDeath;
 
-    public bool isAlive = true;
-    public bool IsInvincible { get; set; }
+    [HideInInspector] public bool isAlive = true;
+    [HideInInspector] public bool isInvincible;
 
     bool _isCleared;
     public bool isCleared
@@ -42,13 +41,11 @@ public class PlayerBody : MonoBehaviour, IDamageable
         }
     }
 
-
     //부상 레벨  0: 정상, 1~3: 부상 단계, 4: 재기불능
     int _headInjuryLevel;
     int _bodyInjuryLevel;
     int _armInjuryLevel;
     int _legInjuryLevel;
-
     public float HeadCurHP
     {
         get => _headCurHP;
@@ -105,36 +102,9 @@ public class PlayerBody : MonoBehaviour, IDamageable
             }
         }
     }
-
     public float TotalMaxHP => headMaxHP + bodyMaxHP + armMaxHP + legMaxHP;
     public float TotalCurHP => HeadCurHP + BodyCurHP + ArmCurHP + LegCurHP;
 
-    // 부위별 체력 비율 계산
-    public float GetHpPercent(BodyPart part) => part switch
-    {
-        BodyPart.Head => HeadCurHP / headMaxHP,
-        BodyPart.Body => BodyCurHP / bodyMaxHP,
-        BodyPart.Arm => ArmCurHP / armMaxHP,
-        _ => LegCurHP / legMaxHP,
-    };
-    public int GetInjuryLevel(BodyPart part) => GetHpPercent(part) switch
-    {
-        > 0.8f => 0,
-        > 0.5f => 1,
-        > 0.2f => 2,
-        > 0.001f => 3,
-        _ => 4
-    };
-
-    // 부상 단계에 따른 스탯 페널티 계산
-    private float GetStatMultiplier(BodyPart part) => GetInjuryLevel(part) switch
-    {
-        0 => 1.0f,
-        1 => 0.8f,
-        2 => 0.6f,
-        3 => 0.4f,
-        _ => 0.1f
-    };
     // 부위별 관련 스탯
     [SerializeField] float _critPercent = 0.05f;
     public float CritPercent
@@ -163,11 +133,6 @@ public class PlayerBody : MonoBehaviour, IDamageable
         get => Mathf.Lerp(_moveSpeedMin, _moveSpeed, GetStatMultiplier(BodyPart.Leg));
         set => _moveSpeed = Mathf.Max(value, _moveSpeedMin);
     }
-    public void AddBaseCritPercent(float value) { _critPercent += value; }
-    public void AddBaseRecoveryPercent(float value) { _recoveryPercent += value; }
-    public void AddBaseCritDamage(float value) { _critDamage += value; }
-    public void AddBaseMoveSpeed(float percent) { _moveSpeed *= (1f + percent); }
-
     [SerializeField] float _evasionPercent = 0.05f; // 회피율
     public float EvasionPercent
     {
@@ -175,7 +140,42 @@ public class PlayerBody : MonoBehaviour, IDamageable
         set => _evasionPercent = value;
     }
 
+    [Header("텍스트 연출")]
+    [SerializeField] GameObject _textPrefab;
+    Transform _canvas;
+
+
+    // 부위별 체력 비율 계산
+    public float GetHpPercent(BodyPart part) => part switch
+    {
+        BodyPart.Head => HeadCurHP / headMaxHP,
+        BodyPart.Body => BodyCurHP / bodyMaxHP,
+        BodyPart.Arm => ArmCurHP / armMaxHP,
+        _ => LegCurHP / legMaxHP,
+    };
+    public int GetInjuryLevel(BodyPart part) => GetHpPercent(part) switch
+    {
+        > 0.8f => 0,
+        > 0.5f => 1,
+        > 0.2f => 2,
+        > 0.001f => 3,
+        _ => 4
+    };
+    // 부상 단계에 따른 스탯 페널티 계산
+    private float GetStatMultiplier(BodyPart part) => GetInjuryLevel(part) switch
+    {
+        0 => 1.0f,
+        1 => 0.8f,
+        2 => 0.6f,
+        3 => 0.4f,
+        _ => 0.1f
+    };
+
     public bool RollCrit() => CritPolicy.Get(CritPercent).Roll();
+    public void AddBaseCritPercent(float value) { _critPercent += value; }
+    public void AddBaseRecoveryPercent(float value) { _recoveryPercent += value; }
+    public void AddBaseCritDamage(float value) { _critDamage += value; }
+    public void AddBaseMoveSpeed(float percent) { _moveSpeed *= (1f + percent); }
 
     public void RestoreHealth() // 4개 부위를 회복력 만큼 회복
     {
@@ -185,11 +185,6 @@ public class PlayerBody : MonoBehaviour, IDamageable
         LegCurHP  += legMaxHP  * RecoveryPercent;
         // TODO: 회복 시 연출
     }
-
-
-    [Header("텍스트 연출")]
-    [SerializeField] GameObject _textPrefab;
-    Transform _canvas;
 
     private void Awake()
     {
@@ -209,12 +204,11 @@ public class PlayerBody : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (!isAlive || IsInvincible) return;
+        if (!isAlive || isInvincible) return;
 
         // 회피 판정
         if (UnityEngine.Random.value < EvasionPercent)
         {
-            OnEvaded?.Invoke();
             DamageText.ShowText(_textPrefab, _canvas, "MISS", Color.gray);
             return;
         }

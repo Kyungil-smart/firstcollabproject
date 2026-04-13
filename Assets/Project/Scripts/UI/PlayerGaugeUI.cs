@@ -18,31 +18,19 @@ namespace UI
             _playerPerk = FindFirstObjectByType<PlayerPerk>();
 
             // HP 바 초기화
-            if (_playerBody != null)
-            {
-                hpBarUI.Init(_playerBody.TotalCurHP, _playerBody.TotalMaxHP);
-            }
+            hpBarUI.Init(_playerBody.TotalCurHP, _playerBody.TotalMaxHP);
 
             // EXP 바 초기화
-            if (_playerPerk != null)
-            {
-                expBarUI.Init(_playerPerk.currentExp, _playerPerk.requiredExp);
-            }
+            expBarUI.Init(_playerPerk.currentExp, _playerPerk.requiredExp);
         }
 
         private void Update()
         {
             // 매 프레임 체력 갱신
-            if (_playerBody != null)
-            {
-                hpBarUI.UpdateGauge(_playerBody.TotalCurHP, _playerBody.TotalMaxHP);
-            }
+            hpBarUI.UpdateGauge(_playerBody.TotalCurHP, _playerBody.TotalMaxHP);
 
             // 매 프레임 경험치 갱신
-            if (_playerPerk != null)
-            {
-                expBarUI.UpdateGauge(_playerPerk.currentExp, _playerPerk.requiredExp);
-            }
+            expBarUI.UpdateGauge(_playerPerk.currentExp, _playerPerk.requiredExp);
         }
     }
 }
